@@ -1,5 +1,17 @@
 *
     // border: solid 1px pink
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap&subset=chinese-traditional');
+
+
+// color
+$default_color: #666666
+
+.default-color
+    color: $default_color
+
+input
+    ::placeholder
+        color: red
 
 body, html 
     padding: 0
@@ -7,3 +19,15 @@ body, html
     touch-action: manipulation
     font-size: 10px
     overflow: hidden
+    font-family: Noto Sans TC
+    color: lightcoral
+
+
+    .default-text-color
+        color: #666666
+
+.list-filter-row
+    .el-input__inner
+        border: none
+        border-radius: 0
+        border-bottom: solid 1px $default_color

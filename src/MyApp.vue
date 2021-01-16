@@ -23,6 +23,8 @@ export default {
 </script>
 <style lang="sass">
 @import '@/sass/default.sass'
+@import '@/sass/system_color.sass'
+
 .my-app
     width: 100vw
     height: calc(100 * var(--vh))

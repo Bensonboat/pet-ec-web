@@ -7,6 +7,7 @@ import IndexContent from '@/components/layouts/IndexContent'
 
 import HomePage from "@/components/pages/HomePage/HomePage";
 import ProductListPage from '@/components/pages/ProductListPage/ProductListPage'
+import ProductDetailPage from '@/components/pages/ProductDetailPage/ProductDetailPage'
 
 Vue.use(VueRouter);
 
@@ -30,6 +31,11 @@ const routes = [
                 path: "/product_list_page",
                 name: "ProductListPage",
                 component: ProductListPage
+            },
+            {
+                path: '/product/:type/:id',
+                name: 'ProductDetailPage',
+                component: ProductDetailPage
             }
             // {
             //     path: "/about",

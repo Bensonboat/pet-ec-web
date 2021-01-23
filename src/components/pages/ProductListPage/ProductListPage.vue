@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ProductListFilterRow from '@/components/layouts/ProductListFilterRow';
+import ProductListFilterRow from './ProductListFilterRow';
 import ProductList from './ProductList.vue';
 
 export default {

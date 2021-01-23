@@ -5,48 +5,95 @@
             :key='index' 
             :product_data='item'
             class="product-basic-data"
+            @show-quick-add-modal='toggleQuickAddModal'
         />
+        <div v-if="showQuickAddModal">
+            <div class='modal-mask'></div>
+            <product-spec class="quick-add-block" :product_data='quickAddProductData' @close-modal='toggleQuickAddModal'/>
+        </div>
     </div>
 </template>
 
 <script>
-import ProductBasicData from '../../layouts/ProductBasicData.vue';
+import ProductBasicData from './ProductBasicData.vue';
+import ProductSpec from './ProductSpec'
 
 export default {
     name: 'ProductList',
     components: { 
-        ProductBasicData, 
+        ProductBasicData,
+        ProductSpec
     },
     data(){
         return {
+            showQuickAddModal: false,
             productListData: [
                 {
                     img: '/images/animal.png',
                     name: '吧啦吧啦 台灣大黑熊 台灣大黑熊',
-                    price: 2000
+                    price: 2000,
+                    id: 1,
+                    type: '零食 零食 零食 零食 零食'
                 },
                 {
                     img: '/images/animal.png',
                     name: '嘎啦嘎啦 白色大眼睛',
-                    price: 1000
+                    price: 1000,
+                    id: 2,
+                    type: '零食'
                 },
                 {
                     img: '/images/animal.png',
                     name: '吧啦吧啦',
-                    price: 2000
+                    price: 2000,
+                    id: 3,
+                    type: '玩具'
                 },
                 {
                     img: '/images/animal.png',
                     name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
-                    price: 1000
+                    price: 1000,
+                    id: 4,
+                    type: '玩具'
                 },
                 {
                     img: '/images/test.png',
                     name: 'Test',
-                    price: 1000
+                    price: 1000,
+                    id: 4,
+                    type: '零食'
                 }
-            ]
+            ],
+            quickAddProductData: {
+                name: 'Qucik Product Name',
+                spec: {
+                    spec_name: 'Color',
+                    spec_options: [
+                        {
+                            spec: '桃粉色',
+                            selected: false
+                        },
+                        {
+                            spec: '淺灰色',
+                            selected: false
+                        },
+                        {
+                            spec: '淺綠色',
+                            selected: false
+                        },
+                        {
+                            spec: '黑色',
+                            selected: false
+                        }
+                    ]
+                }
+            }
         }
+    },
+    methods: {
+        toggleQuickAddModal(){
+            this.showQuickAddModal = !this.showQuickAddModal
+        },
     }
     
 }
@@ -62,4 +109,12 @@ export default {
     padding-bottom: 15rem
     .product-basic-data
         margin-top: 5rem
+    .quick-add-block
+        width: 70vw
+        // height: 200px
+        position: fixed
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        padding: 2rem
 </style>

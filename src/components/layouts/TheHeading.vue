@@ -1,7 +1,7 @@
 <template>
     <div class="the-heading">
         <div class="heading-operation-left-block">
-            <div>
+            <div @click="previousPage">
                 <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
             </div>
             <div class="operation-item">
@@ -31,6 +31,9 @@
         methods: {
             toHomePage(){
                 this.$router.push('/home_page')
+            },
+            previousPage(){
+                this.$router.go(-1)
             }
         }
     }

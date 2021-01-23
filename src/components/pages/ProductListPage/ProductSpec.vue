@@ -66,11 +66,10 @@
 <style lang="sass" scoped>
 .product-spec
     width: 100%
-    heigh: 100%
-    background-color: white
+    // heigh: 100%
     z-index: 5
     // padding: 2rem
-    box-shadow: border-box
+    box-sizing: border-box
     border-radius: 10px
     .modal-close-icon
         width: 2.5rem

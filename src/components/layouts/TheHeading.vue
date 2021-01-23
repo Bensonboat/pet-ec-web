@@ -46,7 +46,8 @@
     justify-content: center
     align-items: center
     position: relative
-    border-bottom: solid 1px #d1d1d1
+    box-shadow: 0 2px 5px rgba(0,0,0,.1)
+    background-color: #fff
     .logo-icon
         display: flex
         width: 3rem
@@ -54,9 +55,7 @@
     .user-icon, .cart-icon, .search-icon, .left-arrow-icon
         width: 2rem
         height: 2rem
-        display: flex
-    .left-arrow-icon
-        
+        display: flex        
     .heading-operation-right-block
         display: flex
         flex-wrap: nowrap

@@ -19,6 +19,6 @@
 .index-content
     .index-content-router-view
         height: calc(100% - 5rem)
-        overflow: scroll
+        overflow-y: scroll
 
 </style>

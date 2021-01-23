@@ -21,17 +21,17 @@ export default {
                 {
                     name: '商品介紹',
                     selected: true,
-                    route: ''
+                    value: 'description',
                 },
                 {
                     name: '送貨及付款',
                     selected: false,
-                    route: ''
+                    value: 'fulfillment'
                 },
                 {
                     name: '顧客評價',
                     selected: false,
-                    route: ''
+                    value: 'review'
                 }
             ]
         }
@@ -43,6 +43,7 @@ export default {
                 return item
             });
             this.navData[index].selected = true;
+            this.$emit('toggle-product-info', this.navData[index].value)
         }
     }
 }
@@ -55,10 +56,12 @@ export default {
     justify-content: space-around
     padding: .5rem
     margin-top: 2rem
+    background-color: #fff
     .nav-route
-        flex: 1
+        // flex: 1
         text-align: center
-        padding: 1rem 0
+        padding: .8rem 0
         letter-spacing: 1px
         cursor: pointer
+        display: flex
 </style>

@@ -8,18 +8,30 @@
                 <product-spec :product_data='quickAddProductData'/>
             </div>
         </div>
-        <detail-nav-row/>
+        <detail-nav-row @toggle-product-info='toggleProductInfo'/>
+        <div class="default-more-content-block more-content-block">
+            <product-description v-show="showProductInfo === 'description'"/>
+            <product-fulfillment v-show="showProductInfo === 'fulfillment'"/>
+            <product-review v-show="showProductInfo === 'review'"/>
+        </div>
     </div>
 </template>
 
 <script>
 import ProductSpec from '@/components/pages/ProductListPage/ProductSpec'
 import DetailNavRow from '@/components/pages/ProductDetailPage/DetailNavRow'
+import ProductDescription from './ProductDescription.vue'
+import ProductFulfillment from './ProductFulfillment.vue'
+import ProductReview from './ProductReview.vue'
+
 export default {
     name: 'ProductDetailPage',
     components: {
         ProductSpec,
-        DetailNavRow
+        DetailNavRow,
+        ProductDescription,
+        ProductFulfillment,
+        ProductReview
     },
     data(){
         return {
@@ -58,13 +70,20 @@ export default {
                         },
                     ]
                 }
-            }
+            },
+            showProductInfo: ''
         }
     },
     mounted(){
         this.productAttr.id = this.$route.params.id;
         this.productAttr.type = this.$route.params.type;
-        this.quickAddProductData.name = this.productAttr.type + ':' + this.productAttr.id
+        this.quickAddProductData.name = this.productAttr.type + ':' + this.productAttr.id;
+        this.showProductInfo = 'description'
+    },
+    methods: {
+        toggleProductInfo(value){
+            this.showProductInfo = value
+        }
     }
 }
 </script>
@@ -73,16 +92,18 @@ export default {
 .product-detail-page
     padding: 0 2rem
     .product-attribute
-        // display: flex
-        // align-items: center
-        // justify-content: space-between
+        background-color: #fff
+        padding: 1.5rem
     .img-block
-        width: 70vw
-        margin: 2rem auto 0 auto 
-        // flex: 1
+        width: 75vw
+        margin: 1rem auto 0 auto 
         img
             width: 100%
             height: 100%
     .spec-block
         margin-top: 2rem
+    .more-content-block
+        background-color: #fff
+        padding: 2rem 1rem 10rem 1rem
+
 </style>

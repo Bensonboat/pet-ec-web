@@ -110,6 +110,7 @@ export default {
     .product-basic-data
         margin-top: 5rem
     .quick-add-block
+        background-color: white
         width: 70vw
         // height: 200px
         position: fixed

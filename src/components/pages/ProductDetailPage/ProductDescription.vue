@@ -1,6 +1,6 @@
 <template>
     <div class="product-description">
-
+        Description
     </div>
 </template>
 
@@ -12,5 +12,5 @@
 
 <style lang="sass" scoped>
 .product-description
-
+    
 </style>

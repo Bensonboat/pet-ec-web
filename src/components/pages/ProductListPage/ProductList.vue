@@ -111,7 +111,7 @@ export default {
         margin-top: 5rem
     .quick-add-block
         background-color: white
-        width: 70vw
+        width: 80vw
         // height: 200px
         position: fixed
         top: 50%

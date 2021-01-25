@@ -7,17 +7,18 @@
             <div 
                 v-for="(item, index) in innerProductData.spec.spec_options" 
                 :key='index'
-                class='spec-option default-spec-option default-text-color'
+                class='spec-option default-spec-option default-text-color default-shadow'
                 :class="[item.selected ? 'spec-selected default-deep-green-color' : '']"
                 @click="toggleSelectStatus(index)"
             >
                 {{item.spec}}
             </div>
         </div>
+        <div v-if="selectItemPrice !== ''" class="default-text-color default-price-block">價格:  ${{selectItemPrice}}</div>
         <div class="add-to-cart-block">
             <div class="default-gray-color default-product-number-text">數量</div>
             <div class="operate-block">
-                <div class="default-number-block number-block">
+                <div class="default-number-block number-block default-shadow">
                     <div class="edit-number-icon-block" @click="editNumber(-1)">
                         <img src="/images/minus.png" alt="add icon" class="default-operate-icon">
                     </div>
@@ -26,7 +27,7 @@
                         <img src="/images/add.png" alt="minus icon" class="default-operate-icon">
                     </div>
                 </div>
-                <div class="confirm-block default-deep-green-bgc default-confirm-block">加入</div>
+                <div class="confirm-block default-deep-green-bgc default-confirm-block default-shadow" @click="addToCart">加入</div>
             </div>
         </div>
     </div>
@@ -41,7 +42,8 @@
         data(){
             return {
                 innerProductData: this.product_data,
-                number: 0
+                number: 0,
+                selectItemPrice: ''
             }
         },  
         methods: {
@@ -51,6 +53,10 @@
                     return item
                 })
                 this.innerProductData.spec.spec_options[index].selected = !this.innerProductData.spec.spec_options[index].selected
+
+                if(this.innerProductData.spec.spec_options[index].selected){
+                    this.selectItemPrice = this.innerProductData.spec.spec_options[index].price
+                }
             },
             closeModal(){
                 this.$emit('close-modal')
@@ -58,6 +64,9 @@
             editNumber(val){
                 this.number = this.number + val
                 this.number < 0 ? this.number = 0 : ''
+            },
+            addToCart(){
+                alert('已加入購物車')
             }
         }
     }
@@ -126,5 +135,4 @@
         user-select: none
         letter-spacing: 2px
         cursor: pointer
-
 </style>

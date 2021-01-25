@@ -1,5 +1,5 @@
 <template>
-    <div class="detail-nav-row">
+    <div class="detail-nav-row default-shadow">
         <div 
             v-for="(item, index) in navData" 
             :key='index'

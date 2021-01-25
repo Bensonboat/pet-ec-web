@@ -1,6 +1,6 @@
 <template>
     <div class="product-detail-page">
-        <div class="product-attribute">
+        <div class="product-attribute default-shadow">
             <div class="img-block">
                 <img src="/images/test2.png" alt="">
             </div>
@@ -46,27 +46,33 @@ export default {
                     spec_options: [
                         {
                             spec: '桃粉色',
-                            selected: false
+                            selected: false,
+                            price: 100
                         },
                         {
                             spec: '淺灰色',
-                            selected: false
+                            selected: false,
+                            price: 1002
                         },
                         {
                             spec: '淺綠色',
-                            selected: false
+                            selected: false,
+                            price: 1004
                         },
                         {
                             spec: '黑色',
-                            selected: false
+                            selected: false,
+                            price: 1008
                         },
                         {
                             spec: '灰色',
-                            selected: false
+                            selected: false,
+                            price: 500
                         },
                         {
                             spec: '亞痲色',
-                            selected: false
+                            selected: false,
+                            price: 9900
                         },
                     ]
                 }
@@ -94,6 +100,7 @@ export default {
     .product-attribute
         background-color: #fff
         padding: 1.5rem
+        border-radius: 5px
     .img-block
         width: 75vw
         margin: 1rem auto 0 auto 
@@ -105,5 +112,5 @@ export default {
     .more-content-block
         background-color: #fff
         padding: 2rem 1rem 10rem 1rem
-
+        border-radius: 0 0 5px 5px
 </style>

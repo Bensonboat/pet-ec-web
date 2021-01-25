@@ -1,5 +1,5 @@
 <template>
-    <div class="the-heading">
+    <div class="the-heading default-shadow">
         <div class="heading-operation-left-block">
             <div @click="previousPage">
                 <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
@@ -46,7 +46,6 @@
     justify-content: center
     align-items: center
     position: relative
-    box-shadow: 0 2px 5px rgba(0,0,0,.1)
     background-color: #fff
     .logo-icon
         display: flex

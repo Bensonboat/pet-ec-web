@@ -54,23 +54,29 @@ export default {
 
 <style lang="sass" scoped>
 .product-basic-data
-    width: 50%
-    height: 18rem
+    width: 48%
+    height: 21rem
     display: flex
     justify-content: center
     position: relative
     .product-content-block
         position: relative
+        width: 100%
+        height: 100%
     .product-image-block
-        width: 10rem
-        height: 10rem
+        width: 100%
+        // width: 13rem
+        // height: 13rem
         text-align: center
         .product-image
-            width: 100%
-            height: 100%
+            width: 13rem
+            height: 13rem
+
+            // width: 100%
+            // height: 100%
     .product-name-block
-        width: 10rem
-        margin-top: 1rem
+        width: 15rem
+        margin: 1rem auto 0 auto
         display: -webkit-box
         -webkit-box-orient: vertical
         -webkit-line-clamp: 2
@@ -81,9 +87,12 @@ export default {
         display: flex
         justify-content: space-between
         align-items: center
-        width: 100%
+        // width: 100%
+        width: 15rem
+        left: 50%
+        transform: translateX(-50%)
     .product-cart-block
-        width: 2rem
+        width: 5rem
         height: 2rem
         .cart-image
             height: 100%

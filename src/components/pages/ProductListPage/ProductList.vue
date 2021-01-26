@@ -29,7 +29,7 @@ export default {
             showQuickAddModal: false,
             productListData: [
                 {
-                    img: '/images/animal.png',
+                    img: '/images/goku1.jpeg',
                     name: '吧啦吧啦 台灣大黑熊 台灣大黑熊',
                     price: 2000,
                     id: 1,
@@ -43,14 +43,14 @@ export default {
                     type: '零食'
                 },
                 {
-                    img: '/images/animal.png',
+                    img: '/images/goku2.jpg',
                     name: '吧啦吧啦',
                     price: 2000,
                     id: 3,
                     type: '玩具'
                 },
                 {
-                    img: '/images/animal.png',
+                    img: '/images/goku3.jpeg',
                     name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
                     price: 1000,
                     id: 4,
@@ -62,6 +62,13 @@ export default {
                     price: 1000,
                     id: 4,
                     type: '零食'
+                },
+                {
+                    img: '/images/goku4.jpeg',
+                    name: 'GOKU 龜派氣功',
+                    price: 1300,
+                    id: 5,
+                    type: '玩具'
                 }
             ],
             quickAddProductData: {
@@ -103,12 +110,14 @@ export default {
 .product-list
     display: flex
     flex-wrap: wrap
-    padding: 0 3rem
+    // padding: 0 3rem
     justify-content: space-between
     align-content: stretch
-    padding-bottom: 15rem
+    // padding-bottom: 10rem
+    // padding: 0 2rem 10rem 2rem
+    padding: 0 1rem 10rem 1rem
     .product-basic-data
-        margin-top: 5rem
+        margin-bottom: 2rem
     .quick-add-block
         background-color: white
         width: 80vw

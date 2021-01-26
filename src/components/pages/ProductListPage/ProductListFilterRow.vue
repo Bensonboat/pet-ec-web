@@ -1,6 +1,6 @@
 <template>
     <div class="list-filter-row">
-        <div class="list-subject default-text-color">{{ listSubject }}</div>
+        <div class="default-list-subject default-deep-green-color">{{ listSubject }}</div>
         <div class="basic-order-filter">
             <el-select v-model="orderFilter" placeholder="請選擇" size="mini" style="width: 14rem; border: none">
                 <el-option
@@ -48,7 +48,5 @@ export default {
     justify-content: space-between
     align-items: center
     padding: 2rem
-    .list-subject
-        font-size: 1.5rem
-
+    margin-bottom: 2rem
 </style>

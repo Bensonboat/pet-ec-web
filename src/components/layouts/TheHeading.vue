@@ -47,6 +47,7 @@
     align-items: center
     position: relative
     background-color: #fff
+    z-index: 3000
     .logo-icon
         display: flex
         width: 3rem

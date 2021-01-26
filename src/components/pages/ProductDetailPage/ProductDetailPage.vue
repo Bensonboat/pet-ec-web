@@ -2,14 +2,14 @@
     <div class="product-detail-page">
         <div class="product-attribute default-shadow">
             <div class="img-block">
-                <img src="/images/test2.png" alt="">
+                <img src="/images/goku2.jpg" alt="">
             </div>
             <div class="spec-block">
                 <product-spec :product_data='quickAddProductData'/>
             </div>
         </div>
         <detail-nav-row @toggle-product-info='toggleProductInfo'/>
-        <div class="default-more-content-block more-content-block">
+        <div class="default-more-content-block more-content-block default-shadow">
             <product-description v-show="showProductInfo === 'description'"/>
             <product-fulfillment v-show="showProductInfo === 'fulfillment'"/>
             <product-review v-show="showProductInfo === 'review'"/>
@@ -102,13 +102,13 @@ export default {
         padding: 1.5rem
         border-radius: 5px
     .img-block
-        width: 75vw
+        // width: 75vw
         margin: 1rem auto 0 auto 
         img
             width: 100%
             height: 100%
     .spec-block
-        margin-top: 2rem
+        margin-top: 1rem
     .more-content-block
         background-color: #fff
         padding: 2rem 1rem 10rem 1rem

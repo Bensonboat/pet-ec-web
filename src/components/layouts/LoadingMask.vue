@@ -3,7 +3,7 @@
         <div class="bgc-mask"></div>
         <div class="loading">
             <div class="loading-icon-spinner"></div>
-            <div class="loading loading-icon-txt">api</div>
+            <div class="loading loading-icon-txt"></div>
         </div>
         <div class="loading-txt">
             Loading
@@ -48,10 +48,11 @@
         top: 50%
         left: 50%
         transform: translate(-50%, -50%)
+        z-index: 99999
     .loading-icon-spinner
-        width: 55px
-        height: 55px
-        background: #19316c
+        width: 25px
+        height: 25px
+        background: #d1d1d1
         animation: loader-spin .8s infinite ease-in
     .loading-icon-txt
         width: 55px
@@ -61,21 +62,22 @@
         align-items: center
         animation: loader-txt .8s infinite ease-in
         color: white
-        font-family: Righteous
+        // font-family: Righteous
         font-size: 22px
     .loading-txt
-        font-family: Righteous
+        z-index: 99999
+        // font-family: Righteous
         position: absolute
         top: 55%
         left: 50%
-        font-size: 30px
-        color: #19316c
+        font-size: 20px
+        color: #d1d1d1
         transform: translateX(-50%)
     @keyframes loader-spin
         0%
             transform: rotate(0deg)
         17%
-            border-bottom-right-radius: 3px
+            border-bottom-right-radius: .01%
         25%
             transform: translateY(9px) rotate(22.5deg)
         50%

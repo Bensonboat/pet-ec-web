@@ -1,7 +1,7 @@
 <template>
     <div class="default-product-spec product-spec">
         <img src="/images/modal-close-icon.png" alt="" class="modal-close-icon" @click="closeModal">
-        <div class="default-product-name-block default-text-color">{{innerProductData.name}}</div>
+        <div class="default-product-name-block default-deep-green-color">{{innerProductData.name}}</div>
         <div class="default-product-spec-name-block default-gray-color product-spec-name-block">{{innerProductData.spec.spec_name}}</div>
         <div class="spec-option-block">
             <div 
@@ -76,7 +76,7 @@
 .product-spec
     width: 100%
     // heigh: 100%
-    z-index: 5
+    z-index: 99999
     // padding: 2rem
     box-sizing: border-box
     border-radius: 10px

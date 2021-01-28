@@ -7,7 +7,7 @@
             <div 
                 v-for="(item, index) in innerProductData.spec.spec_options" 
                 :key='index'
-                class='spec-option default-spec-option default-text-color default-shadow'
+                class='spec-option default-spec-option default-text-color'
                 :class="[item.selected ? 'spec-selected default-deep-green-color' : '']"
                 @click="toggleSelectStatus(index)"
             >
@@ -18,7 +18,7 @@
         <div class="add-to-cart-block">
             <div class="default-gray-color default-product-number-text">數量</div>
             <div class="operate-block">
-                <div class="default-number-block number-block default-shadow">
+                <div class="default-number-block number-block">
                     <div class="edit-number-icon-block" @click="editNumber(-1)">
                         <img src="/images/minus.png" alt="add icon" class="default-operate-icon">
                     </div>
@@ -94,7 +94,7 @@
         flex-wrap: wrap
     .spec-option
         height: 3.5rem
-        margin-right: 15px
+        margin-right: 10px
         letter-spacing: 1px
         margin-bottom: 1rem
         display: flex

@@ -1,5 +1,5 @@
 <template>
-    <div class="product-list">
+    <div class="product-list default-shadow">
         <product-basic-data 
             v-for="(item, index) in productListData" 
             :key='index' 
@@ -116,8 +116,10 @@ export default {
     // padding-bottom: 10rem
     // padding: 0 2rem 10rem 2rem
     padding: 0 1rem 10rem 1rem
+    background-color: #fff
+    border-radius: 5px
     .product-basic-data
-        margin-bottom: 2rem
+        margin-top: 2rem
     .quick-add-block
         background-color: white
         width: 80vw

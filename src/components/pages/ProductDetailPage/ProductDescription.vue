@@ -1,5 +1,5 @@
 <template>
-    <div class="product-description">
+    <div class="default-product-description product-description">
         <div v-for='(item, index) in descriptionData' :key="index" class="description-set">
             <img :src="item.img" alt="" class="description-img">
             <div class="default-description-text description-text default-text-color">{{item.description}}</div>

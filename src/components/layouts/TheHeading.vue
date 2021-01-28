@@ -1,7 +1,7 @@
 <template>
     <div class="the-heading default-shadow">
         <div class="heading-operation-left-block">
-            <div @click="previousPage">
+            <div @click="previousPage" class="operation-item">
                 <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
             </div>
             <div class="operation-item">
@@ -17,11 +17,9 @@
             </div>
             <div class="operation-item">
                 <img src="/images/cart.png" alt="" class="cart-icon">
+                <div class="default-deep-green-bgc in-cart-number">1</div>
             </div>
         </div>
-
-        <!-- <router-link to="/home_page">Home</router-link> |
-        <router-link to="/about">About</router-link> -->
     </div>
 </template>
 
@@ -66,6 +64,18 @@
         position: absolute
         left: 2rem
     .operation-item
-        margin-left: 1.5rem 
+        margin-right: 1.5rem 
+        position: relative
+    .in-cart-number
+        position: absolute
+        top: -10px
+        right: -15px
+        width: 2rem
+        height: 2rem
+        border-radius: 50%
+        display: flex
+        align-items: baseline
+        justify-content: center
+        font-size: 12px
 
 </style>

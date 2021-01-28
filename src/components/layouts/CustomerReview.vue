@@ -1,5 +1,5 @@
 <template>
-    <div class="customer-review">
+    <div class="default-customer-review customer-review">
         <div v-for='(item, index) in reviewData' :key="index" class="each-review">
             <div class="user-info-block">
                 <img :src="item.avatar" alt="user avatar" class="default-user-avatar">

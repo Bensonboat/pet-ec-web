@@ -1,5 +1,5 @@
 <template>
-    <div class="detail-nav-row default-shadow">
+    <div class="default-detail-nav-row detail-nav-row default-shadow">
         <div 
             v-for="(item, index) in navData" 
             :key='index'
@@ -57,6 +57,7 @@ export default {
     padding: .5rem
     margin-top: 2rem
     background-color: #fff
+    border-radius: 5px 5px 0 0
     .nav-route
         // flex: 1
         text-align: center

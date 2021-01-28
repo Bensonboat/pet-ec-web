@@ -48,14 +48,17 @@ body, html
             height: 100%
 
 // ProductListFilterRow.vue
-.list-filter-row
+.default-product-list-filter-row
     .default-list-subject
         font-size: 1.6rem
         font-weight: 600
     .el-input__inner
-        border: none
-        border-radius: 0
-        border-bottom: solid 1px $default_gray_color
+        // border: solid 1px $default_gray_color
+        background-color: #fff
+        border-radius: 5px
+        // border: none
+        // border-radius: 0
+        // border-bottom: solid 1px $default_gray_color
     .el-select .el-input.is-focus .el-input__inner
         border-color: $default_gray_color
     .el-select .el-input__inner
@@ -76,7 +79,7 @@ body, html
         border: solid 1px $default_gray_color
         border-radius: .5rem
         padding: .3rem 1rem
-        font-size: 1.3rem
+        font-size: 1.2rem
     .default-number-block
         padding: .5rem 1.2rem
         border: solid 1px $default_gray_color
@@ -90,7 +93,7 @@ body, html
         height: 100%
         height: 3.5rem
         padding: .5rem 1.2rem
-        font-size: 1.2rem
+        font-size: 1.3rem
     .default-product-number-text
         font-size: 1.4rem
     .default-price-block
@@ -98,19 +101,20 @@ body, html
         font-size: 1.4rem
 
 // ProductBasicData.vue
-.product-basic-data
+.default-product-basic-data
     .default-product-name-block
         font-size: 1.4rem
-    .product-price-block
-        font-size: 1.2rem
+    .default-product-price-block
+        font-size: 1.3rem
+        font-weight: 600
 
 // ProductDetailPage.vue
-.product-detail-page
+.default-product-detail-page
     .default-more-content-block
         font-size: 1.4rem
 
 // DetailNavRow.vue
-.detail-nav-row
+.default-detail-nav-row
     // border-bottom: solid 1px $default_gray_color
     .default-nav-route
         font-size: 1.5rem
@@ -120,8 +124,8 @@ body, html
         transform: scale(1.05)
 
 // CustomerReview.vue
-.customer-review
-    border-bottom: solid 1px rgba(0,0,0,.05)
+.default-customer-review
+    // border-bottom: solid 1px rgba(0,0,0,.05)
     .default-user-avatar
         width: 3.5rem
         height: 3.5rem
@@ -131,9 +135,9 @@ body, html
         font-size: 1.2rem
 
 // ProductDescription.vue
-.product-description
-    border-bottom: solid 1px rgba(0,0,0,.05)
-    padding-bottom: 3rem
+.default-product-description
+    // border-bottom: solid 1px rgba(0,0,0,.05)
+    // padding-bottom: 3rem
     .default-description-text
         font-size: 1.6rem
 

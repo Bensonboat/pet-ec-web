@@ -1,5 +1,5 @@
 <template>
-    <div class="product-detail-page">
+    <div class="default-product-detail-page product-detail-page">
         <div class="product-attribute default-shadow">
             <div class="img-block">
                 <img :src="productImgs[currentShowsImgIndex]" alt="product image">
@@ -23,15 +23,18 @@
             <product-fulfillment v-show="showProductInfo === 'fulfillment'"/>
             <product-review v-show="showProductInfo === 'review'"/>
         </div>
+        <product-recommand-block/>
+
     </div>
 </template>
 
 <script>
 import ProductSpec from '@/components/pages/ProductListPage/ProductSpec'
-import DetailNavRow from '@/components/pages/ProductDetailPage/DetailNavRow'
-import ProductDescription from './ProductDescription.vue'
-import ProductFulfillment from './ProductFulfillment.vue'
-import ProductReview from './ProductReview.vue'
+import DetailNavRow from './DetailNavRow'
+import ProductDescription from './ProductDescription'
+import ProductFulfillment from './ProductFulfillment'
+import ProductReview from './ProductReview'
+import ProductRecommandBlock from './ProductRecommandBlock'
 
 export default {
     name: 'ProductDetailPage',
@@ -40,7 +43,8 @@ export default {
         DetailNavRow,
         ProductDescription,
         ProductFulfillment,
-        ProductReview
+        ProductReview,
+        ProductRecommandBlock,
     },
     data(){
         return {
@@ -115,8 +119,9 @@ export default {
         background-color: #fff
         padding: 1.5rem
         border-radius: 5px
+        margin-top: 2rem
     .img-block
-        width: 95%
+        // width: 95%
         height: 20rem
         overflow: hidden
         margin: 1rem auto 0 auto 
@@ -127,7 +132,7 @@ export default {
         margin-top: 1rem
     .more-content-block
         background-color: #fff
-        padding: 2rem 1rem 10rem 1rem
+        padding: 2rem 1rem 1rem 1rem
         border-radius: 0 0 5px 5px
     .img-dots-block
         display: flex

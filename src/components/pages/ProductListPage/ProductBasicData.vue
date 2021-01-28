@@ -1,5 +1,5 @@
 <template>
-    <div class="product-basic-data">
+    <div class="default-product-basic-data product-basic-data">
         <div class="product-content-block">
             <div @click="checkProductDetail(product_data.type, product_data.id)">
                 <div class="product-image-block">
@@ -17,7 +17,7 @@
             </div>
             <div class="product-bottom-block">
                 <div
-                    class="product-price-block default-text-color default-product-price-block"
+                    class="product-price-block default-deep-green-color default-product-price-block"
                 >
                     ${{ product_data.price }}
                 </div>
@@ -55,10 +55,13 @@ export default {
 <style lang="sass" scoped>
 .product-basic-data
     width: 48%
-    height: 21rem
+    height: 23rem
     display: flex
     justify-content: center
     position: relative
+    border-radius: 5px
+    // border-bottom: solid 1px pink
+    // box-shadow: 0 2px 5px rgba(0,0,0,.1)
     .product-content-block
         position: relative
         width: 100%
@@ -69,14 +72,15 @@ export default {
         // height: 13rem
         text-align: center
         .product-image
-            width: 13rem
-            height: 13rem
+            width: 15rem
+            height: 15rem
 
             // width: 100%
             // height: 100%
     .product-name-block
-        width: 15rem
-        margin: 1rem auto 0 auto
+        // padding: 0 1.5rem 0 0 
+        // width: 15rem
+        margin: .5rem auto 0 auto
         display: -webkit-box
         -webkit-box-orient: vertical
         -webkit-line-clamp: 2
@@ -92,7 +96,7 @@ export default {
         left: 50%
         transform: translateX(-50%)
     .product-cart-block
-        width: 5rem
+        // width: 5rem
         height: 2rem
         .cart-image
             height: 100%

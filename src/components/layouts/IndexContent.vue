@@ -26,18 +26,19 @@
         overflow-y: scroll
         width: 90%
         margin: auto
-        background-color: #fff
+        // background-color: #fff
     .index-content-router-view::-webkit-scrollbar 
         display: none
     .top-icon-block
         position: absolute
         right: 3rem
-        bottom: 5rem
+        bottom: 3rem
         // background-color: #D8E2DC
-        background-color: #DFE0E2
+        // background-color: #DFE0E2
+        background-color: rgba(0,0,0,.4)
         border-radius: 100%
         padding: 1rem
     .top-icon
-        margin-top: 3px
+        // margin-top: 3px
         
 </style>

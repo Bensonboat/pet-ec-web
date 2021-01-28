@@ -1,5 +1,5 @@
 <template>
-    <div class="list-filter-row">
+    <div class="product-list-filter-row default-product-list-filter-row">
         <div class="default-list-subject default-deep-green-color">{{ listSubject }}</div>
         <div class="basic-order-filter">
             <el-select v-model="orderFilter" placeholder="請選擇" size="mini" style="width: 14rem; border: none">
@@ -43,10 +43,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.list-filter-row
+.product-list-filter-row
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 2rem
-    margin-bottom: 2rem
+    padding: 2rem 0
+    // margin-bottom: 2rem
 </style>

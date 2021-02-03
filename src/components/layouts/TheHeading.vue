@@ -15,7 +15,7 @@
             <div class="operation-item">
                 <img src="/images/user.png" alt="" class="user-icon">
             </div>
-            <div class="operation-item">
+            <div class="operation-item" @click="toCartPage">
                 <img src="/images/cart.png" alt="" class="cart-icon">
                 <div class="default-deep-green-bgc in-cart-number">1</div>
             </div>
@@ -32,6 +32,9 @@
             },
             previousPage(){
                 this.$router.go(-1)
+            },
+            toCartPage(){
+                this.$router.push('/cart_page')
             }
         }
     }

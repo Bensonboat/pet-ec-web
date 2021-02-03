@@ -8,6 +8,7 @@ import IndexContent from '@/components/layouts/IndexContent'
 import HomePage from "@/components/pages/HomePage/HomePage";
 import ProductListPage from '@/components/pages/ProductListPage/ProductListPage'
 import ProductDetailPage from '@/components/pages/ProductDetailPage/ProductDetailPage'
+import CartPage from '@/components/pages/CartPage/CartPage'
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,11 @@ const routes = [
                 path: '/product/:type/:id',
                 name: 'ProductDetailPage',
                 component: ProductDetailPage
+            },
+            {
+                path: '/cart_page',
+                name: 'CartPage',
+                component: CartPage
             }
             // {
             //     path: "/about",

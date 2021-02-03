@@ -115,9 +115,10 @@ export default {
     align-content: stretch
     // padding-bottom: 10rem
     // padding: 0 2rem 10rem 2rem
-    padding: 0 1rem 10rem 1rem
+    padding: 0 1rem 5rem 1rem
     background-color: #fff
     border-radius: 5px
+    margin-bottom: 5rem
     .product-basic-data
         margin-top: 2rem
     .quick-add-block

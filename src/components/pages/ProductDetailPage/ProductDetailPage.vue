@@ -2,7 +2,13 @@
     <div class="default-product-detail-page product-detail-page">
         <div class="product-attribute default-shadow">
             <div class="img-block">
+                <div class="change-image-icon left" @click="changeCurrentImage(-1)">
+                    <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
+                </div>
                 <img :src="productImgs[currentShowsImgIndex]" alt="product image">
+                <div class="change-image-icon right" @click="changeCurrentImage(1)">
+                    <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
+                </div>
             </div>
             <div class='img-dots-block'>
                 <div 
@@ -24,7 +30,6 @@
             <product-review v-show="showProductInfo === 'review'"/>
         </div>
         <product-recommand-block/>
-
     </div>
 </template>
 
@@ -107,6 +112,16 @@ export default {
         },
         toggleCurrentShowsImg(index){
             this.currentShowsImgIndex = index
+        },
+        changeCurrentImage(value){
+            this.currentShowsImgIndex = this.currentShowsImgIndex + value;
+            if(this.currentShowsImgIndex < 0){
+                this.currentShowsImgIndex = this.productImgs.length - 1
+                return
+            }
+            if(this.currentShowsImgIndex >= this.productImgs.length ){
+                this.currentShowsImgIndex = 0
+            }
         }
     }
 }
@@ -125,9 +140,29 @@ export default {
         height: 20rem
         overflow: hidden
         margin: 1rem auto 0 auto 
+        position: relative
         img
             width: 100%
             height: 100%
+    .change-image-icon
+        position: absolute
+        width: 3rem
+        height: 100%
+        background-color: #fff
+        opacity: .5
+        top: 0
+        img
+            width: 3rem
+            height: 3rem
+            top: 50%
+            position: absolute
+            transform: translateY(-50%)
+            opacity: .5
+    .change-image-icon.left
+        left: 0
+    .change-image-icon.right
+        right: 0
+        transform: rotate(180deg)
     .spec-block
         margin-top: 1rem
     .more-content-block

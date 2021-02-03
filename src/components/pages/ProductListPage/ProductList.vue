@@ -4,6 +4,7 @@
             v-for="(item, index) in productListData" 
             :key='index' 
             :product_data='item'
+            :showQuickAddIcon='true'
             class="product-basic-data"
             @show-quick-add-modal='toggleQuickAddModal'
         />

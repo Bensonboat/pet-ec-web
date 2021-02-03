@@ -21,7 +21,7 @@
                 >
                     ${{ product_data.price }}
                 </div>
-                <div class="product-cart-block" @click="showQuickAddModal">
+                <div v-if='showQuickAddIcon' class="product-cart-block" @click="showQuickAddModal">
                     <img
                         src="/images/cart.png"
                         alt="cart image"
@@ -38,6 +38,7 @@ export default {
     name: "ProductBasicData",
     props: {
         product_data: Object,
+        showQuickAddIcon: Boolean
     },
     methods: {
         showQuickAddModal() {

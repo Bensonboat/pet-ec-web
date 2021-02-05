@@ -5,7 +5,7 @@
                 <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
             </div>
             <div class="operation-item">
-                <img src="/images/search.png" alt="" class="search-icon">
+                <img src="/images/icon-search.png" alt="" class="search-icon">
             </div>
         </div>
         <div @click="toHomePage">
@@ -16,7 +16,7 @@
                 <img src="/images/user.png" alt="" class="user-icon">
             </div>
             <div class="operation-item" @click="toCartPage">
-                <img src="/images/cart.png" alt="" class="cart-icon">
+                <img src="/images/icon-bag.png" alt="" class="cart-icon">
                 <div class="default-deep-green-bgc in-cart-number">1</div>
             </div>
         </div>
@@ -79,6 +79,6 @@
         display: flex
         align-items: baseline
         justify-content: center
-        font-size: 12px
+        font-size: 1.2rem
 
 </style>

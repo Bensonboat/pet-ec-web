@@ -36,7 +36,6 @@ import CouponList from './CouponList'
 
 <style lang="sass" scoped>
 .coupon-price
-    margin-bottom: 5rem
     .add-coupon-block
         display: flex
         justify-content: flex-start
@@ -50,5 +49,4 @@ import CouponList from './CouponList'
         display: flex
         justify-content: space-between
         align-items: center
-        // padding-right: 1rem
 </style>

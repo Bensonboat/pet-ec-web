@@ -2,7 +2,7 @@
     <div class="default-order-list order-list default-white-bgc default-border-radius">
         <div class="order-header">
             <div class="default-text-color default-header-name">訂單</div>
-            <div class="default-light-green-color">繼續購物</div>
+            <div class="default-light-green-color">再去逛逛</div>
         </div>
         <div class="default-list-content-block">
             <div class="list-item" v-for='(item, index) in orderListData' :key="index">
@@ -11,11 +11,11 @@
                         <div class="default-text-color">{{item.name}}</div>
                     </div>
                     <div class="default-number-edit-block number-edit-block">
-                        <div>
+                        <div @click="editNumber(index, -1)">
                             <img src="/images/minus.png" alt="add icon" class="default-operate-icon">
                         </div>
                         <div class="default-order-number default-deep-green-color">{{item.order_number}}</div>
-                        <div>
+                        <div @click="editNumber(index, 1)">
                             <img src="/images/add.png" alt="add icon" class="default-operate-icon">
                         </div>
                     </div>
@@ -65,6 +65,12 @@
                     },
                 ]
             }
+        },
+        methods: {
+            editNumber(index, value){
+                this.orderListData[index].order_number = this.orderListData[index].order_number + value
+                this.orderListData[index].order_number < 0 ? this.orderListData[index].order_number = 0 : ''
+            }
         }
     }
 </script>
@@ -92,9 +98,14 @@
     .number-edit-block
         display: flex
         align-items: center
-        justify-content: space-evenly
+        justify-content: space-between
         border-radius: 5px
         margin-left: 1rem
+        padding: 0 .5rem
+        img
+            &:active   
+              background-color: lightcoral
+
     .name-block, .number-edit-block
         flex: 1
     .price-block

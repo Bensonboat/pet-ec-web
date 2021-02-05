@@ -30,42 +30,42 @@ export default {
             showQuickAddModal: false,
             productListData: [
                 {
-                    img: '/images/goku1.jpeg',
+                    img: '/images/p1.jpg',
                     name: '吧啦吧啦 台灣大黑熊 台灣大黑熊',
                     price: 2000,
                     id: 1,
                     type: '零食 零食 零食 零食 零食'
                 },
                 {
-                    img: '/images/animal.png',
+                    img: '/images/p1.jpg',
                     name: '嘎啦嘎啦 白色大眼睛',
                     price: 1000,
                     id: 2,
                     type: '零食'
                 },
                 {
-                    img: '/images/goku2.jpg',
+                    img: '/images/p1.jpg',
                     name: '吧啦吧啦',
                     price: 2000,
                     id: 3,
                     type: '玩具'
                 },
                 {
-                    img: '/images/goku3.jpeg',
+                    img: '/images/p1.jpg',
                     name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
                     price: 1000,
                     id: 4,
                     type: '玩具'
                 },
                 {
-                    img: '/images/test.png',
+                    img: '/images/p1.jpg',
                     name: 'Test',
                     price: 1000,
                     id: 4,
                     type: '零食'
                 },
                 {
-                    img: '/images/goku4.jpeg',
+                    img: '/images/p1.jpg',
                     name: 'GOKU 龜派氣功',
                     price: 1300,
                     id: 5,

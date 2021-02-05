@@ -5,6 +5,10 @@
             <order-list/>
         </div>
         <coupon-price/>
+        <div class="default-deep-green-bgc next-step-btn default-border-radius">
+            <div>下一步</div>
+        </div>
+
     </div>
 </template>
 
@@ -28,5 +32,9 @@ export default {
 .cart-page
     .process-list-block
         padding-bottom: 2rem
-    // padding: 0 2rem
+    .next-step-btn
+        width: 50%
+        padding: 1rem 2rem
+        text-align: center
+        margin: 2rem auto 5rem auto
 </style>

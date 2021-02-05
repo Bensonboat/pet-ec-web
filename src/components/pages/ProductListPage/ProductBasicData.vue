@@ -23,7 +23,7 @@
                 </div>
                 <div v-if='showQuickAddIcon' class="product-cart-block" @click="showQuickAddModal">
                     <img
-                        src="/images/cart.png"
+                        src="/images/add-to-bag.png"
                         alt="cart image"
                         class="cart-image"
                     />

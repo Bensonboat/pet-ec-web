@@ -101,7 +101,7 @@
         justify-content: space-between
         border-radius: 5px
         margin-left: 1rem
-        padding: 0 .5rem
+        padding: .2rem .5rem
         img
             &:active   
               background-color: lightcoral

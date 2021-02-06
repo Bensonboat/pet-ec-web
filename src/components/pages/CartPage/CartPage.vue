@@ -1,10 +1,15 @@
 <template>
     <div class="cart-page">
         <div class="default-white-bgc default-border-radius process-list-block">
-            <checkout-process/>
-            <order-list/>
+            <checkout-process :step='checkoutProcessStep'/>
+            <div>
+                <div v-show="checkoutProcessStep === 1">
+                    <order-list/>
+                    <coupon-price/>
+                </div>
+                <order-infomation v-show="checkoutProcessStep === 2"/>
+            </div>
         </div>
-        <coupon-price/>
         <div class="default-deep-green-bgc next-step-btn default-border-radius">
             <div>下一步</div>
         </div>
@@ -15,6 +20,7 @@
 <script>
 import CheckoutProcess from './CheckoutProcess'
 import CouponPrice from './CouponPrice'
+import OrderInfomation from './OrderInfomation'
 import OrderList from './OrderList'
 
 export default {
@@ -22,7 +28,13 @@ export default {
     components: {
         CheckoutProcess,
         OrderList,
-        CouponPrice
+        CouponPrice,
+        OrderInfomation
+    },
+    data(){
+        return {
+            checkoutProcessStep: 2
+        }
     }
 }
 

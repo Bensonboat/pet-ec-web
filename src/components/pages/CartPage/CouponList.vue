@@ -1,70 +1,108 @@
 <template>
     <div class="default-coupon-list coupon-list">
         <div class="coupon-content-mask">
-            <div class="default-coupon-list-header coupon-list-header default-shadow">
-                <img 
-                    src="/images/cross.png" 
-                    alt="close icon"
-                    class="default-close-coupon-list-icon close-coupon-list-icon"
-                    @click="closeCouponList"    
+            <div v-if="showCouponList">
+                <div
+                    class="default-coupon-list-header coupon-list-header default-shadow"
                 >
-                <div class="default-text-color">優惠 / 獎勵</div>
-                <div class="enter-coupon-text default-light-green-color">輸入優惠序號</div>
-            </div>
-            <div class="event-campaign">
-                <img src="/images/animal.png" alt="coupon event image" style="width: 5rem; height: 5rem">
-                <div class="default-text-color default-event-text event-text">$100 元註冊優惠等你來拿 元註冊優惠等你來拿</div>
-            </div>
-            <div class="all-coupon-list-block">
-                <div 
-                    v-for='(item, index) in couponData'
-                    :key="index"
-                    class="each-coupon-card default-border-radius default-shadow"
-                >
-                    <div class="coupon-name default-deep-green-color default-coupon-name">{{item.name}}</div>
-                    <div class="coupon-using-condition default-gray-color default-coupon-using-condigion">{{item.condition}}</div>
-                    <div class="coupon-using-time-block default-text-color default-conpon-using-time-block">
-                        <div>請於</div>
-                        <div>{{item.time}}</div>
+                    <img
+                        src="/images/cross.png"
+                        alt="close icon"
+                        class="default-close-coupon-list-icon close-coupon-list-icon"
+                        @click="closeCouponList"
+                    />
+                    <div class="default-text-color">優惠 / 獎勵</div>
+                    <div class="enter-coupon-text default-light-green-color" @click="toggleView">
+                        輸入優惠序號
                     </div>
-                    <div class="default-select-coupon-btn select-coupon-btn default-light-green-bgc default-border-radius">選取</div>
+                </div>
+                <div class="event-campaign">
+                    <img
+                        src="/images/animal.png"
+                        alt="coupon event image"
+                        style="width: 5rem; height: 5rem"
+                    />
+                    <div
+                        class="default-text-color default-event-text event-text"
+                    >
+                        $100 元註冊優惠等你來拿 元註冊優惠等你來拿
+                    </div>
+                </div>
+                <div class="all-coupon-list-block">
+                    <div
+                        v-for="(item, index) in couponData"
+                        :key="index"
+                        class="each-coupon-card default-border-radius default-shadow"
+                    >
+                        <div
+                            class="coupon-name default-deep-green-color default-coupon-name"
+                        >
+                            {{ item.name }}
+                        </div>
+                        <div
+                            class="coupon-using-condition default-gray-color default-coupon-using-condigion"
+                        >
+                            {{ item.condition }}
+                        </div>
+                        <div
+                            class="coupon-using-time-block default-text-color default-conpon-using-time-block"
+                        >
+                            <div>請於</div>
+                            <div>{{ item.time }}</div>
+                        </div>
+                        <div
+                            class="default-select-coupon-btn select-coupon-btn default-light-green-bgc default-border-radius"
+                        >
+                            選取
+                        </div>
+                    </div>
                 </div>
             </div>
+            <add-new-coupon v-else @toggle-add-modal='toggleView'/>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'CouponList',
-        data(){
-            return {
-                couponData: [
-                    {
-                        name: '$100 折扣優惠',
-                        condition: '結帳金額超過 $100 元方可使用',
-                        time: '2021年 12月 31日 下午 11時前使用'
-                    },
-                    {
-                        name: '半買半相送 超級好康五折卷 五折 五折 五折五折五折',
-                        condition: '結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用',
-                        time: '2021年 12月 31日 下午 11時前使用'
-                    },
-                    {
-                        name: '$100 折扣優惠',
-                        condition: '結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 ',
-                        time: '2021年 12月 31日 下午 11時前使用'
-                    }
-
-                ]
-            }
+import AddNewCoupon from "./AddNewCoupon";
+export default {
+    name: "CouponList",
+    components: {
+        AddNewCoupon,
+    },
+    data() {
+        return {
+            showCouponList: true,
+            couponData: [
+                {
+                    name: "$100 折扣優惠",
+                    condition: "結帳金額超過 $100 元方可使用",
+                    time: "2021年 12月 31日 下午 11時前使用",
+                },
+                {
+                    name: "半買半相送 超級好康五折卷 五折 五折 五折五折五折",
+                    condition:
+                        "結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用",
+                    time: "2021年 12月 31日 下午 11時前使用",
+                },
+                {
+                    name: "$100 折扣優惠",
+                    condition:
+                        "結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 ",
+                    time: "2021年 12月 31日 下午 11時前使用",
+                },
+            ],
+        };
+    },
+    methods: {
+        closeCouponList() {
+            this.$emit("close-coupon-list");
         },
-        methods: {
-            closeCouponList(){
-                this.$emit('close-coupon-list')
-            }
+        toggleView(){
+            this.showCouponList = !this.showCouponList
         }
-    }
+    },
+};
 </script>
 
 <style lang="sass" scoped>

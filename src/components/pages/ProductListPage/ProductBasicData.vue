@@ -55,8 +55,7 @@ export default {
 
 <style lang="sass" scoped>
 .product-basic-data
-    width: 48%
-    height: 23rem
+    // border: solid 1px pink
     display: flex
     justify-content: center
     position: relative
@@ -73,29 +72,33 @@ export default {
         // height: 13rem
         text-align: center
         .product-image
-            width: 15rem
-            height: 15rem
+            // width: 15rem
+            // height: 15rem
 
-            // width: 100%
+            width: 100%
             // height: 100%
     .product-name-block
+        text-align: center
         // padding: 0 1.5rem 0 0 
         // width: 15rem
         margin: .5rem auto 0 auto
         display: -webkit-box
         -webkit-box-orient: vertical
-        -webkit-line-clamp: 2
+        -webkit-line-clamp: 1
         overflow: hidden
     .product-bottom-block
-        position: absolute
-        bottom: 0
+        // position: absolute
+        // bottom: 0
+        // margin-top: 1.5rem
         display: flex
         justify-content: space-between
         align-items: center
-        // width: 100%
-        width: 15rem
-        left: 50%
-        transform: translateX(-50%)
+        width: 100%
+        padding: 1.5rem 1rem
+        box-sizing: border-box
+        // width: 15rem
+        // left: 50%
+        // transform: translateX(-50%)
     .product-cart-block
         // width: 5rem
         height: 2rem

@@ -52,10 +52,13 @@ body, html
     .default-list-subject
         font-size: 1.6rem
         font-weight: 600
+    .el-input--mini .el-input__inner
+        height: 2rem
     .el-input__inner
         // border: solid 1px $default_gray_color
         background-color: #fff
         border-radius: 5px
+        font-size: 1.2rem
         // border: none
         // border-radius: 0
         // border-bottom: solid 1px $default_gray_color
@@ -102,6 +105,8 @@ body, html
 
 // ProductBasicData.vue
 .default-product-basic-data
+    width: 48%
+    // height: 20rem
     .default-product-name-block
         font-size: 1.4rem
     .default-product-price-block
@@ -226,6 +231,8 @@ body, html
 @media screen and (min-width: 900px)
     body, html 
         font-size: 18px
+    .default-product-basic-data
+        width: 30%
 
 @media screen and (min-width: 1024px)
     body, html 

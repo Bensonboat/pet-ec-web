@@ -111,11 +111,8 @@ export default {
 .product-list
     display: flex
     flex-wrap: wrap
-    // padding: 0 3rem
     justify-content: space-between
     align-content: stretch
-    // padding-bottom: 10rem
-    // padding: 0 2rem 10rem 2rem
     padding: 0 1rem 5rem 1rem
     background-color: #fff
     border-radius: 5px

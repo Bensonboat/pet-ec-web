@@ -33,6 +33,7 @@ export default {
                     img: '/images/p1.jpg',
                     name: '吧啦吧啦 台灣大黑熊 台灣大黑熊',
                     price: 2000,
+                    special_price: 1200,
                     id: 1,
                     type: '零食 零食 零食 零食 零食'
                 },
@@ -47,6 +48,7 @@ export default {
                     img: '/images/p1.jpg',
                     name: '吧啦吧啦',
                     price: 2000,
+                    special_price: 600,
                     id: 3,
                     type: '玩具'
                 },
@@ -54,6 +56,7 @@ export default {
                     img: '/images/p1.jpg',
                     name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
                     price: 1000,
+                    special_price: 300,
                     id: 4,
                     type: '玩具'
                 },

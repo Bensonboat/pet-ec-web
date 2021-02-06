@@ -7,10 +7,10 @@
                     <order-list/>
                     <coupon-price/>
                 </div>
-                <order-infomation v-show="checkoutProcessStep === 2"/>
+                <order-infomation v-show="checkoutProcessStep === 2" @previousStep='processSteps'/>
             </div>
         </div>
-        <div class="default-deep-green-bgc next-step-btn default-border-radius">
+        <div class="default-deep-green-bgc next-step-btn default-border-radius" @click="processSteps(1)">
             <div>下一步</div>
         </div>
 
@@ -34,6 +34,11 @@ export default {
     data(){
         return {
             checkoutProcessStep: 2
+        }
+    },
+    methods: {
+        processSteps(val){
+            this.checkoutProcessStep = this.checkoutProcessStep + val
         }
     }
 }

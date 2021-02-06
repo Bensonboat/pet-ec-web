@@ -17,9 +17,10 @@
             </div>
             <div class="product-bottom-block">
                 <div
-                    class="product-price-block default-deep-green-color default-product-price-block"
+                    class="product-price-block default-product-price-block"
                 >
-                    ${{ product_data.price }}
+                    <span class="default-deep-green-color" :class="[product_data.special_price ? 'original-price' : '']">${{ product_data.price }}</span>
+                    <span class="default-red-color special-price" v-if="product_data.special_price">${{ product_data.special_price }}</span>
                 </div>
                 <div v-if='showQuickAddIcon' class="product-cart-block" @click="showQuickAddModal">
                     <img
@@ -104,4 +105,8 @@ export default {
         height: 2rem
         .cart-image
             height: 100%
+    .special-price
+        margin-left: 1rem
+    .original-price
+        text-decoration: line-through
 </style>

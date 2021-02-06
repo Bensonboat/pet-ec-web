@@ -2,7 +2,7 @@
     <div class="default-order-list order-list default-white-bgc default-border-radius">
         <div class="order-header">
             <div class="default-text-color default-header-name">訂單</div>
-            <div class="default-light-green-color">再去逛逛</div>
+            <div class="default-light-green-color" @click="toCategoryPage">再去逛逛</div>
         </div>
         <div class="default-list-content-block">
             <div class="list-item" v-for='(item, index) in orderListData' :key="index">
@@ -70,6 +70,9 @@
             editNumber(index, value){
                 this.orderListData[index].order_number = this.orderListData[index].order_number + value
                 this.orderListData[index].order_number < 0 ? this.orderListData[index].order_number = 0 : ''
+            },
+            toCategoryPage(){
+                this.$router.push('./home_page')
             }
         }
     }

@@ -60,8 +60,8 @@
 
 <style lang="sass" scoped>
 .base-select
-    overflow: hidden
-    display: inline-block
+    position: relative
+    // overflow: hidden
     .auto-close-bgc-mask
         width: 100vw
         height: 100vh

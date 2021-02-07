@@ -49,7 +49,7 @@
                     },
                     {
                         number: 3,
-                        text: '訂單確認'
+                        text: '訂單完成'
                     }
                 ],
                 // currentStep: 1

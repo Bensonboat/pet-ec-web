@@ -7,12 +7,17 @@
                     <order-list/>
                     <coupon-price/>
                 </div>
-                <order-infomation v-show="checkoutProcessStep === 2" @previousStep='processSteps'/>
+                <div v-show="checkoutProcessStep === 2">
+                    <order-infomation @previousStep='processSteps'/>
+                    <payment/>
+                </div>
+                <order-complete v-show="checkoutProcessStep === 3"/>
             </div>
         </div>
-        <div class="default-deep-green-bgc next-step-btn default-border-radius" @click="processSteps(1)">
-            <div>下一步</div>
+        <div v-if='checkoutProcessStep !== 3' class="default-deep-green-bgc next-step-btn default-border-radius" @click="processSteps(1)">
+            下一步
         </div>
+        <div v-else class="default-deep-green-bgc next-step-btn default-border-radius" @click="toHomePage">回首頁</div>
 
     </div>
 </template>
@@ -21,7 +26,9 @@
 import CheckoutProcess from './CheckoutProcess'
 import CouponPrice from './CouponPrice'
 import OrderInfomation from './OrderInfomation'
+import Payment from './Payment'
 import OrderList from './OrderList'
+import OrderComplete from './OrderComplete'
 
 export default {
     name: 'CartPage',
@@ -29,16 +36,21 @@ export default {
         CheckoutProcess,
         OrderList,
         CouponPrice,
-        OrderInfomation
+        OrderInfomation,
+        OrderComplete,
+        Payment
     },
     data(){
         return {
-            checkoutProcessStep: 2
+            checkoutProcessStep: 3
         }
     },
     methods: {
         processSteps(val){
             this.checkoutProcessStep = this.checkoutProcessStep + val
+        },
+        toHomePage(){
+            this.$router.push('/home_page')
         }
     }
 }

@@ -38,6 +38,15 @@
                     <input type="text" class="default-text-color infomation-input" v-model="infomation.email">
                 </div>
             </div>
+            <div class="sign-up-block">
+                <div class="sign-up-block" @click="toggleSignUpSelect">
+                    <div class="sign-up-text default-light-green-color">將資料註冊會員並累積點數</div>
+                    <div class="default-order-sign-up-select-block order-sign-up-select-block default-border-radius">
+                        <img src="/images/tick.png" alt="tick icon" v-if="signUpSelect">
+                    </div>
+                </div>
+                <div v-show="!signUpSelect" class="warning-text default-red-color">No ~ 下次需重新輸入資料且會遺失當前點數</div>
+            </div>
         </div>
     </div>
 </template>
@@ -52,12 +61,16 @@ export default {
                 number: '0987654321',
                 address: '台中市西區民全路吧啦吧啦吧啦',
                 email: 'hello_world@gmail.com'
-            }
+            },
+            signUpSelect: true
         }
     },
     methods: {
         previousStep(){
             this.$emit('previousStep', -1)
+        },
+        toggleSignUpSelect(){
+            this.signUpSelect = !this.signUpSelect
         }
     }
 };
@@ -90,4 +103,20 @@ export default {
         outline: none
         padding: .5rem 1rem
         letter-spacing: 1px
+    .sign-up-block, .sign-up-text
+        display: flex
+        align-items: center
+        flex-wrap: wrap
+    .sign-up-block
+        margin-top: 1rem
+    .order-sign-up-select-block
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-left: .5rem
+        cursor: pointer
+        padding: .2rem
+    .warning-text
+        width: 100%
+        margin-top: .5rem
 </style>

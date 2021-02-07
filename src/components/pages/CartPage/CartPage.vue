@@ -42,7 +42,7 @@ export default {
     },
     data(){
         return {
-            checkoutProcessStep: 3
+            checkoutProcessStep: 1
         }
     },
     methods: {

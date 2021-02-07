@@ -1,9 +1,10 @@
 <template>
-    <div class="base-select">
-        <div class="auto-close-bgc-mask" @click="toggleOptionMenu" v-show="showOptionMenu"></div>
-        <div class="base-select-block" @click="toggleOptionMenu">
-            <div v-if="currentSelect === ''" class="current-select lighter-text">{{placeholder}}</div>
-            <div v-else class="current-select">{{currentSelect}}</div>
+    <div class="base-select" >
+        <input @click="toggleOptionMenu" class='default-text-color' v-model='currentSelect' type="text" style="border: none;outline: none;z-index: 200;width: 100%;height: 100%; background: transform; position: absolute; top: 0; left: 0" @blur='toggleOptionMenu'>
+        <!-- <div class="auto-close-bgc-mask" @click="toggleOptionMenu" v-show="showOptionMenu"></div> -->
+        <div class="base-select-block">
+            <!-- <div v-if="currentSelect === ''" class="current-select lighter-text">{{placeholder}}</div>
+            <div v-else class="current-select">{{currentSelect}}</div> -->
             <div 
                 v-show='showOptionMenu'
                 class="option-menu"
@@ -52,7 +53,9 @@
                 this.currentSelect = data.name
             },
             toggleOptionMenu(){
-                this.showOptionMenu = !this.showOptionMenu
+                setTimeout(() => {
+                    this.showOptionMenu = !this.showOptionMenu
+                }, 100)
             }
         }
     }
@@ -61,6 +64,7 @@
 <style lang="sass" scoped>
 .base-select
     position: relative
+    border: solid 1px lightblue
     // overflow: hidden
     .auto-close-bgc-mask
         width: 100vw
@@ -84,7 +88,7 @@
     .option-menu
         background-color: white
         border-radius: 5px
-        margin-top: 10px
+        margin-top: 40px
         box-shadow: 0 2px 5px rgba(0,0,0,.15)
         position: relative
         &:before

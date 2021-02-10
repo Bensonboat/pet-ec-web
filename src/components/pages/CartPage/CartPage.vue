@@ -9,7 +9,7 @@
                 </div>
                 <div v-show="checkoutProcessStep === 2">
                     <order-infomation @previousStep='processSteps'/>
-                    <payment/>
+                    <payment style="width: 100px; height: 30px"/>
                 </div>
                 <order-complete v-show="checkoutProcessStep === 3"/>
             </div>

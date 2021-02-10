@@ -1,6 +1,6 @@
 <template>
     <div class="default-payment payment-block">
-        <div class="default-payment-header payment-header default-text-color">付款方式</div>
+        <!-- <div class="default-payment-header payment-header default-text-color">付款方式</div> -->
         <base-select v-model="paymentSelect" class="default-payment-select" :placeholder="'請輸入付款方式'"/>
     </div>
 </template>

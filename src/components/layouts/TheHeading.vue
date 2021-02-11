@@ -58,13 +58,13 @@
         display: flex
         width: 3rem
         height: 3rem
-    .user-icon, .cart-icon, .search-icon
+    .user-icon, .cart-icon, .search-icon, .left-arrow-icon
         width: 2.4rem
         height: 2.4rem
         display: flex
-    .left-arrow-icon
-        width: 1.5rem
-        height: 1.5rem
+    // .left-arrow-icon
+    //     width: 1.5rem
+    //     height: 1.5rem
     .heading-operation-right-block
         display: flex
         flex-wrap: nowrap

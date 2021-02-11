@@ -1,8 +1,8 @@
 <template>
     <div class="index-content">
-        <transition name="fade">
-            <the-heading v-show="scrollOnToppest" :scrollOnToppest='scrollOnToppest'/>
-        </transition>
+        <!-- <transition name="fade"> -->
+            <the-heading  scrollOnToppest='scrollOnToppest' :class="[!scrollOnToppest ? 'transparent-heading' : '']"/>
+        <!-- </transition> -->
         <router-view class="index-content-router-view" ref='index_content_router' @scroll.native="handleScroll"/>
         <div class="default-top-icon-block top-icon-block">
             <img src="/images/top.png" alt="to top icon" class="default-top-icon top-icon">
@@ -59,6 +59,7 @@
         // width: 90%
         margin: auto
         // background-color: #fff
+        padding-top: 5rem
     .index-content-router-view::-webkit-scrollbar 
         display: none
     .top-icon-block
@@ -72,6 +73,10 @@
         padding: 1rem
     .top-icon
         // margin-top: 3px
+    .transparent-heading
+        background-color: transparent
+        opacity: 0
+        transition: .5s
 
 .fade-leave 
   opacity: 1

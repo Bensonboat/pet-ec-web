@@ -26,6 +26,7 @@
 <script>
     export default {
         name: 'TheHeading',
+        // props: ['scrollOnToppest'],
         methods: {
             toHomePage(){
                 this.$router.push('/home_page')
@@ -35,7 +36,7 @@
             },
             toCartPage(){
                 this.$router.push('/cart_page')
-            }
+            },
         }
     }
 </script>
@@ -51,7 +52,9 @@
     z-index: 3000
     padding: 1rem
     box-sizing: border-box
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1)
+    position: absolute
+    width: 100%
     .icon
         cursor: pointer
     .logo-icon
@@ -90,5 +93,7 @@
         align-items: baseline
         justify-content: center
         font-size: 1.2rem
+.the-heading.trans-heading
+    background-color: transparent
 
 </style>

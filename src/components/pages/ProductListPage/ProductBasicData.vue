@@ -3,9 +3,7 @@
         <div class="product-content-block">
             <div class="product-top-block" @click="checkProductDetail(product_data.type, product_data.id)">
                 <div class="product-image-block">
-                    <img v-if='product_data.img === undefined' src="/images/animal.png" alt="">
                     <img
-                        v-else
                         :src="product_data.img"
                         alt="product image"
                         class="product-image"

@@ -59,8 +59,8 @@
         width: 3rem
         height: 3rem
     .user-icon, .cart-icon, .search-icon
-        width: 2rem
-        height: 2rem
+        width: 2.4rem
+        height: 2.4rem
         display: flex
     .left-arrow-icon
         width: 1.5rem

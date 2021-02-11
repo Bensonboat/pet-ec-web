@@ -23,8 +23,9 @@
     position: relative
     .index-content-router-view
         height: calc(100% - 5rem)
+        padding: .5rem
         overflow-y: scroll
-        width: 90%
+        // width: 90%
         margin: auto
         // background-color: #fff
     .index-content-router-view::-webkit-scrollbar 

@@ -1,5 +1,5 @@
 <template>
-    <div class="product-list default-shadow">
+    <div class="product-list">
         <product-basic-data 
             v-for="(item, index) in productListData" 
             :key='index' 
@@ -31,7 +31,7 @@ export default {
             productListData: [
                 {
                     img: '/images/p1.jpg',
-                    name: '吧啦吧啦 台灣大黑熊 台灣大黑熊',
+                    name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
                     price: 2000,
                     special_price: 1200,
                     id: 1,
@@ -116,12 +116,13 @@ export default {
     flex-wrap: wrap
     justify-content: space-between
     align-content: stretch
-    padding: 0 1rem 5rem 1rem
+    // padding: 0 1rem 5rem 1rem
     background-color: #fff
     border-radius: 5px
     margin-bottom: 5rem
+    margin-top: -0.6rem
     .product-basic-data
-        margin-top: 2rem
+        // margin-top: 2rem
     .quick-add-block
         background-color: white
         width: 80vw

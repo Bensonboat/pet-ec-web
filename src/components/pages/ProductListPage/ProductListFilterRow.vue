@@ -1,6 +1,6 @@
 <template>
     <div class="product-list-filter-row default-product-list-filter-row">
-        <div class="default-list-subject default-deep-green-color">{{ listSubject }}</div>
+        <div class="list-subject default-deep-green-color">{{ listSubject }}</div>
         <div class="basic-order-filter">
             <base-select style="width: 100px; height: 30px"/>
             <!-- <el-select v-model="orderFilter" placeholder="請選擇" size="mini" style="width: 14rem; border: none">
@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import BaseSelect from '@/components/layouts/BaseSelect'
+// import BaseSelect from '@/components/layouts/BaseSelect'
 
 export default {
     name: "ProductListFilterRow",
     components: {
-        BaseSelect
+        // BaseSelect
     },
     data() {
         return {
@@ -53,6 +53,9 @@ export default {
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 2rem 0
+    padding: 1.6rem 1.5rem
     // margin-bottom: 2rem
+    .list-subject
+        font-size: 1.2rem
+        font-weight: 500
 </style>

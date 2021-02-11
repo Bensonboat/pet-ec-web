@@ -1,8 +1,8 @@
 <template>
-    <div class="the-heading default-shadow">
+    <div class="the-heading">
         <div class="heading-operation-left-block">
             <div @click="previousPage" class="operation-item">
-                <img src="/images/left-arrow.png" alt="" class="icon left-arrow-icon">
+                <img src="/images/back.png" alt="" class="icon left-arrow-icon">
             </div>
             <div class="operation-item">
                 <img src="/images/icon-search.png" alt="" class="icon search-icon">
@@ -13,7 +13,7 @@
         </div>
         <div class="heading-operation-right-block">
             <div class="operation-item">
-                <img src="/images/user.png" alt="" class="icon user-icon">
+                <img src="/images/my.png" alt="" class="icon user-icon">
             </div>
             <div class="operation-item" @click="toCartPage">
                 <img src="/images/icon-bag.png" alt="" class="icon cart-icon">
@@ -49,6 +49,9 @@
     position: relative
     background-color: #fff
     z-index: 3000
+    padding: 1rem
+    box-sizing: border-box
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
     .icon
         cursor: pointer
     .logo-icon

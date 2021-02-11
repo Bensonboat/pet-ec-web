@@ -39,14 +39,14 @@ export default {
                 },
                 {
                     img: '/images/p1.jpg',
-                    name: '嘎啦嘎啦 白色大眼睛',
+                    name: 'EQUILÍBRIO',
                     price: 1000,
                     id: 2,
                     type: '零食'
                 },
                 {
-                    img: '/images/p1.jpg',
-                    name: '吧啦吧啦',
+                    img: '/images/size_test.png',
+                    name: '尊爵 ',
                     price: 2000,
                     special_price: 600,
                     id: 3,
@@ -54,14 +54,14 @@ export default {
                 },
                 {
                     img: '/images/p1.jpg',
-                    name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
+                    name: '機能天然糧-化毛貓15kg',
                     price: 1000,
                     special_price: 300,
                     id: 4,
                     type: '玩具'
                 },
                 {
-                    img: '/images/p1.jpg',
+                    img: '/images/test_size.png',
                     name: 'Test',
                     price: 1000,
                     id: 4,
@@ -69,7 +69,7 @@ export default {
                 },
                 {
                     img: '/images/p1.jpg',
-                    name: 'GOKU 龜派氣功',
+                    name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
                     price: 1300,
                     id: 5,
                     type: '玩具'

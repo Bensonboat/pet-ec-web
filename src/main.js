@@ -9,6 +9,9 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
+import Vue2TouchEvents from 'vue2-touch-events'
+Vue.use(Vue2TouchEvents)
+
 new Vue({
   router,
   store,

@@ -1,14 +1,20 @@
 <template>
     <div class="default-product-detail-page product-detail-page">
         <div class="product-attribute default-shadow">
-            <div class="img-block">
-                <div class="change-image-icon left" @click="changeCurrentImage(-1)">
+            <div class="img-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)">
+                <!-- <div class="change-image-icon left" @click="changeCurrentImage(-1)">
                     <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
-                </div>
-                <img :src="productImgs[currentShowsImgIndex]" alt="product image">
-                <div class="change-image-icon right" @click="changeCurrentImage(1)">
+                </div> -->
+                <transition-group name="fade" tag="div" style="width: 100%; height: 100%">
+
+                    <!-- <div > -->
+                        <img v-show='imageIndex === currentShowsImgIndex ' v-for='(image, imageIndex) in productImgs' :key="imageIndex" :src="image" alt="photos">
+                    <!-- </div> -->
+                </transition-group>
+                <!-- <img :src="productImgs[currentShowsImgIndex]" alt="product image"> -->
+                <!-- <div class="change-image-icon right" @click="changeCurrentImage(1)">
                     <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
-                </div>
+                </div> -->
             </div>
             <div class='img-dots-block'>
                 <div 
@@ -57,7 +63,7 @@ export default {
                 id: '',
                 type: ''
             },
-            productImgs: ['/images/goku2.jpg', '/images/goku4.jpeg', '/images/goku3.jpeg'],
+            productImgs: ['/images/p1.jpg', '/images/test_size.png', '/images/goku3.jpeg'],
             currentShowsImgIndex: 0,
             productData: {
                 name: 'Qucik Product Name',
@@ -114,14 +120,19 @@ export default {
             this.currentShowsImgIndex = index
         },
         changeCurrentImage(value){
-            this.currentShowsImgIndex = this.currentShowsImgIndex + value;
-            if(this.currentShowsImgIndex < 0){
-                this.currentShowsImgIndex = this.productImgs.length - 1
-                return
+            return () => {
+                this.currentShowsImgIndex = this.currentShowsImgIndex + value;
+                if(this.currentShowsImgIndex < 0){
+                    this.currentShowsImgIndex = this.productImgs.length - 1
+                    return
+                }
+                if(this.currentShowsImgIndex >= this.productImgs.length ){
+                    this.currentShowsImgIndex = 0
+                }
             }
-            if(this.currentShowsImgIndex >= this.productImgs.length ){
-                this.currentShowsImgIndex = 0
-            }
+        },
+        test(){
+            alert("x")
         }
     }
 }
@@ -137,6 +148,7 @@ export default {
         margin-top: 2rem
     .img-block
         // width: 95%
+        width: 20rem
         height: 20rem
         overflow: hidden
         margin: 1rem auto 0 auto 
@@ -182,4 +194,22 @@ export default {
         margin: 0 .5rem
     .origin-dot-color
         background-color: rgba(0,0,0,.1)   
+
+.fade-leave 
+  opacity: 1
+
+.fade-leave-active 
+  transition: opacity .2s
+
+.fade-leave-to 
+  opacity: 0
+
+.fade-enter 
+  opacity: 0
+
+.fade-enter-active 
+  transition: opacity .2s
+
+.fade-enter-to 
+  opacity: 1
 </style>

@@ -32,9 +32,8 @@
         methods: {
             handleScroll(){
                 let current_height = this.$refs.index_content_router.$el.scrollTop;
-                if(current_height !== 0){
+                if(current_height > 100){
                     this.scrollOnToppest = false;
-
 
                     if(this.currentHeight > current_height){
                         this.scrollOnToppest = true
@@ -77,12 +76,11 @@
         background-color: transparent
         opacity: 0
         transition: .5s
-
 .fade-leave 
   opacity: 1
 
 .fade-leave-active 
-  transition: opacity .2s
+  transition: opacity .5s
 
 .fade-leave-to 
   opacity: 0

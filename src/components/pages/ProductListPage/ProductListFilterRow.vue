@@ -2,7 +2,7 @@
     <div class="product-list-filter-row default-product-list-filter-row">
         <div class="list-subject default-deep-green-color">{{ listSubject }}</div>
         <div class="basic-order-filter">
-            <base-select style="width: 100px; height: 30px"/>
+            <!-- <base-select style="width: 100px; height: 30px"/> -->
             <!-- <el-select v-model="orderFilter" placeholder="請選擇" size="mini" style="width: 14rem; border: none">
                 <el-option
                     v-for="item in orderFilterOptions"

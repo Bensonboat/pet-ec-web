@@ -62,21 +62,22 @@
         width: 2.4rem
         height: 2.4rem
         display: flex
-    // .left-arrow-icon
+    .left-arrow-icon
+        // margin-right: 1.1rem
     //     width: 1.5rem
     //     height: 1.5rem
     .heading-operation-right-block
         display: flex
         flex-wrap: nowrap
         position: absolute
-        right: 2rem
+        right: 1.2rem
     .heading-operation-left-block
         display: flex
         position: absolute
         align-items: center
-        left: 2rem
+        left: 1.6rem
     .operation-item
-        margin-right: 1.5rem 
+        margin-right: 1.7rem 
         position: relative
     .in-cart-number
         position: absolute

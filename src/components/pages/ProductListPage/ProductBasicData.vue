@@ -1,31 +1,49 @@
 <template>
     <div class="default-product-basic-data product-basic-data">
-        <div class="product-content-block">
-            <div class="product-top-block" @click="checkProductDetail(product_data.type, product_data.id)">
+        <div
+            class="product-content-block"
+            @click="checkProductDetail(product_data.type, product_data.id)"
+        >
+            <div class="product-top-block">
                 <div class="product-image-block">
+                    <!-- <div class="product-image-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)"> -->
+                    <!-- <transition-group name="fade" tag="div" style="width: 100%; height: 100%">
+                        <img class="product-image" v-show='imageIndex === currentShowsImgIndex ' v-for='(image, imageIndex) in product_data.img' :key="imageIndex" :src="image" alt="photos">
+                    </transition-group> -->
                     <img
                         :src="product_data.img"
                         alt="product image"
                         class="product-image"
                     />
                 </div>
-                <div class="quick-add-icon-block">
-                    <img src="/images/bag-add.png" alt="">
+                <div
+                    class="quick-add-icon-block"
+                    @click.stop="showQuickAddModal"
+                >
+                    <img src="/images/bag-add.png" alt="quick add icon"/>
                 </div>
             </div>
             <div class="product-bottom-block">
-                <div
-                    class="product-name-block default-text-color"
-                >
+                <div class="product-name-block default-text-color">
                     {{ product_data.name }}
                 </div>
-                <div
-                    class="product-price-block"
-                >
-                    <div class="default-deep-green-color" :class="[product_data.special_price ? 'original-price' : '']">NT${{ product_data.price }}</div>
-                    <div class="default-red-color special-price" v-if="product_data.special_price">NT${{ product_data.special_price }}</div>
+                <div class="product-price-block">
+                    <div
+                        class="default-deep-green-color"
+                        :class="[
+                            product_data.special_price ? 'original-price' : '',
+                        ]"
+                    >
+                        NT${{ product_data.price }}
+                    </div>
+                    <div
+                        class="default-red-color special-price"
+                        v-if="product_data.special_price"
+                    >
+                        NT${{ product_data.special_price }}
+                    </div>
                 </div>
-                 <!-- <div v-if='showQuickAddIcon' class="product-cart-block" @click="showQuickAddModal">
+                <!-- <div v-if='showQuickAddIcon' class="product-cart-block" @click="showQuickAddModal">
                     <img
                         src="/images/add-to-bag.png"
                         alt="cart image"
@@ -33,7 +51,7 @@
                     />
                 </div> -->
             </div>
-        </div> 
+        </div>
     </div>
 </template>
 
@@ -42,17 +60,34 @@ export default {
     name: "ProductBasicData",
     props: {
         product_data: Object,
-        showQuickAddIcon: Boolean
+        showQuickAddIcon: Boolean,
+    },
+    data() {
+        return {
+            // currentShowsImgIndex: 0
+        };
     },
     methods: {
         showQuickAddModal() {
             this.$emit("show-quick-add-modal");
         },
-        checkProductDetail(type, id){
+        checkProductDetail(type, id) {
             this.$router.push({
-                path: '/product/' + type + '/' +id,
-            })
-        }
+                path: "/product/" + type + "/" + id,
+            });
+        },
+        // changeCurrentImage(value){
+        //     return () => {
+        //         this.currentShowsImgIndex = this.currentShowsImgIndex + value;
+        //         if(this.currentShowsImgIndex < 0){
+        //             this.currentShowsImgIndex = this.product_data.img.length - 1
+        //             return
+        //         }
+        //         if(this.currentShowsImgIndex >= this.product_data.img.length ){
+        //             this.currentShowsImgIndex = 0
+        //         }
+        //     }
+        // }
     },
 };
 </script>
@@ -63,7 +98,7 @@ export default {
     justify-content: center
     position: relative
     // border-radius: 5px
-    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1)
     // border: solid 1px pink
     height: 25.2rem
     width: 15.2rem
@@ -86,6 +121,8 @@ export default {
         text-align: center
         // border: solid 1px pink
         background-color: #ececec
+        // background-image: url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png")
+        // background-image: url("/images/animal.png")
         .product-image
             // width: 15rem
             // height: 15rem
@@ -149,7 +186,8 @@ export default {
         bottom: 0
         bottom: -1rem
         right: .6rem
-        img 
+        z-index: 999
+        img
             width: 1.4rem
             height: 1.4rem
             position: absolute
@@ -158,4 +196,22 @@ export default {
             transform: translate(-50%, -50%)
     .product-top-block
         position: relative
+
+.fade-leave
+    opacity: 1
+
+.fade-leave-active
+    transition: opacity .2s
+
+.fade-leave-to
+    opacity: 0
+
+.fade-enter
+    opacity: 0
+
+.fade-enter-active
+    transition: opacity .2s
+
+.fade-enter-to
+    opacity: 1
 </style>

@@ -1,114 +1,118 @@
 <template>
     <div class="product-list">
-        <product-basic-data 
-            v-for="(item, index) in productListData" 
-            :key='index' 
-            :product_data='item'
-            :showQuickAddIcon='true'
+        <product-basic-data
+            v-for="(item, index) in productListData"
+            :key="index"
+            :product_data="item"
+            :showQuickAddIcon="true"
             class="product-basic-data"
-            @show-quick-add-modal='toggleQuickAddModal'
+            @show-quick-add-modal="toggleQuickAddModal"
         />
         <div v-if="showQuickAddModal">
-            <div class='modal-mask'></div>
-            <product-spec class="quick-add-block" :product_data='quickAddProductData' @close-modal='toggleQuickAddModal'/>
+            <div class="modal-mask"></div>
+            <product-spec
+                class="quick-add-block"
+                :product_data="quickAddProductData"
+                @close-modal="toggleQuickAddModal"
+            />
         </div>
     </div>
 </template>
 
 <script>
-import ProductBasicData from './ProductBasicData.vue';
-import ProductSpec from './ProductSpec'
+import ProductBasicData from "./ProductBasicData.vue";
+import ProductSpec from "./ProductSpec";
 
 export default {
-    name: 'ProductList',
-    components: { 
+    name: "ProductList",
+    components: {
         ProductBasicData,
-        ProductSpec
+        ProductSpec,
     },
-    data(){
+    data() {
         return {
             showQuickAddModal: false,
             productListData: [
                 {
                     // img: ['/images/p1.jpg', '/images/test_size.png'],
-                    img: '/images/p1.jpg',
-                    name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
+                    img: "/images/p1.jpg",
+                    name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
                     price: 2000,
                     special_price: 1200,
                     id: 1,
-                    type: '零食 零食 零食 零食 零食'
+                    type: "零食 零食 零食 零食 零食",
                 },
                 {
-                    img: '/images/p1.jpg',
-                    name: 'EQUILÍBRIO',
+                    img: "/images/p1.jpg",
+                    name: "EQUILÍBRIO",
                     price: 1000,
                     id: 2,
-                    type: '飼料'
+                    type: "飼料",
                 },
                 {
-                    img: '/images/size_test.png',
-                    name: '尊爵 ',
+                    img: "/images/size_test.png",
+                    name: "尊爵 ",
                     price: 2000,
                     special_price: 600,
                     id: 3,
-                    type: '玩具'
+                    type: "玩具",
                 },
                 {
-                    img: '/images/p1.jpg',
-                    name: '機能天然糧-化毛貓15kg',
+                    img: "/images/p1.jpg",
+                    name: "機能天然糧-化毛貓15kg",
                     price: 1000,
                     special_price: 300,
                     id: 4,
-                    type: '玩具'
+                    type: "玩具",
                 },
                 {
-                    img: '/images/test_size.png',
-                    name: 'Test',
+                    img: "/images/test_size.png",
+                    name: "Test",
                     price: 1000,
                     id: 4,
-                    type: '零食'
+                    type: "零食",
                 },
                 {
-                    img: '/images/p1.jpg',
-                    name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
+                    img: "/images/p1.jpg",
+                    name:
+                        "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
                     price: 1300,
                     id: 5,
-                    type: '玩具'
-                }
+                    type: "玩具",
+                },
             ],
             quickAddProductData: {
-                name: 'Qucik Product Name',
+                name: "Qucik Product Name",
                 spec: {
-                    spec_name: 'Color',
+                    spec_name: "Color",
                     spec_options: [
                         {
-                            spec: '桃粉色',
-                            selected: false
+                            spec: "桃粉色",
+                            selected: false,
                         },
                         {
-                            spec: '淺灰色',
-                            selected: false
+                            spec: "淺灰色",
+                            selected: false,
                         },
                         {
-                            spec: '淺綠色',
-                            selected: false
+                            spec: "淺綠色",
+                            selected: false,
                         },
                         {
-                            spec: '黑色',
-                            selected: false
-                        }
-                    ]
-                }
-            }
-        }
+                            spec: "黑色",
+                            selected: false,
+                        },
+                    ],
+                },
+            },
+        };
     },
     methods: {
-        toggleQuickAddModal(){
-            this.showQuickAddModal = !this.showQuickAddModal
+        toggleQuickAddModal() {
+            this.showQuickAddModal = !this.showQuickAddModal;
         },
-    }
-    
-}
+    },
+};
 </script>
 
 <style lang="sass" scoped>

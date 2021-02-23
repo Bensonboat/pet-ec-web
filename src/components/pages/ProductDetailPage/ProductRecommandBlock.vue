@@ -42,7 +42,8 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
                     //     type: '零食'
                     // },
                     {
-                        img: '/images/p1.jpg',
+                        // img: '/images/p1.jpg',
+                        img: ['/images/p1.jpg', '/images/test2.png'],
                         name: '吧啦吧啦',
                         price: 2000,
                         special_price: 1500,
@@ -50,49 +51,56 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
                         type: '玩具'
                     },
                     {
-                        img: '/images/p1.jpg',
+                        // img: '/images/p1.jpg',
+                        img: ['/images/p1.jpg', '/images/test2.png'],
                         name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
                         price: 1000,
                         id: 4,
                         type: '玩具'
                     },
                     {
-                        img: '/images/p1.jpg',
+                        // img: '/images/p1.jpg',
+                        img: ['/images/p1.jpg', '/images/test2.png'],
                         name: 'Test',
                         price: 1000,
                         id: 4,
                         type: '零食'
                     },
                     {
-                        img: '/images/p1.jpg',
+                        // img: '/images/p1.jpg',
+                        img: ['/images/p1.jpg', '/images/test2.png'],
                         name: '吧啦吧啦',
                         price: 2000,
                         id: 3,
                         type: '玩具'
                     },
                     {
-                        img: '/images/p1.jpg',
+                        // img: '/images/p1.jpg',
+                        img: ['/images/p1.jpg', '/images/test2.png'],
                         name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
                         price: 1000,
                         id: 4,
                         type: '玩具'
                     },
                     {
-                        img: '/images/p1.jpg',
+                        // img: '/images/p1.jpg',
+                        img: ['/images/p1.jpg', '/images/test2.png'],
                         name: 'Test',
                         price: 1000,
                         id: 4,
                         type: '零食'
                     },
                     {
-                        img: '/images/p1.jpg',
+                        // img: '/images/p1.jpg',
+                        img: ['/images/p1.jpg', '/images/test2.png'],
                         name: '吧啦吧啦',
                         price: 2000,
                         id: 3,
                         type: '玩具'
                     },
                     {
-                        img: '/images/p1.jpg',
+                        // img: '/images/p1.jpg',
+                        img: ['/images/p1.jpg', '/images/test2.png'],
                         name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
                         price: 1000,
                         id: 4,

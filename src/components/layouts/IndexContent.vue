@@ -4,7 +4,7 @@
             <the-heading  scrollOnToppest='scrollOnToppest' :class="[!scrollOnToppest ? 'transparent-heading' : '']"/>
         <!-- </transition> -->
         <router-view class="index-content-router-view" ref='index_content_router' @scroll.native="handleScroll"/>
-        <div class="default-top-icon-block top-icon-block">
+        <div class="default-top-icon-block top-icon-block" v-show="this.$route.path !== '/home_page'">
             <img src="/images/top.png" alt="to top icon" class="default-top-icon top-icon">
         </div>
     </div>
@@ -53,7 +53,7 @@
     position: relative
     .index-content-router-view
         height: calc(100% - 5rem)
-        padding: .5rem
+        // padding: .5rem
         overflow-y: scroll
         // width: 90%
         margin: auto

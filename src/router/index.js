@@ -6,6 +6,8 @@ import LoginPage from '@/components/pages/LoginPage/LoginPage'
 import IndexContent from '@/components/layouts/IndexContent'
 
 import HomePage from "@/components/pages/HomePage/HomePage";
+import CategoryPage from '@/components/pages/CategoryPage/CategoryPage'
+
 import ProductListPage from '@/components/pages/ProductListPage/ProductListPage'
 import ProductDetailPage from '@/components/pages/ProductDetailPage/ProductDetailPage'
 import CartPage from '@/components/pages/CartPage/CartPage'
@@ -27,6 +29,11 @@ const routes = [
                 path: "/home_page",
                 name: "HomePage",
                 component: HomePage
+            },
+            {
+                path: "/category_page/:type",
+                name: "CategoryPage",
+                component: CategoryPage
             },
             {
                 path: "/product_list_page",

@@ -1,11 +1,11 @@
 <template>
     <div class="default-product-detail-page product-detail-page">
-        <div class="product-attribute default-shadow">
+        <div class="product-attribute">
             <div class="img-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)">
                 <!-- <div class="change-image-icon left" @click="changeCurrentImage(-1)">
                     <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
                 </div> -->
-                <transition-group name="fade" tag="div" style="width: 100%; height: 100%">
+                <transition-group name="fade" tag="div" style="width: 100%; height: 100%; display: flex; justify-content: center; overflow: hidden">
 
                     <!-- <div > -->
                         <img v-show='imageIndex === currentShowsImgIndex ' v-for='(image, imageIndex) in productImgs' :key="imageIndex" :src="image" alt="photos">
@@ -15,15 +15,15 @@
                 <!-- <div class="change-image-icon right" @click="changeCurrentImage(1)">
                     <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
                 </div> -->
-            </div>
-            <div class='img-dots-block'>
-                <div 
-                    v-for="(item, index) in productImgs" 
-                    :key="index" 
-                    class='dots'
-                    :class="[currentShowsImgIndex === index ? 'default-deep-green-bgc' : 'origin-dot-color']"
-                    @click="toggleCurrentShowsImg(index)"
-                ></div>
+                <div class='img-dots-block'>
+                    <div 
+                        v-for="(item, index) in productImgs" 
+                        :key="index" 
+                        class='dots'
+                        :class="{'selected-img-dot': index === currentShowsImgIndex }"
+                        @click="toggleCurrentShowsImg(index)"
+                    ></div>
+                </div>
             </div>
             <div class="spec-block">
                 <product-spec :product_data='productData'/>
@@ -63,7 +63,7 @@ export default {
                 id: '',
                 type: ''
             },
-            productImgs: ['/images/p1.jpg', '/images/test_size.png', '/images/goku3.jpeg'],
+            productImgs: ['/images/p1.jpg', '/images/test_size.png'],
             currentShowsImgIndex: 0,
             productData: {
                 name: 'Qucik Product Name',
@@ -140,21 +140,22 @@ export default {
 
 <style lang="sass" scoped>
 .product-detail-page
-    padding: 0 2rem
+    padding: .5rem
+    background-color: #e5ceae
     .product-attribute
         background-color: #fff
-        padding: 1.5rem
+        // padding: 1.5rem
         border-radius: 5px
-        margin-top: 2rem
+        margin-top: .5rem
     .img-block
         // width: 95%
-        width: 20rem
-        height: 20rem
+        width: 31rem
+        height: 25rem
         overflow: hidden
-        margin: 1rem auto 0 auto 
+        margin: .5rem auto 0 auto 
         position: relative
         img
-            width: 100%
+            // width: 100%
             height: 100%
     .change-image-icon
         position: absolute
@@ -176,30 +177,45 @@ export default {
         right: 0
         transform: rotate(180deg)
     .spec-block
-        margin-top: 1rem
+        // margin-top: 1rem
+        padding: 1rem
     .more-content-block
         background-color: #fff
         padding: 2rem 1rem 1rem 1rem
         border-radius: 0 0 5px 5px
     .img-dots-block
-        display: flex
-        align-items: center
-        justify-content: center
-        margin-top: 1rem
+        position: absolute
+        bottom: .5rem
+        left: 50%
+        transform: translateX(-50%)
+        display: grid
+        grid-template-columns: .5rem .5rem .5rem
+        gap: .4rem
     .dots
-        width: .7rem
-        height: .7rem
-        // background-color: rgba(0,0,0, .1)
-        border-radius: 50%
-        margin: 0 .5rem
-    .origin-dot-color
-        background-color: rgba(0,0,0,.1)   
+        width: .5rem
+        height: .5rem
+        border-radius: 2.5px
+        background-color: #454545
+    .selected-img-dot
+        opacity: 0.4
+        // display: flex
+        // align-items: center
+        // justify-content: center
+        // margin-top: 1rem
+    // .dots
+    //     width: .5rem
+    //     height: .5rem
+    //     // background-color: rgba(0,0,0, .1)
+    //     border-radius: 50%
+    //     margin: 0 .5rem
+    // .origin-dot-color
+    //     background-color: rgba(0,0,0,.1)   
 
 .fade-leave 
   opacity: 1
 
 .fade-leave-active 
-  transition: opacity .2s
+  transition: opacity .5s
 
 .fade-leave-to 
   opacity: 0
@@ -208,7 +224,7 @@ export default {
   opacity: 0
 
 .fade-enter-active 
-  transition: opacity .2s
+  transition: opacity .5s
 
 .fade-enter-to 
   opacity: 1

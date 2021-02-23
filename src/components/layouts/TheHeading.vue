@@ -1,23 +1,24 @@
 <template>
-    <div class="the-heading">
+    <div class="the-heading default-black-bgc">
         <div class="heading-operation-left-block">
             <div @click="previousPage" class="operation-item">
-                <img src="/images/back.png" alt="" class="icon left-arrow-icon">
+                <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon">
             </div>
-            <div class="operation-item">
-                <img src="/images/icon-search.png" alt="" class="icon search-icon">
+            <div>
+                <img src="/images/icons/search.svg" alt="搜尋按鈕" class="icon">
             </div>
         </div>
-        <div @click="toHomePage">
-            <img src="/images/animal.png" alt="" class="icon logo-icon">
+        <div @click="toHomePage" class="logo-block">
+            LOGO
+            <!-- <img src="/images/animal.png" alt="Logo" class="icon logo-icon"> -->
         </div>
         <div class="heading-operation-right-block">
             <div class="operation-item">
-                <img src="/images/my.png" alt="" class="icon user-icon">
+                <img src="/images/icons/user.svg" alt="使用者 icon" class="icon">
             </div>
-            <div class="operation-item" @click="toCartPage">
-                <img src="/images/icon-bag.png" alt="" class="icon cart-icon">
-                <div class="default-deep-green-bgc in-cart-number">1</div>
+            <div class="cart-block" @click="toCartPage">
+                <img src="/images/icons/bag.svg" alt="購物車按鈕" class="icon">
+                <div class="in-cart-number">2</div>
             </div>
         </div>
     </div>
@@ -45,54 +46,68 @@
 .the-heading
     height: 5rem
     display: flex
-    justify-content: center
+    justify-content: space-between
     align-items: center
     position: relative
-    background-color: #fff
     z-index: 3000
     padding: 1rem
     box-sizing: border-box
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1)
     position: absolute
     width: 100%
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15)
     .icon
         cursor: pointer
-    .logo-icon
-        display: flex
-        width: 3rem
-        height: 3rem
-    .user-icon, .cart-icon, .search-icon, .left-arrow-icon
         width: 2.4rem
         height: 2.4rem
+    .logo-block
+        position: absolute
+        left: 50%
+        transform: translateX(-50%)
+        width: 90px
+        height: 30px
+        opacity: 0.1
+        border-radius: 5px
         display: flex
-    .left-arrow-icon
-        // margin-right: 1.1rem
-    //     width: 1.5rem
-    //     height: 1.5rem
+        align-items: center
+        justify-content: center
+        background-color: #f4f4f4
+        font-family: MicrosoftSansSerif
+        font-size: 14px
+        font-weight: normal
+        font-stretch: normal
+        font-style: normal
+        line-height: normal
+        letter-spacing: normal
+        color: #5c5c5c
+    // .logo-icon
+    //     display: flex
+    //     width: 3rem
+    //     height: 3rem
     .heading-operation-right-block
         display: flex
-        flex-wrap: nowrap
-        position: absolute
-        right: 1.2rem
+        align-items: center
     .heading-operation-left-block
         display: flex
-        position: absolute
         align-items: center
-        left: 1.6rem
     .operation-item
-        margin-right: 1.7rem 
+        margin-right: 1.5rem 
+        position: relative
+    .cart-block
         position: relative
     .in-cart-number
         position: absolute
-        top: -1rem
-        right: -1.5rem
-        width: 2rem
-        height: 2rem
+        top: -.3rem
+        right: -.3rem
+        width: 1.5rem
+        height: 1.5rem
         border-radius: 50%
         display: flex
-        align-items: baseline
+        align-items: center
         justify-content: center
         font-size: 1.2rem
+        background-color: #e5ceae
+        color: #333333
+        font-weight: 900
 .the-heading.trans-heading
     background-color: transparent
 

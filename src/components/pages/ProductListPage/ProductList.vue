@@ -34,8 +34,8 @@ export default {
             showQuickAddModal: false,
             productListData: [
                 {
-                    // img: ['/images/p1.jpg', '/images/test_size.png'],
-                    img: "/images/p1.jpg",
+                    img: ['/images/p1.jpg', '/images/test2.png'],
+                    // img: "/images/p1.jpg",
                     name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
                     price: 2000,
                     special_price: 1200,
@@ -43,14 +43,16 @@ export default {
                     type: "零食 零食 零食 零食 零食",
                 },
                 {
-                    img: "/images/p1.jpg",
+                    // img: "/images/p1.jpg",
+                    img: ['/images/p1.jpg', '/images/test2.png'],
                     name: "EQUILÍBRIO",
                     price: 1000,
                     id: 2,
                     type: "飼料",
                 },
                 {
-                    img: "/images/size_test.png",
+                    // img: "/images/size_test.png",
+                    img: ['/images/p1.jpg', '/images/test2.png'],
                     name: "尊爵 ",
                     price: 2000,
                     special_price: 600,
@@ -58,7 +60,8 @@ export default {
                     type: "玩具",
                 },
                 {
-                    img: "/images/p1.jpg",
+                    // img: "/images/p1.jpg",
+                    img: ['/images/p1.jpg', '/images/test2.png'],
                     name: "機能天然糧-化毛貓15kg",
                     price: 1000,
                     special_price: 300,
@@ -66,14 +69,16 @@ export default {
                     type: "玩具",
                 },
                 {
-                    img: "/images/test_size.png",
+                    // img: "/images/test_size.png",
+                    img: ['/images/p1.jpg', '/images/test2.png'],
                     name: "Test",
                     price: 1000,
                     id: 4,
                     type: "零食",
                 },
                 {
-                    img: "/images/p1.jpg",
+                    // img: "/images/p1.jpg",
+                    img: ['/images/p1.jpg', '/images/test2.png'],
                     name:
                         "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
                     price: 1300,
@@ -121,11 +126,12 @@ export default {
     flex-wrap: wrap
     justify-content: space-between
     align-content: stretch
-    // padding: 0 1rem 5rem 1rem
+    padding: 0 .5rem
     background-color: #fff
     border-radius: 5px
-    margin-bottom: 5rem
-    margin-top: -0.6rem
+    padding-bottom: 5rem
+    background-color: #e5ceae
+    // margin-top: -0.6rem
     .product-basic-data
         // margin-top: 2rem
     .quick-add-block

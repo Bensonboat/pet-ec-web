@@ -2,7 +2,7 @@
     <div class="product-list-filter-row default-product-list-filter-row">
         <div class="list-subject default-deep-green-color">{{ listSubject }}</div>
         <div class="basic-order-filter">
-            <!-- <base-select style="width: 100px; height: 30px"/> -->
+            <base-select style="width: 110px; height: 28px"/>
             <!-- <el-select v-model="orderFilter" placeholder="請選擇" size="mini" style="width: 14rem; border: none">
                 <el-option
                     v-for="item in orderFilterOptions"
@@ -17,16 +17,16 @@
 </template>
 
 <script>
-// import BaseSelect from '@/components/layouts/BaseSelect'
+import BaseSelect from '@/components/layouts/BaseSelect'
 
 export default {
     name: "ProductListFilterRow",
     components: {
-        // BaseSelect
+        BaseSelect
     },
     data() {
         return {
-            listSubject: "狗窩 / 吊床",
+            listSubject: "狗窩/吊床",
             orderFilter: '',
             orderFilterOptions: [
                 {
@@ -53,9 +53,14 @@ export default {
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 1.6rem 1.5rem
+    padding: 1.3rem 1rem 1.3rem 1.5rem
+    height: 44px
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1)
+    background-color: #efe1ce
+    box-sizing: border-box
     // margin-bottom: 2rem
     .list-subject
         font-size: 1.2rem
         font-weight: 500
+        color: #333333
 </style>

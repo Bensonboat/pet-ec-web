@@ -5,22 +5,31 @@
             @click="checkProductDetail(product_data.type, product_data.id)"
         >
             <div class="product-top-block">
-                <div class="product-image-block">
-                    <!-- <div class="product-image-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)"> -->
-                    <!-- <transition-group name="fade" tag="div" style="width: 100%; height: 100%">
+                <!-- <div class="product-image-block"> -->
+                    <div class="product-image-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)">
+                    <transition-group name="fade" tag="div" style="width: 100%; height: 100%">
                         <img class="product-image" v-show='imageIndex === currentShowsImgIndex ' v-for='(image, imageIndex) in product_data.img' :key="imageIndex" :src="image" alt="photos">
-                    </transition-group> -->
-                    <img
+                    </transition-group>
+                    <div class="photo-dots">
+                        <div 
+                            v-for='(item, index) in product_data.img' 
+                            :key="index" 
+                            class="dot"
+                            :class="index === currentShowsImgIndex ? 'selected-img-dot' : '' "
+                        ></div>
+                    </div>
+                    </div>
+                    <!-- <img
                         :src="product_data.img"
                         alt="product image"
                         class="product-image"
-                    />
-                </div>
+                    /> -->
+                <!-- </div> -->
                 <div
                     class="quick-add-icon-block"
                     @click.stop="showQuickAddModal"
                 >
-                    <img src="/images/bag-add.png" alt="quick add icon"/>
+                    <img src="/images/icons/bag-add.svg" alt="快速加入按鈕"/>
                 </div>
             </div>
             <div class="product-bottom-block">
@@ -31,7 +40,7 @@
                     <div
                         class="default-deep-green-color"
                         :class="[
-                            product_data.special_price ? 'original-price' : '',
+                            product_data.special_price ? 'original-price-remove' : '',
                         ]"
                     >
                         NT${{ product_data.price }}
@@ -64,7 +73,7 @@ export default {
     },
     data() {
         return {
-            // currentShowsImgIndex: 0
+            currentShowsImgIndex: 1
         };
     },
     methods: {
@@ -76,18 +85,18 @@ export default {
                 path: "/product/" + type + "/" + id,
             });
         },
-        // changeCurrentImage(value){
-        //     return () => {
-        //         this.currentShowsImgIndex = this.currentShowsImgIndex + value;
-        //         if(this.currentShowsImgIndex < 0){
-        //             this.currentShowsImgIndex = this.product_data.img.length - 1
-        //             return
-        //         }
-        //         if(this.currentShowsImgIndex >= this.product_data.img.length ){
-        //             this.currentShowsImgIndex = 0
-        //         }
-        //     }
-        // }
+        changeCurrentImage(value){
+            return () => {
+                this.currentShowsImgIndex = this.currentShowsImgIndex + value;
+                if(this.currentShowsImgIndex < 0){
+                    this.currentShowsImgIndex = this.product_data.img.length - 1
+                    return
+                }
+                if(this.currentShowsImgIndex >= this.product_data.img.length ){
+                    this.currentShowsImgIndex = 0
+                }
+            }
+        }
     },
 };
 </script>
@@ -104,6 +113,7 @@ export default {
     width: 15.2rem
     overflow: hidden
     margin-top: .6rem
+    background-color: #f8f8f8
     // border-bottom: solid 1px pink
     // box-shadow: 0 2px 5px rgba(0,0,0,.1)
     .product-content-block
@@ -115,6 +125,7 @@ export default {
     .product-image-block
         width: 15.2rem
         height: 15.2rem
+        overflow: hidden
         // width: 100%
         // width: 13rem
         // height: 13rem
@@ -126,20 +137,22 @@ export default {
         .product-image
             // width: 15rem
             // height: 15rem
-
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
             width: 100%
             // height: 100%
     .product-name-block
         text-align: left
-        // padding: 0 1.5rem 0 0 
-        // width: 15rem
-        // margin: .5rem auto 0 auto
         display: -webkit-box
         -webkit-box-orient: vertical
         -webkit-line-clamp: 2
         overflow: hidden
         font-size: 1.2rem
         font-weight: 500
+        font-weight: 500
+        color: #333333
     .product-bottom-block
         position: relative
         // position: absolute
@@ -168,8 +181,9 @@ export default {
     .special-price
         font-size: 1.4rem
         margin-top: .4rem
+        color: #f94956
         // margin-left: 1rem
-    .original-price
+    .original-price-remove
         text-decoration: line-through
     .product-price-block
         margin-top: .6rem
@@ -180,13 +194,17 @@ export default {
     .quick-add-icon-block
         width: 3rem
         height: 3rem
-        background-color: #d8d8d8
+        background-color: #333333
         border-radius: 50%
         position: absolute
         bottom: 0
         bottom: -1rem
         right: .6rem
         z-index: 999
+        display: flex
+        align-items: center
+        justify-content: center
+        overflow: hidden
         img
             width: 1.4rem
             height: 1.4rem
@@ -194,9 +212,30 @@ export default {
             top: 50%
             left: 50%
             transform: translate(-50%, -50%)
+        &:before
+            content: ''
+            display: block
+            background-color: rgba(255, 255, 255, 0.15)
+            width: 100%
+            height: 100%
+            transform: rotate(-45deg) translateY(20px)
     .product-top-block
         position: relative
-
+    .photo-dots
+        position: absolute
+        bottom: .5rem
+        left: 50%
+        transform: translateX(-50%)
+        display: grid
+        grid-template-columns: .5rem .5rem
+        gap: .4rem
+    .dot
+        width: .5rem
+        height: .5rem
+        border-radius: 2.5px
+        background-color: #454545
+    .selected-img-dot
+        opacity: 0.4
 .fade-leave
     opacity: 1
 

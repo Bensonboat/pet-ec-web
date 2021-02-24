@@ -129,7 +129,10 @@
                     }
                     return item
                 })
-            }
+            },
+            routerSwitch(){
+                this.$router.push('/product_list_page')
+            },
         }
     }
 </script>

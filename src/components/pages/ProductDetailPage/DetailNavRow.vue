@@ -4,7 +4,7 @@
             v-for="(item, index) in navData" 
             :key='index'
             class='default-nav-route nav-route default-text-color'
-            :class="[item.selected ? 'default-current-route' : '']"
+            :class="[item.selected ? 'selected-route' : '']"
             @click="toggleNavRoute(index)"
         >
             {{item.name}}
@@ -54,15 +54,27 @@ export default {
     display: flex
     align-items: center
     justify-content: space-around
-    padding: .5rem
-    margin-top: 2rem
-    background-color: #fff
-    border-radius: 5px 5px 0 0
+    padding: 1rem
+    // margin-top: .5rem
+    // border-radius: 5px 5px 0 0
     .nav-route
-        // flex: 1
-        text-align: center
-        padding: .8rem 0
-        letter-spacing: 1px
-        cursor: pointer
+        width: 90px
+        height: 28px
+        border-radius: 14px
+        border: solid 1px #333333
+        background-color: #e5ceae
+        font-size: 12px
+        font-weight: 500
+        color: #333333
         display: flex
+        align-items: center
+        justify-content: center
+        // flex: 1
+        // text-align: center
+        // padding: .8rem 0
+        // letter-spacing: 1px
+        // cursor: pointer
+        // display: flex
+    .selected-route
+        background-color: #e3a652
 </style>

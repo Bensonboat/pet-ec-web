@@ -279,7 +279,7 @@
     .confirm-btn
         width: 25rem
         height: 3.8rem
-        border-radius: 18.5px
+        border-radius: 5rem
         border: solid 2px #926d38
         background-color: #e3a652
         position: absolute
@@ -292,6 +292,7 @@
         justify-content: center
         align-items: center
         color: #926d38
+        font-family: 'roboto'
     .next-step-icon
         width: 1.4rem
         height: 1.4rem

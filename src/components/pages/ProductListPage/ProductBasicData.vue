@@ -7,9 +7,9 @@
             <div class="product-top-block">
                 <!-- <div class="product-image-block"> -->
                     <div class="product-image-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)">
-                    <transition-group name="fade" tag="div" style="width: 100%; height: 100%">
+                    <!-- <transition-group name="fade" tag="div" style="width: 100%; height: 100%"> -->
                         <img class="product-image" v-show='imageIndex === currentShowsImgIndex ' v-for='(image, imageIndex) in product_data.img' :key="imageIndex" :src="image" alt="photos">
-                    </transition-group>
+                    <!-- </transition-group> -->
                     <div class="photo-dots">
                         <div 
                             v-for='(item, index) in product_data.img' 
@@ -73,7 +73,7 @@ export default {
     },
     data() {
         return {
-            currentShowsImgIndex: 1
+            currentShowsImgIndex: 0
         };
     },
     methods: {
@@ -236,21 +236,21 @@ export default {
         background-color: #454545
     .selected-img-dot
         opacity: 0.4
-.fade-leave
-    opacity: 1
+// .fade-leave
+//     opacity: 1
 
-.fade-leave-active
-    transition: opacity .2s
+// .fade-leave-active
+//     transition: opacity .2s
 
-.fade-leave-to
-    opacity: 0
+// .fade-leave-to
+//     opacity: 0
 
-.fade-enter
-    opacity: 0
+// .fade-enter
+//     opacity: 0
 
-.fade-enter-active
-    transition: opacity .2s
+// .fade-enter-active
+//     transition: opacity .2s
 
-.fade-enter-to
-    opacity: 1
+// .fade-enter-to
+//     opacity: 1
 </style>

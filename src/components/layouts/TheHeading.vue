@@ -44,7 +44,7 @@
 
 <style lang="sass" scoped>
 .the-heading
-    height: 5rem
+    height: 4.4rem
     display: flex
     justify-content: space-between
     align-items: center
@@ -108,6 +108,7 @@
         background-color: #e5ceae
         color: #333333
         font-weight: 900
+        font-family: Roboto
 .the-heading.trans-heading
     background-color: transparent
 

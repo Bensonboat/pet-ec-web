@@ -147,7 +147,7 @@
         background-size: 190px 190px
         width: 100%
         height: 100%
-        position: absolute
+        position: fixed
         top: 0
         left: 0
         z-index: -1
@@ -238,13 +238,13 @@
         margin-top: 16rem
         padding: 0 4rem
         display: grid
-        grid-template-columns: 6rem 6rem 6rem
+        grid-template-columns: 1fr 1fr 1fr
         gap: 3rem 
     .category-option
-        width: 60px
-        height: 60px
+        width: 6rem
+        height: 6rem
         margin: 0 auto
-        border-radius: 30px
+        border-radius: 50%
         box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
         border: solid 2px #ccaa76
         background-color: #f2c47e

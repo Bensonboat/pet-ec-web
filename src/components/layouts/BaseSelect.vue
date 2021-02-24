@@ -1,6 +1,6 @@
 <template>
     <div class="base-select" @click="toggleOptionMenu">
-        {{currentSelectText}}
+        <div class="select-text">{{currentSelectText}}</div>
         <!-- <input @click="toggleOptionMenu" class='default-text-color input-background' v-model='currentSelect' type="text" @blur='toggleOptionMenu'> -->
         <div class="auto-close-bgc-mask" @click.stop="toggleOptionMenu" v-show="showOptionMenu"></div>
         <div class="base-select-block" v-show='showOptionMenu'>
@@ -80,7 +80,7 @@
     background-color: #f2c47e
     border-radius: 4px
     border: solid 1px #333333
-    padding: .4rem 1rem .6rem
+    padding: 0 1rem
     color: #333333
     // border: solid 1px lightblue
     // overflow: hidden
@@ -100,6 +100,10 @@
     //     border: solid 1px #333333
     //     background-color: #f2c47e
     //     padding: .4rem 1rem .6rem
+    .select-text
+        display: flex
+        align-items: center
+        height: 100%
     .auto-close-bgc-mask
         width: 100vw
         height: 100vh

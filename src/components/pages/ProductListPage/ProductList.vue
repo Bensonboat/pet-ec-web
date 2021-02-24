@@ -124,15 +124,20 @@ export default {
 .product-list
     display: flex
     flex-wrap: wrap
-    justify-content: space-between
+    justify-content: space-evenly
     align-content: stretch
-    padding: 0 .5rem
+    // padding: 0 .5rem
     background-color: #fff
-    border-radius: 5px
+    // border-radius: 5px
     padding-bottom: 5rem
     background-color: #e5ceae
+    // display: grid
+    // grid-template-columns: 1fr 1fr
+    // gap: .5rem
     // margin-top: -0.6rem
     .product-basic-data
+        align-self: center
+        justify-self: center
         // margin-top: 2rem
     .quick-add-block
         background-color: white

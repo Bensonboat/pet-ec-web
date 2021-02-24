@@ -2,7 +2,7 @@
     <div class="product-list-filter-row default-product-list-filter-row">
         <div class="list-subject default-deep-green-color">{{ listSubject }}</div>
         <div class="basic-order-filter">
-            <base-select style="width: 110px; height: 28px"/>
+            <base-select style="width: 11rem; height: 2.8rem"/>
             <!-- <el-select v-model="orderFilter" placeholder="請選擇" size="mini" style="width: 14rem; border: none">
                 <el-option
                     v-for="item in orderFilterOptions"
@@ -54,10 +54,12 @@ export default {
     justify-content: space-between
     align-items: center
     padding: 1.3rem 1rem 1.3rem 1.5rem
-    height: 44px
+    height: 4.4rem
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1)
     background-color: #efe1ce
     box-sizing: border-box
+    position: relative
+    z-index: 1
     // margin-bottom: 2rem
     .list-subject
         font-size: 1.2rem

@@ -52,13 +52,13 @@
 .index-content
     position: relative
     .index-content-router-view
-        height: calc(100% - 5rem)
+        height: calc(100% - 4.4rem)
+        padding-top: 4.4rem
         // padding: .5rem
         overflow-y: scroll
         // width: 90%
         margin: auto
         // background-color: #fff
-        padding-top: 5rem
     .index-content-router-view::-webkit-scrollbar 
         display: none
     .top-icon-block

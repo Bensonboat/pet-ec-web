@@ -218,7 +218,7 @@ export default {
             background-color: rgba(255, 255, 255, 0.15)
             width: 100%
             height: 100%
-            transform: rotate(-45deg) translateY(20px)
+            transform: rotate(-45deg) translateY(2rem)
     .product-top-block
         position: relative
     .photo-dots

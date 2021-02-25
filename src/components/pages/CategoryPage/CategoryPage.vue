@@ -158,7 +158,7 @@
         position: fixed
         top: 0
         left: 0
-        z-index: -1
+        // z-index: -1
     .type-icon-block
         top: 8.5rem
         left: 50%

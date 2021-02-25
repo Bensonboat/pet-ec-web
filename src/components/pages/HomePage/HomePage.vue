@@ -66,7 +66,7 @@ export default {
     methods: {
         routerSwitch(value){
             if(this.selectType === ''){ return };
-            
+
             let path = value + '/' + this.selectType;
             this.$router.push(path)
         },
@@ -98,7 +98,7 @@ export default {
         position: fixed
         top: 0
         left: 0
-        z-index: -1
+        // z-index: -1
     // .breed-type-circle
     //     border-radius: 50%
     //     border: solid 4px #333333

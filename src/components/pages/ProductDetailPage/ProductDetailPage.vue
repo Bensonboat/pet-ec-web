@@ -116,7 +116,7 @@ export default {
     mounted(){
         this.productAttr.id = this.$route.params.id;
         this.productAttr.type = this.$route.params.type;
-        this.productData.name = this.productAttr.type + ':' + this.productAttr.id;
+        // this.productData.name = this.productAttr.type + ':' + this.productAttr.id;
         this.showProductInfo = 'description'
     },
     methods: {
@@ -198,7 +198,7 @@ export default {
     //     padding: 1rem
     .more-content-block
         // background-color: #fff
-        padding: 2rem 1rem 1rem 1rem
+        padding: 2rem
         // border-radius: 0 0 5px 5px
     .img-dots-block
         position: absolute

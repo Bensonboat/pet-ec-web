@@ -2,7 +2,7 @@
     <div class="default-product-description product-description">
         <div v-for='(item, index) in descriptionData' :key="index" class="description-set">
             <img :src="item.img" alt="" class="description-img">
-            <div class="default-description-text description-text default-text-color">{{item.description}}</div>
+            <div class="description-text">{{item.description}}</div>
         </div>
     </div>
 </template>
@@ -14,27 +14,27 @@
             return {
                 descriptionData: [
                     {
-                        img: '/images/animal.png',
-                        description: 'This is product description, this item is awesome.'
-                    },
-                    {
-                        img: '/images/test.png',
-                        description: 'Have you ever tried Cesar ?? 好吃好吃 好好吃.'
-                    },
-                    {
-                        img: '/images/test2.png',
-                        description: '中國的支付市場是全世界成長最暴力的地方之一，但是中國市場目前是由充滿黨色彩的支付寶和微信佔去.'
-                    },
-                    {
-                        img: '/images/goku4.jpeg',
+                        img: '/images/p2.jpg',
                         description: ''
                     },
                     {
-                        img: '/images/goku2.jpg',
+                        img: '/images/p1.jpg',
+                        description: '不添加人工防腐劑人工色素人工香料，含七種活性益生菌飼料提供給寵物毛孩家人消化的支持和均衡的營養'
+                    },
+                    {
+                        img: '/images/p5.jpg',
+                        description: '鴨肉粉，鷹嘴豆，豌豆，扁豆，雞脂肪（添加綜合維生素E保存），乾燥的甜菜根糖漿，亞麻籽，南瓜，蔓越莓，蘋果，乾燥啤酒酵母，木瓜，藍莓，石榴，菊糖，乾海藻，維生素(A、B1、B2、B3、B5、B6、B7、B12、C、D3、E)，葡萄糖胺，葉酸，肉桂粉，茴香粉，薄荷粉，絲蘭萃取物，迷迭香萃取物，綠茶萃取物，綠薄荷萃取物'
+                    },
+                    {
+                        img: '/images/test_size.png',
+                        description: '經濟聰明的好選擇：1. 嚴格安全的生產流程2. 符合安全標準所製成的高品質原料3. 提供均衡的維生素和礦物質4. 絕佳的美味口感'
+                    },
+                    {
+                        img: '/images/p3.jpeg',
                         description: ''
                     },
                     {
-                        img: '/images/goku3.jpeg',
+                        img: '/images/p4.jpg',
                         description: ''
                     }
                 ]
@@ -46,7 +46,7 @@
 <style lang="sass" scoped>
 .product-description
     .description-set
-        padding: 1rem 2rem
+        // padding: 1rem 2rem
         margin-top: 1rem
     .description-img
         width: 100%
@@ -54,5 +54,7 @@
         margin-bottom: 1.8rem
     .description-text
         letter-spacing: 1px
-        line-height: 30px
+        line-height: 2rem
+        font-size: 1.4rem
+        color: #333333
 </style>

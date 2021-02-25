@@ -78,8 +78,8 @@
     background-color: #f2c47e
     box-sizing: border-box
     background-color: #f2c47e
-    border-radius: 4px
-    border: solid 1px #333333
+    border-radius: .4rem
+    border: solid .1rem #333333
     padding: 0 1rem
     color: #333333
     // border: solid 1px lightblue
@@ -115,11 +115,11 @@
         z-index: 1
     .current-select
         padding: .5rem 1.5rem
-        border: solid 1px rgba(0,0,0,.15)
+        border: solid .1rem rgba(0,0,0,.15)
         width: 100%
         height: 100%
         overflow: scroll
-        border-radius: 5px
+        border-radius: .5rem
         color: #666666
         display: flex
         align-items: center
@@ -127,9 +127,9 @@
         color: #CFD8D7
     .option-menu
         background-color: #f2c47e
-        border-radius: 5px
+        border-radius: .5rem
         // margin-top: 40px
-        box-shadow: 0 2px 5px rgba(0,0,0,.15)
+        box-shadow: 0 .2rem .5rem rgba(0,0,0,.15)
         position: relative
         // &:before
         //     content: ''
@@ -147,7 +147,7 @@
         // padding: .5rem 1.2rem
         word-break: break-word
         color: #333333
-        margin-top: 8px
+        margin-top: .8rem
         // border-bottom: solid 1px lightgray
     .base-select-block
         position: absolute
@@ -155,11 +155,11 @@
         // width: inherit
         // height: inherit
         left: 0
-        top: 36px
+        top: 3.6rem
         padding: 0 1rem 1rem 1rem
-        border-radius: 4px
+        border-radius: .4rem
         box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.18)
-        border: solid 1px #333333
+        border: solid .1rem #333333
         background-color: #f2c47e
         width: 100%
         box-sizing: border-box

@@ -110,7 +110,7 @@ export default {
             //         ]
             //     }
             // },
-            showProductInfo: ''
+            showProductInfo: 'description'
         }
     },
     mounted(){
@@ -211,7 +211,7 @@ export default {
     .dots
         width: .5rem
         height: .5rem
-        border-radius: 2.5px
+        border-radius: .25rem
         background-color: #454545
     .selected-img-dot
         opacity: 0.4

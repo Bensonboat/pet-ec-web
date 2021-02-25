@@ -1,6 +1,6 @@
 <template>
     <div class="product-recommand-block">
-        <div class="default-text-color recommand-text">
+        <div class="recommand-text">
             <img src="/images/filled-heart.png" alt="heart icon" class='recommand-icon'>
             <div>推薦給你</div>
         </div>
@@ -118,7 +118,9 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
     .recommand-text
         display: flex
         align-items: center
-        font-size: 1.2rem
+        font-size: 1.4rem
+        font-weight: 500
+        color: #333333
     .recommand-icon
         width: 2rem
         height: 2rem

@@ -58,12 +58,12 @@ export default {
     // margin-top: .5rem
     // border-radius: 5px 5px 0 0
     .nav-route
-        width: 90px
-        height: 28px
-        border-radius: 14px
-        border: solid 1px #333333
+        width: 9rem
+        height: 2.8rem
+        border-radius: 1.4rem
+        border: solid .1rem #333333
         background-color: #e5ceae
-        font-size: 12px
+        font-size: 1.2rem
         font-weight: 500
         color: #333333
         display: flex

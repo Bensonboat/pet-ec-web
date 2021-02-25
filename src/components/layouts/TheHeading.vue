@@ -4,11 +4,11 @@
             <div @click="previousPage" class="operation-item">
                 <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon">
             </div>
-            <div>
+            <div @click="routerSwicher('/search_page')">
                 <img src="/images/icons/search.svg" alt="搜尋按鈕" class="icon">
             </div>
         </div>
-        <div @click="toHomePage" class="logo-block">
+        <div @click="routerSwicher('/home_page')" class="logo-block">
             LOGO
             <!-- <img src="/images/animal.png" alt="Logo" class="icon logo-icon"> -->
         </div>
@@ -16,7 +16,7 @@
             <div class="operation-item">
                 <img src="/images/icons/user.svg" alt="使用者 icon" class="icon">
             </div>
-            <div class="cart-block" @click="toCartPage">
+            <div class="cart-block" @click="routerSwicher('/cart_page')">
                 <img src="/images/icons/bag.svg" alt="購物車按鈕" class="icon">
                 <div class="in-cart-number">2</div>
             </div>
@@ -29,15 +29,18 @@
         name: 'TheHeading',
         // props: ['scrollOnToppest'],
         methods: {
-            toHomePage(){
-                this.$router.push('/home_page')
-            },
+            // toHomePage(){
+            //     this.$router.push('/home_page')
+            // },
             previousPage(){
                 this.$router.go(-1)
             },
-            toCartPage(){
-                this.$router.push('/cart_page')
-            },
+            // toCartPage(){
+            //     this.$router.push('/cart_page')
+            // },
+            routerSwicher(path){
+                this.$router.push(path)
+            }
         }
     }
 </script>

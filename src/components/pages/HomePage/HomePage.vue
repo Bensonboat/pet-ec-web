@@ -65,6 +65,8 @@ export default {
     },
     methods: {
         routerSwitch(value){
+            if(this.selectType === ''){ return };
+            
             let path = value + '/' + this.selectType;
             this.$router.push(path)
         },

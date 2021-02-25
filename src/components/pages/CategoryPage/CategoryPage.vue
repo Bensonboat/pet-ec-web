@@ -104,7 +104,8 @@
                         value: ''
                     },
                 ],
-                selected: false
+                selected: false,
+                selectType: '',
             }
         },
         mounted(){
@@ -125,12 +126,19 @@
                         item.selected = false 
                     } else {
                         item.selected = !item.selected
-                        item.selected ? this.selected = true : this.selected = false
+                        if(item.selected){
+                            this.selected = true
+                            this.selectType = item.name
+                        } else {
+                            this.selected = false
+                            this.selectType = ''
+                        }
                     }
                     return item
                 })
             },
             routerSwitch(){
+                if(this.selectType === ''){ return };
                 this.$router.push('/product_list_page')
             },
         }

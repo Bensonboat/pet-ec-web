@@ -1,6 +1,9 @@
 <template>
     <div class="base-select" @click="toggleOptionMenu">
-        <div class="select-text">{{currentSelectText}}</div>
+        <div class="select-text-block">
+            <div class="select-text">{{currentSelectText}}</div>
+            <img src="/images/icons/filter.svg" alt="篩選按鈕" class="filter-icon">
+        </div>
         <!-- <input @click="toggleOptionMenu" class='default-text-color input-background' v-model='currentSelect' type="text" @blur='toggleOptionMenu'> -->
         <div class="auto-close-bgc-mask" @click.stop="toggleOptionMenu" v-show="showOptionMenu"></div>
         <div class="base-select-block" v-show='showOptionMenu'>
@@ -100,10 +103,15 @@
     //     border: solid 1px #333333
     //     background-color: #f2c47e
     //     padding: .4rem 1rem .6rem
-    .select-text
+    .select-text-block
         display: flex
         align-items: center
         height: 100%
+    .select-text
+        height: 100%
+        word-break: keep-all
+        display: flex
+        align-items: center
     .auto-close-bgc-mask
         width: 100vw
         height: 100vh
@@ -163,4 +171,8 @@
         background-color: #f2c47e
         width: 100%
         box-sizing: border-box
+    .filter-icon
+        width: 1.2rem
+        height: 1.2rem
+        margin-left: .6rem
 </style>

@@ -5,29 +5,30 @@
             :key="index"
             :product_data="item"
             :showQuickAddIcon="true"
+            :showMultiplePics='true'
             class="product-basic-data"
             @show-quick-add-modal="toggleQuickAddModal"
         />
         <div v-if="showQuickAddModal">
             <div class="modal-mask"></div>
-            <product-spec
+            <!-- <product-spec
                 class="quick-add-block"
                 :product_data="quickAddProductData"
                 @close-modal="toggleQuickAddModal"
-            />
+            /> -->
         </div>
     </div>
 </template>
 
 <script>
 import ProductBasicData from "./ProductBasicData.vue";
-import ProductSpec from "./ProductSpec";
+// import ProductSpec from "./ProductSpec";
 
 export default {
     name: "ProductList",
     components: {
         ProductBasicData,
-        ProductSpec,
+        // ProductSpec,
     },
     data() {
         return {
@@ -190,13 +191,13 @@ export default {
         align-self: center
         justify-self: center
         // margin-top: 2rem
-    .quick-add-block
-        background-color: white
-        width: 80vw
-        // height: 200px
-        position: fixed
-        top: 50%
-        left: 50%
-        transform: translate(-50%, -50%)
-        padding: 2rem
+    // .quick-add-block
+    //     background-color: white
+    //     width: 80vw
+    //     // height: 200px
+    //     position: fixed
+    //     top: 50%
+    //     left: 50%
+    //     transform: translate(-50%, -50%)
+    //     padding: 2rem
 </style>

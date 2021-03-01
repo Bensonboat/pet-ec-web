@@ -1,7 +1,7 @@
 <template>
     <div class="product-recommand-block">
         <div class="recommand-text">
-            <img src="/images/filled-heart.png" alt="heart icon" class='recommand-icon'>
+            <img src="/images/icons/heart.svg" alt="愛心圖案" class='recommand-icon'>
             <div>推薦給你</div>
         </div>
         <div class="product-recommand-row">
@@ -10,6 +10,7 @@
                 :key='index' 
                 :product_data='item'
                 :showQuickAddIcon='false'
+                :showMultiplePics='false'
                 class="recommand-item"
             />
         </div>
@@ -44,7 +45,7 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
                     {
                         // img: '/images/p1.jpg',
                         img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: '吧啦吧啦',
+                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
                         price: 2000,
                         special_price: 1500,
                         id: 3,
@@ -53,7 +54,7 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
                     {
                         // img: '/images/p1.jpg',
                         img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
+                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
                         price: 1000,
                         id: 4,
                         type: '玩具'
@@ -61,7 +62,7 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
                     {
                         // img: '/images/p1.jpg',
                         img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: 'Test',
+                        name: '尊爵 機能天然糧-化毛貓15kg',
                         price: 1000,
                         id: 4,
                         type: '零食'
@@ -69,7 +70,7 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
                     {
                         // img: '/images/p1.jpg',
                         img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: '吧啦吧啦',
+                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
                         price: 2000,
                         id: 3,
                         type: '玩具'
@@ -85,7 +86,7 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
                     {
                         // img: '/images/p1.jpg',
                         img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: 'Test',
+                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
                         price: 1000,
                         id: 4,
                         type: '零食'
@@ -93,7 +94,7 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
                     {
                         // img: '/images/p1.jpg',
                         img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: '吧啦吧啦',
+                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
                         price: 2000,
                         id: 3,
                         type: '玩具'
@@ -101,7 +102,7 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
                     {
                         // img: '/images/p1.jpg',
                         img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
+                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
                         price: 1000,
                         id: 4,
                         type: '玩具'
@@ -114,7 +115,9 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
 
 <style lang="sass" scoped>
 .product-recommand-block
-    margin-top: 2rem
+    margin-top: 1rem
+    background-color: #efe1ce
+    padding: 1rem .5rem
     .recommand-text
         display: flex
         align-items: center
@@ -122,19 +125,19 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
         font-weight: 500
         color: #333333
     .recommand-icon
-        width: 2rem
-        height: 2rem
-        margin-right: .5rem
+        width: 1.6rem
+        height: 1.6rem
+        margin-right: .8rem
     .product-recommand-row
         overflow-x: scroll
         // width: 100%
         display: flex
-        margin-top: 1.2rem
-        padding-bottom: 2rem
+        margin-top: .6rem
+        // padding-bottom: 2rem
     .recommand-item
-        margin-right: 1.5rem
-        height: 23rem
-        width: 14rem
+        margin-right: .6rem
+        // height: 23rem
+        // width: 14rem
         flex: 1 0 auto
     .recommand-product-img
         width: 13rem

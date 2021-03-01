@@ -1,21 +1,27 @@
 <template>
     <div class="index-content">
-        <!-- <transition name="fade"> -->
-            <the-heading  scrollOnToppest='scrollOnToppest' :class="[!scrollOnToppest ? 'transparent-heading' : '']"/>
-        <!-- </transition> -->
+        <the-heading scrollOnToppest='scrollOnToppest' :class="[!scrollOnToppest ? 'transparent-heading' : '']"/>
         <router-view class="index-content-router-view" ref='index_content_router' @scroll.native="handleScroll"/>
         <div class="default-top-icon-block top-icon-block" v-show="this.$route.path !== '/home_page'">
             <img src="/images/top.png" alt="to top icon" class="default-top-icon top-icon">
         </div>
+        <transition>
+            <product-basic-spec v-if="getShowProductAllSpecModalStatus"/>
+        </transition>
     </div>
 </template>
 
 <script>
     import TheHeading from './TheHeading.vue'
+    import ProductBasicSpec from '@/components/layouts/ProductBasicSpec'
+    import store from '@/store'
+    // import * as types from '@/store/mutation-types.js'
+
     export default {
         name: 'IndexContent',
         components: {
-            TheHeading
+            TheHeading,
+            ProductBasicSpec
         },
         data(){
             return {
@@ -23,12 +29,11 @@
                 currentHeight: ''
             }
         },
-        // created () {
-        //     window.addEventListener('scroll', this.handleScroll);
-        // },
-        // destroyed () {
-        //     window.removeEventListener('scroll', this.handleScroll);
-        // },
+        computed: {
+            getShowProductAllSpecModalStatus(){
+                return store.state.showProductAllSpecModal
+            }
+        },
         methods: {
             handleScroll(){
                 let current_height = this.$refs.index_content_router.$el.scrollTop;
@@ -42,8 +47,7 @@
                 } else {
                     this.scrollOnToppest = true
                 }
-                // console.log(this.$refs.index_content_router.$el.scrollTop, 'j')
-            }
+            },
         }
     }
 </script>
@@ -76,24 +80,4 @@
         background-color: transparent
         opacity: 0
         transition: .5s
-.fade-leave 
-  opacity: 1
-
-.fade-leave-active 
-  transition: opacity .5s
-
-.fade-leave-to 
-  opacity: 0
-
-.fade-enter 
-  opacity: 0
-
-.fade-enter-active 
-  transition: opacity .5s
-
-.fade-enter-to 
-  opacity: 1
-
-
-        
 </style>

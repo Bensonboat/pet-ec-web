@@ -52,7 +52,7 @@
     justify-content: space-between
     align-items: center
     position: relative
-    z-index: 3000
+    z-index: 20
     padding: 1rem
     box-sizing: border-box
     position: absolute

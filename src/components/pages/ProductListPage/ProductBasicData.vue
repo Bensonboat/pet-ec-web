@@ -6,24 +6,24 @@
         >
             <div class="product-top-block">
                 <!-- <div class="product-image-block"> -->
-                    <div class="product-image-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)">
-                    <!-- <transition-group name="fade" tag="div" style="width: 100%; height: 100%"> -->
-                        <img class="product-image" v-show='imageIndex === currentShowsImgIndex ' v-for='(image, imageIndex) in product_data.img' :key="imageIndex" :src="image" alt="photos">
-                    <!-- </transition-group> -->
-                    <div class="photo-dots">
-                        <div 
-                            v-for='(item, index) in product_data.img' 
-                            :key="index" 
-                            class="dot"
-                            :class="index === currentShowsImgIndex ? 'selected-img-dot' : '' "
-                        ></div>
+                    <div v-if="showMultiplePics" class="product-image-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)">
+                        <img class="product-image" v-show='imageIndex === currentShowsImgIndex' v-for='(image, imageIndex) in product_data.img' :key="imageIndex" :src="image" alt="photos">
+                        <div class="photo-dots">
+                            <div 
+                                v-for='(item, index) in product_data.img' 
+                                :key="index" 
+                                class="dot"
+                                :class="index === currentShowsImgIndex ? 'selected-img-dot' : '' "
+                            ></div>
+                        </div>
                     </div>
+                    <div v-else class="product-image-block">
+                        <img
+                            :src="product_data.img[0]"
+                            alt="product image"
+                            class="product-image"
+                        />
                     </div>
-                    <!-- <img
-                        :src="product_data.img"
-                        alt="product image"
-                        class="product-image"
-                    /> -->
                 <!-- </div> -->
                 <div
                     class="quick-add-icon-block"
@@ -70,6 +70,10 @@ export default {
     props: {
         product_data: Object,
         showQuickAddIcon: Boolean,
+        showMultiplePics: {
+            type: Boolean,
+            default: true
+        }
     },
     data() {
         return {
@@ -200,7 +204,7 @@ export default {
         bottom: 0
         bottom: -1rem
         right: .6rem
-        z-index: 999
+        z-index: 5
         display: flex
         align-items: center
         justify-content: center

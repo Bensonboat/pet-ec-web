@@ -1,6 +1,9 @@
-// import * as types from './mutation-types';
+import * as types from './mutation-types';
 
-// export default {
+export default {
+    [types.SHOW_PRODUCT_ALL_SPEC_MODAL](state, data){
+        state.showProductAllSpecModal = data
+    }
 //     // didn't set any overflow at container level such as body, myApp ... because of Animation On Scroll library
 //     // so when show a modal, need to set overflow: hidden to disable scroll, and that'll cause lose current scrollTop 
 //     // and jump back to top that bothers UX. That's why having this function to record current height before open a modal,
@@ -11,4 +14,4 @@
 //     [types.IS_LOADING](state, data){
 //         state.is_loading = data
 //     }
-// }
+}

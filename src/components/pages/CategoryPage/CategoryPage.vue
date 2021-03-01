@@ -288,7 +288,7 @@
         width: 25rem
         height: 3.8rem
         border-radius: 5rem
-        border: solid 2px #926d38
+        border: solid 2px #c99246
         background-color: #e3a652
         position: absolute
         bottom: 2rem
@@ -299,7 +299,7 @@
         display: flex
         justify-content: center
         align-items: center
-        color: #926d38
+        color: #c99246
         font-family: 'roboto'
     .next-step-icon
         width: 1.4rem

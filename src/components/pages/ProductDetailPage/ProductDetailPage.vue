@@ -1,48 +1,39 @@
 <template>
     <div class="default-product-detail-page product-detail-page">
-        <div class="product-attribute">
-            <div class="img-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)">
-                <!-- <div class="change-image-icon left" @click="changeCurrentImage(-1)">
-                    <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
-                </div> -->
-                <!-- <transition-group name="fade" tag="div" style="width: 100%; height: 100%; display: flex;justify-content: center; overflow: hidden"> -->
-
-                    <!-- <div > -->
-                        <img v-show='imageIndex === currentShowsImgIndex ' v-for='(image, imageIndex) in productImgs' :key="imageIndex" :src="image" alt="photos">
-                    <!-- </div> -->
-                <!-- </transition-group> -->
-                <!-- <img :src="productImgs[currentShowsImgIndex]" alt="product image"> -->
-                <!-- <div class="change-image-icon right" @click="changeCurrentImage(1)">
-                    <img src="/images/left-arrow.png" alt="" class="left-arrow-icon">
-                </div> -->
-                <div class='img-dots-block'>
-                    <div 
-                        v-for="(item, index) in productImgs" 
-                        :key="index" 
-                        class='dots'
-                        :class="{'selected-img-dot': index === currentShowsImgIndex }"
-                        @click="toggleCurrentShowsImg(index)"
-                    ></div>
+        <div class="product-content-block">
+            <div class="product-attribute">
+                <div class="img-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)">
+                    <img v-show='imageIndex === currentShowsImgIndex ' v-for='(image, imageIndex) in productImgs' :key="imageIndex" :src="image" alt="photos">
+                    <div class='img-dots-block'>
+                        <div 
+                            v-for="(item, index) in productImgs" 
+                            :key="index" 
+                            class='dots'
+                            :class="{'selected-img-dot': index === currentShowsImgIndex }"
+                            @click="toggleCurrentShowsImg(index)"
+                        ></div>
+                    </div>
+                </div>
+                <div class="product-attribute-block">
+                    <div class="name">EQUILÍBRIO 尊爵 機能天然糧</div>
+                    <div class="price-block">
+                        <div class="normal-price">NT$4500</div>
+                        <div class="special-price">NT$2380</div>
+                    </div>
                 </div>
             </div>
-            <div class="product-attribute-block">
-                <div class="name">EQUILÍBRIO 尊爵 機能天然糧</div>
-                <div class="price-block">
-                    <div class="normal-price">NT$4500</div>
-                    <div class="special-price">NT$2380</div>
+            <div class="detail-info-block">
+                <detail-nav-row @toggle-product-info='toggleProductInfo'/>
+                <div class="default-more-content-block more-content-block">
+                    <product-description v-show="showProductInfo === 'description'"/>
+                    <product-fulfillment v-show="showProductInfo === 'fulfillment'"/>
+                    <product-review v-show="showProductInfo === 'review'"/>
                 </div>
-                <!-- <product-spec :product_data='productData'/> -->
-            </div>
-        </div>
-        <div class="detail-info-block">
-            <detail-nav-row @toggle-product-info='toggleProductInfo'/>
-            <div class="default-more-content-block more-content-block">
-                <product-description v-show="showProductInfo === 'description'"/>
-                <product-fulfillment v-show="showProductInfo === 'fulfillment'"/>
-                <product-review v-show="showProductInfo === 'review'"/>
             </div>
         </div>
         <product-recommand-block/>
+        <add-to-cart-button @click.native="showProductAllSpecModal"/>
+        <!-- <product-basic-spec/> -->
     </div>
 </template>
 
@@ -53,6 +44,11 @@ import ProductDescription from './ProductDescription'
 import ProductFulfillment from './ProductFulfillment'
 import ProductReview from './ProductReview'
 import ProductRecommandBlock from './ProductRecommandBlock'
+import AddToCartButton from './AddToCartButton'
+// import ProductBasicSpec from '@/components/layouts/ProductBasicSpec'
+
+import store from '@/store'
+import * as types from '@/store/mutation-types.js'
 
 export default {
     name: 'ProductDetailPage',
@@ -63,6 +59,8 @@ export default {
         ProductFulfillment,
         ProductReview,
         ProductRecommandBlock,
+        AddToCartButton,
+        // ProductBasicSpec
     },
     data(){
         return {
@@ -138,8 +136,8 @@ export default {
                 }
             }
         },
-        test(){
-            alert("x")
+        showProductAllSpecModal(){
+            store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true)
         }
     }
 }
@@ -147,8 +145,9 @@ export default {
 
 <style lang="sass" scoped>
 .product-detail-page
-    padding: .5rem
-    background-color: #e5ceae
+    .product-content-block
+        padding: .5rem
+        background-color: #e5ceae        
     .product-attribute
         background-color: #fff
         // padding: 1.5rem

@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" style="background:#fff">
-    <g fill="none" fill-rule="evenodd">
-        <g>
-            <path fill="#FFF" d="M0 0H30V30H0z"/>
-            <path fill="#333" fill-rule="nonzero" d="M30 9.167V6H0v3.167h30zm-5.357 7.982v-3.298H5.357v3.298h19.286zM18.214 25v-3.167h-6.428V25h6.428z"/>
-        </g>
-    </g>
-</svg>
+<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1614590052260" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2023" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M1024 295.8V187.7H0v108.1h1024zM841.1 568.3V455.7H182.9v112.6h658.2z m-219.4 268V728.2H402.3v108.1h219.4z" p-id="2024" fill="#333333"></path></svg>

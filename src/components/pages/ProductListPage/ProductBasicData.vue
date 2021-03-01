@@ -26,8 +26,8 @@
                     </div>
                 <!-- </div> -->
                 <div
-                    class="quick-add-icon-block"
-                    @click.stop="showQuickAddModal"
+                    class="quick-add-icon-block click-animation"
+                    @click.stop="showProductAllSpecModal"
                 >
                     <img src="/images/icons/bag-add.svg" alt="快速加入按鈕"/>
                 </div>
@@ -65,6 +65,9 @@
 </template>
 
 <script>
+import store from '@/store'
+import * as types from '@/store/mutation-types.js'
+
 export default {
     name: "ProductBasicData",
     props: {
@@ -81,9 +84,9 @@ export default {
         };
     },
     methods: {
-        showQuickAddModal() {
-            this.$emit("show-quick-add-modal");
-        },
+        // showQuickAddModal() {
+        //     this.$emit("show-quick-add-modal");
+        // },
         checkProductDetail(type, id) {
             this.$router.push({
                 path: "/product/" + type + "/" + id,
@@ -100,6 +103,9 @@ export default {
                     this.currentShowsImgIndex = 0
                 }
             }
+        },
+        showProductAllSpecModal(){
+            store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true)
         }
     },
 };
@@ -193,7 +199,7 @@ export default {
         margin-top: .6rem
         position: absolute
         bottom: 1rem
-        font-family: MicrosoftSansSerif
+        font-family: 'roboto'
         font-size: 1.2rem
     .quick-add-icon-block
         width: 3rem
@@ -238,8 +244,9 @@ export default {
         height: .5rem
         border-radius: .25rem
         background-color: #454545
-    .selected-img-dot
         opacity: 0.4
+    .selected-img-dot
+        opacity: 1
 // .fade-leave
 //     opacity: 1
 

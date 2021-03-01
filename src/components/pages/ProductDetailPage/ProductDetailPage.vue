@@ -212,8 +212,9 @@ export default {
         height: .5rem
         border-radius: .25rem
         background-color: #454545
-    .selected-img-dot
         opacity: 0.4
+    .selected-img-dot
+        opacity: 1
         // display: flex
         // align-items: center
         // justify-content: center

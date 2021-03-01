@@ -117,7 +117,7 @@ import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
 .product-recommand-block
     margin-top: 1rem
     background-color: #efe1ce
-    padding: 1rem .5rem
+    padding: 1rem .5rem 8rem .5rem
     .recommand-text
         display: flex
         align-items: center

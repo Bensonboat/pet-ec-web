@@ -1,9 +1,10 @@
 <template>
     <div class="searched-tip-block">
         <div class="searched-title-block">
+            <img :src="modalData.icon" alt="搜尋圖案" class="icon">
             <div>{{modalData.title}}</div>
         </div>
-        <div class="key-word-block" :class="{'order-type': modalData.isTag}">
+        <div :class="{'order-type': modalData.isTag}">
             <div 
                 v-for='(item, index) in modalData.keyWords' 
                 :key="index" 
@@ -42,8 +43,8 @@
         color: #333333
         padding-bottom: 1rem
         border-bottom: solid 1px #333333
-    .key-word-block
-
+        display: flex
+        align-items: center
     .key-word
         margin-top: .8rem
         font-size: 1.4rem
@@ -60,4 +61,8 @@
         border: solid 1px #333333
         background-color: #e3a652
         margin: 1rem .8rem 0 0 
+    .icon
+        width: 1.4rem
+        height: 1.4rem
+        margin-right: .6rem
 </style>

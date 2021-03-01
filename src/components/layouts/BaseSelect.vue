@@ -6,23 +6,25 @@
         </div>
         <!-- <input @click="toggleOptionMenu" class='default-text-color input-background' v-model='currentSelect' type="text" @blur='toggleOptionMenu'> -->
         <div class="auto-close-bgc-mask" @click.stop="toggleOptionMenu" v-show="showOptionMenu"></div>
-        <div class="base-select-block" v-show='showOptionMenu'>
-            <!-- <div v-if="currentSelect === ''" class="current-select lighter-text">{{placeholder}}</div>
-            <div v-else class="current-select">{{currentSelect}}</div> -->
-            <!-- <div 
-                v-show='showOptionMenu'
-                class="option-menu"
-            > -->
-                <div 
-                    v-for='(item, index) in options' 
-                    :key="index" 
-                    class="option"
-                    @click="selectItem(item)"
-                >
-                    {{item.name}}
-                </div>
-            <!-- </div> -->
-        </div>
+        <transition>
+            <div class="base-select-block" v-show='showOptionMenu'>
+                <!-- <div v-if="currentSelect === ''" class="current-select lighter-text">{{placeholder}}</div>
+                <div v-else class="current-select">{{currentSelect}}</div> -->
+                <!-- <div 
+                    v-show='showOptionMenu'
+                    class="option-menu"
+                > -->
+                    <div 
+                        v-for='(item, index) in options' 
+                        :key="index" 
+                        class="option"
+                        @click="selectItem(item)"
+                    >
+                        {{item.name}}
+                    </div>
+                <!-- </div> -->
+            </div>            
+        </transition>
     </div>
 </template>
 

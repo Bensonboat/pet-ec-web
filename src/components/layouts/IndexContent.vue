@@ -36,6 +36,7 @@
         },
         methods: {
             handleScroll(){
+                // 是否顯示 Heading
                 let current_height = this.$refs.index_content_router.$el.scrollTop;
                 if(current_height > 100){
                     this.scrollOnToppest = false;

@@ -21,13 +21,13 @@ import SearchTipBlock from './SearchTipBlock'
             return {
                 recentlySearchData: {
                     title: '近期搜尋',
-                    icon: '',
+                    icon: '/images/icons/time.svg',
                     keyWords: ['狗飼料', '貓砂', 'Royal', '外出用品'],
                     isTag: false
                 },
                 popularSearchData: {
                     title: '熱門搜尋',
-                    icon: '',
+                    icon: '/images/icons/fire.svg',
                     keyWords: ['皇家', '希爾斯', '化毛', '處方配方', '最新上架', '新款豆腐砂'],
                     isTag: true
                 }

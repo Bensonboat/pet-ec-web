@@ -1,3 +1,3 @@
 export default {
-    showProductAllSpecModal: true
+    showProductAllSpecModal: false
 } 

@@ -80,8 +80,10 @@
 
 <style lang="sass" scoped>
 .order-list
-    padding: 0 3rem
-    margin-top: 2rem
+    padding: 1rem
+    background-color: #fff
+    // padding: 0 3rem
+    // margin-top: 2rem
     .fx
         display: flex
     .between

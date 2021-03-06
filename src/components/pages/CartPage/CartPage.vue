@@ -6,7 +6,7 @@
                 <div v-show="checkoutStep === 1">
                     <div class='order-list-block'>
                         <div class="order-infomation">
-                            <cart-item-attribute v-for='(item, index) in 5' :key="index"/>
+                            <!-- <cart-item-attribute v-for='(item, index) in 5' :key="index"/> -->
                             <div class="order-note-block">
                                 <input type="text" placeholder="請輸入訂單備註" class="note">
                             </div>
@@ -44,14 +44,14 @@ import CheckoutProcess from './CheckoutProcess'
 import CouponTotalPrice from './CouponTotalPrice'
 import ShippingInfomation from './ShippingInfomation'
 import OrderConfirmBlock from './OrderConfirmBlock'
-import CartItemAttribute from './CartItemAttribute'
+// import CartItemAttribute from './CartItemAttribute'
 // import OrderComplete from './OrderComplete'
 
 export default {
     name: 'CartPage',
     components: {
         CheckoutProcess,
-        CartItemAttribute,
+        // CartItemAttribute,
         CouponTotalPrice,
         ShippingInfomation,
         OrderConfirmBlock

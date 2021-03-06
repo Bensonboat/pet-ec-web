@@ -44,14 +44,14 @@ import CheckoutProcess from './CheckoutProcess'
 import CouponTotalPrice from './CouponTotalPrice'
 import ShippingInfomation from './ShippingInfomation'
 import OrderConfirmBlock from './OrderConfirmBlock'
-// import CartItemAttribute from './CartItemAttribute'
+import CartItemAttribute from './Test'
 // import OrderComplete from './OrderComplete'
 
 export default {
     name: 'CartPage',
     components: {
         CheckoutProcess,
-        // CartItemAttribute,
+        CartItemAttribute,
         CouponTotalPrice,
         ShippingInfomation,
         OrderConfirmBlock

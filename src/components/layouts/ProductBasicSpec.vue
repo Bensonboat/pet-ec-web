@@ -5,7 +5,7 @@
             <div class="product-attribute-block">
                 <img src="/images/p1.jpg" alt="商品圖片" class="product-image">
                 <div>
-                    <div class="product-name">EQUILÍBRIO 尊爵 機能天然糧EQUILÍBRIO 尊爵 機能天然糧 EQUILÍBRIO 尊爵 機能天然糧EQUILÍBRIO 尊爵 機能天然糧</div>
+                    <div class="product-name">EQUILÍBRIO 尊爵 機能天然糧機能天然糧機能天然糧機能天然糧 EQUILÍBRIO 尊爵 機能天然糧 EQUILÍBRIO 尊爵 機能天然糧EQUILÍBRIO 尊爵 機能天然糧</div>
                     <div class="price origin-price" :class="{'origin-price-remove' : productData.special_price === ''}">NT$4,500</div>
                     <div class="price special-price">NT$2380</div>
                 </div>
@@ -177,6 +177,7 @@
     .product-name
         font-size: 1.4rem
         font-weight: 500
+        width: 90%
     .price
         font-family: MicrosoftSansSerif
     .origin-price

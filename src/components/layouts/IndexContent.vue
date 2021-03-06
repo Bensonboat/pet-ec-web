@@ -2,9 +2,9 @@
     <div class="index-content">
         <the-heading scrollOnToppest='scrollOnToppest' :class="[!scrollOnToppest ? 'transparent-heading' : '']"/>
         <router-view class="index-content-router-view" ref='index_content_router' @scroll.native="handleScroll"/>
-        <div class="default-top-icon-block top-icon-block" v-show="this.$route.path !== '/home_page'">
+        <!-- <div class="default-top-icon-block top-icon-block" v-show="this.$route.path !== '/home_page'">
             <img src="/images/top.png" alt="to top icon" class="default-top-icon top-icon">
-        </div>
+        </div> -->
         <transition>
             <product-basic-spec v-if="getShowProductAllSpecModalStatus"/>
         </transition>
@@ -66,16 +66,16 @@
         // background-color: #fff
     .index-content-router-view::-webkit-scrollbar 
         display: none
-    .top-icon-block
-        position: absolute
-        right: 3rem
-        bottom: 3rem
-        // background-color: #D8E2DC
-        // background-color: #DFE0E2
-        background-color: rgba(0,0,0,.4)
-        border-radius: 100%
-        padding: 1rem
-    .top-icon
+    // .top-icon-block
+    //     position: absolute
+    //     right: 3rem
+    //     bottom: 3rem
+    //     // background-color: #D8E2DC
+    //     // background-color: #DFE0E2
+    //     background-color: rgba(0,0,0,.4)
+    //     border-radius: 100%
+    //     padding: 1rem
+    // .top-icon
         // margin-top: 3px
     .transparent-heading
         background-color: transparent

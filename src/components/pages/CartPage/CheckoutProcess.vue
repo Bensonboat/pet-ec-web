@@ -6,15 +6,15 @@
             <svg :width="svgWidth" height="1px">
                 <line x1="0" y1="0" x2="300" y2="0" style="stroke: #333333;stroke-width: .3rem"/>
             </svg>
-            <div class="circle"></div>
+            <div class="circle" :class="{'full-circle' : step === 2}"></div>
             <svg :width="svgWidth" height="1px">
                 <line x1="0" y1="0" x2="300" y2="0" style="stroke: #333333;stroke-width: .3rem"/>
             </svg>
             <div class="circle"></div>
         </div>
-        <div class="cart-item-attr-block">
+        <!-- <div class="cart-item-attr-block">
 
-        </div>
+        </div> -->
         <!-- <div 
             v-for='(item, index) in processData' 
             :key="index"
@@ -92,7 +92,7 @@
     .circle
         width: 1rem
         height: 1rem
-        border-radius: 50%
+        border-radius: 100%
         border: solid 1px #333333
     .full-circle
         background-color: #333333

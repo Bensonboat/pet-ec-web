@@ -1,158 +1,175 @@
 <template>
-    <div class="default-coupon-list coupon-list">
-        <div class="coupon-content-mask">
-            <div v-if="showCouponList">
-                <div
-                    class="default-coupon-list-header coupon-list-header default-shadow"
-                >
-                    <img
-                        src="/images/cross.png"
-                        alt="close icon"
-                        class="default-close-coupon-list-icon close-coupon-list-icon"
-                        @click="closeCouponList"
-                    />
-                    <div class="default-text-color">優惠 / 獎勵</div>
-                    <div class="enter-coupon-text default-light-green-color" @click="toggleView">
-                        輸入優惠序號
-                    </div>
-                </div>
-                <div class="event-campaign">
-                    <img
-                        src="/images/animal.png"
-                        alt="coupon event image"
-                        style="width: 5rem; height: 5rem"
-                    />
-                    <div
-                        class="default-text-color default-event-text event-text"
-                    >
-                        $100 元註冊優惠等你來拿 元註冊優惠等你來拿
-                    </div>
-                </div>
-                <div class="all-coupon-list-block">
-                    <div
-                        v-for="(item, index) in couponData"
-                        :key="index"
-                        class="each-coupon-card default-border-radius default-shadow"
-                    >
-                        <div
-                            class="coupon-name default-deep-green-color default-coupon-name"
-                        >
-                            {{ item.name }}
-                        </div>
-                        <div
-                            class="coupon-using-condition default-gray-color default-coupon-using-condigion"
-                        >
-                            {{ item.condition }}
-                        </div>
-                        <div
-                            class="coupon-using-time-block default-text-color default-conpon-using-time-block"
-                        >
-                            <div>請於</div>
-                            <div>{{ item.time }}</div>
-                        </div>
-                        <div
-                            class="default-select-coupon-btn select-coupon-btn default-light-green-bgc default-border-radius"
-                        >
-                            選取
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <add-new-coupon v-else @toggle-add-modal='toggleView'/>
+    <div class="coupon-list">
+        <div class='coupon-list-title'>
+            <img src="/images/icons/black-back.svg" alt="" class="back-icon" @click="closeCouponList">
+            <div>優惠卷選取</div>
         </div>
+        <div class="coupon-list-block">
+            <div 
+                class="coupon" 
+                v-for='(item, index) in couponData' 
+                :key="index" 
+                :class="{'selected' : item.selected, 'bottom-space' : index+1 === couponData.length}" 
+                @click="selectCoupon(index)"
+            >
+                <div class="coupon-name">{{item.name}}</div>
+                <div class="coupon-detail">{{item.detail}}</div>
+                <div class="coupon-time">有效期限 {{item.time}}</div>
+                <img v-show='item.selected' src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
+            </div>
+        </div>
+        <div class="confirm-btn" :class="{'select-validate' : selectValidate}" @click="couponSelectConfirm">確認</div>
     </div>
 </template>
 
 <script>
-import AddNewCoupon from "./AddNewCoupon";
 export default {
     name: "CouponList",
-    components: {
-        AddNewCoupon,
-    },
     data() {
         return {
-            showCouponList: true,
+            // showCouponList: true,
             couponData: [
                 {
                     name: "$100 折扣優惠",
-                    condition: "結帳金額超過 $100 元方可使用",
+                    detail: "結帳金額超過 $100 元方可使用",
                     time: "2021年 12月 31日 下午 11時前使用",
+                    selected: false
                 },
                 {
                     name: "半買半相送 超級好康五折卷 五折 五折 五折五折五折",
-                    condition:
-                        "結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用",
+                    detail: "結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用",
                     time: "2021年 12月 31日 下午 11時前使用",
+                    selected: false
                 },
                 {
                     name: "$100 折扣優惠",
-                    condition:
-                        "結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 ",
+                    detail: "結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 ",
                     time: "2021年 12月 31日 下午 11時前使用",
+                    selected: false
+                },
+                {
+                    name: "$100 折扣優惠",
+                    detail: "結帳金額超過 $100 元方可使用",
+                    time: "2021年 12月 31日 下午 11時前使用",
+                    selected: false
+                },
+                {
+                    name: "半買半相送 超級好康五折卷 五折 五折 五折五折五折",
+                    detail: "結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用 結帳金額超過 $100 元方可使用",
+                    time: "2021年 12月 31日 下午 11時前使用",
+                    selected: false
                 },
             ],
+            selectValidate: false
         };
     },
     methods: {
-        closeCouponList() {
-            this.$emit("close-coupon-list");
+        selectCoupon(index){
+            this.couponData.map((item, key) => {
+                key === index ? item.selected = true : item.selected = false
+                this.selectValidate = true
+            });
         },
-        toggleView(){
-            this.showCouponList = !this.showCouponList
+        closeCouponList(){
+            this.$emit('close-coupon-list')
+        },
+        couponSelectConfirm(){
+            if(this.selectValidate){
+                alert('select!!')
+                this.closeCouponList()
+            }
         }
+        // closeCouponList() {
+        //     this.$emit("close-coupon-list");
+        // },
+        // toggleView(){
+        //     this.showCouponList = !this.showCouponList
+        // }
     },
 };
 </script>
 
 <style lang="sass" scoped>
 .coupon-list
-    .coupon-content-mask
-        width: 100vw
-        height: calc(100 * var(--vh))
-        position: fixed
-        top: 0
-        left: 0
-        background-color: #fff
-        z-index: 3100
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 999
+    width: 100vw
+    height: 100vh
+    background-color: #e5ceae
+    .back-icon
+        width: 2.4rem
+        height: 2.4rem
+        margin-right: 1rem
+    .coupon-list-title
+        padding: 1.3rem 1rem
+        box-shadow: .1rem .1rem .1rem 0 rgba(0, 0, 0, 0.1)
+        background-color: #efe1ce
+        color: #333333
+        font-size: 1.4rem
+        font-weight: 500
+        display: flex
+        align-items: center
+    .coupon-list-block
+        padding: 1.5rem
         overflow: scroll
-    .coupon-list-header
-        padding: 2rem 0 1rem 0
-        display: flex
-        justify-content: center
-        align-items: center
-        font-weight: 800
-    .enter-coupon-text
-        position: absolute
-        right: 20px
-    .close-coupon-list-icon
-        position: absolute
-        left: 20px
-    .event-campaign
-        background-color: #B2DBBF
-        opacity: .7
-        display: flex
-        align-items: center
-        justify-content: space-between
-        padding: 2rem 4rem
-    .event-text
-        margin-left: 2rem
-    .all-coupon-list-block
-        padding: 0 2rem 5rem 2rem
-    .each-coupon-card
-        margin-top: 2rem
-        padding: 2rem
+        height: 100%
+    .coupon
+        padding: 1rem 2rem
+        border-radius: .5rem
+        border: solid .1rem #ccaa76
+        background-color: #f2c47e
+        margin-bottom: 1rem
+        position: relative
+        overflow: hidden
+    .selected
+        border-color: #333333
+        &::before
+            content: ''
+            display: block
+            width: 5rem
+            height: 5rem
+            background-color: #333333
+            position: absolute
+            left: -3rem
+            top: -3rem
+            transform: rotate(45deg)
     .coupon-name
-        font-weight: 700
-    .coupon-using-condition
-        margin-top: .5rem
-    .coupon-using-time-block
-        display: flex
-        align-items: center
-        margin-top: 2rem
-    .select-coupon-btn
-        display: flex
-        align-items: center
-        justify-content: center
-        margin-top: 1rem
+        font-size: 1.4rem
+        font-weight: 500
+        color: #333333
+        margin-bottom: .2rem
+    .coupon-detail
+        font-size: 1.2rem
+        color: #333333
+        margin-bottom: 1rem
+    .coupon-time
+        font-size: 1.2rem
+        color: #a67a3d
+    .tick-icon
+        width: 1rem
+        height: 1rem
+        position: absolute
+        left: .35rem
+        top: .2rem
+    .bottom-space
+        margin-bottom: 200px
+    .confirm-btn
+        width: calc(100% - 1rem)
+        padding: 1.3rem 1.5rem
+        border-radius: .5rem
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.4)
+        background-color: #333333
+        position: fixed
+        bottom: .5rem
+        font-size: 1.5rem
+        font-weight: 500
+        color: #5c5c5c
+        box-sizing: border-box
+        left: 50%
+        transform: translateX(-50%)
+        text-align: center
+    .select-validate
+        color: #e5ceae
 </style>

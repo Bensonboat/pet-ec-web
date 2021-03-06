@@ -1,0 +1,108 @@
+<template>
+    <div class="order-confirm-block">
+        <div class="operate-button">
+            <div class="operate-text-block">
+                <img src="/images/icons/fire.svg" alt="付款圖案" class="operate-icon">
+                <div>選擇付款方式</div>
+            </div>
+            <img src="/images/icons/black-back.svg" alt="向下箭頭圖案" class="arrow-icon">
+        </div>
+        <div class="operate-button">
+            <div class="operate-text-block">
+                <img src="/images/icons/fire.svg" alt="星星圖案" class="operate-icon">
+                <div>將資料註冊會員並累積點數</div>
+            </div>
+            <div class="tick-block" @click="toggleMemberSelect">
+                <img v-if='memberSelected' src="/images/icons/black-tick.svg" alt="向下箭頭圖案" class="tick-icon">
+            </div>
+        </div>
+        <div class="next-step-block">
+            <div class="previous-step-btn" @click="backToStepOne">回前頁</div>
+            <div class="order-confirm" :class="{'order-validate' : orderValidate }">確認結帳</div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'Payment',
+        props: {
+            orderValidate: Boolean
+        },
+        data(){
+            return {
+                memberSelected: true
+            }
+        },
+        methods: {
+            toggleMemberSelect(){
+                this.memberSelected = !this.memberSelected
+            },
+            backToStepOne(){
+                this.$emit('to-certain-step', 1)
+            }
+        }
+    }
+</script>
+
+<style lang="sass" scoped>
+.order-confirm-block
+    padding: .9rem 1.5rem
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2)
+    background-color: #fff
+    width: 100%
+    position: absolute
+    bottom: 0
+    box-sizing: border-box
+    .operate-button
+        padding: .9rem 1.5rem
+        border-radius: 5px
+        border: solid 1px #333333
+        background-color: #f2c47e
+        display: flex
+        align-items: center
+        justify-content: space-between
+        color: #333333
+        margin-bottom: 1rem
+    .operate-text-block
+        display: flex
+        justify-content: flex-start
+    .operate-icon
+        width: 1.6rem
+        height: 1.6rem
+        margin-right: .6rem
+    .tick-block
+        width: 1.4rem
+        height: 1.4rem
+        border-radius: .2rem
+        border: solid .1rem #333333
+        background-color: #f2c47e
+    .tick-icon
+        width: 1.4rem
+        height: 1.4rem
+    .arrow-icon
+        width: 1.4rem
+        height: 1.4rem
+        transform: rotate(180deg)
+    .next-step-block
+        display: flex
+        margin-top: 1.5rem
+        justify-content: space-between
+    .previous-step-btn
+        padding: .9rem 2.6rem
+        border-radius: .5rem
+        border: solid 1px #333333
+        background-color: #ffffff
+        font-size: 1.2rem
+        font-weight: 500
+        color: #333333
+    .order-confirm
+        padding: .9rem 7.2rem
+        border-radius: .5rem
+        background-color: #333333
+        color: #5c5c5c
+        font-size: 1.2rem
+        font-weight: 500
+    .order-validate
+        color: #e5ceae
+</style>

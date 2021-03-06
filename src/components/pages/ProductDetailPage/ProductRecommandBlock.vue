@@ -1,3 +1,4 @@
+<!-- 商品推薦橫軸選單 -->
 <template>
     <div class="product-recommand-block">
         <div class="recommand-text">

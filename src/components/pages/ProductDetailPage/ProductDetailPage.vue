@@ -1,3 +1,4 @@
+<!-- 商品詳情頁 -->
 <template>
     <div class="default-product-detail-page product-detail-page">
         <div class="product-content-block">

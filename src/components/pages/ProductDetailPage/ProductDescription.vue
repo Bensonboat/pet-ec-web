@@ -1,3 +1,4 @@
+<!-- 商品介紹 -->
 <template>
     <div class="default-product-description product-description">
         <div v-for='(item, index) in descriptionData' :key="index" class="description-set">

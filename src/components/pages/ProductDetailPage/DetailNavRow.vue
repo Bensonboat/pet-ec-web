@@ -1,3 +1,4 @@
+<!-- 商品介紹導覽列-->
 <template>
     <div class="default-detail-nav-row detail-nav-row default-shadow">
         <div 

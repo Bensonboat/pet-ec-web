@@ -5,8 +5,18 @@
             <div class="product-name">EQUILÍBRIO 尊爵 機能天然糧</div>
             <div class="product-spec">3.5kg3.5kg3.5kg</div>
             <div class="price-number-row">
-                <div>NT$2,380</div>
-                <div class="select-number-block"> - 1 +</div>
+                <div class="price">NT$2,380</div>
+                <div class="number-block">
+                    <div class="select-number-block">
+                        <div class="btn number-operate-block minus" @click="selectNumber(-1)">
+                            <img src="/images/icons/less.svg" alt="減一圖案" class="select-number-icon">
+                        </div>
+                        <div class="btn number">{{number}}</div>
+                        <div class="btn number-operate-block add" @click="selectNumber(1)">
+                            <img src="/images/icons/plus.svg" alt="加一圖案" class="select-number-icon">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -14,21 +24,36 @@
 
 <script>
     export default {
-        name: 'cartItemAttribute'
+        name: 'cartItemAttribute',
+        data(){
+            return {
+                number: 0
+            }
+        },
+        methods: {
+            selectNumber(number){
+                this.number = this.number + number;
+                if(this.number < 0){
+                    this.number = 0
+                }
+            },
+        }
     }
 </script>
 
 <style lang="sass" scoped>
 .cart-item-attribute
-    background-color: #fff
-    padding: 1rem
+    margin-bottom: 2rem
+    // background-color: #fff
+    // padding: 1rem
     display: flex
     align-items: flex-start
     .product-img
         width: 8rem
         height: 8rem
-        border: solid 1px #f8f8f8
+        border: solid .1rem #f8f8f8
         margin-right: 1rem
+        box-sizing: border-box
     .product-basic-block
         height: 100%
         flex-grow: 1
@@ -39,10 +64,10 @@
     .product-spec
         word-break: break-all
         margin-bottom: 1.2rem
-        border: solid 1px rgba(227, 166, 82, 0.5)
+        border: solid .1rem rgba(227, 166, 82, 0.5)
         color: rgba(227, 166, 82, 0.5)
         padding: .1rem 1rem
-        border-radius: 5px
+        border-radius: .5rem
         width: fit-content
     .price-number-row
         display: flex
@@ -54,4 +79,40 @@
         background-color: #f7f0e6
         display: flex
         align-items: center
+    .number-block
+        display: flex
+        justify-content: space-between
+        align-items: center
+        // margin-top: 1.2rem
+        font-size: 1.2rem
+        font-weight: 500
+    .number-operate-block
+        width: 3.2rem
+    .select-number-block
+        width: 12rem
+        height: 2.4rem
+        border-radius: .4rem
+        background-color: #f7f0e6
+        display: flex
+        align-items: center
+        justify-content: space-around
+        text-align: center
+        .btn
+            height: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+    .minus
+        border-right: solid .1rem #ffffff
+    .add
+        border-left: solid .1rem #ffffff
+    .select-number-icon
+        width: 1.2rem
+        height: 1.2rem
+    .price
+        font-size: 1.4rem
+        color: #f94956
+    .number
+        color: #333333
+        font-size: 1.2rem
 </style>

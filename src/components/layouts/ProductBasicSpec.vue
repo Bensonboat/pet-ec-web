@@ -25,7 +25,7 @@
                         @click="selectItem(index)"
                     >
                         {{item.name}}
-                        <img src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
+                        <img v-show='item.selected' src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
                     </div>
                     <!-- <div class="spec-option">6kg</div>
                     <div class="spec-option">2kg</div>
@@ -252,6 +252,9 @@
         border-right: solid .1rem #ffffff
     .add
         border-left: solid .1rem #ffffff
+    .select-number-icon
+        width: 1.2rem
+        height: 1.2rem
     .confirm-btn
         border-radius: .5rem
         background-color: #333333
@@ -266,7 +269,4 @@
     .not-allow-operate
         opacity: .5
         pointer-events: none
-    .select-number-icon
-        width: 1.2rem
-        height: 1.2rem
 </style>

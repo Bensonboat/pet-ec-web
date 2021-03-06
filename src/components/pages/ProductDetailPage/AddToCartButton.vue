@@ -1,3 +1,4 @@
+<!-- 商品詳情下方加入購物袋按鈕 -->
 <template>
     <div class="add-to-cart-button">
         <div class="add-to-bag-btn-block">

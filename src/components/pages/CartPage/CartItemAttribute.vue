@@ -24,7 +24,7 @@
 
 <script>
     export default {
-        name: 'Test',
+        name: 'CartItemAttribute',
         data(){
             return {
                 number: 0

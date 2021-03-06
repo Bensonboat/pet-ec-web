@@ -44,7 +44,7 @@ import CheckoutProcess from './CheckoutProcess'
 import CouponTotalPrice from './CouponTotalPrice'
 import ShippingInfomation from './ShippingInfomation'
 import OrderConfirmBlock from './OrderConfirmBlock'
-import CartItemAttribute from './Test'
+import CartItemAttribute from './CartItemAttribute'
 // import OrderComplete from './OrderComplete'
 
 export default {

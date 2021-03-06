@@ -40,10 +40,11 @@
 
 <script>
 import CheckoutProcess from './CheckoutProcess'
-import CartItemAttribute from './CartItemAttribute'
+// import CartItemAttribute from './CartItemAttribute'
 import CouponTotalPrice from './CouponTotalPrice'
 import ShippingInfomation from './ShippingInfomation'
 import OrderConfirmBlock from './OrderConfirmBlock'
+import CartItemAttribute from './CartItemAttribute'
 // import OrderComplete from './OrderComplete'
 
 export default {

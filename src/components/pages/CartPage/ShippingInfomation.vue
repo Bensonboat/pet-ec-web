@@ -80,6 +80,7 @@ export default {
             border: none
             outline: none
             background-color: transparent
+            width: 100%
     .input-valid
         border: solid .1rem #e8bb7d
     .each-info-block

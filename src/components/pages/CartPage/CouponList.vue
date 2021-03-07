@@ -165,7 +165,7 @@ export default {
         border-radius: .5rem
         box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.4)
         background-color: #333333
-        position: fixed
+        position: absolute // fixed to absolute
         bottom: .5rem
         font-size: 1.5rem
         font-weight: 500

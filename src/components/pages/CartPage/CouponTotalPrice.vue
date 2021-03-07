@@ -28,7 +28,9 @@
             <div class="keep-shopping click-animation-small" @click="keepShoping">繼續選購</div>
             <div class="next-step click-animation-small" @click="nextStep">下一步</div>
         </div>
-        <coupon-list v-if="showCouponListBlock" @close-coupon-list='toggleCouponList'/>
+        <transition name="left-in">
+            <coupon-list v-if="showCouponListBlock" @close-coupon-list='toggleCouponList'/>
+        </transition>
     </div>
 </template>
 
@@ -130,4 +132,21 @@ import CouponList from './CouponList.vue'
         font-weight: 500
     .total-price
         color: #f94956
+
+    .left-in-leave
+        left: 0
+        opacity: 1
+    .left-in-leave-active
+        transition: .3s linear
+    .left-in-leave-to
+        left: -30rem
+        opacity: 0
+    .left-in-enter
+        left: -30rem
+        opacity: 0
+    .left-in-enter-active
+        transition: .3s linear
+    .left-in-enter-to
+        left: 0
+        opacity: 1
 </style>

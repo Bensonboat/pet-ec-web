@@ -2,7 +2,7 @@
     <div class="search-input-block">
         <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon" @click="previousPage">
         <div class="input-block">
-            <input type="text" placeholder="搜尋" class="input" v-model="searchKeyWord" @click="focusStatus(true)" @blur='focusStatus(false)'>
+            <input type="text" placeholder="搜尋" class="input" v-model="searchKeyWord" @click="focusStatus(true)">
             <img src="/images/icons/del.png" alt="清除按鈕" class="del-icon click-animation" @click="clearInput">
         </div>
     </div>
@@ -72,4 +72,5 @@
             border: none
             outline: none
             font-size: 1.2rem
+            width: 100%
 </style>

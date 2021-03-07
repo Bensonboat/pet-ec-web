@@ -102,6 +102,7 @@
             display: flex
             align-items: center
             justify-content: center
+            width: 100%
     .minus
         border-right: solid .1rem #ffffff
     .add

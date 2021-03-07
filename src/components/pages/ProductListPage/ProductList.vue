@@ -6,7 +6,7 @@
             :product_data="item"
             :showQuickAddIcon="true"
             :showMultiplePics='true'
-            class="product-basic-data"
+            class="product-basic-data click-animation-small"
             @show-quick-add-modal="toggleQuickAddModal"
         />
         <div v-if="showQuickAddModal">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import ProductBasicData from "./ProductBasicData.vue";
+import ProductBasicData from '../../layouts/ProductBasicData';
 // import ProductSpec from "./ProductSpec";
 
 export default {

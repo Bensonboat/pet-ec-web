@@ -17,16 +17,16 @@
                 </div>
             </div>
         </div>
-        <div class="coupon-button">
-            <div class="coupon-text-block" @click="toggleCouponList">
+        <div class="coupon-button click-animation-small" @click="toggleCouponList">
+            <div class="coupon-text-block">
                 <img src="/images/icons/fire.svg" alt="優惠卷圖案" class="coupon-icon">
                 <div>選擇優惠卷序號</div>
             </div>
             <img src="/images/icons/black-back.svg" alt="向下箭頭圖案" class="arrow-icon">
         </div>
         <div class="next-step-block">
-            <div class="keep-shopping">繼續選購</div>
-            <div class="next-step" @click="nextStep">下一步</div>
+            <div class="keep-shopping click-animation-small" @click="keepShoping">繼續選購</div>
+            <div class="next-step click-animation-small" @click="nextStep">下一步</div>
         </div>
         <coupon-list v-if="showCouponListBlock" @close-coupon-list='toggleCouponList'/>
     </div>
@@ -49,6 +49,9 @@ import CouponList from './CouponList.vue'
             },
             toggleCouponList(){
                 this.showCouponListBlock = !this.showCouponListBlock
+            },
+            keepShoping(){
+                this.$router.push('/category_page/cat')
             }
         }
     }

@@ -153,14 +153,15 @@ export default {
         background-color: #fff
         // padding: 1.5rem
         // border-radius: 5px
-        margin-top: .5rem
+        // margin-top: .5rem
         box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1)
     .img-block
         // width: 95%
         width: 31rem
         height: 25rem
         overflow: hidden
-        margin: .5rem auto 0 auto 
+        margin: 0 auto 
+        // margin: .5rem auto 0 auto 
         position: relative
         display: flex
         justify-content: center

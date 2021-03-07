@@ -8,8 +8,9 @@
             <div 
                 v-for='(item, index) in modalData.keyWords' 
                 :key="index" 
-                class="key-word"
+                class="key-word click-animation-small"
                 :class="{'tag-look': modalData.isTag}"
+                @click="getKeyWord(item)"
             >{{item}}</div>
         </div>
     </div>
@@ -27,6 +28,11 @@
             return {
                 keyWords: ['狗飼料', '貓砂', 'Royal', '外出用品']
             }
+        },
+        methods: {
+            getKeyWord(key_word){
+                this.$emit('pass-key-word', key_word)
+            }
         }
     }
 </script>
@@ -35,14 +41,14 @@
 .searched-tip-block
     padding: 1rem 1rem 2rem
     border-radius: .5rem
-    border: solid 1px #333333
+    border: solid .1rem #333333
     background-color: #f2c47e
     .searched-title-block
-        font-size: 14px
+        font-size: 1.4rem
         font-weight: 500
         color: #333333
         padding-bottom: 1rem
-        border-bottom: solid 1px #333333
+        border-bottom: solid .1rem #333333
         display: flex
         align-items: center
     .key-word
@@ -56,9 +62,9 @@
         justify-content: flex-start
         flex-wrap: wrap
     .tag-look
-        padding: 2px 10px 4px
-        border-radius: 12px
-        border: solid 1px #333333
+        padding: .2rem 1rem .4rem
+        border-radius: 1.2rem
+        border: solid .1rem #333333
         background-color: #e3a652
         margin: 1rem .8rem 0 0 
     .icon

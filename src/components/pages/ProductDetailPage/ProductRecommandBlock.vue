@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import ProductBasicData from '../ProductListPage/ProductBasicData.vue'
+import ProductBasicData from '../../layouts/ProductBasicData'
 
     export default {
         name: 'ProductRecommandBlock',

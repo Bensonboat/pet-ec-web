@@ -1,21 +1,27 @@
 <template>
     <div class="search-page">
-        <search-input-block/>
-        <div class="search-content-block">
-            <search-tip-block :modalData='recentlySearchData'/>
-            <search-tip-block :modalData='popularSearchData' style="margin-top: 1rem"/>
+        <search-input-block :currentClickKeyWord='currentClickKeyWord' @current-focus-status='focusStatus'/>
+        <div class="search-content-block" v-show="isInputFocus">
+            <search-tip-block :modalData='recentlySearchData' @pass-key-word='getKeyWord'/>
+            <search-tip-block :modalData='popularSearchData' style="margin-top: 1rem" @pass-key-word='getKeyWord'/>
         </div>
+        <transition>
+            <product-list v-show="!isInputFocus"/>
+        </transition>
     </div>
 </template>
 
 <script>
 import SearchInputBlock from './SearchInputBlock'
 import SearchTipBlock from './SearchTipBlock'
+import ProductList from '@/components/pages/ProductListPage/ProductList'
+
     export default {
         name: 'SearchPage',
         components: {
             SearchInputBlock,
-            SearchTipBlock
+            SearchTipBlock,
+            ProductList
         },
         data(){
             return {
@@ -30,7 +36,18 @@ import SearchTipBlock from './SearchTipBlock'
                     icon: '/images/icons/fire.svg',
                     keyWords: ['皇家', '希爾斯', '化毛', '處方配方', '最新上架', '新款豆腐砂'],
                     isTag: true
-                }
+                },
+                currentClickKeyWord: '',
+                isInputFocus: false
+            }
+        },
+        methods: {
+            getKeyWord(key_word){
+                this.currentClickKeyWord = key_word;
+                this.isInputFocus = false;
+            },
+            focusStatus(status){
+                this.isInputFocus = status
             }
         }
     }
@@ -38,6 +55,7 @@ import SearchTipBlock from './SearchTipBlock'
 
 <style lang="sass" scoped>
 .search-page
+    overflow: scroll
     .search-content-block
         padding: 1rem
 </style>

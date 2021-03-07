@@ -1,22 +1,22 @@
 <template>
     <div class="the-heading default-black-bgc">
         <div class="heading-operation-left-block">
-            <div @click="previousPage" class="operation-item">
+            <div @click="previousPage" class="operation-item click-animation">
                 <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon">
             </div>
             <div @click="routerSwicher('/search_page')">
                 <img src="/images/icons/search.svg" alt="搜尋按鈕" class="icon">
             </div>
         </div>
-        <div @click="routerSwicher('/home_page')" class="logo-block">
+        <div @click="routerSwicher('/category_page/cat')" class="logo-block click-animation">
             LOGO
             <!-- <img src="/images/animal.png" alt="Logo" class="icon logo-icon"> -->
         </div>
         <div class="heading-operation-right-block">
-            <div class="operation-item">
+            <div class="operation-item click-animation">
                 <img src="/images/icons/user.svg" alt="使用者 icon" class="icon">
             </div>
-            <div class="cart-block" @click="routerSwicher('/cart_page')">
+            <div class="cart-block click-animation" @click="routerSwicher('/cart_page')">
                 <img src="/images/icons/bag.svg" alt="購物車按鈕" class="icon">
                 <div class="in-cart-number">2</div>
             </div>

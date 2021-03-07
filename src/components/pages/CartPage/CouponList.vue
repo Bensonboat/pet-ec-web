@@ -1,12 +1,12 @@
 <template>
     <div class="coupon-list">
         <div class='coupon-list-title'>
-            <img src="/images/icons/black-back.svg" alt="" class="back-icon" @click="closeCouponList">
+            <img src="/images/icons/back.svg" alt="" class="back-icon" @click="closeCouponList">
             <div>優惠卷選取</div>
         </div>
         <div class="coupon-list-block">
             <div 
-                class="coupon" 
+                class="coupon click-animation-small" 
                 v-for='(item, index) in couponData' 
                 :key="index" 
                 :class="{'selected' : item.selected, 'bottom-space' : index+1 === couponData.length}" 
@@ -103,10 +103,14 @@ export default {
         height: 2.4rem
         margin-right: 1rem
     .coupon-list-title
+        height: 4.4rem
+        box-sizing: border-box
         padding: 1.3rem 1rem
         box-shadow: .1rem .1rem .1rem 0 rgba(0, 0, 0, 0.1)
-        background-color: #efe1ce
-        color: #333333
+        background-color: #333333
+        color: #e5ceae
+        // background-color: #efe1ce
+        // color: #333333
         font-size: 1.4rem
         font-weight: 500
         display: flex
@@ -125,7 +129,7 @@ export default {
         overflow: hidden
     .selected
         border-color: #333333
-        &::before
+        &:before
             content: ''
             display: block
             width: 5rem
@@ -154,7 +158,7 @@ export default {
         left: .35rem
         top: .2rem
     .bottom-space
-        margin-bottom: 200px
+        margin-bottom: 300px
     .confirm-btn
         width: calc(100% - 1rem)
         padding: 1.3rem 1.5rem
@@ -170,6 +174,7 @@ export default {
         left: 50%
         transform: translateX(-50%)
         text-align: center
+        z-index: 3
     .select-validate
         color: #e5ceae
 </style>

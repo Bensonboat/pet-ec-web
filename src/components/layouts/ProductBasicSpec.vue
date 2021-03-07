@@ -1,3 +1,4 @@
+<!-- 快速加入的商品 modal -->
 <template>
     <div class="product-basic-spec">
         <div class="all-spec-block">
@@ -179,7 +180,7 @@
         font-weight: 500
         width: 90%
     .price
-        font-family: MicrosoftSansSerif
+        // font-family: MicrosoftSansSerif
     .origin-price
         font-size: 1.3rem
         margin-top: .7rem

@@ -2,8 +2,8 @@
     <div class="search-input-block">
         <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon" @click="previousPage">
         <div class="input-block">
-            <input type="text" placeholder="搜尋" class="input" v-model="searchKeyWord">
-            <img src="/images/icons/del.png" alt="清除按鈕" class="del-icon" @click="clearInput">
+            <input type="text" placeholder="搜尋" class="input" v-model="searchKeyWord" @click="focusStatus(true)" @blur='focusStatus(false)'>
+            <img src="/images/icons/del.png" alt="清除按鈕" class="del-icon click-animation" @click="clearInput">
         </div>
     </div>
 </template>
@@ -11,9 +11,19 @@
 <script>
     export default {
         name: 'SearchInputBlock',
+        props: {
+            currentClickKeyWord: String
+        },
         data(){
             return{
                 searchKeyWord: '',
+            }
+        },
+        watch: {
+            currentClickKeyWord: {
+                handler(key_word){
+                    this.searchKeyWord = key_word;
+                }
             }
         },
         methods: {
@@ -22,6 +32,9 @@
             },
             clearInput(){
                 this.searchKeyWord = ''
+            },
+            focusStatus(status){
+                this.$emit('current-focus-status', status)
             }
         }
     }
@@ -58,4 +71,5 @@
             background-color: transparent
             border: none
             outline: none
+            font-size: 1.2rem
 </style>

@@ -271,8 +271,14 @@ body, html
 .v-enter-to
     opacity: 1
 
-.click-animation 
+// @media (hover: hover)
+.click-animation
     cursor: pointer
-    &:hover
-        transform: scale(1.106)
+    &:active
+        transform: scale(1.1)
+        opacity: .5
+.click-animation-small
+    cursor: pointer
+    &:active
+        transform: scale(1.016)
         opacity: .5

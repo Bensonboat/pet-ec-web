@@ -8,11 +8,11 @@
                 <div class="price">NT$2,380</div>
                 <div class="number-block">
                     <div class="select-number-block">
-                        <div class="btn number-operate-block minus" @click="selectNumber(-1)">
+                        <div class="btn number-operate-block minus click-animation" @click="selectNumber(-1)">
                             <img src="/images/icons/less.svg" alt="減一圖案" class="select-number-icon">
                         </div>
                         <div class="btn number">{{number}}</div>
-                        <div class="btn number-operate-block add" @click="selectNumber(1)">
+                        <div class="btn number-operate-block add click-animation" @click="selectNumber(1)">
                             <img src="/images/icons/plus.svg" alt="加一圖案" class="select-number-icon">
                         </div>
                     </div>

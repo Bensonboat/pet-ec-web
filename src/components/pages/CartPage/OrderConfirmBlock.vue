@@ -1,19 +1,19 @@
 <template>
     <div class="order-confirm-block">
-        <div class="operate-button">
+        <div class="operate-button click-animation-small">
             <div class="operate-text-block">
                 <img src="/images/icons/fire.svg" alt="付款圖案" class="operate-icon">
                 <div>選擇付款方式</div>
             </div>
             <img src="/images/icons/black-back.svg" alt="向下箭頭圖案" class="arrow-icon">
         </div>
-        <div class="operate-button">
+        <div class="operate-button click-animation-small" @click="toggleMemberSelect">
             <div class="operate-text-block">
                 <img src="/images/icons/fire.svg" alt="星星圖案" class="operate-icon">
                 <div>將資料註冊會員並累積點數</div>
             </div>
-            <div class="tick-block" @click="toggleMemberSelect">
-                <img v-if='memberSelected' src="/images/icons/black-tick.svg" alt="向下箭頭圖案" class="tick-icon">
+            <div class="tick-block">
+                <img v-show='memberSelected' src="/images/icons/black-tick.svg" alt="向下箭頭圖案" class="tick-icon">
             </div>
         </div>
         <div class="next-step-block">

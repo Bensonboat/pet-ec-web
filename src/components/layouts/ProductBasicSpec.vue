@@ -40,11 +40,11 @@
             <div class="number-block" :class="{'not-allow-operate' : !allowSelectNumber}">
                 <div>數量</div>
                 <div class="select-number-block">
-                    <div class="btn number-operate-block minus" @click="selectNumber(-1)">
+                    <div class="btn number-operate-block minus click-animation-small" @click="selectNumber(-1)">
                         <img src="/images/icons/less.svg" alt="減一圖案" class="select-number-icon">
                     </div>
                     <div class="btn">{{number}}</div>
-                    <div class="btn number-operate-block add" @click="selectNumber(1)">
+                    <div class="btn number-operate-block add click-animation-small" @click="selectNumber(1)">
                         <img src="/images/icons/plus.svg" alt="加一圖案" class="select-number-icon">
                     </div>
                 </div>
@@ -247,6 +247,7 @@
         text-align: center
         .btn
             height: 100%
+            width: 100%
             display: flex
             align-items: center
             justify-content: center

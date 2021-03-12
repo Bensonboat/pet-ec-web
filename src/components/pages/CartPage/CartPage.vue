@@ -41,7 +41,7 @@
 <script>
 import CheckoutProcess from './CheckoutProcess'
 // import CartItemAttribute from './CartItemAttribute'
-import CouponTotalPrice from './CouponTotalPrice'
+import CouponTotalPrice from './Coupon/CouponTotalPrice'
 import ShippingInfomation from './ShippingInfomation'
 import OrderConfirmBlock from './OrderConfirmBlock'
 import CartItemAttribute from './CartItemAttribute'

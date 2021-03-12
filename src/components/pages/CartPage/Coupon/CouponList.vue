@@ -1,9 +1,10 @@
 <template>
     <div class="coupon-list">
-        <div class='coupon-list-title'>
+        <div class='coupon-list-header'>
             <img src="/images/icons/back.svg" alt="" class="back-icon" @click="closeCouponList">
-            <div>優惠卷選取</div>
+            <div class="add-coupon-btn click-animation-small" @click="toggleCreatePage">輸入優惠序號</div>
         </div>
+        <div class="coupon-list-title">優惠卷選取</div>
         <div class="coupon-list-block">
             <div 
                 class="coupon click-animation-small" 
@@ -19,15 +20,21 @@
             </div>
         </div>
         <div class="confirm-btn" :class="{'select-validate' : selectValidate}" @click="couponSelectConfirm">確認</div>
+        <transition name="left-in">
+            <coupon-create-page v-if='showCreateCouponPage' @close-create-page='toggleCreatePage'/>
+        </transition>
     </div>
 </template>
 
 <script>
+import CouponCreatePage from './CouponCreatePage'
 export default {
     name: "CouponList",
+    components: {
+        CouponCreatePage
+    },
     data() {
         return {
-            // showCouponList: true,
             couponData: [
                 {
                     name: "$100 折扣優惠",
@@ -60,7 +67,8 @@ export default {
                     selected: false
                 },
             ],
-            selectValidate: false
+            selectValidate: false,
+            showCreateCouponPage: false
         };
     },
     methods: {
@@ -78,6 +86,9 @@ export default {
                 alert('select!!')
                 this.closeCouponList()
             }
+        },
+        toggleCreatePage(){
+            this.showCreateCouponPage = !this.showCreateCouponPage
         }
         // closeCouponList() {
         //     this.$emit("close-coupon-list");
@@ -102,19 +113,21 @@ export default {
         width: 2.4rem
         height: 2.4rem
         margin-right: 1rem
-    .coupon-list-title
-        height: 4.4rem
+    .coupon-list-title, .coupon-list-header
+        height: 5rem
         box-sizing: border-box
         padding: 1.3rem 1rem
         box-shadow: .1rem .1rem .1rem 0 rgba(0, 0, 0, 0.1)
         background-color: #333333
-        color: #e5ceae
-        // background-color: #efe1ce
-        // color: #333333
-        font-size: 1.4rem
-        font-weight: 500
         display: flex
         align-items: center
+    .coupon-list-title
+        height: 4.4rem
+        background-color: #efe1ce
+        font-size: 1.2rem
+        color: #333333
+        padding-left: 2rem
+        font-weight: 500
     .coupon-list-block
         padding: 1.5rem
         overflow: scroll
@@ -177,4 +190,32 @@ export default {
         z-index: 3
     .select-validate
         color: #e5ceae
+    .add-coupon-btn
+        padding: .6rem 1rem
+        border-radius: .5rem
+        border: solid .1rem #efe1ce
+        background-color: #333333
+        box-sizing: border-box
+        font-size: 1.2rem
+        font-weight: 500
+        color: #efe1ce
+        position: absolute
+        right: 1.5rem
+    // 左側移入
+    .left-in-leave
+        left: 0
+        opacity: 1
+    .left-in-leave-active
+        transition: .3s linear
+    .left-in-leave-to
+        left: -30rem
+        opacity: 0
+    .left-in-enter
+        left: -30rem
+        opacity: 0
+    .left-in-enter-active
+        transition: .3s linear
+    .left-in-enter-to
+        left: 0
+        opacity: 1
 </style>

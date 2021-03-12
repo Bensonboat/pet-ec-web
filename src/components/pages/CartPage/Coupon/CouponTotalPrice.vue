@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="coupon-button click-animation-small" @click="toggleCouponList">
+        <div class="coupon-button" @click="toggleCouponList">
             <div class="coupon-text-block">
                 <img src="/images/icons/fire.svg" alt="優惠卷圖案" class="coupon-icon">
                 <div>選擇優惠卷序號</div>
@@ -132,7 +132,7 @@ import CouponList from './CouponList.vue'
         font-weight: 500
     .total-price
         color: #f94956
-
+    // 左側移入
     .left-in-leave
         left: 0
         opacity: 1

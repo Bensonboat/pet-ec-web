@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="confirm-btn" :class="[selected ? 'selected' : '']" @click="routerSwitch('/product_list_page')">
+        <div class="confirm-btn click-animation" :class="[selected ? 'selected' : '']" @click="routerSwitch('/product_list_page')">
             <div>OK</div>
             <img v-show='selected' src="/images/icons/next.svg" alt="下一步圖案" class="next-step-icon">
             <img v-show='!selected' src="/images/icons/next-unselect.svg" alt="下一步圖案" class="next-step-icon">

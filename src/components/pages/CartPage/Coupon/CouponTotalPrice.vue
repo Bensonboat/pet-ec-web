@@ -132,7 +132,8 @@ import CouponList from './CouponList.vue'
         font-weight: 500
     .total-price
         color: #f94956
-    // 左側移入
+
+    // 動畫 左側移入
     .left-in-leave
         left: 0
         opacity: 1

@@ -19,7 +19,7 @@
                 <img v-show='item.selected' src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
             </div>
         </div>
-        <div class="confirm-btn" :class="{'select-validate' : selectValidate}" @click="couponSelectConfirm">確認</div>
+        <div class="confirm-btn click-animation-samll" :class="{'select-validate' : selectValidate}" @click="couponSelectConfirm">確認</div>
         <transition name="left-in">
             <coupon-create-page v-if='showCreateCouponPage' @close-create-page='toggleCreatePage'/>
         </transition>
@@ -171,14 +171,14 @@ export default {
         left: .35rem
         top: .2rem
     .bottom-space
-        margin-bottom: 300px
+        margin-bottom: 30rem
     .confirm-btn
         width: calc(100% - 1rem)
         padding: 1.3rem 1.5rem
         border-radius: .5rem
         box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.4)
         background-color: #333333
-        position: absolute // fixed to absolute
+        position: fixed
         bottom: .5rem
         font-size: 1.5rem
         font-weight: 500

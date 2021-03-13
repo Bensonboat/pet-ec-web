@@ -19,6 +19,9 @@ export default {
         return {
             showLoadingMask: false
         }
+    },
+    mounted(){
+        console.log(process.env.VUE_APP_URL, process.env.VUE_APP_TITLE , '////')
     }
 }
 

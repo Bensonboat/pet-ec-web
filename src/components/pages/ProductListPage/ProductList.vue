@@ -23,7 +23,7 @@
 <script>
 import ProductBasicData from '../../layouts/ProductBasicData';
 // import ProductSpec from "./ProductSpec";
-
+import API from '@/axios/api'
 export default {
     name: "ProductList",
     components: {
@@ -164,10 +164,19 @@ export default {
             },
         };
     },
+    mounted(){
+        this.getProductsList()
+    },
     methods: {
         toggleQuickAddModal() {
             this.showQuickAddModal = !this.showQuickAddModal;
         },
+        getProductsList(){
+            API.getProductsList()
+                .then(res => {
+                    console.log(res, 'product list')
+                })
+        }
     },
 };
 </script>

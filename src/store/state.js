@@ -1,3 +1,5 @@
 export default {
-    showProductAllSpecModal: false
+    showProductAllSpecModal: false,
+    SingleProductID: '',
+    singleProductData: ''
 } 

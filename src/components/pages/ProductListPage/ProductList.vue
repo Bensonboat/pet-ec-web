@@ -9,14 +9,14 @@
             class="product-basic-data click-animation-small"
             @show-quick-add-modal="toggleQuickAddModal"
         />
-        <div v-if="showQuickAddModal">
+        <!-- <div v-if="showQuickAddModal">
             <div class="modal-mask"></div>
-            <!-- <product-spec
+            <product-spec
                 class="quick-add-block"
                 :product_data="quickAddProductData"
                 @close-modal="toggleQuickAddModal"
-            /> -->
-        </div>
+            />
+        </div> -->
     </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
     },
     data() {
         return {
-            showQuickAddModal: false,
+            // showQuickAddModal: false,
             productListData: [
                 {
                     img: ['/images/p1.jpg', '/images/test2.png'],
@@ -138,30 +138,30 @@ export default {
                     type: "玩具",
                 },
             ],
-            quickAddProductData: {
-                name: "Qucik Product Name",
-                spec: {
-                    spec_name: "Color",
-                    spec_options: [
-                        {
-                            spec: "桃粉色",
-                            selected: false,
-                        },
-                        {
-                            spec: "淺灰色",
-                            selected: false,
-                        },
-                        {
-                            spec: "淺綠色",
-                            selected: false,
-                        },
-                        {
-                            spec: "黑色",
-                            selected: false,
-                        },
-                    ],
-                },
-            },
+            // quickAddProductData: {
+            //     name: "Qucik Product Name",
+            //     spec: {
+            //         spec_name: "Color",
+            //         spec_options: [
+            //             {
+            //                 spec: "桃粉色",
+            //                 selected: false,
+            //             },
+            //             {
+            //                 spec: "淺灰色",
+            //                 selected: false,
+            //             },
+            //             {
+            //                 spec: "淺綠色",
+            //                 selected: false,
+            //             },
+            //             {
+            //                 spec: "黑色",
+            //                 selected: false,
+            //             },
+            //         ],
+            //     },
+            // },
         };
     },
     mounted(){
@@ -174,7 +174,27 @@ export default {
         getProductsList(){
             API.getProductsList()
                 .then(res => {
-                    console.log(res, 'product list')
+                    let product_data = res.data.data.rows;
+                    if(product_data.length === 0){
+                        this.productListData = [];
+                        return
+                    }
+
+                    this.productListData = product_data.map(item => {
+                        let default_obj = {
+                            img: ['/images/p1.jpg', '/images/test2.png'],
+                            name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
+                            price: 1300,
+                            origin_price: 4200,
+                            type: "玩具",
+                            id: ''
+                        };
+                        default_obj.name = item.title;
+                        default_obj.id = item.id;
+                        default_obj.price = 300;
+                        default_obj.origin_price = 600;
+                        return default_obj
+                    })
                 })
         }
     },

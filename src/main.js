@@ -2,7 +2,7 @@ import Vue from "vue";
 import MyApp from "./MyApp.vue";
 import router from "./router";
 import store from "./store";
-import API from './axios/api.js'
+import axios from './axios/interceptors'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -16,6 +16,6 @@ Vue.use(Vue2TouchEvents)
 new Vue({
   router,
   store,
-  API,
+  axios,
   render: h => h(MyApp)
 }).$mount("#app");

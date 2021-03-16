@@ -3,7 +3,7 @@
     <div class="default-product-basic-data product-basic-data">
         <div
             class="product-content-block"
-            @click="checkProductDetail(product_data.type, product_data.id)"
+            @click="checkProductDetail(product_data.type, product_data.id) + getCurrentID(product_data.id)"
         >
             <div class="product-top-block">
                 <!-- <div class="product-image-block"> -->
@@ -28,7 +28,7 @@
                 <!-- </div> -->
                 <div
                     class="quick-add-icon-block click-animation"
-                    @click.stop="showProductAllSpecModal"
+                    @click.stop="getCurrentID(product_data.id)"
                 >
                     <img src="/images/icons/bag-add.svg" alt="快速加入按鈕"/>
                 </div>
@@ -41,16 +41,16 @@
                     <div
                         class="default-deep-green-color"
                         :class="[
-                            product_data.special_price ? 'original-price-remove' : '',
+                            product_data.price ? 'original-price-remove' : '',
                         ]"
                     >
-                        NT${{ product_data.price }}
+                        NT${{ product_data.origin_price }}
                     </div>
                     <div
                         class="default-red-color special-price"
-                        v-if="product_data.special_price"
+                        v-if="product_data.price"
                     >
-                        NT${{ product_data.special_price }}
+                        NT${{ product_data.price }}
                     </div>
                 </div>
                 <!-- <div v-if='showQuickAddIcon' class="product-cart-block" @click="showQuickAddModal">
@@ -68,6 +68,7 @@
 <script>
 import store from '@/store'
 import * as types from '@/store/mutation-types.js'
+import API from '@/axios/api'
 
 export default {
     name: "ProductBasicData",
@@ -107,6 +108,16 @@ export default {
         },
         showProductAllSpecModal(){
             store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true)
+        },
+        getCurrentID(id){
+            API.getSingleProduct(id)
+                .then(res => {
+                    let data = res.data.data;
+                    store.commit(types.GET_SINGLE_PRODUCT_DATA, data)
+                })
+                .then(() => {
+                    this.showProductAllSpecModal()
+                })
         }
     },
 };

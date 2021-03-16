@@ -5,10 +5,10 @@
             <img src="/images/icons/del.png" alt="關閉按鈕" class="close-icon click-animation" @click="closeAllSpecModal">
             <div class="product-attribute-block">
                 <img src="/images/p1.jpg" alt="商品圖片" class="product-image">
-                <div>
-                    <div class="product-name">EQUILÍBRIO 尊爵 機能天然糧機能天然糧機能天然糧機能天然糧 EQUILÍBRIO 尊爵 機能天然糧 EQUILÍBRIO 尊爵 機能天然糧EQUILÍBRIO 尊爵 機能天然糧</div>
-                    <div class="price origin-price" :class="{'origin-price-remove' : productData.special_price === ''}">NT$4,500</div>
-                    <div class="price special-price">NT$2380</div>
+                <div class="name-price-block">
+                    <div class="product-name">{{productData.name}}</div>
+                    <div class="price origin-price" :class="{'origin-price-remove' : productData.price !== ''}">{{productData.origin_price}}</div>
+                    <div class="price special-price">{{productData.price}}</div>
                 </div>
             </div>
             <div class="product-spec-block">
@@ -57,63 +57,62 @@
 <script>
     import * as types from '../../store/mutation-types'
     import store from '../../store'
+    // import API from '@/axios/api'
+
     export default {
         name: 'ProductBasicSpec',
         data(){
             return {
                 allowSelectNumber: false,
-                productData: {
-                    special_price: ''
-                },
-                specOptions: [
-                    {
-                        name: '2kg',
-                        value: '2kg',
-                        selected: false
-                    },
-                    {
-                        name: '4kg',
-                        value: '4kg',
-                        selected: false
-                    },
-                    {
-                        name: '6kg',
-                        value: '6kg',
-                        selected: false
-                    },
-                    {
-                        name: '8kg',
-                        value: '8kg',
-                        selected: false
-                    },
-                    {
-                        name: '10kg',
-                        value: '10kg',
-                        selected: false
-                    },
-                    {
-                        name: '2kg雞肉口味',
-                        value: '2kg',
-                        selected: false
-                    },
-                    {
-                        name: '4kg字數測試 字數測試',
-                        value: '4kg',
-                        selected: false
-                    },
-                    {
-                        name: 'M',
-                        value: '6kg',
-                        selected: false
-                    },
-                ],
+                productData: {},
+                specOptions: [],
+                // specOptions: [
+                //     {
+                //         name: '2kg',
+                //         value: '2kg',
+                //         selected: false
+                //     },
+                //     {
+                //         name: '4kg',
+                //         value: '4kg',
+                //         selected: false
+                //     },
+                //     {
+                //         name: '6kg',
+                //         value: '6kg',
+                //         selected: false
+                //     },
+                //     {
+                //         name: '8kg',
+                //         value: '8kg',
+                //         selected: false
+                //     },
+                //     {
+                //         name: '10kg',
+                //         value: '10kg',
+                //         selected: false
+                //     },
+                //     {
+                //         name: '2kg雞肉口味',
+                //         value: '2kg',
+                //         selected: false
+                //     },
+                //     {
+                //         name: '4kg字數測試 字數測試',
+                //         value: '4kg',
+                //         selected: false
+                //     },
+                //     {
+                //         name: 'M',
+                //         value: '6kg',
+                //         selected: false
+                //     },
+                // ],
                 number: 0
             }
         },
-        computed: {
-            getShowProductAllSpecModalStatus(){
-                return store.state.SHOW_PRODUCT_ALL_SPEC_MODAL
-            },
+        mounted(){
+            this.getSingleProductData()
         },
         methods: {
             closeAllSpecModal(){
@@ -124,6 +123,8 @@
                     if(index === key){
                         item.selected = true
                         this.allowSelectNumber = true
+                        this.productData.price = item.price;
+                        this.productData.origin_price = item.origin_price
                     } else {
                         item.selected = false
                     }
@@ -138,6 +139,26 @@
             confirm(){
                 alert('Service unavailable now');
                 this.closeAllSpecModal();
+            },
+            getSingleProductData(){
+                let data =  store.state.singleProductData
+                this.productData = {
+                    name: data.title,
+                    id: data.id,
+                    price: 2000,
+                    origin_price: 4000
+                }
+
+                let skus = data.sku
+                this.specOptions = skus.map(item => {
+                     return {
+                        name: item.sku,
+                        value: item.sku,
+                        selected: false,
+                        origin_price: item.origin_price,
+                        price: item.price
+                    }
+                })
             }
         }
     }
@@ -175,6 +196,8 @@
     .product-image
         width: 8rem
         height: 8rem
+    .name-price-block
+        flex-grow: 1
     .product-name
         font-size: 1.4rem
         font-weight: 500

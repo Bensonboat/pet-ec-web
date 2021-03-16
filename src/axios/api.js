@@ -14,5 +14,11 @@ export default {
             method: 'GET',
             url: apiUrl.PRODUCTS_DATA,
         })
+    },
+    getSingleProduct(id){
+        return axios({
+            method: 'GET',
+            url: `${apiUrl.PRODUCTS_DATA}/${id}`
+        })
     }
 }

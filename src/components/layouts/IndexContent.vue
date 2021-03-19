@@ -5,7 +5,7 @@
         <!-- <div class="default-top-icon-block top-icon-block" v-show="this.$route.path !== '/home_page'">
             <img src="/images/top.png" alt="to top icon" class="default-top-icon top-icon">
         </div> -->
-        <transition>
+        <transition name='basic'>
             <product-basic-spec v-if="getShowProductAllSpecModalStatus"/>
         </transition>
     </div>

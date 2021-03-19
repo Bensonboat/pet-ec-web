@@ -71,44 +71,6 @@ export default {
             },
             productImgs: ['/images/p1.jpg', '/images/test_size.png'],
             currentShowsImgIndex: 0,
-            // productData: {
-            //     name: 'Qucik Product Name',
-            //     spec: {
-            //         spec_name: 'Color',
-            //         spec_options: [
-            //             {
-            //                 spec: '桃粉色',
-            //                 selected: false,
-            //                 price: 100
-            //             },
-            //             {
-            //                 spec: '淺灰色',
-            //                 selected: false,
-            //                 price: 1002
-            //             },
-            //             {
-            //                 spec: '淺綠色',
-            //                 selected: false,
-            //                 price: 1004
-            //             },
-            //             {
-            //                 spec: '黑色',
-            //                 selected: false,
-            //                 price: 1008
-            //             },
-            //             {
-            //                 spec: '灰色',
-            //                 selected: false,
-            //                 price: 500
-            //             },
-            //             {
-            //                 spec: '亞痲色',
-            //                 selected: false,
-            //                 price: 9900
-            //             },
-            //         ]
-            //     }
-            // },
             showProductInfo: 'description'
         }
     },

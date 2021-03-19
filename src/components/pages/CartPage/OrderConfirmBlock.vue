@@ -1,6 +1,6 @@
 <template>
     <div class="order-confirm-block">
-        <div class="operate-button click-animation-small">
+        <div class="operate-button click-animation-small" @click="togglePaymentSelectPage">
             <div class="operate-text-block">
                 <img src="/images/icons/fire.svg" alt="付款圖案" class="operate-icon">
                 <div>選擇付款方式</div>
@@ -20,18 +20,30 @@
             <div class="previous-step-btn" @click="backToStepOne">回前頁</div>
             <div class="order-confirm" :class="{'order-validate' : orderValidate }">確認結帳</div>
         </div>
+        <transition name='left-in'>
+            <payment-select 
+                v-if='showPaymentSelectPage'
+                @close-page='togglePaymentSelectPage'    
+            />
+        </transition>
     </div>
 </template>
 
 <script>
+import PaymentSelect from './PaymentSelect'
+
     export default {
         name: 'Payment',
         props: {
             orderValidate: Boolean
         },
+        components: {
+            PaymentSelect
+        },
         data(){
             return {
-                memberSelected: true
+                memberSelected: true,
+                showPaymentSelectPage: false
             }
         },
         methods: {
@@ -40,6 +52,9 @@
             },
             backToStepOne(){
                 this.$emit('to-certain-step', 1)
+            },
+            togglePaymentSelectPage(){
+                this.showPaymentSelectPage = !this.showPaymentSelectPage
             }
         }
     }
@@ -105,4 +120,21 @@
         font-weight: 500
     .order-validate
         color: #e5ceae
+            // 動畫 左側移入
+    .left-in-leave
+        left: 0
+        opacity: 1
+    .left-in-leave-active
+        transition: .3s linear
+    .left-in-leave-to
+        left: -30rem
+        opacity: 0
+    .left-in-enter
+        left: -30rem
+        opacity: 0
+    .left-in-enter-active
+        transition: .3s linear
+    .left-in-enter-to
+        left: 0
+        opacity: 1
 </style>

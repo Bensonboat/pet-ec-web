@@ -1,0 +1,139 @@
+<template>
+    <div class="payment-select-page">
+        <div class='header'>
+            <img src="/images/icons/back.svg" alt="" class="back-icon click-animation-small" @click="close">
+            <div>付款方式</div>
+        </div>
+        <div class="content-block">
+            <div 
+                v-for='(item, index) in payments'
+                :key="index"
+                class="payment-btn"
+                :class="{'selected' : item.selected}"
+                @click="selectPayment(index)"
+            >
+                {{item.name}}
+                <img v-show='item.selected' src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
+            </div>
+            <div class="confirm-btn click-animation-small" :class="{'input-valid' : isSelected}">確認</div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'PaymentSelectPage',
+        data(){
+            return{
+                isSelected: false,
+                payments: [
+                    {
+                        name: '貨到付款',
+                        value: 'cash_on_delivery',
+                        selected: false
+                    },
+                    {
+                        name: '信用卡',
+                        value: 'credit_card',
+                        selected: false
+                    }
+                ]
+            }
+        },
+        methods: {
+            selectPayment(index){
+                this.payments = this.payments.map((item, key) => {
+                    if(index === key){
+                        item.selected = true;
+                        this.isSelected = true;
+                    } else {
+                        item.selected = false
+                    }
+                    return item
+                })
+            },
+            close(){
+                this.$emit('close-page')
+            }
+        }
+    }
+</script>
+
+<style lang="sass" scoped>
+.payment-select-page
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 999
+    width: 100vw
+    height: 100vh
+    background-color: #e5ceae
+    .header
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15)
+        background-color: #333333
+        position: relative
+        height: 5rem
+        display: flex
+        align-items: center
+        justify-content: center
+        font-size: 1.4rem
+        font-weight: 500
+        color: #efe1ce
+    .back-icon
+        width: 2.4rem
+        height: 2.4rem
+        position: absolute
+        left: 1rem
+        top: 50%
+        transform: translateY(-50%)
+    .content-block
+        padding: 1.5rem
+    .payment-btn
+        padding: 1rem 2rem
+        border-radius: .5rem
+        border: solid .1rem #ccaa76
+        background-color: #f2c47e
+        font-size: 1.4rem
+        font-weight: 500
+        color: #333333
+        margin-bottom: 1.2rem
+        position: relative
+        overflow: hidden
+    .tick-icon
+        width: 1rem
+        height: 1rem
+        position: absolute
+        left: .35rem
+        top: .2rem
+    .confirm-btn
+        border-radius: .5rem
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4)
+        background-color: #333333
+        padding: 1.3rem 1.5rem
+        font-size: 1.5rem
+        font-weight: 500
+        color: #5c5c5c
+        box-sizing: border-box
+        display: flex
+        justify-content: center
+        align-items: center
+        position: fixed
+        bottom: .5rem
+        width: calc(100%  -  1rem)
+        left: 50%
+        transform: translateX(-50%)
+    .input-valid
+        color: #e5ceae
+    .selected
+        border-color: #333333
+        &::before
+            content: ''
+            display: block
+            width: 5rem
+            height: 5rem
+            background-color: #333333
+            position: absolute
+            left: -3rem
+            top: -3rem
+            transform: rotate(45deg)
+</style>

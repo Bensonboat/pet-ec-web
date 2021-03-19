@@ -2,7 +2,7 @@
     <div class="coupon-add-page">
         <div class='header'>
             <img src="/images/icons/back.svg" alt="" class="back-icon click-animation-small" @click="closeCreatePage">
-            <div class="add-coupon-btn">新增優惠序號</div>
+            <div>新增優惠序號</div>
         </div>
         <div class="content-block">
             <div class="input-block">

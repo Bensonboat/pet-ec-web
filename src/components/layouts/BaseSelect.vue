@@ -6,7 +6,7 @@
         </div>
         <!-- <input @click="toggleOptionMenu" class='default-text-color input-background' v-model='currentSelect' type="text" @blur='toggleOptionMenu'> -->
         <div class="auto-close-bgc-mask" @click.stop="toggleOptionMenu" v-show="showOptionMenu"></div>
-        <transition>
+        <transition name='basic'>
             <div class="base-select-block" v-show='showOptionMenu'>
                 <!-- <div v-if="currentSelect === ''" class="current-select lighter-text">{{placeholder}}</div>
                 <div v-else class="current-select">{{currentSelect}}</div> -->

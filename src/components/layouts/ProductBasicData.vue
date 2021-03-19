@@ -28,7 +28,7 @@
                 <!-- </div> -->
                 <div
                     class="quick-add-icon-block click-animation"
-                    @click.stop="getCurrentID(product_data.id)"
+                    @click.stop="getCurrentID(product_data.id) + showProductAllSpecModal()"
                 >
                     <img src="/images/icons/bag-add.svg" alt="快速加入按鈕"/>
                 </div>
@@ -114,9 +114,6 @@ export default {
                 .then(res => {
                     let data = res.data.data;
                     store.commit(types.GET_SINGLE_PRODUCT_DATA, data)
-                })
-                .then(() => {
-                    this.showProductAllSpecModal()
                 })
         }
     },

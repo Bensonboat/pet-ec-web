@@ -5,11 +5,11 @@
                 <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon">
             </div>
             <div class="toggle-mode-btn">註冊</div>
-            <div>登入</div>
+            <div>LOGO</div>
         </div>
         <div class="content-block">
             <div class="bg" :style="{ backgroundPosition: position }"></div>
-            <div class="logo-block">LOGP</div>
+            <div class="title flex-center">登入</div>
             <div class="form-block">
                 <div class="btn-shape form-input-block">
                     <img src="/images/icons/dog-gold.png" alt="" class="icon">
@@ -22,6 +22,12 @@
                     <input type="text" class="input" v-model="password" @focus="toggleInput('password')" @blur="toggleInput('password')">
                 </div>
                 <div class="btn-shape login-btn">登入</div>
+                <div class="forget-password-block">
+                    <div class="text">忘記密碼?</div>
+                </div>
+                <div class="gap-line">
+                    <div class="text flex-center">或</div>
+                </div>
                 <div class="others-login-block">
                     <div class="btn-shape other-login-btn">使用Google帳號登入</div>
                     <div class="btn-shape other-login-btn">使用Facebook帳號登入</div>
@@ -113,17 +119,24 @@ export default {
             position: fixed
             top: 0
             left: 0
-    .logo-block
-        width: 80px
-        height: 80px
-        text-align: center
-        line-height: 80px
-        margin: 30px auto
-        border-radius: 4.4px
-        border: solid 0.9px #333333
+    .title
+        font-size: 2rem
+        font-weight: 500
         color: #333333
         position: relative
         z-index: 1
+        margin: 3rem 0
+    // .logo-block
+    //     width: 80px
+    //     height: 80px
+    //     text-align: center
+    //     line-height: 80px
+    //     margin: 30px auto
+    //     border-radius: 4.4px
+    //     border: solid 0.9px #333333
+    //     color: #333333
+    //     position: relative
+    //     z-index: 1
     .form-block
         position: relative
         z-index: 1
@@ -147,6 +160,16 @@ export default {
         margin: auto
         margin-bottom: 1.5rem
         box-sizing: border-box
+    .forget-password-block
+        width: 25rem
+        margin: auto
+        font-size: 1.2rem
+        font-weight: 500
+        color: #333333
+        display: flex
+        justify-content: flex-end
+        .text
+            border-bottom: solid 1px
     .icon
         width: 1.8rem
         height: 1.8rem
@@ -166,7 +189,7 @@ export default {
         align-items: center
         justify-content: center
     .others-login-block
-        margin-top: 8rem
+        margin-top: 4rem
     .other-login-btn
         border-radius: 1.85rem
         border: solid .2rem #333333
@@ -179,4 +202,22 @@ export default {
     .pre-icon
         position: absolute
         left: 1.5rem
+    .gap-line
+        height: .1rem
+        width: 25rem
+        background: #333333
+        margin: auto
+        position: relative
+        margin-top: 7.5rem
+        .text
+            width: 3rem
+            position: absolute
+            background-color: #e5ceae
+            font-size: 1.2rem
+            font-weight: 500
+            color: #333333
+            top: 0
+            left: 50%
+            transform: translate(-50%, -50%)
+
 </style>

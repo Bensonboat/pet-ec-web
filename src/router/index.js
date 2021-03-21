@@ -15,6 +15,7 @@ import CartPage from '@/components/pages/CartPage/CartPage'
 
 import SearchPage from '@/components/pages/SearchPage/SearchPage'
 
+import OrderDetailPage from '@/components/pages/OrderDetailPage/OrderDetailPage'
 Vue.use(VueRouter);
 
 const routes = [
@@ -32,6 +33,11 @@ const routes = [
         path: '/member_center_page',
         name: 'MemberCenterPage',
         component: MemberCenterPage        
+    },
+    {
+        path: '/order_detail_page',
+        name: 'OrderDetailPage',
+        component: OrderDetailPage
     },
     {
         path: '/',

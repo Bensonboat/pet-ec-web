@@ -1,16 +1,10 @@
 <template>
     <div class="user-account-page">
-        <div class="page-header">
-            <div @click="previousPage" class="click-animation pre-icon">
-                <img
-                    src="/images/icons/back.svg"
-                    alt="上一步按鈕"
-                    class="icon"
-                />
-            </div>
-            <div class="detail-btn">訂單明細</div>
-            <div>會員中心</div>
-        </div>
+        <page-header :title="'會員中心'" @previous-page='previousPage'>
+            <template #pageHeaderButton>
+                <div class="detail-btn" @click="checkOrdersDetail">訂單明細</div>
+            </template>
+        </page-header>
         <div class="content-block">
             <user-account-data/>
             <div class="edit-block">
@@ -25,18 +19,25 @@
 import UserAccountData from './UserAccountData'
 import UserInfoEdit from './UserInfoEdit'
 import PetInfoEdit from './PetInfoEdit'
+import PageHeader from '@/components/layouts/PageHeader'
 
 export default {
     name: "MemberCenterPage",
     components: {
         UserAccountData,
         UserInfoEdit,
-        PetInfoEdit
+        PetInfoEdit,
+        PageHeader
     },
     methods: {
-        previousPage() {
-            this.$router.go(-1);
+        previousPage(){
+            this.$router.go(-1)
         },
+        checkOrdersDetail(){
+            this.$router.push({
+                path: '/order_detail_page'
+            })
+        }
     },
 };
 </script>

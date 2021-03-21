@@ -1,9 +1,10 @@
 <template>
     <div class="coupon-list">
-        <div class='coupon-list-header'>
-            <img src="/images/icons/back.svg" alt="" class="back-icon" @click="closeCouponList">
-            <div class="add-coupon-btn click-animation-small" @click="toggleCreatePage">輸入優惠序號</div>
-        </div>
+        <page-header :title="''" @previous-page='closeCouponList'>
+            <template #pageHeaderButton>
+                <div class="add-coupon-btn click-animation-small" @click="toggleCreatePage">輸入優惠序號</div>
+            </template>
+        </page-header>
         <div class="coupon-list-title">優惠卷選取</div>
         <div class="coupon-list-block">
             <div 
@@ -28,10 +29,13 @@
 
 <script>
 import CouponCreatePage from './CouponCreatePage'
+import PageHeader from '@/components/layouts/PageHeader'
+
 export default {
     name: "CouponList",
     components: {
-        CouponCreatePage
+        CouponCreatePage,
+        PageHeader
     },
     data() {
         return {
@@ -109,11 +113,7 @@ export default {
     width: 100vw
     height: 100vh
     background-color: #e5ceae
-    .back-icon
-        width: 2.4rem
-        height: 2.4rem
-        margin-right: 1rem
-    .coupon-list-title, .coupon-list-header
+    .coupon-list-title
         height: 5rem
         box-sizing: border-box
         padding: 1.3rem 1rem

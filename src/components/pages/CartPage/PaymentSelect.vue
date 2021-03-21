@@ -1,9 +1,6 @@
 <template>
     <div class="payment-select-page">
-        <div class='header'>
-            <img src="/images/icons/back.svg" alt="" class="back-icon click-animation-small" @click="close">
-            <div>付款方式</div>
-        </div>
+        <page-header :title="'付款方式'" @previous-page='close'/>
         <div class="content-block">
             <div 
                 v-for='(item, index) in payments'
@@ -21,42 +18,47 @@
 </template>
 
 <script>
-    export default {
-        name: 'PaymentSelectPage',
-        data(){
-            return{
-                isSelected: false,
-                payments: [
-                    {
-                        name: '貨到付款',
-                        value: 'cash_on_delivery',
-                        selected: false
-                    },
-                    {
-                        name: '信用卡',
-                        value: 'credit_card',
-                        selected: false
-                    }
-                ]
-            }
+import PageHeader from '@/components/layouts/PageHeader'
+
+export default {
+    name: 'PaymentSelectPage',
+    components: {
+        PageHeader
+    },
+    data(){
+        return{
+            isSelected: false,
+            payments: [
+                {
+                    name: '貨到付款',
+                    value: 'cash_on_delivery',
+                    selected: false
+                },
+                {
+                    name: '信用卡',
+                    value: 'credit_card',
+                    selected: false
+                }
+            ]
+        }
+    },
+    methods: {
+        selectPayment(index){
+            this.payments = this.payments.map((item, key) => {
+                if(index === key){
+                    item.selected = true;
+                    this.isSelected = true;
+                } else {
+                    item.selected = false
+                }
+                return item
+            })
         },
-        methods: {
-            selectPayment(index){
-                this.payments = this.payments.map((item, key) => {
-                    if(index === key){
-                        item.selected = true;
-                        this.isSelected = true;
-                    } else {
-                        item.selected = false
-                    }
-                    return item
-                })
-            },
-            close(){
-                this.$emit('close-page')
-            }
+        close(){
+            this.$emit('close-page')
         }
     }
+}
 </script>
 
 <style lang="sass" scoped>
@@ -68,24 +70,6 @@
     width: 100vw
     height: 100vh
     background-color: #e5ceae
-    .header
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15)
-        background-color: #333333
-        position: relative
-        height: 5rem
-        display: flex
-        align-items: center
-        justify-content: center
-        font-size: 1.4rem
-        font-weight: 500
-        color: #efe1ce
-    .back-icon
-        width: 2.4rem
-        height: 2.4rem
-        position: absolute
-        left: 1rem
-        top: 50%
-        transform: translateY(-50%)
     .content-block
         padding: 1.5rem
     .payment-btn

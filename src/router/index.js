@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import LoginPage from '@/components/pages/LoginPage/LoginPage'
+import MemberCenterPage from '@/components/pages/MemberCenterPage/MemberCenterPage'
 
 import IndexContent from '@/components/layouts/IndexContent'
 
@@ -28,9 +29,15 @@ const routes = [
         component: SearchPage
     },
     {
+        path: '/member_center_page',
+        name: 'MemberCenterPage',
+        component: MemberCenterPage        
+    },
+    {
         path: '/',
         name: 'IndexContent',
         component: IndexContent,
+        redirect: { name: 'CategoryPage' },
         children: [
             {
                 path: "/home_page",
@@ -68,6 +75,10 @@ const routes = [
             // }        
         ]
     },
+    {
+        path: '*',
+        redirect: { path: '/' }
+    }
 ];
 
 const router = new VueRouter({

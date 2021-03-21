@@ -120,7 +120,7 @@ import PaymentSelect from './PaymentSelect'
         font-weight: 500
     .order-validate
         color: #e5ceae
-            // 動畫 左側移入
+    // 動畫 左側移入
     .left-in-leave
         left: 0
         opacity: 1

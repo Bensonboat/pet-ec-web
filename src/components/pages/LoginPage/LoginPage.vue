@@ -1,6 +1,9 @@
 <template>
     <div class="login-page">
         <div class="page-header">
+            <div @click="previousPage" class="click-animation pre-icon">
+                <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon">
+            </div>
             <div class="toggle-mode-btn">註冊</div>
             <div>登入</div>
         </div>
@@ -19,6 +22,11 @@
                     <input type="text" class="input" v-model="password" @focus="toggleInput('password')" @blur="toggleInput('password')">
                 </div>
                 <div class="btn-shape login-btn">登入</div>
+                <div class="others-login-block">
+                    <div class="btn-shape other-login-btn">使用Google帳號登入</div>
+                    <div class="btn-shape other-login-btn">使用Facebook帳號登入</div>
+                </div>
+
             </div>
         </div>
         <!-- <loading-mask/> -->
@@ -59,6 +67,9 @@ export default {
             } else if (type === 'password'){
                 this.showPasswordInput = !this.showPasswordInput
             }
+        },
+        previousPage(){
+            this.$router.go(-1)
         }
     }
 };
@@ -79,6 +90,7 @@ export default {
         z-index: 1
         position: relative
     .toggle-mode-btn
+        font-size: 1.2rem
         width: 4.4rem
         height: 3rem
         border-radius: .5rem
@@ -88,7 +100,7 @@ export default {
         align-items: center
         justify-content: center
         position: absolute
-        left: 1.5rem
+        right: 1.5rem
     .content-block
         position: relative
         .bg
@@ -145,11 +157,26 @@ export default {
         outline: none
         font-size: 1.4rem
         font-weight: 500
-        color: #dec39e
+        color: #333333
+        font-weight: 600
     .login-btn
         background-color: #333333
         color: #e5ceae
         display: flex
         align-items: center
         justify-content: center
+    .others-login-block
+        margin-top: 8rem
+    .other-login-btn
+        border-radius: 1.85rem
+        border: solid .2rem #333333
+        background-color: #e3a652
+        font-size: 1.4rem
+        color: #333333
+        display: flex
+        justify-content: center
+        align-items: center
+    .pre-icon
+        position: absolute
+        left: 1.5rem
 </style>

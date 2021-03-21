@@ -117,7 +117,12 @@
                 if(x < -2000){
                     x = 0
                 }
-            }, 20)
+            }, 20);
+
+            // 預設貓咪類別
+            if(this.$route.params.type === undefined){
+                this.$router.replace({ name: "CategoryPage", params: {type: 'cat'} })
+            }
         },
         methods: {
             toggleSelectOption(index){

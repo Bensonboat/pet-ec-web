@@ -13,7 +13,7 @@
             <!-- <img src="/images/animal.png" alt="Logo" class="icon logo-icon"> -->
         </div>
         <div class="heading-operation-right-block">
-            <div class="operation-item click-animation" @click="routerSwitcher('/login')">
+            <div class="operation-item click-animation" @click="routerSwitcher('/member_center_page')">
                 <img src="/images/icons/user.svg" alt="使用者 icon" class="icon">
             </div>
             <div class="cart-block click-animation" @click="routerSwitcher('/cart_page')">

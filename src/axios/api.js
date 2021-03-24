@@ -20,5 +20,19 @@ export default {
             method: 'GET',
             url: `${apiUrl.PRODUCTS_DATA}/${id}`
         })
+    },
+    signUp(data){
+        return axios({
+            method: 'POST',
+            url: apiUrl.SIGN_UP,
+            data
+        })       
+    },
+    logIn(data){
+        return axios({
+            method: 'POST',
+            url: apiUrl.LOG_IN,
+            data
+        })       
     }
 }

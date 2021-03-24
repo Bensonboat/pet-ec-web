@@ -19,7 +19,7 @@
         </div>
         <div class="coupon-button" @click="toggleCouponList">
             <div class="coupon-text-block">
-                <img src="/images/icons/fire.svg" alt="優惠卷圖案" class="coupon-icon">
+                <img src="/images/icons/coupon.svg" alt="優惠卷圖案" class="coupon-icon">
                 <div>選擇優惠卷序號</div>
             </div>
             <img src="/images/icons/black-back.svg" alt="向下箭頭圖案" class="arrow-icon">

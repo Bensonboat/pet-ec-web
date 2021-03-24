@@ -295,10 +295,12 @@
         border-radius: 5rem
         border: solid 2px #c99246
         background-color: #e3a652
-        position: absolute
-        bottom: 2rem
-        left: 50%
-        transform: translateX(-50%)
+        margin: 5rem auto
+        position: relative
+        // position: absolute
+        // bottom: 2rem
+        // left: 50%
+        // transform: translateX(-50%)
         font-size: 1.8rem
         font-weight: bold
         display: flex

@@ -2,14 +2,14 @@
     <div class="order-confirm-block">
         <div class="operate-button click-animation-small" @click="togglePaymentSelectPage">
             <div class="operate-text-block">
-                <img src="/images/icons/fire.svg" alt="付款圖案" class="operate-icon">
+                <img src="/images/icons/pay.svg" alt="付款圖案" class="operate-icon">
                 <div>選擇付款方式</div>
             </div>
             <img src="/images/icons/black-back.svg" alt="向下箭頭圖案" class="arrow-icon">
         </div>
         <div class="operate-button click-animation-small" @click="toggleMemberSelect">
             <div class="operate-text-block">
-                <img src="/images/icons/fire.svg" alt="星星圖案" class="operate-icon">
+                <img src="/images/icons/points.svg" alt="星星圖案" class="operate-icon">
                 <div>將資料註冊會員並累積點數</div>
             </div>
             <div class="tick-block">

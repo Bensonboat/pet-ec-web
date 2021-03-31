@@ -1,167 +1,208 @@
 <!-- 快速加入的商品 modal -->
 <template>
-    <div class="product-basic-spec">
-        <div class="all-spec-block">
-            <img src="/images/icons/del.png" alt="關閉按鈕" class="close-icon click-animation" @click="closeAllSpecModal">
-            <div class="product-attribute-block">
-                <img src="/images/p1.jpg" alt="商品圖片" class="product-image">
-                <div class="name-price-block">
-                    <div class="product-name">{{productData.name}}</div>
-                    <div class="price origin-price" :class="{'origin-price-remove' : productData.price !== ''}">{{productData.origin_price}}</div>
-                    <div class="price special-price">{{productData.price}}</div>
-                </div>
-            </div>
-            <div class="product-spec-block">
-                <div class="spec-text">規格</div>
-                <div class="spec-options-block">
-<!-- 
+  <div class="product-basic-spec">
+    <div class="all-spec-block">
+      <img
+        src="/images/icons/del.png"
+        alt="關閉按鈕"
+        class="close-icon click-animation"
+        @click="closeAllSpecModal"
+      />
+      <div class="product-attribute-block">
+        <img src="/images/p1.jpg" alt="商品圖片" class="product-image" />
+        <div class="name-price-block">
+          <div class="product-name">{{ productData.name }}</div>
+          <div
+            class="price origin-price"
+            :class="{ 'origin-price-remove': productData.price !== '' }"
+          >
+            {{ productData.origin_price }}
+          </div>
+          <div class="price special-price">{{ productData.price }}</div>
+        </div>
+      </div>
+      <div class="product-spec-block">
+        <div class="spec-text">規格</div>
+        <div class="spec-options-block">
+          <!-- 
                     <div class="spec-option selected">
                         2kg
                         <img src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
                     </div> -->
-                    <div 
-                        class="spec-option" v-for='(item, index) in specOptions' 
-                        :key="index"
-                        :class="{'selected' : item.selected}"
-                        @click="selectItem(index)"
-                    >
-                        {{item.name}}
-                        <img v-show='item.selected' src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
-                    </div>
-                    <!-- <div class="spec-option">6kg</div>
+          <div
+            class="spec-option"
+            v-for="(item, index) in specOptions"
+            :key="index"
+            :class="{ selected: item.selected }"
+            @click="selectItem(index)"
+          >
+            {{ item.name }}
+            <img
+              v-show="item.selected"
+              src="/images/icons/tick.svg"
+              alt="打勾圖案"
+              class="tick-icon"
+            />
+          </div>
+          <!-- <div class="spec-option">6kg</div>
                     <div class="spec-option">2kg</div>
                     <div class="spec-option">4kg</div>
                     <div class="spec-option">6kg</div>
                     <div class="spec-option">2kg</div>
                     <div class="spec-option">4kg</div>
                     <div class="spec-option">6kg</div> -->
-                </div>
-            </div>
-            <div class="number-block" :class="{'not-allow-operate' : !allowSelectNumber}">
-                <div>數量</div>
-                <div class="select-number-block">
-                    <div class="btn number-operate-block minus click-animation-small" @click="selectNumber(-1)">
-                        <img src="/images/icons/less.svg" alt="減一圖案" class="select-number-icon">
-                    </div>
-                    <div class="btn">{{number}}</div>
-                    <div class="btn number-operate-block add click-animation-small" @click="selectNumber(1)">
-                        <img src="/images/icons/plus.svg" alt="加一圖案" class="select-number-icon">
-                    </div>
-                </div>
-            </div>
-            <div class="confirm-btn click-animation" :class="{'ok' : number > 0}" @click="confirm">確認</div>
         </div>
+      </div>
+      <div
+        class="number-block"
+        :class="{ 'not-allow-operate': !allowSelectNumber }"
+      >
+        <div>數量</div>
+        <div class="select-number-block">
+          <div
+            class="btn number-operate-block minus click-animation-small"
+            @click="selectNumber(-1)"
+          >
+            <img
+              src="/images/icons/less.svg"
+              alt="減一圖案"
+              class="select-number-icon"
+            />
+          </div>
+          <div class="btn">{{ number }}</div>
+          <div
+            class="btn number-operate-block add click-animation-small"
+            @click="selectNumber(1)"
+          >
+            <img
+              src="/images/icons/plus.svg"
+              alt="加一圖案"
+              class="select-number-icon"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="confirm-btn click-animation"
+        :class="{ ok: number > 0 }"
+        @click="confirm"
+      >
+        確認
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-    import * as types from '../../store/mutation-types'
-    import store from '../../store'
-    // import API from '@/axios/api'
+import * as types from '../../store/mutation-types';
+// import store from '../../store';
+// import API from '@/axios/api'
 
-    export default {
-        name: 'ProductBasicSpec',
-        data(){
-            return {
-                allowSelectNumber: false,
-                productData: {},
-                specOptions: [],
-                // specOptions: [
-                //     {
-                //         name: '2kg',
-                //         value: '2kg',
-                //         selected: false
-                //     },
-                //     {
-                //         name: '4kg',
-                //         value: '4kg',
-                //         selected: false
-                //     },
-                //     {
-                //         name: '6kg',
-                //         value: '6kg',
-                //         selected: false
-                //     },
-                //     {
-                //         name: '8kg',
-                //         value: '8kg',
-                //         selected: false
-                //     },
-                //     {
-                //         name: '10kg',
-                //         value: '10kg',
-                //         selected: false
-                //     },
-                //     {
-                //         name: '2kg雞肉口味',
-                //         value: '2kg',
-                //         selected: false
-                //     },
-                //     {
-                //         name: '4kg字數測試 字數測試',
-                //         value: '4kg',
-                //         selected: false
-                //     },
-                //     {
-                //         name: 'M',
-                //         value: '6kg',
-                //         selected: false
-                //     },
-                // ],
-                number: 0
-            }
-        },
-        mounted(){
-            this.getSingleProductData()
-        },
-        methods: {
-            closeAllSpecModal(){
-                store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, false)
-            },
-            selectItem(index){
-                this.specOptions.map((item, key) => {
-                    if(index === key){
-                        item.selected = true
-                        this.allowSelectNumber = true
-                        this.productData.price = item.price;
-                        this.productData.origin_price = item.origin_price
-                    } else {
-                        item.selected = false
-                    }
-                })
-            },
-            selectNumber(number){
-                this.number = this.number + number;
-                if(this.number < 0){
-                    this.number = 0
-                }
-            },
-            confirm(){
-                alert('Service unavailable now');
-                this.closeAllSpecModal();
-            },
-            getSingleProductData(){
-                let data =  store.state.singleProductData
-                this.productData = {
-                    name: data.title,
-                    id: data.id,
-                    price: 2000,
-                    origin_price: 4000
-                }
-
-                let skus = data.sku
-                this.specOptions = skus.map(item => {
-                     return {
-                        name: item.sku,
-                        value: item.sku,
-                        selected: false,
-                        origin_price: item.origin_price,
-                        price: item.price
-                    }
-                })
-            }
+export default {
+  name: 'ProductBasicSpec',
+  data() {
+    return {
+      allowSelectNumber: false,
+      productData: {},
+      specOptions: [],
+      // specOptions: [
+      //     {
+      //         name: '2kg',
+      //         value: '2kg',
+      //         selected: false
+      //     },
+      //     {
+      //         name: '4kg',
+      //         value: '4kg',
+      //         selected: false
+      //     },
+      //     {
+      //         name: '6kg',
+      //         value: '6kg',
+      //         selected: false
+      //     },
+      //     {
+      //         name: '8kg',
+      //         value: '8kg',
+      //         selected: false
+      //     },
+      //     {
+      //         name: '10kg',
+      //         value: '10kg',
+      //         selected: false
+      //     },
+      //     {
+      //         name: '2kg雞肉口味',
+      //         value: '2kg',
+      //         selected: false
+      //     },
+      //     {
+      //         name: '4kg字數測試 字數測試',
+      //         value: '4kg',
+      //         selected: false
+      //     },
+      //     {
+      //         name: 'M',
+      //         value: '6kg',
+      //         selected: false
+      //     },
+      // ],
+      number: 0,
+    };
+  },
+  mounted() {
+    this.getSingleProductData();
+  },
+  methods: {
+    closeAllSpecModal() {
+      this.$store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, false);
+    },
+    selectItem(index) {
+      this.specOptions.map((item, key) => {
+        if (index === key) {
+          item.selected = true;
+          this.allowSelectNumber = true;
+          this.productData.price = item.price;
+          this.productData.origin_price = item.origin_price;
+        } else {
+          item.selected = false;
         }
-    }
+      });
+    },
+    selectNumber(number) {
+      this.number = this.number + number;
+      if (this.number < 0) {
+        this.number = 0;
+      }
+    },
+    confirm() {
+      alert('Service unavailable now');
+      this.closeAllSpecModal();
+    },
+    getSingleProductData() {
+      let data = this.$store.state.singleProductData;
+      this.productData = {
+        name: data.title,
+        id: data.id,
+        price: 2000,
+        origin_price: 4000,
+      };
+
+      let skus = data.skus;
+      if (skus.length > 0) {
+        this.specOptions = skus.map((item) => {
+          return {
+            name: item.name,
+            value: item.sku,
+            selected: false,
+            origin_price: item.origin_price,
+            price: item.price,
+          };
+        });
+      }
+    },
+  },
+};
 </script>
 
 <style lang="sass" scoped>

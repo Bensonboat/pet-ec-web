@@ -1,56 +1,69 @@
 <template>
-    <div class="index-content">
-        <the-heading scrollOnToppest='scrollOnToppest' :class="[!scrollOnToppest ? 'transparent-heading' : '']"/>
-        <router-view class="index-content-router-view" ref='index_content_router' @scroll.native="handleScroll"/>
-        <!-- <div class="default-top-icon-block top-icon-block" v-show="this.$route.path !== '/home_page'">
+  <div class="index-content">
+    <the-heading
+      scrollOnToppest="scrollOnToppest"
+      :class="[!scrollOnToppest ? 'transparent-heading' : '']"
+    />
+    <router-view
+      class="index-content-router-view"
+      ref="index_content_router"
+      @scroll.native="handleScroll"
+    />
+    <!-- <div class="default-top-icon-block top-icon-block" v-show="this.$route.path !== '/home_page'">
             <img src="/images/top.png" alt="to top icon" class="default-top-icon top-icon">
         </div> -->
-        <transition name='basic'>
-            <product-basic-spec v-if="getShowProductAllSpecModalStatus"/>
-        </transition>
-    </div>
+    <transition name="basic">
+      <product-basic-spec v-if="getShowProductAllSpecModalStatus" />
+    </transition>
+  </div>
 </template>
 
 <script>
-    import TheHeading from './TheHeading.vue'
-    import ProductBasicSpec from '@/components/layouts/ProductBasicSpec'
-    import store from '@/store'
-    // import * as types from '@/store/mutation-types.js'
+import TheHeading from './TheHeading.vue';
+import ProductBasicSpec from '@/components/layouts/ProductBasicSpec';
+// import store from '@/store'
+// import * as types from '@/store/mutation-types.js'
 
-    export default {
-        name: 'IndexContent',
-        components: {
-            TheHeading,
-            ProductBasicSpec
-        },
-        data(){
-            return {
-                scrollOnToppest: true,
-                currentHeight: ''
-            }
-        },
-        computed: {
-            getShowProductAllSpecModalStatus(){
-                return store.state.showProductAllSpecModal
-            }
-        },
-        methods: {
-            handleScroll(){
-                // 是否顯示 Heading
-                let current_height = this.$refs.index_content_router.$el.scrollTop;
-                if(current_height > 100){
-                    this.scrollOnToppest = false;
+export default {
+  name: 'IndexContent',
+  components: {
+    TheHeading,
+    ProductBasicSpec,
+  },
+  data() {
+    return {
+      scrollOnToppest: true,
+      currentHeight: '',
+    };
+  },
+  mounted() {
+    this.getCartData();
+  },
+  computed: {
+    getShowProductAllSpecModalStatus() {
+      return this.$store.state.showProductAllSpecModal;
+    },
+  },
+  methods: {
+    handleScroll() {
+      // 是否顯示 Heading
+      let current_height = this.$refs.index_content_router.$el.scrollTop;
+      if (current_height > 100) {
+        this.scrollOnToppest = false;
 
-                    if(this.currentHeight > current_height){
-                        this.scrollOnToppest = true
-                    }
-                    this.currentHeight = current_height;
-                } else {
-                    this.scrollOnToppest = true
-                }
-            },
+        if (this.currentHeight > current_height) {
+          this.scrollOnToppest = true;
         }
-    }
+        this.currentHeight = current_height;
+      } else {
+        this.scrollOnToppest = true;
+      }
+    },
+    getCartData() {
+      this.$store.dispatch('getCartData');
+    },
+  },
+};
 </script>
 
 <style lang="sass" scoped>
@@ -64,7 +77,7 @@
         // width: 90%
         margin: auto
         // background-color: #fff
-    .index-content-router-view::-webkit-scrollbar 
+    .index-content-router-view::-webkit-scrollbar
         display: none
     // .top-icon-block
     //     position: absolute

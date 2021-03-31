@@ -34,5 +34,24 @@ export default {
             url: apiUrl.LOG_IN,
             data
         })       
+    },
+    getCartData(){
+        return axios({
+            method: 'GET',
+            url: apiUrl.CART
+        })
+    },
+    AddCartItem(data){
+        return axios({
+            method: 'PUT',
+            url: apiUrl.CART,
+            data
+        }) 
+    },
+    getAllCategories(){
+        return axios({
+            method: 'GET',
+            url: apiUrl.CATEGORIES
+        })
     }
 }

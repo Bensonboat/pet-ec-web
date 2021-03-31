@@ -11,3 +11,9 @@ export const SIGN_UP = BASE_URL + '/auth/register'
 
 // 登入
 export const LOG_IN = BASE_URL + '/auth/login'
+
+// 購物車
+export const CART = BASE_URL + '/cart'
+
+// 類別
+export const CATEGORIES = BASE_URL + '/categories'

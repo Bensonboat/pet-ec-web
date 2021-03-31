@@ -1,122 +1,140 @@
 <!-- 商品列表 -->
 <template>
-    <div class="default-product-basic-data product-basic-data">
+  <div class="default-product-basic-data product-basic-data">
+    <div
+      class="product-content-block"
+      @click="
+        checkProductDetail(product_data.type, product_data.id) +
+          getCurrentID(product_data.id)
+      "
+    >
+      <div class="product-top-block">
+        <!-- <div class="product-image-block"> -->
         <div
-            class="product-content-block"
-            @click="checkProductDetail(product_data.type, product_data.id) + getCurrentID(product_data.id)"
+          v-if="showMultiplePics"
+          class="product-image-block"
+          v-touch:swipe.left="changeCurrentImage(1)"
+          v-touch:swipe.right="changeCurrentImage(-1)"
         >
-            <div class="product-top-block">
-                <!-- <div class="product-image-block"> -->
-                    <div v-if="showMultiplePics" class="product-image-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)">
-                        <img class="product-image" v-show='imageIndex === currentShowsImgIndex' v-for='(image, imageIndex) in product_data.img' :key="imageIndex" :src="image" alt="photos">
-                        <div class="photo-dots">
-                            <div 
-                                v-for='(item, index) in product_data.img' 
-                                :key="index" 
-                                class="dot"
-                                :class="index === currentShowsImgIndex ? 'selected-img-dot' : '' "
-                            ></div>
-                        </div>
-                    </div>
-                    <div v-else class="product-image-block">
-                        <img
-                            :src="product_data.img[0]"
-                            alt="product image"
-                            class="product-image"
-                        />
-                    </div>
-                <!-- </div> -->
-                <div
-                    class="quick-add-icon-block click-animation"
-                    @click.stop="getCurrentID(product_data.id) + showProductAllSpecModal()"
-                >
-                    <img src="/images/icons/bag-add.svg" alt="快速加入按鈕"/>
-                </div>
-            </div>
-            <div class="product-bottom-block">
-                <div class="product-name-block default-text-color">
-                    {{ product_data.name }}
-                </div>
-                <div class="product-price-block">
-                    <div
-                        class="default-deep-green-color"
-                        :class="[
-                            product_data.price ? 'original-price-remove' : '',
-                        ]"
-                    >
-                        NT${{ product_data.origin_price }}
-                    </div>
-                    <div
-                        class="default-red-color special-price"
-                        v-if="product_data.price"
-                    >
-                        NT${{ product_data.price }}
-                    </div>
-                </div>
-                <!-- <div v-if='showQuickAddIcon' class="product-cart-block" @click="showQuickAddModal">
+          <img
+            class="product-image"
+            v-show="imageIndex === currentShowsImgIndex"
+            v-for="(image, imageIndex) in product_data.img"
+            :key="imageIndex"
+            :src="image"
+            alt="photos"
+          />
+          <div class="photo-dots">
+            <div
+              v-for="(item, index) in product_data.img"
+              :key="index"
+              class="dot"
+              :class="index === currentShowsImgIndex ? 'selected-img-dot' : ''"
+            ></div>
+          </div>
+        </div>
+        <div v-else class="product-image-block">
+          <img
+            :src="product_data.img[0]"
+            alt="product image"
+            class="product-image"
+          />
+        </div>
+        <!-- </div> -->
+        <div
+          class="quick-add-icon-block click-animation"
+          @click.stop="getCurrentID(product_data.id)"
+        >
+          <img src="/images/icons/bag-add.svg" alt="快速加入按鈕" />
+        </div>
+      </div>
+      <div class="product-bottom-block">
+        <div class="product-name-block default-text-color">
+          {{ product_data.name }}
+        </div>
+        <div class="product-price-block">
+          <div
+            class="default-deep-green-color"
+            :class="[product_data.price ? 'original-price-remove' : '']"
+          >
+            NT${{ product_data.origin_price }}
+          </div>
+          <div
+            class="default-red-color special-price"
+            v-if="product_data.price"
+          >
+            NT${{ product_data.price }}
+          </div>
+        </div>
+        <!-- <div v-if='showQuickAddIcon' class="product-cart-block" @click="showQuickAddModal">
                     <img
                         src="/images/add-to-bag.png"
                         alt="cart image"
                         class="cart-image"
                     />
                 </div> -->
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import store from '@/store'
-import * as types from '@/store/mutation-types.js'
-import API from '@/axios/api'
+// import store from '@/store';
+import * as types from '@/store/mutation-types.js';
+import API from '@/axios/api';
 
 export default {
-    name: "ProductBasicData",
-    props: {
-        product_data: Object,
-        showQuickAddIcon: Boolean,
-        showMultiplePics: {
-            type: Boolean,
-            default: true
+  name: 'ProductBasicData',
+  props: {
+    product_data: Object,
+    showQuickAddIcon: Boolean,
+    showMultiplePics: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  data() {
+    return {
+      currentShowsImgIndex: 0,
+    };
+  },
+  methods: {
+    // showQuickAddModal() {
+    //     this.$emit("show-quick-add-modal");
+    // },
+    checkProductDetail(type, id) {
+      this.$router.push({
+        path: '/product/' + type + '/' + id,
+      });
+    },
+    changeCurrentImage(value) {
+      return () => {
+        this.currentShowsImgIndex = this.currentShowsImgIndex + value;
+        if (this.currentShowsImgIndex < 0) {
+          this.currentShowsImgIndex = this.product_data.img.length - 1;
+          return;
         }
-    },
-    data() {
-        return {
-            currentShowsImgIndex: 0
-        };
-    },
-    methods: {
-        // showQuickAddModal() {
-        //     this.$emit("show-quick-add-modal");
-        // },
-        checkProductDetail(type, id) {
-            this.$router.push({
-                path: "/product/" + type + "/" + id,
-            });
-        },
-        changeCurrentImage(value){
-            return () => {
-                this.currentShowsImgIndex = this.currentShowsImgIndex + value;
-                if(this.currentShowsImgIndex < 0){
-                    this.currentShowsImgIndex = this.product_data.img.length - 1
-                    return
-                }
-                if(this.currentShowsImgIndex >= this.product_data.img.length ){
-                    this.currentShowsImgIndex = 0
-                }
-            }
-        },
-        showProductAllSpecModal(){
-            store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true)
-        },
-        getCurrentID(id){
-            API.getSingleProduct(id)
-                .then(res => {
-                    let data = res.data.data;
-                    store.commit(types.GET_SINGLE_PRODUCT_DATA, data)
-                })
+        if (this.currentShowsImgIndex >= this.product_data.img.length) {
+          this.currentShowsImgIndex = 0;
         }
+      };
     },
+    showProductAllSpecModal() {
+      this.$store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true);
+    },
+    getCurrentID(id) {
+      this.$store.dispatch('toggleLoading', true);
+      API.getSingleProduct(id)
+        .then((res) => {
+          let data = res.data.data;
+          this.$store.commit(types.GET_SINGLE_PRODUCT_DATA, data);
+          this.$store.dispatch('toggleLoading', false);
+        })
+        .then(() => {
+          this.showProductAllSpecModal();
+        });
+    },
+  },
 };
 </script>
 

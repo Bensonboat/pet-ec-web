@@ -1,5 +1,5 @@
-// // import * as types from './mutation-types';
-// // import allApi from '../axios/api';
+// import * as types from './mutation-types';
+import allApi from '@/axios/api';
 
 // export const scrollToTop = () => {
 //     let current_height = document.body.scrollTop;
@@ -21,3 +21,17 @@
 //     let current_height = document.body.scrollTop;
 //     return current_height
 // }
+
+// ========== 購物車 ==========
+export const getCartData = (context) => {
+  allApi.getCartData()
+    .then(res => {
+      let data = res.data.data.items;
+      console.log(data, 'actions')
+      context.commit('GET_CART_DATA', data)
+    })
+}
+
+export const toggleLoading = (context, is_loading) => {
+  context.commit('IS_LOADING', is_loading)
+}

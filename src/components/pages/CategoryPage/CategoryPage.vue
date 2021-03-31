@@ -122,7 +122,9 @@
             // 預設貓咪類別
             if(this.$route.params.type === undefined){
                 this.$router.replace({ name: "CategoryPage", params: {type: 'cat'} })
-            }
+            };
+
+            this.getAllCategories()
         },
         methods: {
             toggleSelectOption(index){
@@ -146,6 +148,12 @@
                 if(this.selectType === ''){ return };
                 this.$router.push('/product_list_page')
             },
+            getAllCategories(){
+                this.$api.getAllCategories()
+                    .then(res => {
+                        console.log(res, 'category')
+                    })
+            }
         }
     }
 </script>

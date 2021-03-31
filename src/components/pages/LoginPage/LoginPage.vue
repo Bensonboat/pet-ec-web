@@ -1,183 +1,218 @@
 <template>
-    <div class="login-page">
-        <div class="page-header">
-            <div @click="previousPage" class="click-animation pre-icon">
-                <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon">
-            </div>
-            <div class="toggle-mode-btn" @click="toggleLogInMode">{{isLoginMode ? '註冊' : '登入'}}</div>
-            <div>LOGO</div>
-        </div>
-        <div class="content-block">
-            <div class="bg" :style="{ backgroundPosition: position }"></div>
-            <div class="title flex-center">登入</div>
-            <div class="form-block">
-                <div class="btn-shape form-input-block">
-                    <img src="/images/icons/id.svg" alt="" class="icon">
-                    <div class="form-input-text" v-if="!showEmailInput && email === ''">帳號</div>
-                    <input 
-                        type="email" 
-                        class="input" 
-                        v-model="email" 
-                        @focus="toggleInput('email')" 
-                        @blur="toggleInput('email') + validateEmail()"
-                    >
-                </div>
-                <div class="btn-shape form-input-block">
-                    <img src="/images/icons/password.svg" alt="" class="icon">
-                    <div class="form-input-text" v-if="!showPasswordInput && password === ''">密碼</div>
-                    <input 
-                        :type="type" 
-                        class="input" 
-                        v-model="password" 
-                        @focus="toggleInput('password')" 
-                        @blur="toggleInput('password') + validatePassword()"    
-                    >
-                    <div @click="toggleShowPassword">
-                        <img src="/images/icons/eye-off.svg" alt="" class="icon check-password" v-if="type === 'password'">
-                        <img src="/images/icons/eye.svg" alt="" class="icon check-password" v-else>
-                    </div>
-                </div>
-                <div class="alert-msg flex-center" v-show='errorMessage !== ""'>
-                    <img src="/images/icons/error.svg" alt="提示圖案" class="error-icon">
-                    <span>{{errorMessage}}</span>
-                </div>
-                <div class="btn-shape login-btn" @click="confirm">{{isLoginMode ? '登入' : '註冊'}}</div>
-                <div class="forget-password-block">
-                    <div class="text">忘記密碼?</div>
-                </div>
-                <div class="gap-line">
-                    <div class="text flex-center">或</div>
-                </div>
-                <div class="others-login-block">
-                    <div class="btn-shape other-login-btn flex-center">
-                        <img src="/images/icons/google.svg" alt="google 圖案" class="sms-icon">
-                        使用Google帳號登入
-                    </div>
-                    <div class="btn-shape other-login-btn flex-center">
-                        <img src="/images/icons/facebook.svg" alt="facebook 圖案" class="sms-icon">
-                        使用Facebook帳號登入
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- <loading-mask/> -->
+  <div class="login-page">
+    <div class="page-header">
+      <div @click="previousPage" class="click-animation pre-icon">
+        <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon" />
+      </div>
+      <div class="toggle-mode-btn" @click="toggleLogInMode">
+        {{ isLoginMode ? '註冊' : '登入' }}
+      </div>
+      <div>LOGO</div>
     </div>
+    <div class="content-block">
+      <div class="bg" :style="{ backgroundPosition: position }"></div>
+      <div class="title flex-center">登入</div>
+      <div class="form-block">
+        <div class="btn-shape form-input-block">
+          <img src="/images/icons/id.svg" alt="" class="icon" />
+          <div class="form-input-text" v-if="!showEmailInput && email === ''">
+            帳號
+          </div>
+          <input
+            type="email"
+            class="input"
+            v-model="email"
+            @focus="toggleInput('email')"
+            @blur="toggleInput('email') + validateEmail()"
+          />
+        </div>
+        <div class="btn-shape form-input-block">
+          <img src="/images/icons/password.svg" alt="" class="icon" />
+          <div
+            class="form-input-text"
+            v-if="!showPasswordInput && password === ''"
+          >
+            密碼
+          </div>
+          <input
+            :type="type"
+            class="input"
+            v-model="password"
+            @focus="toggleInput('password')"
+            @blur="toggleInput('password') + validatePassword()"
+          />
+          <div @click="toggleShowPassword">
+            <img
+              src="/images/icons/eye-off.svg"
+              alt=""
+              class="icon check-password"
+              v-if="type === 'password'"
+            />
+            <img
+              src="/images/icons/eye.svg"
+              alt=""
+              class="icon check-password"
+              v-else
+            />
+          </div>
+        </div>
+        <div class="alert-msg flex-center" v-show="errorMessage !== ''">
+          <img
+            src="/images/icons/error.svg"
+            alt="提示圖案"
+            class="error-icon"
+          />
+          <span>{{ errorMessage }}</span>
+        </div>
+        <div class="btn-shape login-btn" @click="confirm">
+          {{ isLoginMode ? '登入' : '註冊' }}
+        </div>
+        <div class="forget-password-block">
+          <div class="text">忘記密碼?</div>
+        </div>
+        <div class="gap-line">
+          <div class="text flex-center">或</div>
+        </div>
+        <div class="others-login-block">
+          <div class="btn-shape other-login-btn flex-center">
+            <img
+              src="/images/icons/google.svg"
+              alt="google 圖案"
+              class="sms-icon"
+            />
+            使用Google帳號登入
+          </div>
+          <div class="btn-shape other-login-btn flex-center">
+            <img
+              src="/images/icons/facebook.svg"
+              alt="facebook 圖案"
+              class="sms-icon"
+            />
+            使用Facebook帳號登入
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <loading-mask/> -->
+  </div>
 </template>
 
 <script>
 // import LoadingMask from '@/components/layouts/LoadingMask'
-import API from '@/axios/api'
+import API from '@/axios/api';
 export default {
-    name: "LoginPage",
-    // components: {
-    //     LoadingMask
-    // }
-    data(){
-        return {
-            position: '',
-            email: '',
-            password: '',
-            showEmailInput: false,
-            showPasswordInput: false,
-            type: 'password',
-            isLoginMode: true,
-            errorMessage: ''
-        }
-    },
-    mounted() {
-        let x = 0;
-        setInterval(() => {
-            x--;
-            this.position = `${x}px ${x}px`;
+  name: 'LoginPage',
+  // components: {
+  //     LoadingMask
+  // }
+  data() {
+    return {
+      position: '',
+      email: '',
+      password: '',
+      showEmailInput: false,
+      showPasswordInput: false,
+      type: 'password',
+      isLoginMode: true,
+      errorMessage: '',
+    };
+  },
+  mounted() {
+    let x = 0;
+    setInterval(() => {
+      x--;
+      this.position = `${x}px ${x}px`;
 
-            if (x < -2000) {
-                x = 0;
-            }
-        }, 20);
+      if (x < -2000) {
+        x = 0;
+      }
+    }, 20);
+  },
+  methods: {
+    toggleInput(type) {
+      if (type === 'email') {
+        this.showEmailInput = !this.showEmailInput;
+      } else if (type === 'password') {
+        this.showPasswordInput = !this.showPasswordInput;
+      }
     },
-    methods: {
-        toggleInput(type){
-            if(type === 'email'){
-                this.showEmailInput = !this.showEmailInput
-            } else if (type === 'password'){
-                this.showPasswordInput = !this.showPasswordInput
-            }
-        },
-        previousPage(){
-            this.$router.go(-1)
-        },
-        toggleShowPassword(){
-            if(this.type === 'password'){
-                this.type = 'text'
-            } else {
-                this.type = 'password'
-            }
-        },
-        toggleLogInMode(){
-            this.isLoginMode = !this.isLoginMode
-        },
-        confirm(){
-            let data = {
-                email: this.email,
-                password: this.password
-            }
+    previousPage() {
+      this.$router.go(-1);
+    },
+    toggleShowPassword() {
+      if (this.type === 'password') {
+        this.type = 'text';
+      } else {
+        this.type = 'password';
+      }
+    },
+    toggleLogInMode() {
+      this.isLoginMode = !this.isLoginMode;
+    },
+    confirm() {
+      let data = {
+        email: this.email,
+        password: this.password,
+      };
 
-            if(this.isLoginMode){
-                this.logIn(data)
-            } else {
-                this.signUp(data)
-            }
-        },
-        signUp(data){
-            // ＡＰＩ有限制密碼 6-32 字數
-            API.signUp(data)
-                .then(res => {
-                    console.log(res, 'sign up')
-                })
-        },
-        logIn(data){
-            API.logIn(data)
-                .then(res => {
-                    console.log(res, 'log in')
-                })
-                .catch(() => {
-                    this.switchErrorMessage('invalid-login')
-                })
-        },
-        validatePassword(){
-            this.resetErrorMessage();
-            let password = this.password;
-            if(password.length < 6 || password.length > 32){
-                this.switchErrorMessage('invalid-password-format')
-            }
-        },
-        validateEmail(){
-            this.resetErrorMessage();
-            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.email)){
-                return
-            }
-            this.switchErrorMessage('invalid-email-format')
-        },
-        switchErrorMessage(type){
-            switch (type) {
-                case 'invalid-email-format':
-                    this.errorMessage = '輸入的 email 格式有誤，請重新確認';
-                    break;
-                case 'invalid-password-format':
-                    this.errorMessage = '密碼長度須介於 6 - 32 個字之間';
-                    break;
-                case 'invalid-login':
-                    this.errorMessage = '帳號或密碼輸入有誤，請重新輸入';
-                    break;
-                default: 
-                    break;
-            }
-        },
-        resetErrorMessage(){
-            this.errorMessage = ''
-        }
-    }
+      if (this.isLoginMode) {
+        this.logIn(data);
+      } else {
+        this.signUp(data);
+      }
+    },
+    signUp(data) {
+      // ＡＰＩ有限制密碼 6-32 字數
+      API.signUp(data).then((res) => {
+        console.log(res, 'sign up');
+      });
+    },
+    logIn(data) {
+      API.logIn(data)
+        .then((res) => {
+          console.log(res, 'log in');
+        })
+        .catch(() => {
+          this.switchErrorMessage('invalid-login');
+        });
+    },
+    validatePassword() {
+      this.resetErrorMessage();
+      let password = this.password;
+      if (password.length < 6 || password.length > 32) {
+        this.switchErrorMessage('invalid-password-format');
+      }
+    },
+    validateEmail() {
+      this.resetErrorMessage();
+      if (
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+          this.email
+        )
+      ) {
+        return;
+      }
+      this.switchErrorMessage('invalid-email-format');
+    },
+    switchErrorMessage(type) {
+      switch (type) {
+        case 'invalid-email-format':
+          this.errorMessage = '輸入的 email 格式有誤，請重新確認';
+          break;
+        case 'invalid-password-format':
+          this.errorMessage = '密碼長度須介於 6 - 32 個字之間';
+          break;
+        case 'invalid-login':
+          this.errorMessage = '帳號或密碼輸入有誤，請重新輸入';
+          break;
+        default:
+          break;
+      }
+    },
+    resetErrorMessage() {
+      this.errorMessage = '';
+    },
+  },
 };
 </script>
 
@@ -329,5 +364,4 @@ export default {
         height: 1.6rem
         position: absolute
         left: 2.5rem
-
 </style>

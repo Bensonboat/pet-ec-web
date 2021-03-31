@@ -10,6 +10,9 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
+import API from '@/axios/api';
+Vue.prototype.$api = API;
+
 import Vue2TouchEvents from 'vue2-touch-events'
 Vue.use(Vue2TouchEvents)
 

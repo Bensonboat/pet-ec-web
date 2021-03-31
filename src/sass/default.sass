@@ -2,103 +2,100 @@
     // border: solid 1px pink
 
 // 字體
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap&subset=chinese-traditional');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap&subset=chinese-traditional')
 
 // 顏色
 @import '@/sass/system_color.sass'
 
 .modal-mask
-    // width: 100vw
-    width: 100%
-    height: calc(100 * var(--vh))
-    background-color: rgba(0, 0, 0, .7)
-    top: 0
-    left: 0
-    position: absolute
-    z-index: 9999
+  width: 100%
+  height: calc(100 * var(--vh))
+  background-color: rgba(0, 0, 0, .7)
+  top: 0
+  left: 0
+  position: absolute
+  z-index: 9999
 
-body, html 
-    padding: 0
-    margin: 0
-    touch-action: manipulation
-    font-size: 10px
-    overflow: hidden
-    font-family: NotoSansTC, Roboto
-    color: blue
-    background-color: #e5ceae
+body, html
+  padding: 0
+  margin: 0
+  touch-action: manipulation
+  font-size: 10px
+  overflow: hidden
+  font-family: NotoSansTC, Roboto
+  color: blue
+  background-color: #e5ceae
 
 // ProductDetailPage.vue
 .default-product-detail-page
-    .default-more-content-block
-        font-size: 1.4rem
+  .default-more-content-block
+    font-size: 1.4rem
 
 // DetailNavRow.vue
 .default-detail-nav-row
-    .default-nav-route
-        font-size: 1.5rem
+  .default-nav-route
+    font-size: 1.5rem
 
 // CustomerReview.vue
 .default-customer-review
-    .default-user-avatar
-        width: 3.5rem
-        height: 3.5rem
-    .default-user-name
-        font-size: 1.4rem
-    .default-post-time
-        font-size: 1.2rem
+  .default-user-avatar
+    width: 3.5rem
+    height: 3.5rem
+  .default-user-name
+    font-size: 1.4rem
+  .default-post-time
+    font-size: 1.2rem
 
 // ProductDescription.vue
 .default-product-description
-    // border-bottom: solid 1px rgba(0,0,0,.05)
-    // padding-bottom: 3rem
-    .default-description-text
-        font-size: 1.6rem
+  .default-description-text
+    font-size: 1.6rem
 
 .flex-center
-    display: flex
-    align-items: center
-    justify-content: center
+  display: flex
+  align-items: center
+  justify-content: center
 
 @media screen and (max-width: 320px)
-    body, html 
-        font-size: 10px
+  body, html
+    font-size: 10px
 
 @media screen and (min-width: 375px)
-    body, html 
-        font-size: 11.5px
+  body, html
+    font-size: 11.5px
 
 @media screen and (min-width: 768px)
-    body, html 
-        font-size: 15px
+  body, html
+    font-size: 15px
 
 @media screen and (min-width: 900px)
-    body, html 
-        font-size: 18px
+  body, html
+    font-size: 18px
     .default-product-basic-data
-        width: 30%
-        
+      width: 30%
+
 // Basic transition
 .basic-leave
-    opacity: 1
+  opacity: 1
 .basic-leave-active
-    transition: opacity .2s
+  transition: opacity .2s
 .basic-leave-to
-    opacity: 0
+  opacity: 0
 .basic-enter
-    opacity: 0
+  opacity: 0
 .basic-enter-active
-    transition: opacity .2s
+  transition: opacity .2s
 .basic-enter-to
-    opacity: 1
+  opacity: 1
 
 // @media (hover: hover)
 .click-animation
-    cursor: pointer
-    &:active
-        transform: scale(1.1)
-        opacity: .5
+  cursor: pointer
+  &:active
+    transform: scale(1.1)
+    opacity: .5
 .click-animation-small
-    cursor: pointer
-    &:active
-        transform: scale(1.02)
-        opacity: .4
+  cursor: pointer
+  &:active
+    transform: scale(1.02)
+    opacity: .4

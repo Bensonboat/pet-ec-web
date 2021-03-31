@@ -1,116 +1,126 @@
 <!-- 商品詳情頁 -->
 <template>
-    <div class="default-product-detail-page product-detail-page">
-        <div class="product-content-block">
-            <div class="product-attribute">
-                <div class="img-block" v-touch:swipe.left="changeCurrentImage(1)" v-touch:swipe.right="changeCurrentImage(-1)">
-                    <img v-show='imageIndex === currentShowsImgIndex ' v-for='(image, imageIndex) in productImgs' :key="imageIndex" :src="image" alt="photos">
-                    <div class='img-dots-block'>
-                        <div 
-                            v-for="(item, index) in productImgs" 
-                            :key="index" 
-                            class='dots'
-                            :class="{'selected-img-dot': index === currentShowsImgIndex }"
-                            @click="toggleCurrentShowsImg(index)"
-                        ></div>
-                    </div>
-                </div>
-                <div class="product-attribute-block">
-                    <div class="name">EQUILÍBRIO 尊爵 機能天然糧</div>
-                    <div class="price-block">
-                        <div class="normal-price">NT$4500</div>
-                        <div class="special-price">NT$2380</div>
-                    </div>
-                </div>
-            </div>
-            <div class="detail-info-block">
-                <detail-nav-row @toggle-product-info='toggleProductInfo'/>
-                <div class="default-more-content-block more-content-block">
-                    <product-description v-show="showProductInfo === 'description'"/>
-                    <product-fulfillment v-show="showProductInfo === 'fulfillment'"/>
-                    <product-review v-show="showProductInfo === 'review'"/>
-                </div>
-            </div>
+  <div class="default-product-detail-page product-detail-page">
+    <div class="product-content-block">
+      <div class="product-attribute">
+        <div
+          class="img-block"
+          v-touch:swipe.left="changeCurrentImage(1)"
+          v-touch:swipe.right="changeCurrentImage(-1)"
+        >
+          <img
+            v-show="imageIndex === currentShowsImgIndex"
+            v-for="(image, imageIndex) in productImgs"
+            :key="imageIndex"
+            :src="image"
+            alt="photos"
+          />
+          <div class="img-dots-block">
+            <div
+              v-for="(item, index) in productImgs"
+              :key="index"
+              class="dots"
+              :class="{ 'selected-img-dot': index === currentShowsImgIndex }"
+              @click="toggleCurrentShowsImg(index)"
+            ></div>
+          </div>
         </div>
-        <product-recommand-block/>
-        <add-to-cart-button @click.native="showProductAllSpecModal"/>
-        <!-- <product-basic-spec/> -->
+        <div class="product-attribute-block">
+          <div class="name">EQUILÍBRIO 尊爵 機能天然糧</div>
+          <div class="price-block">
+            <div class="normal-price">NT$4500</div>
+            <div class="special-price">NT$2380</div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-info-block">
+        <detail-nav-row @toggle-product-info="toggleProductInfo" />
+        <div class="default-more-content-block more-content-block">
+          <product-description v-show="showProductInfo === 'description'" />
+          <product-fulfillment v-show="showProductInfo === 'fulfillment'" />
+          <product-review v-show="showProductInfo === 'review'" />
+        </div>
+      </div>
     </div>
+    <product-recommand-block />
+    <add-to-cart-button @click.native="showProductAllSpecModal" />
+    <!-- <product-basic-spec/> -->
+  </div>
 </template>
 
 <script>
 // import ProductSpec from '@/components/pages/ProductListPage/ProductSpec'
-import DetailNavRow from './DetailNavRow'
-import ProductDescription from './ProductDescription'
-import ProductFulfillment from './ProductFulfillment'
-import ProductReview from './ProductReview'
-import ProductRecommandBlock from './ProductRecommandBlock'
-import AddToCartButton from './AddToCartButton'
+import DetailNavRow from './DetailNavRow';
+import ProductDescription from './ProductDescription';
+import ProductFulfillment from './ProductFulfillment';
+import ProductReview from './ProductReview';
+import ProductRecommandBlock from './ProductRecommandBlock';
+import AddToCartButton from './AddToCartButton';
 // import ProductBasicSpec from '@/components/layouts/ProductBasicSpec'
 
-import store from '@/store'
-import * as types from '@/store/mutation-types.js'
+// import store from '@/store'
+import * as types from '@/store/mutation-types.js';
 
 export default {
-    name: 'ProductDetailPage',
-    components: {
-        // ProductSpec,
-        DetailNavRow,
-        ProductDescription,
-        ProductFulfillment,
-        ProductReview,
-        ProductRecommandBlock,
-        AddToCartButton,
-        // ProductBasicSpec
+  name: 'ProductDetailPage',
+  components: {
+    // ProductSpec,
+    DetailNavRow,
+    ProductDescription,
+    ProductFulfillment,
+    ProductReview,
+    ProductRecommandBlock,
+    AddToCartButton,
+    // ProductBasicSpec
+  },
+  data() {
+    return {
+      productAttr: {
+        id: '',
+        type: '',
+      },
+      productImgs: ['/images/p1.jpg', '/images/test_size.png'],
+      currentShowsImgIndex: 0,
+      showProductInfo: 'description',
+    };
+  },
+  mounted() {
+    this.productAttr.id = this.$route.params.id;
+    this.productAttr.type = this.$route.params.type;
+    // this.productData.name = this.productAttr.type + ':' + this.productAttr.id;
+    this.showProductInfo = 'description';
+  },
+  methods: {
+    toggleProductInfo(value) {
+      this.showProductInfo = value;
     },
-    data(){
-        return {
-            productAttr: {
-                id: '',
-                type: ''
-            },
-            productImgs: ['/images/p1.jpg', '/images/test_size.png'],
-            currentShowsImgIndex: 0,
-            showProductInfo: 'description'
+    toggleCurrentShowsImg(index) {
+      this.currentShowsImgIndex = index;
+    },
+    changeCurrentImage(value) {
+      return () => {
+        this.currentShowsImgIndex = this.currentShowsImgIndex + value;
+        if (this.currentShowsImgIndex < 0) {
+          this.currentShowsImgIndex = this.productImgs.length - 1;
+          return;
         }
-    },
-    mounted(){
-        this.productAttr.id = this.$route.params.id;
-        this.productAttr.type = this.$route.params.type;
-        // this.productData.name = this.productAttr.type + ':' + this.productAttr.id;
-        this.showProductInfo = 'description'
-    },
-    methods: {
-        toggleProductInfo(value){
-            this.showProductInfo = value
-        },
-        toggleCurrentShowsImg(index){
-            this.currentShowsImgIndex = index
-        },
-        changeCurrentImage(value){
-            return () => {
-                this.currentShowsImgIndex = this.currentShowsImgIndex + value;
-                if(this.currentShowsImgIndex < 0){
-                    this.currentShowsImgIndex = this.productImgs.length - 1
-                    return
-                }
-                if(this.currentShowsImgIndex >= this.productImgs.length ){
-                    this.currentShowsImgIndex = 0
-                }
-            }
-        },
-        showProductAllSpecModal(){
-            store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true)
+        if (this.currentShowsImgIndex >= this.productImgs.length) {
+          this.currentShowsImgIndex = 0;
         }
-    }
-}
+      };
+    },
+    showProductAllSpecModal() {
+      this.$store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true);
+    },
+  },
+};
 </script>
 
 <style lang="sass" scoped>
 .product-detail-page
     .product-content-block
         padding: .5rem
-        background-color: #e5ceae        
+        background-color: #e5ceae
     .product-attribute
         background-color: #fff
         // padding: 1.5rem
@@ -122,8 +132,8 @@ export default {
         width: 31rem
         height: 25rem
         overflow: hidden
-        margin: 0 auto 
-        // margin: .5rem auto 0 auto 
+        margin: 0 auto
+        // margin: .5rem auto 0 auto
         position: relative
         display: flex
         justify-content: center
@@ -206,21 +216,21 @@ export default {
         box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1)
         margin-top: .5rem
         background-color: #fff
-// .fade-leave 
+// .fade-leave
 //   opacity: 1
 
-// .fade-leave-active 
+// .fade-leave-active
 //   transition: opacity .5s
 
-// .fade-leave-to 
+// .fade-leave-to
 // //   opacity: 0
 
-// .fade-enter 
+// .fade-enter
 //   opacity: 0
 
-// .fade-enter-active 
+// .fade-enter-active
 //   transition: opacity .5s
 
-// .fade-enter-to 
+// .fade-enter-to
 //   opacity: 1
 </style>

@@ -18,7 +18,7 @@
             </div>
             <div class="cart-block click-animation" @click="routerSwitcher('/cart_page')">
                 <img src="/images/icons/bag.svg" alt="購物車按鈕" class="icon">
-                <div class="in-cart-number">2</div>
+                <div class="in-cart-number">{{getCartItemNumber}}</div>
             </div>
         </div>
     </div>
@@ -27,17 +27,15 @@
 <script>
     export default {
         name: 'TheHeading',
-        // props: ['scrollOnToppest'],
+        computed:{
+            getCartItemNumber(){
+                return this.$store.state.cart_data.length
+            }
+        },
         methods: {
-            // toHomePage(){
-            //     this.$router.push('/home_page')
-            // },
             previousPage(){
                 this.$router.go(-1)
             },
-            // toCartPage(){
-            //     this.$router.push('/cart_page')
-            // },
             routerSwitcher(path){
                 this.$router.push(path)
             }

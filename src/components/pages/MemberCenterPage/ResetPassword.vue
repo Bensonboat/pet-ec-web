@@ -1,48 +1,58 @@
 <template>
-    <div class="reset-password">
-        <div class="page-header flex-center">
-            <img src="/images/icons/tick.svg" alt="上一步按鈕" class="prev-icon" @click="close">
-            修改密碼
-        </div>
-        <div class="content-block">
-            <div v-for='(item, index) in passwordData' :key="index">
-                <div class="form-title">{{item.label}}</div>
-                <div class="form-input-block">
-                    <input type="text" class="input" v-model="item.value" :placeholder="'請輸入' + item.label">
-                </div>
-            </div>
-        </div>
-        <div class="confirm-btn flex-center">OK</div>
+  <div class="reset-password">
+    <div class="page-header flex-center">
+      <img
+        src="/images/icons/tick.svg"
+        alt="上一步按鈕"
+        class="prev-icon"
+        @click="close"
+      />
+      修改密碼
     </div>
+    <div class="content-block">
+      <div v-for="(item, index) in passwordData" :key="index">
+        <div class="form-title">{{ item.label }}</div>
+        <div class="form-input-block">
+          <input
+            type="text"
+            class="input"
+            v-model="item.value"
+            :placeholder="'請輸入' + item.label"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="confirm-btn flex-center">OK</div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'ResetPassword',
-        data(){
-            return {
-                passwordData: [
-                    {
-                        label: '舊密碼',
-                        value: ''
-                    },
-                    {
-                        label: '新密碼',
-                        value: ''
-                    },
-                    {
-                        label: '確認新密碼',
-                        value: ''
-                    }
-                ]
-            }
+export default {
+  name: "ResetPassword",
+  data() {
+    return {
+      passwordData: [
+        {
+          label: "舊密碼",
+          value: ""
         },
-        methods: {
-            close(){
-                this.$emit('close')
-            }
+        {
+          label: "新密碼",
+          value: ""
+        },
+        {
+          label: "確認新密碼",
+          value: ""
         }
+      ]
+    };
+  },
+  methods: {
+    close() {
+      this.$emit("close");
     }
+  }
+};
 </script>
 
 <style lang="sass" scoped>
@@ -95,5 +105,4 @@
         background-color: #333333
         font-size: 1.5rem
         color: #e5ceae
-
 </style>

@@ -5,7 +5,7 @@
         <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon" />
       </div>
       <div class="toggle-mode-btn" @click="toggleLogInMode">
-        {{ isLoginMode ? '註冊' : '登入' }}
+        {{ isLoginMode ? "註冊" : "登入" }}
       </div>
       <div>LOGO</div>
     </div>
@@ -65,7 +65,7 @@
           <span>{{ errorMessage }}</span>
         </div>
         <div class="btn-shape login-btn" @click="confirm">
-          {{ isLoginMode ? '登入' : '註冊' }}
+          {{ isLoginMode ? "登入" : "註冊" }}
         </div>
         <div class="forget-password-block">
           <div class="text">忘記密碼?</div>
@@ -99,22 +99,22 @@
 
 <script>
 // import LoadingMask from '@/components/layouts/LoadingMask'
-import API from '@/axios/api';
+import API from "@/axios/api";
 export default {
-  name: 'LoginPage',
+  name: "LoginPage",
   // components: {
   //     LoadingMask
   // }
   data() {
     return {
-      position: '',
-      email: '',
-      password: '',
+      position: "",
+      email: "",
+      password: "",
       showEmailInput: false,
       showPasswordInput: false,
-      type: 'password',
+      type: "password",
       isLoginMode: true,
-      errorMessage: '',
+      errorMessage: ""
     };
   },
   mounted() {
@@ -130,9 +130,9 @@ export default {
   },
   methods: {
     toggleInput(type) {
-      if (type === 'email') {
+      if (type === "email") {
         this.showEmailInput = !this.showEmailInput;
-      } else if (type === 'password') {
+      } else if (type === "password") {
         this.showPasswordInput = !this.showPasswordInput;
       }
     },
@@ -140,10 +140,10 @@ export default {
       this.$router.go(-1);
     },
     toggleShowPassword() {
-      if (this.type === 'password') {
-        this.type = 'text';
+      if (this.type === "password") {
+        this.type = "text";
       } else {
-        this.type = 'password';
+        this.type = "password";
       }
     },
     toggleLogInMode() {
@@ -152,7 +152,7 @@ export default {
     confirm() {
       let data = {
         email: this.email,
-        password: this.password,
+        password: this.password
       };
 
       if (this.isLoginMode) {
@@ -163,24 +163,24 @@ export default {
     },
     signUp(data) {
       // ＡＰＩ有限制密碼 6-32 字數
-      API.signUp(data).then((res) => {
-        console.log(res, 'sign up');
+      API.signUp(data).then(res => {
+        console.log(res, "sign up");
       });
     },
     logIn(data) {
       API.logIn(data)
-        .then((res) => {
-          console.log(res, 'log in');
+        .then(res => {
+          console.log(res, "log in");
         })
         .catch(() => {
-          this.switchErrorMessage('invalid-login');
+          this.switchErrorMessage("invalid-login");
         });
     },
     validatePassword() {
       this.resetErrorMessage();
       let password = this.password;
       if (password.length < 6 || password.length > 32) {
-        this.switchErrorMessage('invalid-password-format');
+        this.switchErrorMessage("invalid-password-format");
       }
     },
     validateEmail() {
@@ -192,27 +192,27 @@ export default {
       ) {
         return;
       }
-      this.switchErrorMessage('invalid-email-format');
+      this.switchErrorMessage("invalid-email-format");
     },
     switchErrorMessage(type) {
       switch (type) {
-        case 'invalid-email-format':
-          this.errorMessage = '輸入的 email 格式有誤，請重新確認';
+        case "invalid-email-format":
+          this.errorMessage = "輸入的 email 格式有誤，請重新確認";
           break;
-        case 'invalid-password-format':
-          this.errorMessage = '密碼長度須介於 6 - 32 個字之間';
+        case "invalid-password-format":
+          this.errorMessage = "密碼長度須介於 6 - 32 個字之間";
           break;
-        case 'invalid-login':
-          this.errorMessage = '帳號或密碼輸入有誤，請重新輸入';
+        case "invalid-login":
+          this.errorMessage = "帳號或密碼輸入有誤，請重新輸入";
           break;
         default:
           break;
       }
     },
     resetErrorMessage() {
-      this.errorMessage = '';
-    },
-  },
+      this.errorMessage = "";
+    }
+  }
 };
 </script>
 

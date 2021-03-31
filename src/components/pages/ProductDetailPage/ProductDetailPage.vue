@@ -50,19 +50,19 @@
 
 <script>
 // import ProductSpec from '@/components/pages/ProductListPage/ProductSpec'
-import DetailNavRow from './DetailNavRow';
-import ProductDescription from './ProductDescription';
-import ProductFulfillment from './ProductFulfillment';
-import ProductReview from './ProductReview';
-import ProductRecommandBlock from './ProductRecommandBlock';
-import AddToCartButton from './AddToCartButton';
+import DetailNavRow from "./DetailNavRow";
+import ProductDescription from "./ProductDescription";
+import ProductFulfillment from "./ProductFulfillment";
+import ProductReview from "./ProductReview";
+import ProductRecommandBlock from "./ProductRecommandBlock";
+import AddToCartButton from "./AddToCartButton";
 // import ProductBasicSpec from '@/components/layouts/ProductBasicSpec'
 
 // import store from '@/store'
-import * as types from '@/store/mutation-types.js';
+import * as types from "@/store/mutation-types.js";
 
 export default {
-  name: 'ProductDetailPage',
+  name: "ProductDetailPage",
   components: {
     // ProductSpec,
     DetailNavRow,
@@ -70,25 +70,25 @@ export default {
     ProductFulfillment,
     ProductReview,
     ProductRecommandBlock,
-    AddToCartButton,
+    AddToCartButton
     // ProductBasicSpec
   },
   data() {
     return {
       productAttr: {
-        id: '',
-        type: '',
+        id: "",
+        type: ""
       },
-      productImgs: ['/images/p1.jpg', '/images/test_size.png'],
+      productImgs: ["/images/p1.jpg", "/images/test_size.png"],
       currentShowsImgIndex: 0,
-      showProductInfo: 'description',
+      showProductInfo: "description"
     };
   },
   mounted() {
     this.productAttr.id = this.$route.params.id;
     this.productAttr.type = this.$route.params.type;
     // this.productData.name = this.productAttr.type + ':' + this.productAttr.id;
-    this.showProductInfo = 'description';
+    this.showProductInfo = "description";
   },
   methods: {
     toggleProductInfo(value) {
@@ -111,8 +111,8 @@ export default {
     },
     showProductAllSpecModal() {
       this.$store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true);
-    },
-  },
+    }
+  }
 };
 </script>
 

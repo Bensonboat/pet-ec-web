@@ -1,48 +1,60 @@
 <template>
-    <div class="order-detail-page">
-        <page-header :title="'訂單詳情'" @previous-page='previousPage'>
-            <!-- <template #othersButton>
+  <div class="order-detail-page">
+    <page-header :title="'訂單詳情'" @previous-page="previousPage">
+      <!-- <template #othersButton>
                 <div class="others-btn">123</div>
             </template> -->
-        </page-header>
-        <div class="sub-title-row flex-center">
-            <div class="sub-title flex-center" :class="{'active-tab' : !checkingFinishedOrder}" @click="toggleCheckingTab">處理中</div>
-            <div class="sub-title flex-center" :class="{'active-tab' : checkingFinishedOrder}" @click="toggleCheckingTab">已完成</div>
-        </div>
-        <div class="order-content-block">
-            <order-detail-card/>
-            <order-detail-card/>
-            <order-detail-card/>
-            <order-detail-card/>
-            <order-detail-card/>
-        </div>
+    </page-header>
+    <div class="sub-title-row flex-center">
+      <div
+        class="sub-title flex-center"
+        :class="{ 'active-tab': !checkingFinishedOrder }"
+        @click="toggleCheckingTab"
+      >
+        處理中
+      </div>
+      <div
+        class="sub-title flex-center"
+        :class="{ 'active-tab': checkingFinishedOrder }"
+        @click="toggleCheckingTab"
+      >
+        已完成
+      </div>
     </div>
+    <div class="order-content-block">
+      <order-detail-card />
+      <order-detail-card />
+      <order-detail-card />
+      <order-detail-card />
+      <order-detail-card />
+    </div>
+  </div>
 </template>
 
 <script>
-    import PageHeader from '@/components/layouts/PageHeader'
-    import OrderDetailCard from './OrderDetailCard'
+import PageHeader from "@/components/layouts/PageHeader";
+import OrderDetailCard from "./OrderDetailCard";
 
-    export default {
-        name: 'OrderDetailPage',
-        components: {
-            PageHeader,
-            OrderDetailCard
-        },
-        data(){
-            return {
-                checkingFinishedOrder: true // false for Processing ; true for Finished
-            }
-        },
-        methods: {
-            previousPage(){
-                this.$router.go(-1)
-            },
-            toggleCheckingTab(){
-                this.checkingFinishedOrder = !this.checkingFinishedOrder
-            }
-        }
+export default {
+  name: "OrderDetailPage",
+  components: {
+    PageHeader,
+    OrderDetailCard
+  },
+  data() {
+    return {
+      checkingFinishedOrder: true // false for Processing ; true for Finished
+    };
+  },
+  methods: {
+    previousPage() {
+      this.$router.go(-1);
+    },
+    toggleCheckingTab() {
+      this.checkingFinishedOrder = !this.checkingFinishedOrder;
     }
+  }
+};
 </script>
 
 <style lang="sass" scoped>

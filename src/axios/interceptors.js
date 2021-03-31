@@ -1,25 +1,31 @@
 //axios攔截器
-import axios from 'axios';
+import axios from "axios";
 
 // request
-axios.interceptors.request.use(config => {
+axios.interceptors.request.use(
+  config => {
     //如果有token則在headers統一寫入
     // if (token) {
     //     config.headers.Authorization = `${token}`;
     //     loading(true)
     // }
-    
+
     return config;
-}, error => {
+  },
+  error => {
     return Promise.reject(error);
-});
+  }
+);
 
 // response
-axios.interceptors.response.use(response => {
+axios.interceptors.response.use(
+  response => {
     return response;
-}, error => {
-    console.log(error, 'interceptors error catch')
+  },
+  error => {
+    console.log(error, "interceptors error catch");
     return Promise.reject(error.response);
-});
+  }
+);
 
 export default axios;

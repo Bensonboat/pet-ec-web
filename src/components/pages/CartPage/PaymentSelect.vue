@@ -1,64 +1,74 @@
 <template>
-    <div class="payment-select-page">
-        <page-header :title="'付款方式'" @previous-page='close'/>
-        <div class="content-block">
-            <div 
-                v-for='(item, index) in payments'
-                :key="index"
-                class="payment-btn"
-                :class="{'selected' : item.selected}"
-                @click="selectPayment(index)"
-            >
-                {{item.name}}
-                <img v-show='item.selected' src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
-            </div>
-            <div class="confirm-btn click-animation-small" :class="{'input-valid' : isSelected}">確認</div>
-        </div>
+  <div class="payment-select-page">
+    <page-header :title="'付款方式'" @previous-page="close" />
+    <div class="content-block">
+      <div
+        v-for="(item, index) in payments"
+        :key="index"
+        class="payment-btn"
+        :class="{ selected: item.selected }"
+        @click="selectPayment(index)"
+      >
+        {{ item.name }}
+        <img
+          v-show="item.selected"
+          src="/images/icons/tick.svg"
+          alt="打勾圖案"
+          class="tick-icon"
+        />
+      </div>
+      <div
+        class="confirm-btn click-animation-small"
+        :class="{ 'input-valid': isSelected }"
+      >
+        確認
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import PageHeader from '@/components/layouts/PageHeader'
+import PageHeader from "@/components/layouts/PageHeader";
 
 export default {
-    name: 'PaymentSelectPage',
-    components: {
-        PageHeader
-    },
-    data(){
-        return{
-            isSelected: false,
-            payments: [
-                {
-                    name: '貨到付款',
-                    value: 'cash_on_delivery',
-                    selected: false
-                },
-                {
-                    name: '信用卡',
-                    value: 'credit_card',
-                    selected: false
-                }
-            ]
-        }
-    },
-    methods: {
-        selectPayment(index){
-            this.payments = this.payments.map((item, key) => {
-                if(index === key){
-                    item.selected = true;
-                    this.isSelected = true;
-                } else {
-                    item.selected = false
-                }
-                return item
-            })
+  name: "PaymentSelectPage",
+  components: {
+    PageHeader
+  },
+  data() {
+    return {
+      isSelected: false,
+      payments: [
+        {
+          name: "貨到付款",
+          value: "cash_on_delivery",
+          selected: false
         },
-        close(){
-            this.$emit('close-page')
+        {
+          name: "信用卡",
+          value: "credit_card",
+          selected: false
         }
+      ]
+    };
+  },
+  methods: {
+    selectPayment(index) {
+      this.payments = this.payments.map((item, key) => {
+        if (index === key) {
+          item.selected = true;
+          this.isSelected = true;
+        } else {
+          item.selected = false;
+        }
+        return item;
+      });
+    },
+    close() {
+      this.$emit("close-page");
     }
-}
+  }
+};
 </script>
 
 <style lang="sass" scoped>

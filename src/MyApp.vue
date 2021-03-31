@@ -14,15 +14,15 @@
 
 <script>
 export default {
-  name: 'MyApp',
+  name: "MyApp",
   mounted() {
     this.addCartItem();
-    document.cookie = 'test=123';
+    document.cookie = "test=123";
   },
   computed: {
     getLoadingStatus() {
       return this.$store.getters.getLoadingStatus;
-    },
+    }
   },
   methods: {
     addCartItem() {
@@ -31,17 +31,17 @@ export default {
           {
             product_id: 1,
             sku_id: 1,
-            qty: 1,
-          },
-        ],
+            qty: 1
+          }
+        ]
       };
 
-      this.$api.AddCartItem(data).then((res) => {
-        console.log(res, '??? CART');
-        this.$store.dispatch('getCartData');
+      this.$api.AddCartItem(data).then(res => {
+        console.log(res, "??? CART");
+        this.$store.dispatch("getCartData");
       });
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="sass">

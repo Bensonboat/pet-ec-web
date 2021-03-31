@@ -1,33 +1,43 @@
 <template>
-    <div class="coupon-add-page">
-        <page-header :title="'新增優惠序號'" @previous-page='closeCreatePage'/>
-        <div class="content-block">
-            <div class="input-block">
-                <input type="text" class="input" placeholder="請輸入優惠序號" v-model="couponNumber">
-            </div>
-            <div class="confirm-btn click-animation-small" :class="{'input-valid' : couponNumber !== ''}">確認</div>
-        </div>
+  <div class="coupon-add-page">
+    <page-header :title="'新增優惠序號'" @previous-page="closeCreatePage" />
+    <div class="content-block">
+      <div class="input-block">
+        <input
+          type="text"
+          class="input"
+          placeholder="請輸入優惠序號"
+          v-model="couponNumber"
+        />
+      </div>
+      <div
+        class="confirm-btn click-animation-small"
+        :class="{ 'input-valid': couponNumber !== '' }"
+      >
+        確認
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import PageHeader from '@/components/layouts/PageHeader'
+import PageHeader from "@/components/layouts/PageHeader";
 export default {
-    name: 'CouponAddPage',
-    components: {
-        PageHeader
-    },
-    data(){
-        return{
-            couponNumber: ''
-        }
-    },
-    methods: {
-        closeCreatePage(){
-            this.$emit('close-create-page')
-        }
+  name: "CouponAddPage",
+  components: {
+    PageHeader
+  },
+  data() {
+    return {
+      couponNumber: ""
+    };
+  },
+  methods: {
+    closeCreatePage() {
+      this.$emit("close-create-page");
     }
-}
+  }
+};
 </script>
 
 <style lang="sass" scoped>

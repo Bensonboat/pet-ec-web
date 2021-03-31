@@ -1,11 +1,11 @@
 <template>
-    <div class="avatar"></div>
+  <div class="avatar"></div>
 </template>
 
 <script>
-    export default {
-        name: 'Avatar'
-    }
+export default {
+  name: "Avatar"
+};
 </script>
 
 <style lang="sass" scoped>

@@ -1,84 +1,82 @@
 <template>
-    <div class="cart-page">
-        <!-- <div> -->
-            <checkout-process :step='checkoutStep'/>
-            <div>
-                <div v-show="checkoutStep === 1">
-                    <div class='order-list-block'>
-                        <div class="order-infomation">
-                            <cart-item-attribute v-for='(item, index) in 5' :key="index"/>
-                            <div class="order-note-block">
-                                <input type="text" placeholder="請輸入訂單備註" class="note">
-                            </div>
-                        </div>
-                    </div>
-                    <coupon-total-price @next-step='toCertainStep'/>
-                </div>
-                <div v-show="checkoutStep === 2">
-                    <div class="all-order-confirm-block">
-                        <div class="shipping-infomation-block">
-                            <shipping-infomation
-                                @shipping-info-validate='shippingInfoValidate'
-                            />
-                        </div>
-                    </div>
-                    <order-confirm-block 
-                        :orderValidate='orderValidate'
-                        @to-certain-step='toCertainStep'    
-                    />
-                </div>
-                <!-- <order-complete v-show="checkoutProcessStep === 3"/> -->
+  <div class="cart-page">
+    <!-- <div> -->
+    <checkout-process :step="checkoutStep" />
+    <div>
+      <div v-show="checkoutStep === 1">
+        <div class="order-list-block">
+          <div class="order-infomation">
+            <cart-item-attribute v-for="(item, index) in 5" :key="index" />
+            <div class="order-note-block">
+              <input type="text" placeholder="請輸入訂單備註" class="note" />
             </div>
-        <!-- </div> -->
-        <!-- <div v-if='checkoutProcessStep !== 3' class="default-deep-green-bgc next-step-btn default-border-radius" @click="processSteps(1)">
+          </div>
+        </div>
+        <coupon-total-price @next-step="toCertainStep" />
+      </div>
+      <div v-show="checkoutStep === 2">
+        <div class="all-order-confirm-block">
+          <div class="shipping-infomation-block">
+            <shipping-infomation
+              @shipping-info-validate="shippingInfoValidate"
+            />
+          </div>
+        </div>
+        <order-confirm-block
+          :orderValidate="orderValidate"
+          @to-certain-step="toCertainStep"
+        />
+      </div>
+      <!-- <order-complete v-show="checkoutProcessStep === 3"/> -->
+    </div>
+    <!-- </div> -->
+    <!-- <div v-if='checkoutProcessStep !== 3' class="default-deep-green-bgc next-step-btn default-border-radius" @click="processSteps(1)">
             下一步
         </div>
         <div v-else class="default-deep-green-bgc next-step-btn default-border-radius" @click="toHomePage">回首頁</div> -->
-
-    </div>
+  </div>
 </template>
 
 <script>
-import CheckoutProcess from './CheckoutProcess'
+import CheckoutProcess from "./CheckoutProcess";
 // import CartItemAttribute from './CartItemAttribute'
-import CouponTotalPrice from './Coupon/CouponTotalPrice'
-import ShippingInfomation from './ShippingInfomation'
-import OrderConfirmBlock from './OrderConfirmBlock'
-import CartItemAttribute from './CartItemAttribute'
+import CouponTotalPrice from "./Coupon/CouponTotalPrice";
+import ShippingInfomation from "./ShippingInfomation";
+import OrderConfirmBlock from "./OrderConfirmBlock";
+import CartItemAttribute from "./CartItemAttribute";
 // import OrderComplete from './OrderComplete'
 
 export default {
-    name: 'CartPage',
-    components: {
-        CheckoutProcess,
-        CartItemAttribute,
-        CouponTotalPrice,
-        ShippingInfomation,
-        OrderConfirmBlock
-        // OrderComplete,
+  name: "CartPage",
+  components: {
+    CheckoutProcess,
+    CartItemAttribute,
+    CouponTotalPrice,
+    ShippingInfomation,
+    OrderConfirmBlock
+    // OrderComplete,
+  },
+  data() {
+    return {
+      checkoutStep: 1,
+      orderValidate: false
+    };
+  },
+  methods: {
+    // processSteps(val){
+    //     this.checkoutStep = this.checkoutStep + val
+    // },
+    toHomePage() {
+      this.$router.push("/home_page");
     },
-    data(){
-        return {
-            checkoutStep: 1,
-            orderValidate: false
-        }
+    shippingInfoValidate(value) {
+      this.orderValidate = value;
     },
-    methods: {
-        // processSteps(val){
-        //     this.checkoutStep = this.checkoutStep + val
-        // },
-        toHomePage(){
-            this.$router.push('/home_page')
-        },
-        shippingInfoValidate(value){
-            this.orderValidate = value
-        },
-        toCertainStep(step){
-            this.checkoutStep = step
-        }
+    toCertainStep(step) {
+      this.checkoutStep = step;
     }
-}
-
+  }
+};
 </script>
 
 <style lang="sass" scoped>

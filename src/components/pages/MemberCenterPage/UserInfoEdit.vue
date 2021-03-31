@@ -1,67 +1,80 @@
 <template>
-    <div class="user-info-edit">
-        <div v-for='(item, index) in userData' :key="index">
-            <div v-if='isEditMode' class="form-title">{{item.label}}</div>
-            <div class="form-input-block">
-                <input 
-                    type="text" 
-                    class="input" 
-                    v-model="item.value"
-                    :placeholder="item.label"
-                    :class="{'form-disabled' : !isEditMode}"    
-                >
-            </div>
-        </div>
-        <div class="flex-center operate-btn-block">
-            <div class="revise-password-btn flex-center click-animation-small" @click='toggleResetPasswordPage'>修改密碼</div>
-            <div class="edit-confirm-btn flex-center click-animation-small" @click="toggleEditMode">{{isEditMode ? '儲存' : '編輯'}}</div>
-        </div>
-        <transition name='left-in'>
-            <reset-password v-if="showResetPasswordPage" @close='toggleResetPasswordPage'/>
-        </transition>
+  <div class="user-info-edit">
+    <div v-for="(item, index) in userData" :key="index">
+      <div v-if="isEditMode" class="form-title">{{ item.label }}</div>
+      <div class="form-input-block">
+        <input
+          type="text"
+          class="input"
+          v-model="item.value"
+          :placeholder="item.label"
+          :class="{ 'form-disabled': !isEditMode }"
+        />
+      </div>
     </div>
+    <div class="flex-center operate-btn-block">
+      <div
+        class="revise-password-btn flex-center click-animation-small"
+        @click="toggleResetPasswordPage"
+      >
+        修改密碼
+      </div>
+      <div
+        class="edit-confirm-btn flex-center click-animation-small"
+        @click="toggleEditMode"
+      >
+        {{ isEditMode ? "儲存" : "編輯" }}
+      </div>
+    </div>
+    <transition name="left-in">
+      <reset-password
+        v-if="showResetPasswordPage"
+        @close="toggleResetPasswordPage"
+      />
+    </transition>
+  </div>
 </template>
 
 <script>
-    import ResetPassword from './ResetPassword'
-    export default {
-        name: 'UserInfoEdit',
-        components: {
-            ResetPassword
+import ResetPassword from "./ResetPassword";
+export default {
+  name: "UserInfoEdit",
+  components: {
+    ResetPassword
+  },
+  data() {
+    return {
+      isEditMode: false,
+      showResetPasswordPage: false,
+      userData: [
+        {
+          label: "姓名",
+          value: ""
         },
-        data(){
-            return {
-                isEditMode: false,
-                showResetPasswordPage: false,
-                userData: [
-                    {
-                        label: '姓名',
-                        value: ''
-                    },
-                    {
-                        label: '電話',
-                        value: ''
-                    },
-                    {
-                        label: '寄送地址',
-                        value: ''
-                    },
-                    {
-                        label: '信箱',
-                        value: ''
-                    },
-                ]
-            }
+        {
+          label: "電話",
+          value: ""
         },
-        methods: {
-            toggleEditMode(){
-                this.isEditMode = !this.isEditMode
-            },
-            toggleResetPasswordPage(){
-                this.showResetPasswordPage = !this.showResetPasswordPage
-            }
+        {
+          label: "寄送地址",
+          value: ""
+        },
+        {
+          label: "信箱",
+          value: ""
         }
+      ]
+    };
+  },
+  methods: {
+    toggleEditMode() {
+      this.isEditMode = !this.isEditMode;
+    },
+    toggleResetPasswordPage() {
+      this.showResetPasswordPage = !this.showResetPasswordPage;
     }
+  }
+};
 </script>
 
 <style lang="sass" scoped>

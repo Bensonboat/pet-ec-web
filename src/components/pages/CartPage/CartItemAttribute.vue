@@ -1,44 +1,58 @@
 <template>
-    <div class="cart-item-attribute">
-        <img src="/images/p1.jpg" alt="" class="product-img">
-        <div class="product-basic-block">
-            <div class="product-name">EQUILÍBRIO 尊爵 機能天然糧</div>
-            <div class="product-spec">3.5kg3.5kg3.5kg</div>
-            <div class="price-number-row">
-                <div class="price">NT$2,380</div>
-                <div class="number-block">
-                    <div class="select-number-block">
-                        <div class="btn number-operate-block minus click-animation" @click="selectNumber(-1)">
-                            <img src="/images/icons/less.svg" alt="減一圖案" class="select-number-icon">
-                        </div>
-                        <div class="btn number">{{number}}</div>
-                        <div class="btn number-operate-block add click-animation" @click="selectNumber(1)">
-                            <img src="/images/icons/plus.svg" alt="加一圖案" class="select-number-icon">
-                        </div>
-                    </div>
-                </div>
+  <div class="cart-item-attribute">
+    <img src="/images/p1.jpg" alt="" class="product-img" />
+    <div class="product-basic-block">
+      <div class="product-name">EQUILÍBRIO 尊爵 機能天然糧</div>
+      <div class="product-spec">3.5kg3.5kg3.5kg</div>
+      <div class="price-number-row">
+        <div class="price">NT$2,380</div>
+        <div class="number-block">
+          <div class="select-number-block">
+            <div
+              class="btn number-operate-block minus click-animation"
+              @click="selectNumber(-1)"
+            >
+              <img
+                src="/images/icons/less.svg"
+                alt="減一圖案"
+                class="select-number-icon"
+              />
             </div>
+            <div class="btn number">{{ number }}</div>
+            <div
+              class="btn number-operate-block add click-animation"
+              @click="selectNumber(1)"
+            >
+              <img
+                src="/images/icons/plus.svg"
+                alt="加一圖案"
+                class="select-number-icon"
+              />
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'CartItemAttribute',
-        data(){
-            return {
-                number: 0
-            }
-        },
-        methods: {
-            selectNumber(number){
-                this.number = this.number + number;
-                if(this.number < 0){
-                    this.number = 0
-                }
-            },
-        }
+export default {
+  name: "CartItemAttribute",
+  data() {
+    return {
+      number: 0
+    };
+  },
+  methods: {
+    selectNumber(number) {
+      this.number = this.number + number;
+      if (this.number < 0) {
+        this.number = 0;
+      }
     }
+  }
+};
 </script>
 
 <style lang="sass" scoped>

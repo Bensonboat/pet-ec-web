@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  name: 'loadingMask',
+  name: "loadingMask",
   data() {
     return {
       // dots: ['.'],
@@ -33,7 +33,7 @@ export default {
     //     }
     //   }, 800);
     // },
-  },
+  }
 };
 </script>
 <style lang="sass" scoped>

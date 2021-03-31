@@ -15,122 +15,122 @@
 </template>
 
 <script>
-import ProductBasicData from '../../layouts/ProductBasicData';
-import API from '@/axios/api';
+import ProductBasicData from "../../layouts/ProductBasicData";
+import API from "@/axios/api";
 export default {
-  name: 'ProductList',
+  name: "ProductList",
   components: {
-    ProductBasicData,
+    ProductBasicData
     // ProductSpec,
   },
   data() {
     return {
       productListData: [
         {
-          img: ['/images/p1.jpg', '/images/test2.png'],
+          img: ["/images/p1.jpg", "/images/test2.png"],
           // img: "/images/p1.jpg",
-          name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
+          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
           price: 2000,
           special_price: 1200,
           id: 1,
-          type: '零食 零食 零食 零食 零食',
+          type: "零食 零食 零食 零食 零食"
         },
         {
           // img: "/images/p1.jpg",
-          img: ['/images/test2.png', '/images/p2.jpg'],
-          name: '理想體態成貓F32 10KG EQUILÍBRIO',
+          img: ["/images/test2.png", "/images/p2.jpg"],
+          name: "理想體態成貓F32 10KG EQUILÍBRIO",
           price: 1000,
           id: 2,
-          type: '飼料',
+          type: "飼料"
         },
         {
           // img: "/images/size_test.png",
-          img: ['/images/p4.jpg', '/images/p3.jpeg'],
-          name: '商品從下列價格起網路價$XX詳 ★SEEDS惜時★健康機能特級金貓罐80g*',
+          img: ["/images/p4.jpg", "/images/p3.jpeg"],
+          name: "商品從下列價格起網路價$XX詳 ★SEEDS惜時★健康機能特級金貓罐80g*",
           price: 2000,
           special_price: 600,
           id: 3,
-          type: '玩具',
+          type: "玩具"
         },
         {
           // img: "/images/p1.jpg",
-          img: ['/images/p3.jpeg', '/images/p4.jpg'],
-          name: '機能天然糧-化毛貓15kg',
+          img: ["/images/p3.jpeg", "/images/p4.jpg"],
+          name: "機能天然糧-化毛貓15kg",
           price: 1000,
           special_price: 300,
           id: 4,
-          type: '玩具',
+          type: "玩具"
         },
         {
           // img: "/images/test_size.png",
-          img: ['/images/p5.jpg', '/images/test2.png'],
-          name: '【IQ Cat】聰明乾貓糧 - 海鮮口味成貓配方',
+          img: ["/images/p5.jpg", "/images/test2.png"],
+          name: "【IQ Cat】聰明乾貓糧 - 海鮮口味成貓配方",
           price: 1000,
           id: 4,
-          type: '零食',
+          type: "零食"
         },
         {
           // img: "/images/p1.jpg",
-          img: ['/images/p1.jpg', '/images/test2.png'],
+          img: ["/images/p1.jpg", "/images/test2.png"],
           name:
-            'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
+            "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
           price: 1300,
           id: 5,
-          type: '玩具',
+          type: "玩具"
         },
         {
-          img: ['/images/p1.jpg', '/images/test2.png'],
+          img: ["/images/p1.jpg", "/images/test2.png"],
           // img: "/images/p1.jpg",
-          name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
+          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
           price: 2000,
           special_price: 1200,
           id: 1,
-          type: '零食 零食 零食 零食 零食',
+          type: "零食 零食 零食 零食 零食"
         },
         {
           // img: "/images/p1.jpg",
-          img: ['/images/test2.png', '/images/p2.jpg'],
-          name: '【摩多比】GENNIS吉妮斯 特級幼/母貓配方 貓飼料1.2KG(雞肉口味)',
+          img: ["/images/test2.png", "/images/p2.jpg"],
+          name: "【摩多比】GENNIS吉妮斯 特級幼/母貓配方 貓飼料1.2KG(雞肉口味)",
           price: 1000,
           id: 2,
-          type: '飼料',
+          type: "飼料"
         },
         {
           // img: "/images/size_test.png",
-          img: ['/images/p4.jpg', '/images/p3.jpeg'],
-          name: '【IQ Dog】聰明乾狗糧 - 雞肉口味',
+          img: ["/images/p4.jpg", "/images/p3.jpeg"],
+          name: "【IQ Dog】聰明乾狗糧 - 雞肉口味",
           price: 2000,
           special_price: 600,
           id: 3,
-          type: '玩具',
+          type: "玩具"
         },
         {
           // img: "/images/p1.jpg",
-          img: ['/images/p3.jpeg', '/images/p4.jpg'],
-          name: '機能天然糧-化毛貓15kg',
+          img: ["/images/p3.jpeg", "/images/p4.jpg"],
+          name: "機能天然糧-化毛貓15kg",
           price: 1000,
           special_price: 300,
           id: 4,
-          type: '玩具',
+          type: "玩具"
         },
         {
           // img: "/images/test_size.png",
-          img: ['/images/p5.jpg', '/images/test2.png'],
-          name: '【摩多比】GENNIS吉妮斯 特級幼/母貓配方 貓飼料1.2KG(雞肉口味)',
+          img: ["/images/p5.jpg", "/images/test2.png"],
+          name: "【摩多比】GENNIS吉妮斯 特級幼/母貓配方 貓飼料1.2KG(雞肉口味)",
           price: 1000,
           id: 4,
-          type: '零食',
+          type: "零食"
         },
         {
           // img: "/images/p1.jpg",
-          img: ['/images/p1.jpg', '/images/test2.png'],
+          img: ["/images/p1.jpg", "/images/test2.png"],
           name:
-            'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
+            "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
           price: 1300,
           id: 5,
-          type: '玩具',
-        },
-      ],
+          type: "玩具"
+        }
+      ]
     };
   },
   mounted() {
@@ -141,24 +141,24 @@ export default {
       this.showQuickAddModal = !this.showQuickAddModal;
     },
     getProductsList() {
-      this.$store.dispatch('toggleLoading', true);
-      API.getProductsList().then((res) => {
-        this.$store.dispatch('toggleLoading', false);
+      this.$store.dispatch("toggleLoading", true);
+      API.getProductsList().then(res => {
+        this.$store.dispatch("toggleLoading", false);
         let product_data = res.data.data.rows;
         if (product_data.length === 0) {
           this.productListData = [];
           return;
         }
 
-        this.productListData = product_data.map((item) => {
+        this.productListData = product_data.map(item => {
           let default_obj = {
-            img: ['/images/p1.jpg', '/images/test2.png'],
+            img: ["/images/p1.jpg", "/images/test2.png"],
             name:
-              'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
+              "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
             price: 1300,
             origin_price: 4200,
-            type: '玩具',
-            id: '',
+            type: "玩具",
+            id: ""
           };
           default_obj.name = item.title;
           default_obj.id = item.id;
@@ -167,8 +167,8 @@ export default {
           return default_obj;
         });
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

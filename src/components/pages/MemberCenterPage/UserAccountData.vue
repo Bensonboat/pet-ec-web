@@ -1,32 +1,32 @@
 <template>
-    <div class="user-account-data">
-        <avatar/>
-        <div class="name-account-points-block">
-            <div class="name-points-row">
-                <div class="name">花柚子</div>
-                <div class="points">120 點</div>
-            </div>
-            <div class="account">belinda90285@gmail.com</div>
-        </div>
-        <div class="log-out-btn click-animation-small" @click="logOut">登出</div>
+  <div class="user-account-data">
+    <avatar />
+    <div class="name-account-points-block">
+      <div class="name-points-row">
+        <div class="name">花柚子</div>
+        <div class="points">120 點</div>
+      </div>
+      <div class="account">belinda90285@gmail.com</div>
     </div>
+    <div class="log-out-btn click-animation-small" @click="logOut">登出</div>
+  </div>
 </template>
 
 <script>
-import Avatar from './Avatar'
+import Avatar from "./Avatar";
 export default {
-    name: 'UserAccountData',
-    components: {
-        Avatar
-    },
-    methods: {
-        logOut(){
-            this.$router.push({
-                path: '/login'
-            })
-        }
+  name: "UserAccountData",
+  components: {
+    Avatar
+  },
+  methods: {
+    logOut() {
+      this.$router.push({
+        path: "/login"
+      });
     }
-}
+  }
+};
 </script>
 
 <style lang="sass" scoped>

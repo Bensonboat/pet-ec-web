@@ -1,29 +1,25 @@
 <template>
-    <div class="page-header flex-center">
-        <div @click="previousPage" class="click-animation pre-icon">
-            <img
-                src="/images/icons/back.svg"
-                alt="上一步按鈕"
-                class="icon"
-            />
-        </div>
-        <div>{{title}}</div>
-        <slot name='pageHeaderButton'/>
+  <div class="page-header flex-center">
+    <div @click="previousPage" class="click-animation pre-icon">
+      <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon" />
     </div>
+    <div>{{ title }}</div>
+    <slot name="pageHeaderButton" />
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'PageHeader',
-        props: {
-            title: String
-        },
-        methods: {
-            previousPage(){
-                this.$emit('previous-page')
-            }
-        }
+export default {
+  name: "PageHeader",
+  props: {
+    title: String
+  },
+  methods: {
+    previousPage() {
+      this.$emit("previous-page");
     }
+  }
+};
 </script>
 
 <style lang="sass" scoped>
@@ -40,5 +36,4 @@
     .icon
         width: 2.4rem
         height: 2.4rem
-
 </style>

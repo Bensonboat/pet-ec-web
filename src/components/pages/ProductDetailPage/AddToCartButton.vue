@@ -1,17 +1,21 @@
 <!-- 商品詳情下方加入購物袋按鈕 -->
 <template>
-    <div class="add-to-cart-button">
-        <div class="add-to-bag-btn-block">
-            <img src="/images/icons/bag-add.svg" alt="購物車按鈕" class="bag-add-icon">
-            <div class="text">加入購物袋</div>
-        </div>
+  <div class="add-to-cart-button">
+    <div class="add-to-bag-btn-block">
+      <img
+        src="/images/icons/bag-add.svg"
+        alt="購物車按鈕"
+        class="bag-add-icon"
+      />
+      <div class="text">加入購物袋</div>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'AddToCartButton',
-    }
+export default {
+  name: "AddToCartButton"
+};
 </script>
 
 <style lang="sass" scoped>
@@ -37,5 +41,4 @@
             font-weight: 500
             color: #e5ceae
             margin-left: .8rem
-            
 </style>

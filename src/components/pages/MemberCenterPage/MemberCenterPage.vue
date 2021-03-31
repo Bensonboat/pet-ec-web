@@ -1,44 +1,44 @@
 <template>
-    <div class="user-account-page">
-        <page-header :title="'會員中心'" @previous-page='previousPage'>
-            <template #pageHeaderButton>
-                <div class="detail-btn" @click="checkOrdersDetail">訂單明細</div>
-            </template>
-        </page-header>
-        <div class="content-block">
-            <user-account-data/>
-            <div class="edit-block">
-                <user-info-edit/>
-                <pet-info-edit style="margin-top: .6rem; margin-botto: 1rem"/>
-            </div>
-        </div>
+  <div class="user-account-page">
+    <page-header :title="'會員中心'" @previous-page="previousPage">
+      <template #pageHeaderButton>
+        <div class="detail-btn" @click="checkOrdersDetail">訂單明細</div>
+      </template>
+    </page-header>
+    <div class="content-block">
+      <user-account-data />
+      <div class="edit-block">
+        <user-info-edit />
+        <pet-info-edit style="margin-top: .6rem; margin-botto: 1rem" />
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import UserAccountData from './UserAccountData'
-import UserInfoEdit from './UserInfoEdit'
-import PetInfoEdit from './PetInfoEdit'
-import PageHeader from '@/components/layouts/PageHeader'
+import UserAccountData from "./UserAccountData";
+import UserInfoEdit from "./UserInfoEdit";
+import PetInfoEdit from "./PetInfoEdit";
+import PageHeader from "@/components/layouts/PageHeader";
 
 export default {
-    name: "MemberCenterPage",
-    components: {
-        UserAccountData,
-        UserInfoEdit,
-        PetInfoEdit,
-        PageHeader
+  name: "MemberCenterPage",
+  components: {
+    UserAccountData,
+    UserInfoEdit,
+    PetInfoEdit,
+    PageHeader
+  },
+  methods: {
+    previousPage() {
+      this.$router.go(-1);
     },
-    methods: {
-        previousPage(){
-            this.$router.go(-1)
-        },
-        checkOrdersDetail(){
-            this.$router.push({
-                path: '/order_detail_page'
-            })
-        }
-    },
+    checkOrdersDetail() {
+      this.$router.push({
+        path: "/order_detail_page"
+      });
+    }
+  }
 };
 </script>
 

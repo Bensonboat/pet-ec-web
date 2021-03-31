@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'ProductSpec',
+  name: "ProductSpec"
   //   props: {
   //     product_data: Object,
   //   },

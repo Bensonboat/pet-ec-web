@@ -1,9 +1,9 @@
 <template>
-    <div class="product-list-filter-row default-product-list-filter-row">
-        <div class="list-subject default-deep-green-color">{{ listSubject }}</div>
-        <div class="basic-order-filter">
-            <base-select style="width: 11rem; height: 2.8rem"/>
-            <!-- <el-select v-model="orderFilter" placeholder="請選擇" size="mini" style="width: 14rem; border: none">
+  <div class="product-list-filter-row default-product-list-filter-row">
+    <div class="list-subject default-deep-green-color">{{ listSubject }}</div>
+    <div class="basic-order-filter">
+      <base-select style="width: 11rem; height: 2.8rem" />
+      <!-- <el-select v-model="orderFilter" placeholder="請選擇" size="mini" style="width: 14rem; border: none">
                 <el-option
                     v-for="item in orderFilterOptions"
                     :key="item.value"
@@ -12,39 +12,38 @@
                 >
                 </el-option>
             </el-select> -->
-        </div>
     </div>
+  </div>
 </template>
 
 <script>
-import BaseSelect from '@/components/layouts/BaseSelect'
+import BaseSelect from "@/components/layouts/BaseSelect";
 
 export default {
-    name: "ProductListFilterRow",
-    components: {
-        BaseSelect
-    },
-    data() {
-        return {
-            listSubject: "狗窩/吊床",
-            orderFilter: '',
-            orderFilterOptions: [
-                {
-                    label: 'test1',
-                    value: 'test1'
-                },
-                                {
-                    label: 'test2',
-                    value: 'test2'
-                },
-                                {
-                    label: 'test3',
-                    value: 'test3'
-                }
-
-            ]
-        };
-    },
+  name: "ProductListFilterRow",
+  components: {
+    BaseSelect
+  },
+  data() {
+    return {
+      listSubject: "狗窩/吊床",
+      orderFilter: "",
+      orderFilterOptions: [
+        {
+          label: "test1",
+          value: "test1"
+        },
+        {
+          label: "test2",
+          value: "test2"
+        },
+        {
+          label: "test3",
+          value: "test3"
+        }
+      ]
+    };
+  }
 };
 </script>
 

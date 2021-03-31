@@ -1,78 +1,82 @@
 <template>
-    <div class="base-select" @click="toggleOptionMenu">
-        <div class="select-text-block">
-            <div class="select-text">{{currentSelectText}}</div>
-            <img src="/images/icons/filter.svg" alt="篩選按鈕" class="filter-icon">
-        </div>
-        <!-- <input @click="toggleOptionMenu" class='default-text-color input-background' v-model='currentSelect' type="text" @blur='toggleOptionMenu'> -->
-        <div class="auto-close-bgc-mask" @click.stop="toggleOptionMenu" v-show="showOptionMenu"></div>
-        <transition name='basic'>
-            <div class="base-select-block" v-show='showOptionMenu'>
-                <!-- <div v-if="currentSelect === ''" class="current-select lighter-text">{{placeholder}}</div>
+  <div class="base-select" @click="toggleOptionMenu">
+    <div class="select-text-block">
+      <div class="select-text">{{ currentSelectText }}</div>
+      <img src="/images/icons/filter.svg" alt="篩選按鈕" class="filter-icon" />
+    </div>
+    <!-- <input @click="toggleOptionMenu" class='default-text-color input-background' v-model='currentSelect' type="text" @blur='toggleOptionMenu'> -->
+    <div
+      class="auto-close-bgc-mask"
+      @click.stop="toggleOptionMenu"
+      v-show="showOptionMenu"
+    ></div>
+    <transition name="basic">
+      <div class="base-select-block" v-show="showOptionMenu">
+        <!-- <div v-if="currentSelect === ''" class="current-select lighter-text">{{placeholder}}</div>
                 <div v-else class="current-select">{{currentSelect}}</div> -->
-                <!-- <div 
+        <!-- <div 
                     v-show='showOptionMenu'
                     class="option-menu"
                 > -->
-                    <div 
-                        v-for='(item, index) in options' 
-                        :key="index" 
-                        class="option"
-                        @click="selectItem(item)"
-                    >
-                        {{item.name}}
-                    </div>
-                <!-- </div> -->
-            </div>            
-        </transition>
-    </div>
+        <div
+          v-for="(item, index) in options"
+          :key="index"
+          class="option"
+          @click="selectItem(item)"
+        >
+          {{ item.name }}
+        </div>
+        <!-- </div> -->
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'BaseSelect',
-        props: {
-            placeholder: {
-                type: String,
-                default: '請輸入'
-            }
-        },
-        data(){
-            return {
-                showOptionMenu: false,
-                currentSelectText: '價格由低到高',
-                options: [
-                    {
-                        name: '最新上架商品',
-                        value: '貨到付款'
-                    },
-                    {
-                        name: '熱門銷量商品',
-                        value: '信用卡'
-                    },
-                    {
-                        name: '價格由低到高',
-                        value: '貨到付款'
-                    },
-                    {
-                        name: '價格由高到低',
-                        value: '貨到付款'
-                    },
-                ]
-            }
-        },
-        methods: {
-            selectItem(data){
-                this.$emit('input', data.value);
-                this.currentSelectText = data.name
-            },
-            toggleOptionMenu(){
-                // setTimeout(() => {
-                this.showOptionMenu = !this.showOptionMenu
-                // }, 100)
-            }
-        }
+export default {
+  name: "BaseSelect",
+  props: {
+    placeholder: {
+      type: String,
+      default: "請輸入"
     }
+  },
+  data() {
+    return {
+      showOptionMenu: false,
+      currentSelectText: "價格由低到高",
+      options: [
+        {
+          name: "最新上架商品",
+          value: "貨到付款"
+        },
+        {
+          name: "熱門銷量商品",
+          value: "信用卡"
+        },
+        {
+          name: "價格由低到高",
+          value: "貨到付款"
+        },
+        {
+          name: "價格由高到低",
+          value: "貨到付款"
+        }
+      ]
+    };
+  },
+  methods: {
+    selectItem(data) {
+      this.$emit("input", data.value);
+      this.currentSelectText = data.name;
+    },
+    toggleOptionMenu() {
+      // setTimeout(() => {
+      this.showOptionMenu = !this.showOptionMenu;
+      // }, 100)
+    }
+  }
+};
 </script>
 
 <style lang="sass" scoped>

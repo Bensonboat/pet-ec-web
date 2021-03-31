@@ -1,87 +1,145 @@
 <template>
-    <div class="home-page">
-        <div class="bg" :style="{backgroundPosition: position}"></div>
-        <div class="breed-type-circle cat-circle" :class="[circle.cat ? 'circle-selected' : '']" @click="circleSelect('cat')">
-            <!-- <div class="default-black-color cat-type txt" @click="routerSwitch('/product_list_page')">喵喵</div> -->
-            <div class="default-black-color cat-type txt">喵喵</div>
-            <img v-show='!circle.cat' src="images/icons/cat-gold.png" alt="貓咪圖案" class="cat-icon">
-            <img v-show='circle.cat' src="images/icons/cat-black.png" alt="貓咪圖案" class="cat-icon">
-            <div v-show='circle.cat' class="tick-block">
-                <img src="images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
-            </div>
-        </div>
-
-        <div class="breed-type-circle dog-circle" :class="[circle.dog ? 'circle-selected' : '']" @click="circleSelect('dog')">
-            <div class="default-black-color dog-type txt">汪汪</div>
-            <img v-show='circle.dog' src="images/icons/dog-black.png" alt="狗狗圖案" class="dog-icon">
-            <img v-show='!circle.dog' src="images/icons/dog-gold.png" alt="狗狗圖案" class="dog-icon">
-            <div v-show='circle.dog' class="tick-block">
-                <img src="images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
-            </div>
-        </div>
-
-        <div class="breed-type-circle mix-circle" :class="[circle.mix ? 'circle-selected' : '']" @click="circleSelect('mix')">
-            <div class="default-black-color mix-type txt">汪喵</div>
-            <img v-show='circle.mix' src="images/icons/mix-black.png" alt="貓狗圖案" class="mix-icon">
-            <img v-show='!circle.mix' src="images/icons/mix-gold.png" alt="貓狗圖案" class="mix-icon">
-            <div v-show='circle.mix' class="tick-block">
-                <img src="images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
-            </div>
-        </div>
-        <div class="confirm-btn" :class="[selected ? 'selected' : '']" @click="routerSwitch('/category_page')">
-            <div>OK</div>
-            <img v-show='selected' src="/images/icons/next.svg" alt="下一步圖案" class="next-step-icon">
-            <img v-show='!selected' src="/images/icons/next-unselect.svg" alt="下一步圖案" class="next-step-icon">
-        </div>
+  <div class="home-page">
+    <div class="bg" :style="{ backgroundPosition: position }"></div>
+    <div
+      class="breed-type-circle cat-circle"
+      :class="[circle.cat ? 'circle-selected' : '']"
+      @click="circleSelect('cat')"
+    >
+      <!-- <div class="default-black-color cat-type txt" @click="routerSwitch('/product_list_page')">喵喵</div> -->
+      <div class="default-black-color cat-type txt">喵喵</div>
+      <img
+        v-show="!circle.cat"
+        src="images/icons/cat-gold.png"
+        alt="貓咪圖案"
+        class="cat-icon"
+      />
+      <img
+        v-show="circle.cat"
+        src="images/icons/cat-black.png"
+        alt="貓咪圖案"
+        class="cat-icon"
+      />
+      <div v-show="circle.cat" class="tick-block">
+        <img src="images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
+      </div>
     </div>
+
+    <div
+      class="breed-type-circle dog-circle"
+      :class="[circle.dog ? 'circle-selected' : '']"
+      @click="circleSelect('dog')"
+    >
+      <div class="default-black-color dog-type txt">汪汪</div>
+      <img
+        v-show="circle.dog"
+        src="images/icons/dog-black.png"
+        alt="狗狗圖案"
+        class="dog-icon"
+      />
+      <img
+        v-show="!circle.dog"
+        src="images/icons/dog-gold.png"
+        alt="狗狗圖案"
+        class="dog-icon"
+      />
+      <div v-show="circle.dog" class="tick-block">
+        <img src="images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
+      </div>
+    </div>
+
+    <div
+      class="breed-type-circle mix-circle"
+      :class="[circle.mix ? 'circle-selected' : '']"
+      @click="circleSelect('mix')"
+    >
+      <div class="default-black-color mix-type txt">汪喵</div>
+      <img
+        v-show="circle.mix"
+        src="images/icons/mix-black.png"
+        alt="貓狗圖案"
+        class="mix-icon"
+      />
+      <img
+        v-show="!circle.mix"
+        src="images/icons/mix-gold.png"
+        alt="貓狗圖案"
+        class="mix-icon"
+      />
+      <div v-show="circle.mix" class="tick-block">
+        <img src="images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
+      </div>
+    </div>
+    <div
+      class="confirm-btn"
+      :class="[selected ? 'selected' : '']"
+      @click="routerSwitch('/category_page')"
+    >
+      <div>OK</div>
+      <img
+        v-show="selected"
+        src="/images/icons/next.svg"
+        alt="下一步圖案"
+        class="next-step-icon"
+      />
+      <img
+        v-show="!selected"
+        src="/images/icons/next-unselect.svg"
+        alt="下一步圖案"
+        class="next-step-icon"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "HomePage",
-    data(){
-        return {
-            position: '',
-            circle: {
-                cat: false,
-                dog: false,
-                mix: false
-            },
-            selectType: '',
-            selected: false
-        }
-    },
-    mounted(){
-        // let that = this;
-        let x = 0
-        setInterval(() => {
-            x--;
-            this.position = `${x}px ${x}px`;
-            
-            if(x < -2000){
-                x = 0
-            }
-        }, 20)
-    },
-    methods: {
-        routerSwitch(value){
-            if(this.selectType === ''){ return };
+  name: "HomePage",
+  data() {
+    return {
+      position: "",
+      circle: {
+        cat: false,
+        dog: false,
+        mix: false
+      },
+      selectType: "",
+      selected: false
+    };
+  },
+  mounted() {
+    // let that = this;
+    let x = 0;
+    setInterval(() => {
+      x--;
+      this.position = `${x}px ${x}px`;
 
-            let path = value + '/' + this.selectType;
-            this.$router.push(path)
-        },
-        circleSelect(type){
-            this.circle = {
-                cat: false,
-                dog: false,
-                mix: false
-            };
+      if (x < -2000) {
+        x = 0;
+      }
+    }, 20);
+  },
+  methods: {
+    routerSwitch(value) {
+      if (this.selectType === "") {
+        return;
+      }
 
-            this.selectType = type;
-            this.circle[type] = true;
-            this.selected = true;
-        }
+      let path = value + "/" + this.selectType;
+      this.$router.push(path);
+    },
+    circleSelect(type) {
+      this.circle = {
+        cat: false,
+        dog: false,
+        mix: false
+      };
+
+      this.selectType = type;
+      this.circle[type] = true;
+      this.selected = true;
     }
+  }
 };
 </script>
 
@@ -208,7 +266,7 @@ export default {
         border-color: #333333
     .tick-icon
         width: 2rem
-        height: 2rem        
+        height: 2rem
     .tick-block
         position: absolute
         width: 3.5rem

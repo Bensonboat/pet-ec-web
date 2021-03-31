@@ -1,6 +1,6 @@
 <template>
-    <div class="add-new-coupon">
-        <!-- <div class="header-block">
+  <div class="add-new-coupon">
+    <!-- <div class="header-block">
             <img src="/images/left-arrow.png" alt="previous page icon" class="icon" @click="BackToPreviousView">
             <div class="default-text-color">新增優惠序號</div>
         </div>
@@ -9,18 +9,18 @@
                 <input type="text" placeholder="請輸入優惠序號" class="default-border-radius">
             </div>
         </div> -->
-    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'AddNewCoupon',
-        // methods: {
-        //     BackToPreviousView(){
-        //         this.$emit('toggle-add-modal')
-        //     }
-        // }
-    }
+export default {
+  name: "AddNewCoupon"
+  // methods: {
+  //     BackToPreviousView(){
+  //         this.$emit('toggle-add-modal')
+  //     }
+  // }
+};
 </script>
 
 <style lang="sass" scoped>

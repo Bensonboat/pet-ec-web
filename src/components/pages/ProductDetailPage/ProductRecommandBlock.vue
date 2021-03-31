@@ -1,117 +1,121 @@
 <!-- 商品推薦橫軸選單 -->
 <template>
-    <div class="product-recommand-block">
-        <div class="recommand-text">
-            <img src="/images/icons/heart.svg" alt="愛心圖案" class='recommand-icon'>
-            <div>推薦給你</div>
-        </div>
-        <div class="product-recommand-row">
-            <product-basic-data
-                v-for="(item, index) in productData" 
-                :key='index' 
-                :product_data='item'
-                :showQuickAddIcon='false'
-                :showMultiplePics='false'
-                class="recommand-item"
-            />
-        </div>
-        <!-- <div class="product-recommand-row">
+  <div class="product-recommand-block">
+    <div class="recommand-text">
+      <img
+        src="/images/icons/heart.svg"
+        alt="愛心圖案"
+        class="recommand-icon"
+      />
+      <div>推薦給你</div>
+    </div>
+    <div class="product-recommand-row">
+      <product-basic-data
+        v-for="(item, index) in productData"
+        :key="index"
+        :product_data="item"
+        :showQuickAddIcon="false"
+        :showMultiplePics="false"
+        class="recommand-item"
+      />
+    </div>
+    <!-- <div class="product-recommand-row">
             <div v-for="(item, index) in productData" :key="index" class="recommand-item">
                 <img :src="item.img" alt="product picture" class="recommand-product-img">
                 <div class="recommand-product-name">{{item.name}}</div>
                 <div>{{item.price}}</div>
             </div>
         </div> -->
-    </div>
+  </div>
 </template>
 
 <script>
-import ProductBasicData from '../../layouts/ProductBasicData'
+import ProductBasicData from "../../layouts/ProductBasicData";
 
-    export default {
-        name: 'ProductRecommandBlock',
-        components: {
-            ProductBasicData
+export default {
+  name: "ProductRecommandBlock",
+  components: {
+    ProductBasicData
+  },
+  data() {
+    return {
+      productData: [
+        // {
+        //     img: '/images/test.png',
+        //     name: 'Test',
+        //     price: 1000,
+        //     id: 4,
+        //     type: '零食'
+        // },
+        {
+          // img: '/images/p1.jpg',
+          img: ["/images/p1.jpg", "/images/test2.png"],
+          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
+          price: 2000,
+          special_price: 1500,
+          id: 3,
+          type: "玩具"
         },
-        data(){
-            return {
-                productData: [
-                    // {
-                    //     img: '/images/test.png',
-                    //     name: 'Test',
-                    //     price: 1000,
-                    //     id: 4,
-                    //     type: '零食'
-                    // },
-                    {
-                        // img: '/images/p1.jpg',
-                        img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
-                        price: 2000,
-                        special_price: 1500,
-                        id: 3,
-                        type: '玩具'
-                    },
-                    {
-                        // img: '/images/p1.jpg',
-                        img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
-                        price: 1000,
-                        id: 4,
-                        type: '玩具'
-                    },
-                    {
-                        // img: '/images/p1.jpg',
-                        img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: '尊爵 機能天然糧-化毛貓15kg',
-                        price: 1000,
-                        id: 4,
-                        type: '零食'
-                    },
-                    {
-                        // img: '/images/p1.jpg',
-                        img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
-                        price: 2000,
-                        id: 3,
-                        type: '玩具'
-                    },
-                    {
-                        // img: '/images/p1.jpg',
-                        img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: '嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛',
-                        price: 1000,
-                        id: 4,
-                        type: '玩具'
-                    },
-                    {
-                        // img: '/images/p1.jpg',
-                        img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
-                        price: 1000,
-                        id: 4,
-                        type: '零食'
-                    },
-                    {
-                        // img: '/images/p1.jpg',
-                        img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
-                        price: 2000,
-                        id: 3,
-                        type: '玩具'
-                    },
-                    {
-                        // img: '/images/p1.jpg',
-                        img: ['/images/p1.jpg', '/images/test2.png'],
-                        name: 'EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg',
-                        price: 1000,
-                        id: 4,
-                        type: '玩具'
-                    },
-                ]
-            }
+        {
+          // img: '/images/p1.jpg',
+          img: ["/images/p1.jpg", "/images/test2.png"],
+          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
+          price: 1000,
+          id: 4,
+          type: "玩具"
+        },
+        {
+          // img: '/images/p1.jpg',
+          img: ["/images/p1.jpg", "/images/test2.png"],
+          name: "尊爵 機能天然糧-化毛貓15kg",
+          price: 1000,
+          id: 4,
+          type: "零食"
+        },
+        {
+          // img: '/images/p1.jpg',
+          img: ["/images/p1.jpg", "/images/test2.png"],
+          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
+          price: 2000,
+          id: 3,
+          type: "玩具"
+        },
+        {
+          // img: '/images/p1.jpg',
+          img: ["/images/p1.jpg", "/images/test2.png"],
+          name: "嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛",
+          price: 1000,
+          id: 4,
+          type: "玩具"
+        },
+        {
+          // img: '/images/p1.jpg',
+          img: ["/images/p1.jpg", "/images/test2.png"],
+          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
+          price: 1000,
+          id: 4,
+          type: "零食"
+        },
+        {
+          // img: '/images/p1.jpg',
+          img: ["/images/p1.jpg", "/images/test2.png"],
+          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
+          price: 2000,
+          id: 3,
+          type: "玩具"
+        },
+        {
+          // img: '/images/p1.jpg',
+          img: ["/images/p1.jpg", "/images/test2.png"],
+          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
+          price: 1000,
+          id: 4,
+          type: "玩具"
         }
-    }
+      ]
+    };
+  }
+};
 </script>
 
 <style lang="sass" scoped>
@@ -147,5 +151,5 @@ import ProductBasicData from '../../layouts/ProductBasicData'
         display: -webkit-box
         -webkit-box-orient: vertical
         -webkit-line-clamp: 2
-        overflow: hidden 
+        overflow: hidden
 </style>

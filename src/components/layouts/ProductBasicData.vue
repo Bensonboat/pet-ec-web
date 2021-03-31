@@ -80,22 +80,22 @@
 
 <script>
 // import store from '@/store';
-import * as types from '@/store/mutation-types.js';
-import API from '@/axios/api';
+import * as types from "@/store/mutation-types.js";
+import API from "@/axios/api";
 
 export default {
-  name: 'ProductBasicData',
+  name: "ProductBasicData",
   props: {
     product_data: Object,
     showQuickAddIcon: Boolean,
     showMultiplePics: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   data() {
     return {
-      currentShowsImgIndex: 0,
+      currentShowsImgIndex: 0
     };
   },
   methods: {
@@ -104,7 +104,7 @@ export default {
     // },
     checkProductDetail(type, id) {
       this.$router.push({
-        path: '/product/' + type + '/' + id,
+        path: "/product/" + type + "/" + id
       });
     },
     changeCurrentImage(value) {
@@ -123,18 +123,18 @@ export default {
       this.$store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true);
     },
     getCurrentID(id) {
-      this.$store.dispatch('toggleLoading', true);
+      this.$store.dispatch("toggleLoading", true);
       API.getSingleProduct(id)
-        .then((res) => {
+        .then(res => {
           let data = res.data.data;
           this.$store.commit(types.GET_SINGLE_PRODUCT_DATA, data);
-          this.$store.dispatch('toggleLoading', false);
+          this.$store.dispatch("toggleLoading", false);
         })
         .then(() => {
           this.showProductAllSpecModal();
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

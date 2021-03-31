@@ -1,43 +1,59 @@
 <template>
-    <div class="search-input-block">
-        <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon" @click="previousPage">
-        <div class="input-block">
-            <input type="text" placeholder="搜尋" class="input" v-model="searchKeyWord" @click="focusStatus(true)">
-            <img src="/images/icons/del.png" alt="清除按鈕" class="del-icon click-animation" @click="clearInput">
-        </div>
+  <div class="search-input-block">
+    <img
+      src="/images/icons/back.svg"
+      alt="上一步按鈕"
+      class="icon"
+      @click="previousPage"
+    />
+    <div class="input-block">
+      <input
+        type="text"
+        placeholder="搜尋"
+        class="input"
+        v-model="searchKeyWord"
+        @click="focusStatus(true)"
+      />
+      <img
+        src="/images/icons/del.png"
+        alt="清除按鈕"
+        class="del-icon click-animation"
+        @click="clearInput"
+      />
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'SearchInputBlock',
-        props: {
-            currentClickKeyWord: String
-        },
-        data(){
-            return{
-                searchKeyWord: '',
-            }
-        },
-        watch: {
-            currentClickKeyWord: {
-                handler(key_word){
-                    this.searchKeyWord = key_word;
-                }
-            }
-        },
-        methods: {
-            previousPage(){
-                this.$router.go(-1)
-            },
-            clearInput(){
-                this.searchKeyWord = ''
-            },
-            focusStatus(status){
-                this.$emit('current-focus-status', status)
-            }
-        }
+export default {
+  name: "SearchInputBlock",
+  props: {
+    currentClickKeyWord: String
+  },
+  data() {
+    return {
+      searchKeyWord: ""
+    };
+  },
+  watch: {
+    currentClickKeyWord: {
+      handler(key_word) {
+        this.searchKeyWord = key_word;
+      }
     }
+  },
+  methods: {
+    previousPage() {
+      this.$router.go(-1);
+    },
+    clearInput() {
+      this.searchKeyWord = "";
+    },
+    focusStatus(status) {
+      this.$emit("current-focus-status", status);
+    }
+  }
+};
 </script>
 
 <style lang="sass" scoped>

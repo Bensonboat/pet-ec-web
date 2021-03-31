@@ -94,12 +94,12 @@
 </template>
 
 <script>
-import * as types from '../../store/mutation-types';
+import * as types from "../../store/mutation-types";
 // import store from '../../store';
 // import API from '@/axios/api'
 
 export default {
-  name: 'ProductBasicSpec',
+  name: "ProductBasicSpec",
   data() {
     return {
       allowSelectNumber: false,
@@ -147,7 +147,7 @@ export default {
       //         selected: false
       //     },
       // ],
-      number: 0,
+      number: 0
     };
   },
   mounted() {
@@ -176,7 +176,7 @@ export default {
       }
     },
     confirm() {
-      alert('Service unavailable now');
+      alert("Service unavailable now");
       this.closeAllSpecModal();
     },
     getSingleProductData() {
@@ -185,23 +185,23 @@ export default {
         name: data.title,
         id: data.id,
         price: 2000,
-        origin_price: 4000,
+        origin_price: 4000
       };
 
       let skus = data.skus;
       if (skus.length > 0) {
-        this.specOptions = skus.map((item) => {
+        this.specOptions = skus.map(item => {
           return {
             name: item.name,
             value: item.sku,
             selected: false,
             origin_price: item.origin_price,
-            price: item.price,
+            price: item.price
           };
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

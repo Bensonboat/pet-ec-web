@@ -19,21 +19,21 @@
 </template>
 
 <script>
-import TheHeading from './TheHeading.vue';
-import ProductBasicSpec from '@/components/layouts/ProductBasicSpec';
+import TheHeading from "./TheHeading.vue";
+import ProductBasicSpec from "@/components/layouts/ProductBasicSpec";
 // import store from '@/store'
 // import * as types from '@/store/mutation-types.js'
 
 export default {
-  name: 'IndexContent',
+  name: "IndexContent",
   components: {
     TheHeading,
-    ProductBasicSpec,
+    ProductBasicSpec
   },
   data() {
     return {
       scrollOnToppest: true,
-      currentHeight: '',
+      currentHeight: ""
     };
   },
   mounted() {
@@ -42,7 +42,7 @@ export default {
   computed: {
     getShowProductAllSpecModalStatus() {
       return this.$store.state.showProductAllSpecModal;
-    },
+    }
   },
   methods: {
     handleScroll() {
@@ -60,9 +60,9 @@ export default {
       }
     },
     getCartData() {
-      this.$store.dispatch('getCartData');
-    },
-  },
+      this.$store.dispatch("getCartData");
+    }
+  }
 };
 </script>
 

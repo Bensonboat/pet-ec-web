@@ -1,62 +1,77 @@
 <template>
-    <div class="coupon-total-price">
-        <div class="detail-block">
-            <div class="total-items-number">共2件商品</div>
-            <div class="price-detail">
-                <div class="product-price-block">
-                    <div class="item">商品金額</div>
-                    <div class="item">2380</div>
-                </div>
-                <div class="discount-block">
-                    <div class="item">折扣優惠</div>
-                    <div class="item">-100</div>
-                </div>
-                <div class="total-price-block">
-                    <div class="item">小計</div>
-                    <div class="item total-price">NT$ 2380</div>
-                </div>
-            </div>
+  <div class="coupon-total-price">
+    <div class="detail-block">
+      <div class="total-items-number">共2件商品</div>
+      <div class="price-detail">
+        <div class="product-price-block">
+          <div class="item">商品金額</div>
+          <div class="item">2380</div>
         </div>
-        <div class="coupon-button" @click="toggleCouponList">
-            <div class="coupon-text-block">
-                <img src="/images/icons/coupon.svg" alt="優惠卷圖案" class="coupon-icon">
-                <div>選擇優惠卷序號</div>
-            </div>
-            <img src="/images/icons/black-back.svg" alt="向下箭頭圖案" class="arrow-icon">
+        <div class="discount-block">
+          <div class="item">折扣優惠</div>
+          <div class="item">-100</div>
         </div>
-        <div class="next-step-block">
-            <div class="keep-shopping click-animation-small" @click="keepShoping">繼續選購</div>
-            <div class="next-step click-animation-small" @click="nextStep">下一步</div>
+        <div class="total-price-block">
+          <div class="item">小計</div>
+          <div class="item total-price">NT$ 2380</div>
         </div>
-        <transition name="left-in">
-            <coupon-list v-if="showCouponListBlock" @close-coupon-list='toggleCouponList'/>
-        </transition>
+      </div>
     </div>
+    <div class="coupon-button" @click="toggleCouponList">
+      <div class="coupon-text-block">
+        <img
+          src="/images/icons/coupon.svg"
+          alt="優惠卷圖案"
+          class="coupon-icon"
+        />
+        <div>選擇優惠卷序號</div>
+      </div>
+      <img
+        src="/images/icons/black-back.svg"
+        alt="向下箭頭圖案"
+        class="arrow-icon"
+      />
+    </div>
+    <div class="next-step-block">
+      <div class="keep-shopping click-animation-small" @click="keepShoping">
+        繼續選購
+      </div>
+      <div class="next-step click-animation-small" @click="nextStep">
+        下一步
+      </div>
+    </div>
+    <transition name="left-in">
+      <coupon-list
+        v-if="showCouponListBlock"
+        @close-coupon-list="toggleCouponList"
+      />
+    </transition>
+  </div>
 </template>
 
 <script>
-import CouponList from './CouponList.vue'
-    
-    export default {
-        name: 'CouponPrice',
-        components: { CouponList },
-        data(){
-            return {
-                showCouponListBlock: false
-            }
-        },
-        methods: {
-            nextStep(){
-                this.$emit('next-step', 2)
-            },
-            toggleCouponList(){
-                this.showCouponListBlock = !this.showCouponListBlock
-            },
-            keepShoping(){
-                this.$router.push('/category_page/cat')
-            }
-        }
+import CouponList from "./CouponList.vue";
+
+export default {
+  name: "CouponPrice",
+  components: { CouponList },
+  data() {
+    return {
+      showCouponListBlock: false
+    };
+  },
+  methods: {
+    nextStep() {
+      this.$emit("next-step", 2);
+    },
+    toggleCouponList() {
+      this.showCouponListBlock = !this.showCouponListBlock;
+    },
+    keepShoping() {
+      this.$router.push("/category_page/cat");
     }
+  }
+};
 </script>
 
 <style lang="sass" scoped>

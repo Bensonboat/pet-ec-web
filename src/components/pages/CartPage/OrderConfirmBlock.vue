@@ -1,63 +1,84 @@
 <template>
-    <div class="order-confirm-block">
-        <div class="operate-button click-animation-small" @click="togglePaymentSelectPage">
-            <div class="operate-text-block">
-                <img src="/images/icons/pay.svg" alt="付款圖案" class="operate-icon">
-                <div>選擇付款方式</div>
-            </div>
-            <img src="/images/icons/black-back.svg" alt="向下箭頭圖案" class="arrow-icon">
-        </div>
-        <div class="operate-button click-animation-small" @click="toggleMemberSelect">
-            <div class="operate-text-block">
-                <img src="/images/icons/points.svg" alt="星星圖案" class="operate-icon">
-                <div>將資料註冊會員並累積點數</div>
-            </div>
-            <div class="tick-block">
-                <img v-show='memberSelected' src="/images/icons/black-tick.svg" alt="向下箭頭圖案" class="tick-icon">
-            </div>
-        </div>
-        <div class="next-step-block">
-            <div class="previous-step-btn" @click="backToStepOne">回前頁</div>
-            <div class="order-confirm" :class="{'order-validate' : orderValidate }">確認結帳</div>
-        </div>
-        <transition name='left-in'>
-            <payment-select 
-                v-if='showPaymentSelectPage'
-                @close-page='togglePaymentSelectPage'    
-            />
-        </transition>
+  <div class="order-confirm-block">
+    <div
+      class="operate-button click-animation-small"
+      @click="togglePaymentSelectPage"
+    >
+      <div class="operate-text-block">
+        <img src="/images/icons/pay.svg" alt="付款圖案" class="operate-icon" />
+        <div>選擇付款方式</div>
+      </div>
+      <img
+        src="/images/icons/black-back.svg"
+        alt="向下箭頭圖案"
+        class="arrow-icon"
+      />
     </div>
+    <div
+      class="operate-button click-animation-small"
+      @click="toggleMemberSelect"
+    >
+      <div class="operate-text-block">
+        <img
+          src="/images/icons/points.svg"
+          alt="星星圖案"
+          class="operate-icon"
+        />
+        <div>將資料註冊會員並累積點數</div>
+      </div>
+      <div class="tick-block">
+        <img
+          v-show="memberSelected"
+          src="/images/icons/black-tick.svg"
+          alt="向下箭頭圖案"
+          class="tick-icon"
+        />
+      </div>
+    </div>
+    <div class="next-step-block">
+      <div class="previous-step-btn" @click="backToStepOne">回前頁</div>
+      <div class="order-confirm" :class="{ 'order-validate': orderValidate }">
+        確認結帳
+      </div>
+    </div>
+    <transition name="left-in">
+      <payment-select
+        v-if="showPaymentSelectPage"
+        @close-page="togglePaymentSelectPage"
+      />
+    </transition>
+  </div>
 </template>
 
 <script>
-import PaymentSelect from './PaymentSelect'
+import PaymentSelect from "./PaymentSelect";
 
-    export default {
-        name: 'Payment',
-        props: {
-            orderValidate: Boolean
-        },
-        components: {
-            PaymentSelect
-        },
-        data(){
-            return {
-                memberSelected: true,
-                showPaymentSelectPage: false
-            }
-        },
-        methods: {
-            toggleMemberSelect(){
-                this.memberSelected = !this.memberSelected
-            },
-            backToStepOne(){
-                this.$emit('to-certain-step', 1)
-            },
-            togglePaymentSelectPage(){
-                this.showPaymentSelectPage = !this.showPaymentSelectPage
-            }
-        }
+export default {
+  name: "Payment",
+  props: {
+    orderValidate: Boolean
+  },
+  components: {
+    PaymentSelect
+  },
+  data() {
+    return {
+      memberSelected: true,
+      showPaymentSelectPage: false
+    };
+  },
+  methods: {
+    toggleMemberSelect() {
+      this.memberSelected = !this.memberSelected;
+    },
+    backToStepOne() {
+      this.$emit("to-certain-step", 1);
+    },
+    togglePaymentSelectPage() {
+      this.showPaymentSelectPage = !this.showPaymentSelectPage;
     }
+  }
+};
 </script>
 
 <style lang="sass" scoped>

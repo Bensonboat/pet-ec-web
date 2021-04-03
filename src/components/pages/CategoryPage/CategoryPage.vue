@@ -1,30 +1,36 @@
 <template>
   <div class="category-page">
     <div class="bg" :style="{ backgroundPosition: position }"></div>
-    <div class="type-icon-block">
-      <div class="breed-type-circle" v-show="this.$route.params.type === 'cat'">
+    <div class="type-icon-block" @click="toggle">
+      <div
+        class="breed-type-circle cat"
+        :class="[!showCat ? 'animation-out' : 'animation-in']"
+      >
         <div class="default-black-color cat-type txt">喵喵</div>
         <img
           src="/images/icons/cat-black.png"
           alt="貓咪圖案"
           class="cat-icon"
         />
-        <div class="tick-block">
+        <div class="tick-block" v-show="showCat">
           <img src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
         </div>
       </div>
-      <div class="breed-type-circle" v-show="this.$route.params.type === 'dog'">
+      <div
+        class="breed-type-circle dog"
+        :class="[showCat ? 'animation-out' : 'animation-in']"
+      >
         <div class="default-black-color dog-type txt">汪汪</div>
         <img
           src="/images/icons/dog-black.png"
           alt="狗狗圖案"
           class="dog-icon"
         />
-        <div class="tick-block">
+        <div class="tick-block" v-show="!showCat">
           <img src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
         </div>
       </div>
-      <div class="breed-type-circle" v-show="this.$route.params.type === 'mix'">
+      <!-- <div class="breed-type-circle" v-show="this.$route.params.type === 'mix'">
         <div class="default-black-color mix-type txt">汪喵</div>
         <img
           src="/images/icons/mix-black.png"
@@ -34,12 +40,12 @@
         <div class="tick-block">
           <img src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="category-options-block">
       <div
         class="category-option"
-        v-for="(item, index) in options"
+        v-for="(item, index) in typeCategories"
         :key="index"
         :class="{ 'option-seledted': item.selected }"
         @click="toggleSelectOption(index)"
@@ -82,108 +88,106 @@ export default {
   data() {
     return {
       position: "",
-      circle: {
-        cat: false,
-        dog: false,
-        mix: true
-      },
-      options: [
-        {
-          name: "玩具",
-          selected: false,
-          value: ""
-        },
-        {
-          name: "飼料",
-          selected: false,
-          value: ""
-        },
-        {
-          name: "罐頭",
-          selected: false,
-          value: ""
-        },
-        {
-          name: "零食",
-          selected: false,
-          value: ""
-        },
-        {
-          name: "睡窩",
-          selected: false,
-          value: ""
-        },
-        {
-          name: "貓砂",
-          selected: false,
-          value: ""
-        },
-        {
-          name: "抓板",
-          selected: false,
-          value: ""
-        },
-        {
-          name: "用品",
-          selected: false,
-          value: ""
-        },
-        {
-          name: "其他",
-          selected: false,
-          value: ""
-        }
-      ],
+      showCat: true,
+      allCategories: [],
+      typeCategories: [],
       selected: false,
+      selectID: "",
+      selectName: "",
       selectType: ""
     };
   },
   mounted() {
-    let x = 0;
-    setInterval(() => {
-      x--;
-      this.position = `${x}px ${x}px`;
-
-      if (x < -2000) {
-        x = 0;
-      }
-    }, 20);
+    this.bgAnimation();
 
     // 預設貓咪類別
-    if (this.$route.params.type === undefined) {
-      this.$router.replace({ name: "CategoryPage", params: { type: "cat" } });
-    }
+    this.$router
+      .replace({ path: "CategoryPage", query: { type: "cat" } })
+      .catch(() => {});
 
-    this.getAllCategories();
+    this.getAllCategories().then(() => {
+      this.getCurrentTypeCategory();
+    });
   },
   methods: {
     toggleSelectOption(index) {
-      this.options = this.options.map((item, key) => {
+      this.typeCategories = this.typeCategories.map((item, key) => {
         if (index !== key) {
           item.selected = false;
         } else {
           item.selected = !item.selected;
           if (item.selected) {
             this.selected = true;
-            this.selectType = item.name;
+            this.selectID = item.id;
+            this.selectName = item.name;
           } else {
             this.selected = false;
-            this.selectType = "";
+            this.selectID = "";
           }
         }
         return item;
       });
     },
-    routerSwitch() {
-      if (this.selectType === "") {
+    routerSwitch(path) {
+      if (this.selectID === "") {
         return;
       }
-      this.$router.push("/product_list_page");
+
+      this.$router.push({
+        path,
+        query: {
+          type: this.$route.query.type,
+          subType: this.selectID,
+          name: this.selectName
+        }
+      });
     },
     getAllCategories() {
-      this.$api.getAllCategories().then(res => {
-        console.log(res, "category");
+      this.$store.dispatch("toggleLoading", true);
+      return this.$api.getAllCategories().then(res => {
+        this.allCategories = res.data.data.rows;
+        this.$store.dispatch("toggleLoading", false);
       });
+    },
+    getCurrentTypeCategory() {
+      let type;
+      this.showCat ? (type = "cat") : (type = "dog");
+
+      let data = this.allCategories.filter(item => item.type === type);
+      this.typeCategories = data.map(item => {
+        return {
+          name: item.title,
+          selected: false,
+          id: item.id
+        };
+      });
+    },
+    bgAnimation() {
+      let x = 0;
+      setInterval(() => {
+        x--;
+        this.position = `${x}px ${x}px`;
+
+        if (x < -2000) {
+          x = 0;
+        }
+      }, 20);
+    },
+    toggle() {
+      this.showCat = !this.showCat;
+
+      if (this.showCat) {
+        this.$router.replace({
+          path: "/category_page",
+          query: { type: "cat" }
+        });
+      } else {
+        this.$router.replace({
+          path: "/category_page",
+          query: { type: "dog" }
+        });
+      }
+      this.getCurrentTypeCategory();
     }
   }
 };
@@ -199,7 +203,8 @@ export default {
         background-size: 190px 190px
         width: 100%
         height: 100%
-        position: fixed
+        // position: fixed
+        position: absolute // 改為 absolute for not 100vw
         top: 0
         left: 0
         // z-index: -1
@@ -208,15 +213,26 @@ export default {
         left: 50%
         transform: translateX(-50%)
         position: absolute
+        display: flex
+    .animation-in
+      animation: selectIn .7s linear
+      transform: translateX(-50%) scale(1)
+    .animation-out
+      left: -10rem
+      animation: selectOut .7s linear
+      transform: translateX(-50%) scale(.4) rotateY(140deg)
+      z-index: -1
+      opacity: .5
     .breed-type-circle
         border-radius: 50%
-        border: solid 4px
+        border: solid .4rem
         border-color: #333333
         background-color: #f2c47e
-        // position: absolute
+        position: absolute
         box-sizing: border-box
         width: 8rem
         height: 8rem
+        position: absolute
         .txt
             position: absolute
             font-size: 2rem
@@ -227,52 +243,18 @@ export default {
             transform: translate(-50%, -50%)
             text-align: center
             width: 100%
-    // .dog-circle
-    //     right: 5.4rem
-    //     top: 21.5rem
-    // .cat-circle
-    //     left: 5rem
-    //     top: 9rem
-    // .mix-circle
-    //     top: 34rem
-    //     left: 7.5rem
-    // .cat-type
-    //     width: 14rem
-    //     height: 14rem
-    //     left: 4rem
-    //     top: 8.5rem
     .cat-icon
         width: 6rem
         height: 6rem
         position: absolute
-        bottom: 0
+        bottom: -.5rem
         left: -2rem
-        // top: 12.1rem
-        // left: 1.8rem
-    // .dog-type
-    //     width: 12rem
-    //     height: 12rem
-    //     right: 5.5rem
-    //     top: 21.5rem
     .dog-icon
         bottom: -1rem
-        right: -3rem
+        right: -3.5rem
         position: absolute
         width: 5rem
         height: 5rem
-    // .mix-type
-    //     width: 12rem
-    //     height: 12rem
-    //     top: 34rem
-    //     left: 7.5rem
-    .mix-icon
-        bottom: -2rem
-        left: -4rem
-        // top: 39rem
-        // left: 2rem
-        position: absolute
-        width: 6rem
-        height: 6rem
     .tick-icon
         width: 1.2rem
         height: 1.2rem
@@ -297,8 +279,8 @@ export default {
         height: 6rem
         margin: 0 auto
         border-radius: 50%
-        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12)
-        border: solid 2px #ccaa76
+        box-shadow: 0 0 .6rem 0 rgba(0, 0, 0, 0.12)
+        border: solid .2rem #ccaa76
         background-color: #f2c47e
         font-size: 1.8rem
         font-weight: 500
@@ -321,7 +303,7 @@ export default {
         align-items: center
         justify-content: center
         border-radius: 50%
-        right: -1rem
+        right: 0
         top: -.5rem
     .category-tick-icon
         width: 1.2rem
@@ -332,14 +314,10 @@ export default {
         width: 25rem
         height: 3.8rem
         border-radius: 5rem
-        border: solid 2px #c99246
+        border: solid .2rem #c99246
         background-color: #e3a652
         margin: 5rem auto
         position: relative
-        // position: absolute
-        // bottom: 2rem
-        // left: 50%
-        // transform: translateX(-50%)
         font-size: 1.8rem
         font-weight: bold
         display: flex
@@ -355,4 +333,32 @@ export default {
     .selected
         color: #333333
         border-color: #333333
+    @keyframes selectOut
+      0%
+        transform: scale(1.2)
+        opacity: 1
+      50%
+        transform: scale(1.3) rotateY(100deg)
+      100%
+        left: -14rem
+        transform: scale(.4) rotateY(140deg)
+
+    @keyframes selectIn
+      0%
+        left: -8rem
+        transform: scale(.8) rotateY(100deg)
+      20%
+        left: -8rem
+      40%
+        left: 50%
+        transform: translate(-50%, -50%) scale(.2)
+      60%
+
+        transform: translate(0%, -30%) scale(.4)
+      80%
+        left: 100%
+        transform: scale(.6)
+      100%
+        left: 50%
+        transform: translateX(-50%) scale(1)
 </style>

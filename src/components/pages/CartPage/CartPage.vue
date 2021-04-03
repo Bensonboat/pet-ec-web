@@ -6,7 +6,7 @@
       <div v-show="checkoutStep === 1">
         <div class="order-list-block">
           <div class="order-infomation">
-            <cart-item-attribute v-for="(item, index) in 5" :key="index" />
+            <cart-item-attribute v-for="(item, index) in 10" :key="index" />
             <div class="order-note-block">
               <input type="text" placeholder="請輸入訂單備註" class="note" />
             </div>
@@ -87,7 +87,6 @@ export default {
         padding: 0 .5rem 0 .5rem
         margin-top: .5rem
         overflow: hidden
-        // overflow: scroll
     .order-infomation, .shipping-infomation-block
         background-color: #fff
         padding: 1rem

@@ -25,6 +25,7 @@ export default {
         height: 1.8rem
     .add-to-bag-btn-block
         width: calc(100% - 1rem)
+        max-width: 900px
         height: 5rem
         border-radius: .5rem
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4)

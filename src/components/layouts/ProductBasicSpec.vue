@@ -3,15 +3,15 @@
   <div class="product-basic-spec">
     <div class="all-spec-block">
       <img
-        src="/images/icons/del.png"
+        src="/images/icons/close.svg"
         alt="關閉按鈕"
         class="close-icon click-animation"
         @click="closeAllSpecModal"
       />
       <div class="product-attribute-block">
-        <img src="/images/p1.jpg" alt="商品圖片" class="product-image" />
+        <img :src="productData[0]" alt="商品圖片" class="product-image" />
         <div class="name-price-block">
-          <div class="product-name">{{ productData.name }}</div>
+          <div class="product-name">{{ productData.title }}</div>
           <div
             class="price origin-price"
             :class="{ 'origin-price-remove': productData.price !== '' }"
@@ -159,6 +159,10 @@ export default {
     },
     selectItem(index) {
       this.specOptions.map((item, key) => {
+        if (this.number === 0) {
+          this.number = 1;
+        }
+
         if (index === key) {
           item.selected = true;
           this.allowSelectNumber = true;
@@ -176,17 +180,24 @@ export default {
       }
     },
     confirm() {
-      alert("Service unavailable now");
+      let data = this.addToCartDataParser();
+
+      this.$store.dispatch("toggleLoading", true);
+      this.$api.AddCartItem(data).then(res => {
+        console.log(res, "??? CART");
+        alert(res.data.msg);
+        this.$store.dispatch("toggleLoading", false);
+        this.$store.dispatch("setCartData", data);
+
+        if (res.data.data.id !== "") {
+          document.cookie(`ssid=${res.data.data.id}`);
+        }
+      });
       this.closeAllSpecModal();
     },
     getSingleProductData() {
       let data = this.$store.state.singleProductData;
-      this.productData = {
-        name: data.title,
-        id: data.id,
-        price: 2000,
-        origin_price: 4000
-      };
+      this.productData = data;
 
       let skus = data.skus;
       if (skus.length > 0) {
@@ -196,10 +207,26 @@ export default {
             value: item.sku,
             selected: false,
             origin_price: item.origin_price,
-            price: item.price
+            price: item.price,
+            id: item.id
           };
         });
       }
+    },
+    addToCartDataParser() {
+      let spec_obj = this.specOptions.find(item => item.selected);
+      let to_cart_data = {
+        qty: this.number,
+        product_id: this.productData.id,
+        title: this.productData.title,
+        description: this.productData.description,
+        sku_id: spec_obj.id,
+        sku_name: spec_obj.name,
+        image: [],
+        price: spec_obj.price
+      };
+
+      return to_cart_data;
     }
   }
 };
@@ -217,6 +244,9 @@ export default {
     .all-spec-block
         color: #333333
         width: 100vw
+        max-width: 900px
+        left: 50%
+        transform: translateX(-50%)
         // height: 30.5rem
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4)
         background-color: #ffffff
@@ -226,10 +256,11 @@ export default {
         padding: 1.5rem
         box-sizing: border-box
     .close-icon
-        width: 2rem
-        height: 2rem
+        width: 1.4rem
+        height: 1.4rem
         position: absolute
-        right: 1.5rem
+        right: 1rem
+        top: 1rem
     .product-attribute-block
         display: flex;
         align-items: flex-start

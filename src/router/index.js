@@ -18,8 +18,7 @@ import SearchPage from "@/components/pages/SearchPage/SearchPage";
 import OrderDetailPage from "@/components/pages/OrderDetailPage/OrderDetailPage";
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/login",
     name: "LoginPage",
     component: LoginPage
@@ -43,15 +42,16 @@ const routes = [
     path: "/",
     name: "IndexContent",
     component: IndexContent,
-    redirect: { name: "CategoryPage" },
-    children: [
-      {
+    redirect: {
+      name: "CategoryPage"
+    },
+    children: [{
         path: "/home_page",
         name: "HomePage",
         component: HomePage
       },
       {
-        path: "/category_page/:type",
+        path: "/category_page/",
         name: "CategoryPage",
         component: CategoryPage
       },
@@ -83,7 +83,9 @@ const routes = [
   },
   {
     path: "*",
-    redirect: { path: "/" }
+    redirect: {
+      path: "/"
+    }
   }
 ];
 

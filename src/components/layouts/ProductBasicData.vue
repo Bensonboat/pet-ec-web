@@ -5,7 +5,7 @@
       class="product-content-block"
       @click="
         checkProductDetail(product_data.type, product_data.id) +
-          getCurrentID(product_data.id)
+          getSingleProductData(product_data.id)
       "
     >
       <div class="product-top-block">
@@ -43,7 +43,7 @@
         <!-- </div> -->
         <div
           class="quick-add-icon-block click-animation"
-          @click.stop="getCurrentID(product_data.id)"
+          @click.stop="quickAdd(product_data.id)"
         >
           <img src="/images/icons/bag-add.svg" alt="快速加入按鈕" />
         </div>
@@ -66,13 +66,6 @@
             NT${{ product_data.price }}
           </div>
         </div>
-        <!-- <div v-if='showQuickAddIcon' class="product-cart-block" @click="showQuickAddModal">
-                    <img
-                        src="/images/add-to-bag.png"
-                        alt="cart image"
-                        class="cart-image"
-                    />
-                </div> -->
       </div>
     </div>
   </div>
@@ -103,6 +96,7 @@ export default {
     //     this.$emit("show-quick-add-modal");
     // },
     checkProductDetail(type, id) {
+      console.log(type, id);
       this.$router.push({
         path: "/product/" + type + "/" + id
       });
@@ -122,17 +116,18 @@ export default {
     showProductAllSpecModal() {
       this.$store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true);
     },
-    getCurrentID(id) {
+    getSingleProductData(id) {
       this.$store.dispatch("toggleLoading", true);
-      API.getSingleProduct(id)
-        .then(res => {
-          let data = res.data.data;
-          this.$store.commit(types.GET_SINGLE_PRODUCT_DATA, data);
-          this.$store.dispatch("toggleLoading", false);
-        })
-        .then(() => {
-          this.showProductAllSpecModal();
-        });
+      return API.getSingleProduct(id).then(res => {
+        let data = res.data.data;
+        this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
+        this.$store.dispatch("toggleLoading", false);
+      });
+    },
+    quickAdd(id) {
+      this.getSingleProductData(id).then(() => {
+        this.showProductAllSpecModal();
+      });
     }
   }
 };

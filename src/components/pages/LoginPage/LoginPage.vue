@@ -11,7 +11,7 @@
     </div>
     <div class="content-block">
       <div class="bg" :style="{ backgroundPosition: position }"></div>
-      <div class="title flex-center">登入</div>
+      <div class="title flex-center">{{ !isLoginMode ? "註冊" : "登入" }}</div>
       <div class="form-block">
         <div class="btn-shape form-input-block">
           <img src="/images/icons/id.svg" alt="" class="icon" />
@@ -94,17 +94,22 @@
       </div>
     </div>
     <!-- <loading-mask/> -->
+    <div v-if="$store.state.globalModalContent !== ''">
+      <div class="modal-mask"></div>
+      <base-modal />
+    </div>
   </div>
 </template>
 
 <script>
+import BaseModal from "@/components/layouts/BaseModal";
 // import LoadingMask from '@/components/layouts/LoadingMask'
 import API from "@/axios/api";
 export default {
   name: "LoginPage",
-  // components: {
-  //     LoadingMask
-  // }
+  components: {
+    BaseModal
+  },
   data() {
     return {
       position: "",
@@ -118,15 +123,7 @@ export default {
     };
   },
   mounted() {
-    let x = 0;
-    setInterval(() => {
-      x--;
-      this.position = `${x}px ${x}px`;
-
-      if (x < -2000) {
-        x = 0;
-      }
-    }, 20);
+    this.bgAnimation();
   },
   methods: {
     toggleInput(type) {
@@ -163,14 +160,21 @@ export default {
     },
     signUp(data) {
       // ＡＰＩ有限制密碼 6-32 字數
-      API.signUp(data).then(res => {
-        console.log(res, "sign up");
-      });
+      API.signUp(data)
+        .then(() => {
+          this.setGlobalModalContent("sign-up-success");
+        })
+        .catch(() => {
+          this.setGlobalModalContent("sign-up-fail");
+        });
     },
     logIn(data) {
       API.logIn(data)
         .then(res => {
-          console.log(res, "log in");
+          console.log(res.data.code, "###");
+          if (res.data.code === 3001) {
+            this.setGlobalModalContent("not-registered");
+          }
         })
         .catch(() => {
           this.switchErrorMessage("invalid-login");
@@ -211,6 +215,55 @@ export default {
     },
     resetErrorMessage() {
       this.errorMessage = "";
+    },
+    setGlobalModalContent(type) {
+      let default_data_structure = {
+        title: "購買成功",
+        detail: "詳細顯示內容在這",
+        btn1: "",
+        btn2: ""
+      };
+      switch (type) {
+        case "sign-up-success":
+          default_data_structure = {
+            title: "註冊成功",
+            detail: "請至註冊信箱收取驗證信",
+            btn1: "",
+            btn2: ""
+          };
+          break;
+        case "sign-up-fail":
+          default_data_structure = {
+            title: "註冊失敗",
+            detail: "請重新再試一次或洽客服人員",
+            btn1: "",
+            btn2: ""
+          };
+          break;
+        case "not-registered":
+          default_data_structure = {
+            title: "登入失敗",
+            detail: "此帳號尚未註冊",
+            btn1: "",
+            btn2: ""
+          };
+          break;
+        default:
+          break;
+      }
+
+      this.$store.dispatch("setGlobalModalContent", default_data_structure);
+    },
+    bgAnimation() {
+      let x = 0;
+      setInterval(() => {
+        x--;
+        this.position = `${x}px ${x}px`;
+
+        if (x < -2000) {
+          x = 0;
+        }
+      }, 20);
     }
   }
 };
@@ -219,149 +272,148 @@ export default {
 <style lang="sass" scoped>
 .login-page
     .page-header
-        height: 5rem
-        box-shadow: 0 .2rem .4rem 0 rgba(0, 0, 0, 0.15)
-        background-color: #333333
-        font-size: 1.4rem
-        font-weight: 500
-        color: #efe1ce
-        display: flex
-        justify-content: center
-        align-items: center
-        z-index: 1
-        position: relative
+      height: 5rem
+      box-shadow: 0 .2rem .4rem 0 rgba(0, 0, 0, 0.15)
+      background-color: #333333
+      font-size: 1.4rem
+      font-weight: 500
+      color: #efe1ce
+      display: flex
+      justify-content: center
+      align-items: center
+      z-index: 1
+      position: relative
     .toggle-mode-btn
-        font-size: 1.2rem
-        width: 4.4rem
-        height: 3rem
-        border-radius: .5rem
-        border: solid .1rem #efe1ce
-        background-color: #333333
-        display: flex
-        align-items: center
-        justify-content: center
-        position: absolute
-        right: 1.5rem
+      font-size: 1.2rem
+      width: 4.4rem
+      height: 3rem
+      border-radius: .5rem
+      border: solid .1rem #efe1ce
+      background-color: #333333
+      display: flex
+      align-items: center
+      justify-content: center
+      position: absolute
+      right: 1.5rem
     .content-block
-        position: relative
-        .bg
-            background-image: url('/images/icons/tiles.svg')
-            background-repeat: repeat
-            background-color: #E5CEAE
-            background-size: 190px 190px
-            width: 100%
-            height: 100%
-            position: fixed
-            top: 0
-            left: 0
+      position: relative
+      .bg
+          background-image: url('/images/icons/tiles.svg')
+          background-repeat: repeat
+          background-color: #E5CEAE
+          background-size: 190px 190px
+          width: 100%
+          height: 100%
+          // position: fixed
+          position: absolute // 改為 absolute for not 100vw
+          top: 0
+          left: 0
     .title
-        font-size: 2rem
-        font-weight: 500
-        color: #333333
-        position: relative
-        z-index: 1
-        margin: 3rem 0
+      font-size: 2rem
+      font-weight: 500
+      color: #333333
+      position: relative
+      z-index: 1
+      margin: 3rem 0
     .form-block
-        position: relative
-        z-index: 1
+      position: relative
+      z-index: 1
     .form-input-block
-        display: flex
-        align-items: center
-        padding-left: 2.5rem
-        overflow: hidden
-        position: relative
+      display: flex
+      align-items: center
+      padding-left: 2.5rem
+      overflow: hidden
+      position: relative
     .form-input-text
-        position: absolute
-        color: #e5ceae
-        left: 50%
-        transform: translateX(-50%)
-        font-size: 1.4rem
+      position: absolute
+      color: #e5ceae
+      left: 50%
+      transform: translateX(-50%)
+      font-size: 1.4rem
     .btn-shape
-        width: 25rem
-        height: 3.8rem
-        border-radius: 1.85rem
-        border: solid .1rem #ceb28b
-        background-color: #ffffff
-        margin: auto
-        margin-bottom: 1.5rem
-        box-sizing: border-box
+      width: 25rem
+      height: 3.8rem
+      border-radius: 1.85rem
+      border: solid .1rem #ceb28b
+      background-color: #ffffff
+      margin: auto
+      margin-bottom: 1.5rem
+      box-sizing: border-box
     .forget-password-block
-        width: 25rem
-        margin: auto
-        font-size: 1.2rem
-        font-weight: 500
-        color: #333333
-        display: flex
-        justify-content: flex-end
-        .text
-            border-bottom: solid 1px
+      width: 25rem
+      margin: auto
+      font-size: 1.2rem
+      font-weight: 500
+      color: #333333
+      display: flex
+      justify-content: flex-end
+      .text
+          border-bottom: solid 1px
     .icon
-        width: 1.8rem
-        height: 1.8rem
-        margin-right: 1rem
+      width: 1.8rem
+      height: 1.8rem
+      margin-right: 1rem
     .check-password
-        margin: 0 1.5rem 0 1.5rem
-    // input[type="password"]
-    //     font-size: 2.5rem
+      margin: 0 1.5rem 0 1.5rem
     .input
-        width: calc(100% - 3rem)
-        height: 100%
-        border: none
-        outline: none
-        font-size: 1.4rem
+      width: calc(100% - 3rem)
+      height: 100%
+      border: none
+      outline: none
+      font-size: 1.4rem
+      font-weight: 500
+      color: #333333
+      font-weight: 600
+      z-index: 2
+      background-color: transparent
+    .login-btn
+      background-color: #333333
+      color: #e5ceae
+      display: flex
+      align-items: center
+      justify-content: center
+      font-size: 1.2rem
+    .others-login-block
+      margin-top: 4rem
+    .other-login-btn
+      border-radius: 1.85rem
+      border: solid .2rem #333333
+      background-color: #e3a652
+      font-size: 1.4rem
+      color: #333333
+      position: relative
+    .pre-icon
+      position: absolute
+      left: 1.5rem
+    .gap-line
+      height: .1rem
+      width: 25rem
+      background: #333333
+      margin: auto
+      position: relative
+      margin-top: 7.5rem
+      .text
+        width: 3rem
+        position: absolute
+        background-color: #e5ceae
+        font-size: 1.2rem
         font-weight: 500
         color: #333333
-        font-weight: 600
-        z-index: 2
-        background-color: transparent
-    .login-btn
-        background-color: #333333
-        color: #e5ceae
-        display: flex
-        align-items: center
-        justify-content: center
-        font-size: 1.2rem
-    .others-login-block
-        margin-top: 4rem
-    .other-login-btn
-        border-radius: 1.85rem
-        border: solid .2rem #333333
-        background-color: #e3a652
-        font-size: 1.4rem
-        color: #333333
-        position: relative
-    .pre-icon
-        position: absolute
-        left: 1.5rem
-    .gap-line
-        height: .1rem
-        width: 25rem
-        background: #333333
-        margin: auto
-        position: relative
-        margin-top: 7.5rem
-        .text
-            width: 3rem
-            position: absolute
-            background-color: #e5ceae
-            font-size: 1.2rem
-            font-weight: 500
-            color: #333333
-            top: 0
-            left: 50%
-            transform: translate(-50%, -50%)
+        top: 0
+        left: 50%
+        transform: translate(-50%, -50%)
     .alert-msg
-        font-size: 1.2rem
-        color: #ea1a29
-        margin-top: -1rem
-        margin-bottom: 1.5rem
+      font-size: 1.2rem
+      color: #ea1a29
+      margin-top: -1rem
+      margin-bottom: 1.5rem
     .error-icon
-        width: 1.3rem
-        height: 1.3rem
-        margin-right: .5rem
+      width: 1.3rem
+      height: 1.3rem
+      margin-right: .5rem
     .sms-icon
-        width: 1.6rem
-        height: 1.6rem
-        position: absolute
-        left: 2.5rem
+      width: 1.6rem
+      height: 1.6rem
+      position: absolute
+      left: 2.5rem
 </style>

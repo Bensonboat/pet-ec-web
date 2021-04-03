@@ -23,14 +23,18 @@ import allApi from "@/axios/api";
 // }
 
 // ========== 購物車 ==========
-export const getCartData = context => {
+export const setCartData = context => {
   allApi.getCartData().then(res => {
     let data = res.data.data.items;
-    console.log(data, "actions");
-    context.commit("GET_CART_DATA", data);
+    context.commit("SET_CART_DATA", data);
   });
 };
 
 export const toggleLoading = (context, is_loading) => {
   context.commit("IS_LOADING", is_loading);
 };
+
+// ========== Global Modal Content ==========
+export const setGlobalModalContent = (context, data) => {
+  context.commit("SET_MODAL_CONTENT", data)
+}

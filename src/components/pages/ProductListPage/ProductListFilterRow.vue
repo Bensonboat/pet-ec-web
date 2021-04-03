@@ -1,6 +1,8 @@
 <template>
   <div class="product-list-filter-row default-product-list-filter-row">
-    <div class="list-subject default-deep-green-color">{{ listSubject }}</div>
+    <div class="list-subject default-deep-green-color">
+      {{ this.$route.query.type | transTxt }} / {{ this.$route.query.name }}
+    </div>
     <div class="basic-order-filter">
       <base-select style="width: 11rem; height: 2.8rem" />
       <!-- <el-select v-model="orderFilter" placeholder="請選擇" size="mini" style="width: 14rem; border: none">
@@ -24,9 +26,16 @@ export default {
   components: {
     BaseSelect
   },
+  filters: {
+    transTxt(txt) {
+      let result;
+      txt === "cat" ? (result = "喵喵") : (result = "狗狗");
+      return result;
+    }
+  },
   data() {
     return {
-      listSubject: "狗窩/吊床",
+      // listSubject: `${this.$route.query.name}`,
       orderFilter: "",
       orderFilterOptions: [
         {

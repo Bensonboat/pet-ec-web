@@ -2,7 +2,7 @@
   <div class="reset-password">
     <div class="page-header flex-center">
       <img
-        src="/images/icons/tick.svg"
+        src="/images/icons/close.svg"
         alt="上一步按鈕"
         class="prev-icon"
         @click="close"
@@ -90,10 +90,10 @@ export default {
             outline: none
             border: none
     .prev-icon
-        width: 2.4rem
-        height: 2.4rem
+        width: 1.5rem
+        height: 1.5rem
         position: absolute
-        left: 1rem
+        right: 1rem
     .confirm-btn
         width: calc(100% - 3rem)
         height: 4.4rem

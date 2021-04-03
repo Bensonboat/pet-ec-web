@@ -1,67 +1,58 @@
 <template>
   <div class="index-content">
-    <the-heading
-      scrollOnToppest="scrollOnToppest"
-      :class="[!scrollOnToppest ? 'transparent-heading' : '']"
-    />
+    <the-heading :class="[!showHeading ? 'transparent-heading' : '']" />
     <router-view
       class="index-content-router-view"
       ref="index_content_router"
       @scroll.native="handleScroll"
     />
-    <!-- <div class="default-top-icon-block top-icon-block" v-show="this.$route.path !== '/home_page'">
-            <img src="/images/top.png" alt="to top icon" class="default-top-icon top-icon">
-        </div> -->
-    <transition name="basic">
+    <!-- <transition name="basic">
       <product-basic-spec v-if="getShowProductAllSpecModalStatus" />
-    </transition>
+    </transition> -->
   </div>
 </template>
 
 <script>
 import TheHeading from "./TheHeading.vue";
-import ProductBasicSpec from "@/components/layouts/ProductBasicSpec";
-// import store from '@/store'
-// import * as types from '@/store/mutation-types.js'
+// import ProductBasicSpec from "@/components/layouts/ProductBasicSpec";
 
 export default {
   name: "IndexContent",
   components: {
-    TheHeading,
-    ProductBasicSpec
+    TheHeading
+    // ProductBasicSpec
   },
   data() {
     return {
-      scrollOnToppest: true,
+      showHeading: true,
       currentHeight: ""
     };
   },
   mounted() {
-    this.getCartData();
+    // this.getCartData();
   },
-  computed: {
-    getShowProductAllSpecModalStatus() {
-      return this.$store.state.showProductAllSpecModal;
-    }
-  },
+  // computed: {
+  //   getShowProductAllSpecModalStatus() {
+  //     return this.$store.state.showProductAllSpecModal;
+  //   }
+  // },
   methods: {
     handleScroll() {
       // 是否顯示 Heading
       let current_height = this.$refs.index_content_router.$el.scrollTop;
-      if (current_height > 100) {
-        this.scrollOnToppest = false;
+      if (current_height > 50) {
+        this.showHeading = false;
 
         if (this.currentHeight > current_height) {
-          this.scrollOnToppest = true;
+          // 向上滾動時
+          this.showHeading = true;
         }
         this.currentHeight = current_height;
-      } else {
-        this.scrollOnToppest = true;
       }
-    },
-    getCartData() {
-      this.$store.dispatch("getCartData");
     }
+    // getCartData() {
+    //   this.$store.dispatch("setCartData");
+    // }
   }
 };
 </script>
@@ -72,24 +63,10 @@ export default {
     .index-content-router-view
         height: calc(100% - 4.4rem)
         padding-top: 4.4rem
-        // padding: .5rem
         overflow-y: scroll
-        // width: 90%
         margin: auto
-        // background-color: #fff
     .index-content-router-view::-webkit-scrollbar
         display: none
-    // .top-icon-block
-    //     position: absolute
-    //     right: 3rem
-    //     bottom: 3rem
-    //     // background-color: #D8E2DC
-    //     // background-color: #DFE0E2
-    //     background-color: rgba(0,0,0,.4)
-    //     border-radius: 100%
-    //     padding: 1rem
-    // .top-icon
-        // margin-top: 3px
     .transparent-heading
         background-color: transparent
         opacity: 0

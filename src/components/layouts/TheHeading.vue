@@ -38,7 +38,7 @@ export default {
   name: "TheHeading",
   computed: {
     getCartItemNumber() {
-      return this.$store.state.cart_data.length;
+      return this.$store.state.cartData.length;
     }
   },
   methods: {
@@ -55,6 +55,7 @@ export default {
 <style lang="sass" scoped>
 .the-heading
     height: 4.4rem
+    box-sizing: border-box
     display: flex
     justify-content: space-between
     align-items: center

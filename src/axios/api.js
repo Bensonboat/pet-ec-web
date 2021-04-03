@@ -9,10 +9,11 @@ export default {
   //     //     data
   //     })
   // },
-  getProductsList() {
+  getProductsList(params) {
     return axios({
       method: "GET",
-      url: apiUrl.PRODUCTS_DATA
+      url: apiUrl.PRODUCTS_DATA,
+      params
     });
   },
   getSingleProduct(id) {
@@ -49,9 +50,14 @@ export default {
     });
   },
   getAllCategories() {
+    // 不限制每頁數量
+    let params = {
+      limit: 200
+    }
     return axios({
       method: "GET",
-      url: apiUrl.CATEGORIES
+      url: apiUrl.CATEGORIES,
+      params
     });
   }
 };

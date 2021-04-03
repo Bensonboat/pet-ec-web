@@ -30,6 +30,7 @@ export default {
     font-size: 1.4rem
     font-weight: 500
     color: #efe1ce
+    position: relative
     .pre-icon
         position: absolute
         left: 1rem

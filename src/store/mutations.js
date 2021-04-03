@@ -4,18 +4,17 @@ export default {
   [types.SHOW_PRODUCT_ALL_SPEC_MODAL](state, data) {
     state.showProductAllSpecModal = data;
   },
-  // [types.GET_SINGLE_PRODUCT_ID](state, data) {
-  //   state.SingleProductID = data
-  // },
-  [types.GET_SINGLE_PRODUCT_DATA](state, data) {
+  [types.SET_SINGLE_PRODUCT_DATA](state, data) {
     state.singleProductData = data;
   },
-  [types.GET_CART_DATA](state, data) {
-    console.log(data, "#####");
-    state.cart_data = data;
+  [types.SET_CART_DATA](state, data) {
+    state.cartData = data;
   },
   [types.IS_LOADING](state, data) {
-    state.is_loading = data;
+    state.isLoading = data;
+  },
+  [types.SET_MODAL_CONTENT](state, data) {
+    state.globalModalContent = data
   }
 
   //     // didn't set any overflow at container level such as body, myApp ... because of Animation On Scroll library

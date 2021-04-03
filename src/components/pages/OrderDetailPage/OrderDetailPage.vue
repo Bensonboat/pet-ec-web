@@ -1,10 +1,6 @@
 <template>
   <div class="order-detail-page">
-    <page-header :title="'訂單詳情'" @previous-page="previousPage">
-      <!-- <template #othersButton>
-                <div class="others-btn">123</div>
-            </template> -->
-    </page-header>
+    <page-header :title="'訂單詳情'" @previous-page="previousPage" />
     <div class="sub-title-row flex-center">
       <div
         class="sub-title flex-center"

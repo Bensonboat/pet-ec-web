@@ -1,6 +1,9 @@
 export default {
   getLoadingStatus: state => {
-    return state.is_loading;
+    return state.isLoading;
+  },
+  getGlobalModalContent: state => {
+    return state.globalModalContent
   }
   //     getAccountData: state => { return state.accountData }
 };

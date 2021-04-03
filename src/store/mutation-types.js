@@ -8,8 +8,10 @@ export const IS_LOADING = "IS_LOADING";
 export const SHOW_PRODUCT_ALL_SPEC_MODAL = "SHOW_PRODUCT_ALL_SPEC_MODAL";
 
 // 顯示單筆商品資料
-// export const GET_SINGLE_PRODUCT_ID = 'GET_SINGLE_PRODUCT_ID';
-export const GET_SINGLE_PRODUCT_DATA = "GET_SINGLE_PRODUCT_DATA";
+export const SET_SINGLE_PRODUCT_DATA = "SET_SINGLE_PRODUCT_DATA";
 
 //購物車
-export const GET_CART_DATA = "GET_CART_DATA";
+export const SET_CART_DATA = "SET_CART_DATA";
+
+// 全域 Modal 內容
+export const SET_MODAL_CONTENT = "SET_MODAL_CONTENT"

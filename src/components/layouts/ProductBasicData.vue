@@ -103,10 +103,10 @@ export default {
       return () => {
         this.currentShowsImgIndex = this.currentShowsImgIndex + value;
         if (this.currentShowsImgIndex < 0) {
-          this.currentShowsImgIndex = this.product_data.img.length - 1;
+          this.currentShowsImgIndex = this.product_data.images.length - 1;
           return;
         }
-        if (this.currentShowsImgIndex >= this.product_data.img.length) {
+        if (this.currentShowsImgIndex >= this.product_data.images.length) {
           this.currentShowsImgIndex = 0;
         }
       };

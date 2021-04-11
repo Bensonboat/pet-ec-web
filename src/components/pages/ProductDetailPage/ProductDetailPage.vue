@@ -10,14 +10,14 @@
         >
           <img
             v-show="imageIndex === currentShowsImgIndex"
-            v-for="(image, imageIndex) in productImgs"
+            v-for="(image, imageIndex) in productData.images"
             :key="imageIndex"
-            :src="image"
+            :src="image.src"
             alt="photos"
           />
           <div class="img-dots-block">
             <div
-              v-for="(item, index) in productImgs"
+              v-for="(item, index) in productData.images"
               :key="index"
               class="dots"
               :class="{ 'selected-img-dot': index === currentShowsImgIndex }"
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="product-attribute-block">
-          <div class="name">EQUILÍBRIO 尊爵 機能天然糧</div>
+          <div class="name">{{ productData.title }}</div>
           <div class="price-block">
             <div class="normal-price">NT$4500</div>
             <div class="special-price">NT$2380</div>
@@ -75,20 +75,33 @@ export default {
   },
   data() {
     return {
-      productAttr: {
-        id: "",
-        type: ""
-      },
+      // productAttr: {
+      //   id: "",
+      //   type: ""
+      // },
       productImgs: ["/images/p1.jpg", "/images/test_size.png"],
+      productData: "",
       currentShowsImgIndex: 0,
       showProductInfo: "description"
     };
   },
   mounted() {
-    this.productAttr.id = this.$route.params.id;
-    this.productAttr.type = this.$route.params.type;
+    // this.productAttr.id = this.$route.params.id;
+    // this.productAttr.type = this.$route.params.type;
     // this.productData.name = this.productAttr.type + ':' + this.productAttr.id;
     this.showProductInfo = "description";
+
+    this.getSingleProductData();
+  },
+  computed: {
+    getDetailProductData() {
+      return this.$store.getters.getDetailProductData;
+    }
+  },
+  watch: {
+    getDetailProductData(data) {
+      this.productData = data;
+    }
   },
   methods: {
     toggleProductInfo(value) {
@@ -111,6 +124,20 @@ export default {
     },
     showProductAllSpecModal() {
       this.$store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true);
+    },
+    getSingleProductData() {
+      this.$store.dispatch("toggleLoading", true);
+      let id = this.$route.params.id;
+      return this.$api.getSingleProduct(id).then(res => {
+        // this.getDetailProductData = res.data.data;
+        let data = res.data.data;
+        let query = this.$route.query;
+        data["type"] = query.type;
+        data["subType"] = query.subType;
+
+        this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
+        this.$store.dispatch("toggleLoading", false);
+      });
     }
   }
 };

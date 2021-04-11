@@ -28,12 +28,12 @@ export default {
           name: "送貨及付款",
           selected: false,
           value: "fulfillment"
-        },
-        {
-          name: "顧客評價",
-          selected: false,
-          value: "review"
         }
+        // {
+        //   name: "顧客評價",
+        //   selected: false,
+        //   value: "review"
+        // }
       ]
     };
   },
@@ -55,9 +55,7 @@ export default {
     display: flex
     align-items: center
     justify-content: space-around
-    padding: 1rem
-    // margin-top: .5rem
-    // border-radius: 5px 5px 0 0
+    padding: 1rem 1rem 0 1rem
     .nav-route
         width: 9rem
         height: 2.8rem
@@ -70,12 +68,6 @@ export default {
         display: flex
         align-items: center
         justify-content: center
-        // flex: 1
-        // text-align: center
-        // padding: .8rem 0
-        // letter-spacing: 1px
-        // cursor: pointer
-        // display: flex
     .selected-route
         background-color: #e3a652
 </style>

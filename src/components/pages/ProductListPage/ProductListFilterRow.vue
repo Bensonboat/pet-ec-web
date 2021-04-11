@@ -1,19 +1,10 @@
 <template>
   <div class="product-list-filter-row default-product-list-filter-row">
     <div class="list-subject default-deep-green-color">
-      {{ this.$route.query.type | transTxt }} / {{ this.$route.query.name }}
+      {{ this.$route.query.type | transTxt }} / {{ this.$route.query.category }}
     </div>
     <div class="basic-order-filter">
       <base-select style="width: 11rem; height: 2.8rem" />
-      <!-- <el-select v-model="orderFilter" placeholder="請選擇" size="mini" style="width: 14rem; border: none">
-                <el-option
-                    v-for="item in orderFilterOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                >
-                </el-option>
-            </el-select> -->
     </div>
   </div>
 </template>
@@ -35,22 +26,7 @@ export default {
   },
   data() {
     return {
-      // listSubject: `${this.$route.query.name}`,
-      orderFilter: "",
-      orderFilterOptions: [
-        {
-          label: "test1",
-          value: "test1"
-        },
-        {
-          label: "test2",
-          value: "test2"
-        },
-        {
-          label: "test3",
-          value: "test3"
-        }
-      ]
+      orderFilter: ""
     };
   }
 };
@@ -68,7 +44,6 @@ export default {
     box-sizing: border-box
     position: relative
     z-index: 1
-    // margin-bottom: 2rem
     .list-subject
         font-size: 1.2rem
         font-weight: 500

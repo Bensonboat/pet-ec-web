@@ -30,17 +30,6 @@
           <img src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
         </div>
       </div>
-      <!-- <div class="breed-type-circle" v-show="this.$route.params.type === 'mix'">
-        <div class="default-black-color mix-type txt">汪喵</div>
-        <img
-          src="/images/icons/mix-black.png"
-          alt="貓狗圖案"
-          class="mix-icon"
-        />
-        <div class="tick-block">
-          <img src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
-        </div>
-      </div> -->
     </div>
     <div class="category-options-block">
       <div
@@ -93,7 +82,7 @@ export default {
       typeCategories: [],
       selected: false,
       selectID: "",
-      selectName: "",
+      selectCategory: "",
       selectType: ""
     };
   },
@@ -119,7 +108,7 @@ export default {
           if (item.selected) {
             this.selected = true;
             this.selectID = item.id;
-            this.selectName = item.name;
+            this.selectCategory = item.name;
           } else {
             this.selected = false;
             this.selectID = "";
@@ -138,7 +127,7 @@ export default {
         query: {
           type: this.$route.query.type,
           subType: this.selectID,
-          name: this.selectName
+          category: this.selectCategory
         }
       });
     },

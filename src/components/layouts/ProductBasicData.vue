@@ -4,7 +4,7 @@
     <div
       class="product-content-block"
       @click="
-        checkProductDetail(product_data.type, product_data.id) +
+        checkProductDetail(product_data.id) +
           getSingleProductData(product_data.id)
       "
     >
@@ -19,14 +19,14 @@
           <img
             class="product-image"
             v-show="imageIndex === currentShowsImgIndex"
-            v-for="(image, imageIndex) in product_data.img"
+            v-for="(image, imageIndex) in product_data.images"
             :key="imageIndex"
-            :src="image"
+            :src="image.src"
             alt="photos"
           />
           <div class="photo-dots">
             <div
-              v-for="(item, index) in product_data.img"
+              v-for="(item, index) in product_data.images"
               :key="index"
               class="dot"
               :class="index === currentShowsImgIndex ? 'selected-img-dot' : ''"
@@ -92,13 +92,11 @@ export default {
     };
   },
   methods: {
-    // showQuickAddModal() {
-    //     this.$emit("show-quick-add-modal");
-    // },
-    checkProductDetail(type, id) {
-      console.log(type, id);
+    checkProductDetail(id) {
+      let type = this.$route.query.type;
+      let subType = this.$route.query.subType;
       this.$router.push({
-        path: "/product/" + type + "/" + id
+        path: "/product/" + type + "/" + subType + "/" + id
       });
     },
     changeCurrentImage(value) {
@@ -120,6 +118,10 @@ export default {
       this.$store.dispatch("toggleLoading", true);
       return API.getSingleProduct(id).then(res => {
         let data = res.data.data;
+        let query = this.$route.query;
+        data["type"] = query.type;
+        data["subType"] = query.subType;
+
         this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
         this.$store.dispatch("toggleLoading", false);
       });

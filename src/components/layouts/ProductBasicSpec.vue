@@ -181,7 +181,9 @@ export default {
     },
     confirm() {
       let data = this.addToCartDataParser();
-
+      data = {
+        items: [data]
+      };
       this.$store.dispatch("toggleLoading", true);
       this.$api.AddCartItem(data).then(res => {
         console.log(res, "??? CART");
@@ -190,7 +192,7 @@ export default {
         this.$store.dispatch("setCartData", data);
 
         if (res.data.data.id !== "") {
-          document.cookie(`ssid=${res.data.data.id}`);
+          document.cookie = `sessid=${res.data.data.id}`;
         }
       });
       this.closeAllSpecModal();
@@ -215,14 +217,17 @@ export default {
     },
     addToCartDataParser() {
       let spec_obj = this.specOptions.find(item => item.selected);
+      let product_data = this.productData;
       let to_cart_data = {
         qty: this.number,
-        product_id: this.productData.id,
-        title: this.productData.title,
-        description: this.productData.description,
+        product_id: product_data.id,
+        title: product_data.title,
+        description: product_data.description,
+        type: product_data.type,
+        subType: product_data.subType,
         sku_id: spec_obj.id,
         sku_name: spec_obj.name,
-        image: [],
+        // image: product_data.image[0],
         price: spec_obj.price
       };
 

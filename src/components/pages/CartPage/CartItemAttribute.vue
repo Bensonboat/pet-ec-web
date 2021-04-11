@@ -1,11 +1,16 @@
 <template>
   <div class="cart-item-attribute">
-    <img src="/images/p1.jpg" alt="" class="product-img" />
+    <img
+      :src="cartData.img"
+      alt="商品圖片"
+      class="product-img"
+      @click="checkDetail"
+    />
     <div class="product-basic-block">
-      <div class="product-name">EQUILÍBRIO 尊爵 機能天然糧</div>
-      <div class="product-spec">3.5kg3.5kg3.5kg</div>
+      <div class="product-name">{{ cartData.title }}</div>
+      <div class="product-spec">{{ cartData.sku_name }}</div>
       <div class="price-number-row">
-        <div class="price">NT$2,380</div>
+        <div class="price">{{ cartData.price }}</div>
         <div class="number-block">
           <div class="select-number-block">
             <div
@@ -14,7 +19,7 @@
             >
               <img
                 src="/images/icons/less.svg"
-                alt="減一圖案"
+                alt="-1"
                 class="select-number-icon"
               />
             </div>
@@ -25,7 +30,7 @@
             >
               <img
                 src="/images/icons/plus.svg"
-                alt="加一圖案"
+                alt="+1"
                 class="select-number-icon"
               />
             </div>
@@ -39,6 +44,9 @@
 <script>
 export default {
   name: "CartItemAttribute",
+  props: {
+    cartData: Object
+  },
   data() {
     return {
       number: 0
@@ -50,6 +58,12 @@ export default {
       if (this.number < 0) {
         this.number = 0;
       }
+    },
+    checkDetail() {
+      let data = this.cartData;
+      this.$router.push({
+        path: "/product/" + data.type + "/" + data.id
+      });
     }
   }
 };

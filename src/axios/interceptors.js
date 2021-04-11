@@ -4,6 +4,7 @@ import axios from "axios";
 // request
 axios.interceptors.request.use(
   config => {
+    config.withCredentials = true;
     //如果有token則在headers統一寫入
     // if (token) {
     //     config.headers.Authorization = `${token}`;

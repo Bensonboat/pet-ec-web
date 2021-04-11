@@ -1,12 +1,15 @@
 <template>
   <div class="cart-page">
-    <!-- <div> -->
     <checkout-process :step="checkoutStep" />
     <div>
       <div v-show="checkoutStep === 1">
         <div class="order-list-block">
           <div class="order-infomation">
-            <cart-item-attribute v-for="(item, index) in 10" :key="index" />
+            <cart-item-attribute
+              v-for="(item, index) in getCartData"
+              :key="index"
+              :cartData="item"
+            />
             <div class="order-note-block">
               <input type="text" placeholder="請輸入訂單備註" class="note" />
             </div>
@@ -27,24 +30,16 @@
           @to-certain-step="toCertainStep"
         />
       </div>
-      <!-- <order-complete v-show="checkoutProcessStep === 3"/> -->
     </div>
-    <!-- </div> -->
-    <!-- <div v-if='checkoutProcessStep !== 3' class="default-deep-green-bgc next-step-btn default-border-radius" @click="processSteps(1)">
-            下一步
-        </div>
-        <div v-else class="default-deep-green-bgc next-step-btn default-border-radius" @click="toHomePage">回首頁</div> -->
   </div>
 </template>
 
 <script>
 import CheckoutProcess from "./CheckoutProcess";
-// import CartItemAttribute from './CartItemAttribute'
 import CouponTotalPrice from "./Coupon/CouponTotalPrice";
 import ShippingInfomation from "./ShippingInfomation";
 import OrderConfirmBlock from "./OrderConfirmBlock";
 import CartItemAttribute from "./CartItemAttribute";
-// import OrderComplete from './OrderComplete'
 
 export default {
   name: "CartPage",
@@ -54,7 +49,6 @@ export default {
     CouponTotalPrice,
     ShippingInfomation,
     OrderConfirmBlock
-    // OrderComplete,
   },
   data() {
     return {
@@ -62,10 +56,12 @@ export default {
       orderValidate: false
     };
   },
+  computed: {
+    getCartData() {
+      return this.$store.getters.getCartData;
+    }
+  },
   methods: {
-    // processSteps(val){
-    //     this.checkoutStep = this.checkoutStep + val
-    // },
     toHomePage() {
       this.$router.push("/home_page");
     },

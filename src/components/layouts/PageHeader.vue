@@ -3,7 +3,7 @@
     <div @click="previousPage" class="click-animation pre-icon">
       <img src="/images/icons/back.svg" alt="上一步按鈕" class="icon" />
     </div>
-    <div>{{ title }}</div>
+    <div>{{ title }} ##</div>
     <slot name="pageHeaderButton" />
   </div>
 </template>

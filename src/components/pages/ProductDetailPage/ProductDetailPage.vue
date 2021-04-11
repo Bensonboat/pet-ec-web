@@ -165,8 +165,8 @@ export default {
         display: flex
         justify-content: center
         img
-            width: 100%
-            // height: 100%
+            // width: 100%
+            height: 100%
     .change-image-icon
         position: absolute
         width: 3rem

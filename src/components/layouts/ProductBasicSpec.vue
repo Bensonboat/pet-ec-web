@@ -9,7 +9,12 @@
         @click="closeAllSpecModal"
       />
       <div class="product-attribute-block">
-        <img :src="productData[0]" alt="商品圖片" class="product-image" />
+        <img
+          v-if="productData.images !== undefined"
+          :src="productData.images[0].src"
+          alt="商品圖片"
+          class="product-image"
+        />
         <div class="name-price-block">
           <div class="product-name">{{ productData.title }}</div>
           <div
@@ -24,11 +29,6 @@
       <div class="product-spec-block">
         <div class="spec-text">規格</div>
         <div class="spec-options-block">
-          <!-- 
-                    <div class="spec-option selected">
-                        2kg
-                        <img src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon">
-                    </div> -->
           <div
             class="spec-option"
             v-for="(item, index) in specOptions"
@@ -44,13 +44,6 @@
               class="tick-icon"
             />
           </div>
-          <!-- <div class="spec-option">6kg</div>
-                    <div class="spec-option">2kg</div>
-                    <div class="spec-option">4kg</div>
-                    <div class="spec-option">6kg</div>
-                    <div class="spec-option">2kg</div>
-                    <div class="spec-option">4kg</div>
-                    <div class="spec-option">6kg</div> -->
         </div>
       </div>
       <div
@@ -95,8 +88,6 @@
 
 <script>
 import * as types from "../../store/mutation-types";
-// import store from '../../store';
-// import API from '@/axios/api'
 
 export default {
   name: "ProductBasicSpec",
@@ -105,48 +96,6 @@ export default {
       allowSelectNumber: false,
       productData: {},
       specOptions: [],
-      // specOptions: [
-      //     {
-      //         name: '2kg',
-      //         value: '2kg',
-      //         selected: false
-      //     },
-      //     {
-      //         name: '4kg',
-      //         value: '4kg',
-      //         selected: false
-      //     },
-      //     {
-      //         name: '6kg',
-      //         value: '6kg',
-      //         selected: false
-      //     },
-      //     {
-      //         name: '8kg',
-      //         value: '8kg',
-      //         selected: false
-      //     },
-      //     {
-      //         name: '10kg',
-      //         value: '10kg',
-      //         selected: false
-      //     },
-      //     {
-      //         name: '2kg雞肉口味',
-      //         value: '2kg',
-      //         selected: false
-      //     },
-      //     {
-      //         name: '4kg字數測試 字數測試',
-      //         value: '4kg',
-      //         selected: false
-      //     },
-      //     {
-      //         name: 'M',
-      //         value: '6kg',
-      //         selected: false
-      //     },
-      // ],
       number: 0
     };
   },
@@ -186,14 +135,13 @@ export default {
       };
       this.$store.dispatch("toggleLoading", true);
       this.$api.AddCartItem(data).then(res => {
-        console.log(res, "??? CART");
         alert(res.data.msg);
         this.$store.dispatch("toggleLoading", false);
         this.$store.dispatch("setCartData", data);
 
-        if (res.data.data.id !== "") {
-          document.cookie = `sessid=${res.data.data.id}`;
-        }
+        // if (res.data.data.id !== "") {
+        //   document.cookie = `sessid=${res.data.data.id}`;
+        // }
       });
       this.closeAllSpecModal();
     },
@@ -273,6 +221,8 @@ export default {
     .product-image
         width: 8rem
         height: 8rem
+        border: solid 1px #f2f2f2
+        margin-right: 1rem
     .name-price-block
         flex-grow: 1
     .product-name

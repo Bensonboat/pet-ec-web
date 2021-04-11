@@ -9,7 +9,6 @@
       "
     >
       <div class="product-top-block">
-        <!-- <div class="product-image-block"> -->
         <div
           v-if="showMultiplePics"
           class="product-image-block"
@@ -26,6 +25,7 @@
           />
           <div class="photo-dots">
             <div
+              v-show="product_data.images.length > 1"
               v-for="(item, index) in product_data.images"
               :key="index"
               class="dot"
@@ -40,7 +40,6 @@
             class="product-image"
           />
         </div>
-        <!-- </div> -->
         <div
           class="quick-add-icon-block click-animation"
           @click.stop="quickAdd(product_data.id)"
@@ -72,14 +71,15 @@
 </template>
 
 <script>
-// import store from '@/store';
 import * as types from "@/store/mutation-types.js";
-import API from "@/axios/api";
 
 export default {
   name: "ProductBasicData",
   props: {
-    product_data: Object,
+    product_data: {
+      type: Object,
+      default: null
+    },
     showQuickAddIcon: Boolean,
     showMultiplePics: {
       type: Boolean,
@@ -116,7 +116,7 @@ export default {
     },
     getSingleProductData(id) {
       this.$store.dispatch("toggleLoading", true);
-      return API.getSingleProduct(id).then(res => {
+      return this.$api.getSingleProduct(id).then(res => {
         let data = res.data.data;
         let query = this.$route.query;
         data["type"] = query.type;
@@ -140,16 +140,12 @@ export default {
     display: flex
     justify-content: center
     position: relative
-    // border-radius: 5px
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1)
-    // border: solid 1px pink
     height: 25.2rem
     width: 15.2rem
     overflow: hidden
     margin-top: .6rem
     background-color: #f8f8f8
-    // border-bottom: solid 1px pink
-    // box-shadow: 0 2px 5px rgba(0,0,0,.1)
     .product-content-block
         position: relative
         width: 100%
@@ -160,23 +156,15 @@ export default {
         width: 15.2rem
         height: 15.2rem
         overflow: hidden
-        // width: 100%
-        // width: 13rem
-        // height: 13rem
         text-align: center
-        // border: solid 1px pink
-        background-color: #ececec
-        // background-image: url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png")
-        // background-image: url("/images/animal.png")
+        background-color: #fff
+        // background-color: #ececec
         .product-image
-            // width: 15rem
-            // height: 15rem
             position: absolute
             top: 50%
             left: 50%
             transform: translate(-50%, -50%)
-            width: 100%
-            // height: 100%
+            height: 100%
     .product-name-block
         text-align: left
         display: -webkit-box
@@ -189,26 +177,10 @@ export default {
         color: #333333
     .product-bottom-block
         position: relative
-        // position: absolute
-        // bottom: 0
-        // margin-top: 1.5rem
-        // display: flex
-        // justify-content: space-between
-        // align-items: center
-        // width: 100%
-        // padding: 1.5rem 1rem
         padding: 1.3rem .6rem 1rem .6rem
         box-sizing: border-box
         height: 100%
-        // flex-grow: 1
-        // border: solid 1px red
-        // align-items: flex-start
-        // flex-wrap: wrap
-        // width: 15rem
-        // left: 50%
-        // transform: translateX(-50%)
     .product-cart-block
-        // width: 5rem
         height: 2rem
         .cart-image
             height: 100%
@@ -216,7 +188,6 @@ export default {
         font-size: 1.4rem
         margin-top: .4rem
         color: #f94956
-        // margin-left: 1rem
     .original-price-remove
         text-decoration: line-through
     .product-price-block
@@ -271,21 +242,4 @@ export default {
         opacity: 0.4
     .selected-img-dot
         opacity: 1
-// .fade-leave
-//     opacity: 1
-
-// .fade-leave-active
-//     transition: opacity .2s
-
-// .fade-leave-to
-//     opacity: 0
-
-// .fade-enter
-//     opacity: 0
-
-// .fade-enter-active
-//     transition: opacity .2s
-
-// .fade-enter-to
-//     opacity: 1
 </style>

@@ -17,6 +17,7 @@
           />
           <div class="img-dots-block">
             <div
+              v-show="productData.images.length > 1"
               v-for="(item, index) in productData.images"
               :key="index"
               class="dots"
@@ -129,7 +130,6 @@ export default {
       this.$store.dispatch("toggleLoading", true);
       let id = this.$route.params.id;
       return this.$api.getSingleProduct(id).then(res => {
-        // this.getDetailProductData = res.data.data;
         let data = res.data.data;
         let query = this.$route.query;
         data["type"] = query.type;
@@ -165,8 +165,8 @@ export default {
         display: flex
         justify-content: center
         img
-            // width: 100%
-            height: 100%
+            width: 100%
+            // height: 100%
     .change-image-icon
         position: absolute
         width: 3rem

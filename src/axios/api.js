@@ -36,10 +36,11 @@ export default {
       data
     });
   },
-  getCartData() {
+  getCartData(params) {
     return axios({
       method: "GET",
-      url: apiUrl.CART
+      url: apiUrl.CART,
+      params
     });
   },
   AddCartItem(data) {

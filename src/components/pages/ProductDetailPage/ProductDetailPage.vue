@@ -29,8 +29,13 @@
         <div class="product-attribute-block">
           <div class="name">{{ productData.title }}</div>
           <div class="price-block">
-            <div class="normal-price">NT$4500</div>
-            <div class="special-price">NT$2380</div>
+            <div class="normal-price">
+              NT${{ productData.min_origin_price }} ~
+              {{ productData.max_origin_price }}
+            </div>
+            <div class="special-price">
+              NT${{ productData.min_price }} ~ {{ productData.max_price }}
+            </div>
           </div>
         </div>
       </div>
@@ -50,46 +55,32 @@
 </template>
 
 <script>
-// import ProductSpec from '@/components/pages/ProductListPage/ProductSpec'
 import DetailNavRow from "./DetailNavRow";
 import ProductDescription from "./ProductDescription";
 import ProductFulfillment from "./ProductFulfillment";
 import ProductReview from "./ProductReview";
 import ProductRecommandBlock from "./ProductRecommandBlock";
 import AddToCartButton from "./AddToCartButton";
-// import ProductBasicSpec from '@/components/layouts/ProductBasicSpec'
-
-// import store from '@/store'
 import * as types from "@/store/mutation-types.js";
 
 export default {
   name: "ProductDetailPage",
   components: {
-    // ProductSpec,
     DetailNavRow,
     ProductDescription,
     ProductFulfillment,
     ProductReview,
     ProductRecommandBlock,
     AddToCartButton
-    // ProductBasicSpec
   },
   data() {
     return {
-      // productAttr: {
-      //   id: "",
-      //   type: ""
-      // },
-      productImgs: ["/images/p1.jpg", "/images/test_size.png"],
       productData: "",
       currentShowsImgIndex: 0,
-      showProductInfo: "description"
+      showProductInfo: ""
     };
   },
   mounted() {
-    // this.productAttr.id = this.$route.params.id;
-    // this.productAttr.type = this.$route.params.type;
-    // this.productData.name = this.productAttr.type + ':' + this.productAttr.id;
     this.showProductInfo = "description";
 
     this.getSingleProductData();
@@ -115,10 +106,10 @@ export default {
       return () => {
         this.currentShowsImgIndex = this.currentShowsImgIndex + value;
         if (this.currentShowsImgIndex < 0) {
-          this.currentShowsImgIndex = this.productImgs.length - 1;
+          this.currentShowsImgIndex = this.productData.images.length - 1;
           return;
         }
-        if (this.currentShowsImgIndex >= this.productImgs.length) {
+        if (this.currentShowsImgIndex >= this.productData.images.length) {
           this.currentShowsImgIndex = 0;
         }
       };
@@ -128,10 +119,10 @@ export default {
     },
     getSingleProductData() {
       this.$store.dispatch("toggleLoading", true);
-      let id = this.$route.params.id;
+      let query = this.$route.query;
+      let id = query.id;
       return this.$api.getSingleProduct(id).then(res => {
         let data = res.data.data;
-        let query = this.$route.query;
         data["type"] = query.type;
         data["subType"] = query.subType;
 

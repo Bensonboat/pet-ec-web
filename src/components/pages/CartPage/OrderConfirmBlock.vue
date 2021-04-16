@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="next-step-block">
-      <div class="previous-step-btn" @click="backToStepOne">回前頁</div>
+      <div class="previous-step-btn" @click="backToStepOne">上一步</div>
       <div class="order-confirm" :class="{ 'order-validate': orderValidate }">
         確認結帳
       </div>

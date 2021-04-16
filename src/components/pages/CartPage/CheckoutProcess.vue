@@ -2,10 +2,10 @@
   <div class="checkout-process">
     <div class="process-title">訂單確認</div>
     <div class="process-line-block">
-      <div class="circle full-circle">step1</div>
+      <div class="circle full-circle"></div>
       <!-- <img src="/images/icons/tiles-1.svg" alt="" class="icon tile-1" />
       <img src="/images/icons/tiles-1.svg" alt="" class="icon tile-2" /> -->
-      <img
+      <!-- <img
         v-show="tiles.tile1"
         src="/images/icons/tiles-1.svg"
         alt=""
@@ -39,18 +39,8 @@
         alt=""
         class="icon"
         style="left: 68%"
-      />
-      <!-- <svg :width="svgWidth" height="1px">
-        <line
-          x1="0"
-          y1="0"
-          x2="300"
-          y2="0"
-          style="stroke: #333333;stroke-width: .3rem"
-        />
-      </svg> -->
-      <div class="circle" :class="{ 'full-circle': step === 2 }">step2</div>
-      <!-- <svg :width="svgWidth" height="1px">
+      /> -->
+      <svg :width="svgWidth" height="1px">
         <line
           x1="0"
           y1="0"
@@ -59,7 +49,17 @@
           style="stroke: #333333;stroke-width: .3rem"
         />
       </svg>
-      <div class="circle"></div> -->
+      <div class="circle" :class="{ 'full-circle': step === 2 }"></div>
+      <svg :width="svgWidth" height="1px">
+        <line
+          x1="0"
+          y1="0"
+          x2="300"
+          y2="0"
+          style="stroke: #333333;stroke-width: .3rem"
+        />
+      </svg>
+      <div class="circle"></div>
     </div>
   </div>
 </template>
@@ -72,29 +72,29 @@ export default {
   },
   data() {
     return {
-      svgWidth: "12rem",
-      tiles: {
-        tile1: false,
-        tile2: false,
-        tile3: false,
-        tile4: false,
-        tile5: false
-      }
+      svgWidth: "9rem"
+      // tiles: {
+      //   tile1: false,
+      //   tile2: false,
+      //   tile3: false,
+      //   tile4: false,
+      //   tile5: false
+      // }
     };
-  },
-  mounted() {
-    let t = 1;
-    setInterval(() => {
-      if (t === 6) {
-        Object.keys(this.tiles).map(item => {
-          this.tiles[item] = false;
-        });
-        t = 0;
-      }
-      this.tiles[`tile${t}`] = true;
-      t++;
-    }, 400);
   }
+  // mounted() {
+  //   let t = 1;
+  //   setInterval(() => {
+  //     if (t === 6) {
+  //       Object.keys(this.tiles).map(item => {
+  //         this.tiles[item] = false;
+  //       });
+  //       t = 0;
+  //     }
+  //     this.tiles[`tile${t}`] = true;
+  //     t++;
+  //   }, 400);
+  // }
 };
 </script>
 
@@ -112,11 +112,11 @@ export default {
     .process-title
         font-size: 1.2rem
         font-weight: 500
-        flex: 1
+        // flex: 1
     .process-line-block
       display: flex
       align-items: center
-      flex: 2
+      // flex: 2
       justify-content: space-between
       position: relative
       height: 100%
@@ -203,14 +203,14 @@ export default {
     //     left: 50%
     //     opacity: 0
     .circle
-        // width: 1rem
-        // height: 1rem
-        // border-radius: 100%
-        border-bottom: solid 1px #333333
-        opacity: .5
+      width: 1rem
+      height: 1rem
+      border-radius: 50%
+      border: solid 1px #333333
+      opacity: .5
     .full-circle
       opacity: 1
-        // background-color: #333333
+      background-color: #333333
     .cart-item-attr-block
         background-color: #fff
 </style>

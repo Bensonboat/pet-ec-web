@@ -22,9 +22,15 @@ import allApi from "@/axios/api";
 //     return current_height
 // }
 
-// ========== 購物車 ==========
+// ========== 購物車(取得購物車資料並寫入 vuex) ==========
 export const setCartData = context => {
-  allApi.getCartData().then(res => {
+  let id = localStorage.getItem("sessID");
+  let params = {};
+  if (id !== null && id !== undefined) {
+    params['cartId'] = id
+  }
+
+  allApi.getCartData(params).then(res => {
     let data = res.data.data.items;
     context.commit("SET_CART_DATA", data);
   });

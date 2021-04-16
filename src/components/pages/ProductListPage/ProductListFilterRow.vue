@@ -1,10 +1,14 @@
 <template>
   <div class="product-list-filter-row default-product-list-filter-row">
-    <div class="list-subject default-deep-green-color">
+    <div class="list-subject">
       {{ this.$route.query.type | transTxt }} / {{ this.$route.query.category }}
     </div>
     <div class="basic-order-filter">
-      <base-select style="width: 11rem; height: 2.8rem" />
+      <base-select
+        style="width: 11rem; height: 2.8rem"
+        v-model="select"
+        :selectData="selectData"
+      />
     </div>
   </div>
 </template>
@@ -26,8 +30,38 @@ export default {
   },
   data() {
     return {
-      orderFilter: ""
+      select: "",
+      selectData: {
+        currentSelectText: "",
+        options: [
+          {
+            name: "最新上架商品",
+            value: "new"
+          },
+          {
+            name: "熱門銷量商品",
+            value: "信用卡"
+          },
+          {
+            name: "價格由低到高",
+            value: "min"
+          },
+          {
+            name: "價格由高到低",
+            value: "max"
+          }
+        ]
+      }
     };
+  },
+  watch: {
+    select(value) {
+      this.$emit("filter-select", value);
+    }
+  },
+  mounted() {
+    this.selectData.currentSelectText = "最新上架商品";
+    this.select = "new";
   }
 };
 </script>

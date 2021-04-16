@@ -52,17 +52,15 @@
           {{ product_data.name }}
         </div>
         <div class="product-price-block">
-          <div
-            class="default-deep-green-color"
-            :class="[product_data.price ? 'original-price-remove' : '']"
-          >
-            NT${{ product_data.origin_price }}
+          <div :class="[product_data.min_price ? 'original-price-remove' : '']">
+            NT${{ product_data.min_origin_price }} ~
+            {{ product_data.max_origin_price }}
           </div>
           <div
             class="default-red-color special-price"
-            v-if="product_data.price"
+            v-if="product_data.min_price"
           >
-            NT${{ product_data.price }}
+            NT${{ product_data.min_price }} ~ {{ product_data.max_price }}
           </div>
         </div>
       </div>
@@ -95,8 +93,16 @@ export default {
     checkProductDetail(id) {
       let type = this.$route.query.type;
       let subType = this.$route.query.subType;
+      // this.$router.push({
+      //   path: "/product/" + type + "/" + subType + "/" + id
+      // });
       this.$router.push({
-        path: "/product/" + type + "/" + subType + "/" + id
+        path: "/product/",
+        query: {
+          type,
+          subType,
+          id
+        }
       });
     },
     changeCurrentImage(value) {
@@ -118,9 +124,9 @@ export default {
       this.$store.dispatch("toggleLoading", true);
       return this.$api.getSingleProduct(id).then(res => {
         let data = res.data.data;
-        let query = this.$route.query;
-        data["type"] = query.type;
-        data["subType"] = query.subType;
+        // let query = this.$route.query;
+        // data["type"] = query.type;
+        // data["subType"] = query.subType;
 
         this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
         this.$store.dispatch("toggleLoading", false);

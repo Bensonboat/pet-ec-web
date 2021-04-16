@@ -1,7 +1,7 @@
 <template>
   <div class="base-select" @click="toggleOptionMenu">
     <div class="select-text-block">
-      <div class="select-text">{{ currentSelectText }}</div>
+      <div class="select-text">{{ selectData.currentSelectText }}</div>
       <img src="/images/icons/filter.svg" alt="篩選按鈕" class="filter-icon" />
     </div>
     <div
@@ -12,7 +12,7 @@
     <transition name="basic">
       <div class="base-select-block" v-show="showOptionMenu">
         <div
-          v-for="(item, index) in options"
+          v-for="(item, index) in selectData.options"
           :key="index"
           class="option"
           @click="selectItem(item)"
@@ -28,39 +28,22 @@
 export default {
   name: "BaseSelect",
   props: {
-    placeholder: {
-      type: String,
-      default: "請輸入"
+    selectData: {
+      default: {
+        currentSelectText: "",
+        options: []
+      }
     }
   },
   data() {
     return {
-      showOptionMenu: false,
-      currentSelectText: "價格由低到高",
-      options: [
-        {
-          name: "最新上架商品",
-          value: "貨到付款"
-        },
-        {
-          name: "熱門銷量商品",
-          value: "信用卡"
-        },
-        {
-          name: "價格由低到高",
-          value: "貨到付款"
-        },
-        {
-          name: "價格由高到低",
-          value: "貨到付款"
-        }
-      ]
+      showOptionMenu: false
     };
   },
   methods: {
     selectItem(data) {
       this.$emit("input", data.value);
-      this.currentSelectText = data.name;
+      this.selectData.currentSelectText = data.name;
     },
     toggleOptionMenu() {
       this.showOptionMenu = !this.showOptionMenu;

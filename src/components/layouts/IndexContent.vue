@@ -29,7 +29,7 @@ export default {
     };
   },
   mounted() {
-    // this.getCartData();
+    this.getCartData();
   },
   // computed: {
   //   getShowProductAllSpecModalStatus() {
@@ -49,10 +49,10 @@ export default {
         }
         this.currentHeight = current_height;
       }
+    },
+    getCartData() {
+      this.$store.dispatch("setCartData");
     }
-    // getCartData() {
-    //   this.$store.dispatch("setCartData");
-    // }
   }
 };
 </script>

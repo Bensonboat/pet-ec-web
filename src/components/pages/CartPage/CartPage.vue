@@ -4,11 +4,15 @@
     <div>
       <div v-show="checkoutStep === 1">
         <div class="order-list-block">
-          <div class="order-infomation">
+          <div v-if="innerGetCartData.length === 0" class="order-infomation">
+            尚未加入商品
+          </div>
+          <div class="order-infomation" v-else>
             <cart-item-attribute
-              v-for="(item, index) in getCartData"
+              v-for="(item, index) in innerGetCartData"
               :key="index"
               :cartData="item"
+              @number-update="numberUpdate"
             />
             <div class="order-note-block">
               <input type="text" placeholder="請輸入訂單備註" class="note" />
@@ -53,23 +57,53 @@ export default {
   data() {
     return {
       checkoutStep: 1,
-      orderValidate: false
+      orderValidate: false,
+      innerGetCartData: ""
     };
+  },
+  mounted() {
+    this.$store.dispatch("setCartData");
   },
   computed: {
     getCartData() {
       return this.$store.getters.getCartData;
     }
   },
+  watch: {
+    getCartData(data) {
+      this.innerGetCartData = data.map((item, index) => {
+        item["index"] = index;
+        return item;
+      });
+    }
+  },
   methods: {
-    toHomePage() {
-      this.$router.push("/home_page");
-    },
+    // toHomePage() {
+    //   this.$router.push("/home_page");
+    // },
     shippingInfoValidate(value) {
       this.orderValidate = value;
     },
     toCertainStep(step) {
       this.checkoutStep = step;
+    },
+    numberUpdate() {
+      let id = localStorage.getItem("sessID");
+      let items = this.$store.state.cartData;
+      items = items.filter(item => item.qty !== 0);
+
+      let data = {
+        items,
+        id
+      };
+      this.$store.dispatch("toggleLoading", true);
+      this.$api.AddCartItem(data).then(res => {
+        this.$store.dispatch("toggleLoading", false);
+        this.$store.dispatch("setCartData");
+        if (res.data.data.id !== "") {
+          localStorage.setItem("sessID", res.data.data.id);
+        }
+      });
     }
   }
 };

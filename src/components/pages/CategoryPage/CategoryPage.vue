@@ -1,72 +1,82 @@
 <template>
   <div class="category-page">
     <div class="bg" :style="{ backgroundPosition: position }"></div>
-    <div class="type-icon-block" @click="toggle">
-      <div
-        class="breed-type-circle cat"
-        :class="[!showCat ? 'animation-out' : 'animation-in']"
-      >
-        <div class="default-black-color cat-type txt">喵喵</div>
-        <img
-          src="/images/icons/cat-black.png"
-          alt="貓咪圖案"
-          class="cat-icon"
-        />
-        <div class="tick-block" v-show="showCat">
-          <img src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
-        </div>
-      </div>
-      <div
-        class="breed-type-circle dog"
-        :class="[showCat ? 'animation-out' : 'animation-in']"
-      >
-        <div class="default-black-color dog-type txt">汪汪</div>
-        <img
-          src="/images/icons/dog-black.png"
-          alt="狗狗圖案"
-          class="dog-icon"
-        />
-        <div class="tick-block" v-show="!showCat">
-          <img src="/images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
-        </div>
-      </div>
-    </div>
-    <div class="category-options-block">
-      <div
-        class="category-option"
-        v-for="(item, index) in typeCategories"
-        :key="index"
-        :class="{ 'option-seledted': item.selected }"
-        @click="toggleSelectOption(index)"
-      >
-        {{ item.name }}
-        <div v-show="item.selected" class="category-tick-block">
+    <div class="page-main-content">
+      <div class="type-icon-block" @click="toggle">
+        <div
+          class="breed-type-circle cat"
+          :class="[!showCat ? 'animation-out' : 'animation-in']"
+        >
+          <div class="default-black-color cat-type txt">喵喵</div>
           <img
-            src="/images/icons/tick.svg"
-            alt="打勾圖案"
-            class="category-tick-icon"
+            src="/images/icons/cat-black.png"
+            alt="貓咪圖案"
+            class="cat-icon"
           />
+          <div class="tick-block" v-show="showCat">
+            <img
+              src="/images/icons/tick.svg"
+              alt="打勾圖案"
+              class="tick-icon"
+            />
+          </div>
+        </div>
+        <div
+          class="breed-type-circle dog"
+          :class="[showCat ? 'animation-out' : 'animation-in']"
+        >
+          <div class="default-black-color dog-type txt">汪汪</div>
+          <img
+            src="/images/icons/dog-black.png"
+            alt="狗狗圖案"
+            class="dog-icon"
+          />
+          <div class="tick-block" v-show="!showCat">
+            <img
+              src="/images/icons/tick.svg"
+              alt="打勾圖案"
+              class="tick-icon"
+            />
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      class="confirm-btn click-animation"
-      :class="[selected ? 'selected' : '']"
-      @click="routerSwitch('/product_list_page')"
-    >
-      <div>OK</div>
-      <img
-        v-show="selected"
-        src="/images/icons/next.svg"
-        alt="下一步圖案"
-        class="next-step-icon"
-      />
-      <img
-        v-show="!selected"
-        src="/images/icons/next-unselect.svg"
-        alt="下一步圖案"
-        class="next-step-icon"
-      />
+      <div class="category-options-block">
+        <div
+          class="category-option"
+          v-for="(item, index) in typeCategories"
+          :key="index"
+          :class="{ 'option-seledted': item.selected }"
+          @click="toggleSelectOption(index)"
+        >
+          {{ item.name }}
+          <div v-show="item.selected" class="category-tick-block">
+            <img
+              src="/images/icons/tick.svg"
+              alt="打勾圖案"
+              class="category-tick-icon"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="confirm-btn click-animation"
+        :class="[selected ? 'selected' : '']"
+        @click="routerSwitch('/product_list_page')"
+      >
+        <div>OK</div>
+        <img
+          v-show="selected"
+          src="/images/icons/next.svg"
+          alt="下一步圖案"
+          class="next-step-icon"
+        />
+        <img
+          v-show="!selected"
+          src="/images/icons/next-unselect.svg"
+          alt="下一步圖案"
+          class="next-step-icon"
+        />
+      </div>
     </div>
   </div>
 </template>

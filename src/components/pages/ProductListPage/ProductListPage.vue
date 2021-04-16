@@ -1,7 +1,7 @@
 <template>
   <div class="product-list-page">
-    <product-list-filter-row />
-    <product-list />
+    <product-list-filter-row @filter-select="filterSelect" />
+    <product-list :filterSelectValue="filterSelectValue" />
   </div>
 </template>
 
@@ -14,6 +14,16 @@ export default {
   components: {
     ProductList,
     ProductListFilterRow
+  },
+  data() {
+    return {
+      filterSelectValue: ""
+    };
+  },
+  methods: {
+    filterSelect(value) {
+      this.filterSelectValue = value;
+    }
   }
 };
 </script>

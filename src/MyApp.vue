@@ -61,7 +61,7 @@ export default {
 
 .my-app
   width: 100vw
-  max-width: 900px
+  // max-width: 900px
   height: calc(100 * var(--vh))
   margin: auto
   background-color: #e5ceae

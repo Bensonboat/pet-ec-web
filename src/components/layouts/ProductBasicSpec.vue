@@ -21,9 +21,9 @@
             class="price origin-price"
             :class="{ 'origin-price-remove': productData.price !== '' }"
           >
-            {{ productData.origin_price }}
+            NT$ {{ productData.origin_price }}
           </div>
-          <div class="price special-price">{{ productData.price }}</div>
+          <div class="price special-price">NT$ {{ productData.price }}</div>
         </div>
       </div>
       <div class="product-spec-block">
@@ -129,19 +129,24 @@ export default {
       }
     },
     confirm() {
-      let data = this.addToCartDataParser();
-      data = {
-        items: [data]
+      let current_select = this.addToCartDataParser(); // 轉換要加入購物車的資料格式
+      let items = this.mergeSameProduct(current_select);
+      let id = localStorage.getItem("sessID"); // 取得購物車id
+      // items.push(current_select); // 合併原本購物車的東西和現在要加入的東西
+      let data = {
+        items,
+        id
       };
       this.$store.dispatch("toggleLoading", true);
       this.$api.AddCartItem(data).then(res => {
         alert(res.data.msg);
-        this.$store.dispatch("toggleLoading", false);
-        this.$store.dispatch("setCartData", data);
 
-        // if (res.data.data.id !== "") {
-        //   document.cookie = `sessid=${res.data.data.id}`;
-        // }
+        this.$store.dispatch("toggleLoading", false);
+        this.$store.dispatch("setCartData");
+
+        if (res.data.data.id !== "") {
+          localStorage.setItem("sessID", res.data.data.id);
+        }
       });
       this.closeAllSpecModal();
     },
@@ -171,15 +176,37 @@ export default {
         product_id: product_data.id,
         title: product_data.title,
         description: product_data.description,
-        type: product_data.type,
-        subType: product_data.subType,
         sku_id: spec_obj.id,
         sku_name: spec_obj.name,
-        // image: product_data.image[0],
+        image: product_data.images[0].src,
         price: spec_obj.price
       };
 
       return to_cart_data;
+    },
+    mergeSameProduct(current_select) {
+      let items = this.$store.state.cartData; // 取得原本在購物車內的商品
+      let same_exist = false;
+      let final = [];
+      if (items.length !== 0) {
+        final = items.map(item => {
+          if (
+            item.product_id === current_select.product_id &&
+            item.sku_id === current_select.sku_id
+          ) {
+            item.qty = item.qty + current_select.qty;
+            same_exist = true;
+          }
+          return item;
+        });
+      }
+
+      if (!same_exist) {
+        // 若有相同，則不需要再加入購物車，直接更新數量就可以
+        final.push(current_select);
+      }
+
+      return final;
     }
   }
 };

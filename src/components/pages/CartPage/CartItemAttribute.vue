@@ -1,7 +1,7 @@
 <template>
   <div class="cart-item-attribute">
     <img
-      :src="cartData.img"
+      :src="cartData.image"
       alt="商品圖片"
       class="product-img"
       @click="checkDetail"
@@ -10,7 +10,7 @@
       <div class="product-name">{{ cartData.title }}</div>
       <div class="product-spec">{{ cartData.sku_name }}</div>
       <div class="price-number-row">
-        <div class="price">{{ cartData.price }}</div>
+        <div class="price">NT${{ cartData.price }}</div>
         <div class="number-block">
           <div class="select-number-block">
             <div
@@ -23,7 +23,7 @@
                 class="select-number-icon"
               />
             </div>
-            <div class="btn number">{{ number }}</div>
+            <div class="btn number">{{ cartData.qty }}</div>
             <div
               class="btn number-operate-block add click-animation"
               @click="selectNumber(1)"
@@ -47,17 +47,19 @@ export default {
   props: {
     cartData: Object
   },
-  data() {
-    return {
-      number: 0
-    };
-  },
+  // data() {
+  //   return {
+  //     number: 0
+  //   };
+  // },
   methods: {
     selectNumber(number) {
-      this.number = this.number + number;
-      if (this.number < 0) {
-        this.number = 0;
+      this.cartData.qty = this.cartData.qty + number;
+      if (this.cartData.qty < 0) {
+        this.cartData.qty = 0;
       }
+
+      this.$emit("number-update");
     },
     checkDetail() {
       let data = this.cartData;

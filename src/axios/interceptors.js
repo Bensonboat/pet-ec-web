@@ -1,10 +1,16 @@
 //axios攔截器
 import axios from "axios";
 
+const service = axios.create({
+  baseURL: process.env.VUE_APP_URL,
+  // withCredentials: true,
+  timeout: 1000 * 10,
+});
+
 // request
-axios.interceptors.request.use(
+service.interceptors.request.use(
   config => {
-    config.withCredentials = true;
+    // config.withCredentials = true;
     //如果有token則在headers統一寫入
     // if (token) {
     //     config.headers.Authorization = `${token}`;
@@ -19,7 +25,7 @@ axios.interceptors.request.use(
 );
 
 // response
-axios.interceptors.response.use(
+service.interceptors.response.use(
   response => {
     return response;
   },
@@ -29,4 +35,4 @@ axios.interceptors.response.use(
   }
 );
 
-export default axios;
+export default service;

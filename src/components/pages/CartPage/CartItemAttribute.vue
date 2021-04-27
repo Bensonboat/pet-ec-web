@@ -15,7 +15,7 @@
           <div class="select-number-block">
             <div
               class="btn number-operate-block minus click-animation"
-              @click="selectNumber(-1)"
+              @click="updateNumber(-1)"
             >
               <img
                 src="/images/icons/less.svg"
@@ -26,7 +26,7 @@
             <div class="btn number">{{ cartData.qty }}</div>
             <div
               class="btn number-operate-block add click-animation"
-              @click="selectNumber(1)"
+              @click="updateNumber(1)"
             >
               <img
                 src="/images/icons/plus.svg"
@@ -47,24 +47,75 @@ export default {
   props: {
     cartData: Object
   },
-  // data() {
-  //   return {
-  //     number: 0
-  //   };
-  // },
   methods: {
-    selectNumber(number) {
-      this.cartData.qty = this.cartData.qty + number;
-      if (this.cartData.qty < 0) {
-        this.cartData.qty = 0;
-      }
+    updateNumber(number) {
+      this.cartData.qty = this.cartData.qty + number; // 更新當前數量
 
-      this.$emit("number-update");
+      // if (this.cartData.qty === 0) {
+      //   this.setModalContent();
+      // } else {
+      let items = this.$store.state.cartData; // 取得舊購物車資料
+      items[this.cartData.index].qty = this.cartData.qty; // 把當前數量更新到舊物車資料
+
+      // 更新資料庫購物車
+      this.updateCart(items);
+      // let id = localStorage.getItem("sessID");
+      // let data = {
+      //   items,
+      //   id
+      // };
+      // this.$store.dispatch("toggleLoading", true);
+      // this.$api.AddCartItem(data).then(() => {
+      //   this.$store.dispatch("toggleLoading", false);
+      //   this.$store.dispatch("setCartData");
+      // });
+      // }
+
+      if (this.cartData.qty === 0) {
+        this.setModalContent();
+      }
     },
     checkDetail() {
       let data = this.cartData;
       this.$router.push({
         path: "/product/" + data.type + "/" + data.id
+      });
+    },
+    setModalContent() {
+      let default_data_structure = {
+        title: "確認刪除",
+        detail: "是否將此商品移出購物車?",
+        btn1: "Yes",
+        btn2: "No",
+        btn1_function: () => {
+          let items = this.$store.state.cartData;
+          items = items.filter(item => item.qty !== 0);
+          this.updateCart(items);
+          this.$store.dispatch("setGlobalModalContent", "");
+        },
+        btn2_function: () => {
+          let items = this.$store.state.cartData;
+          items = items.map(item => {
+            item.qty === 0 ? (item.qty = 1) : "";
+            return item;
+          });
+          this.updateCart(items);
+          this.$store.dispatch("setGlobalModalContent", "");
+        }
+      };
+
+      this.$store.dispatch("setGlobalModalContent", default_data_structure);
+    },
+    updateCart(items) {
+      let id = localStorage.getItem("sessID");
+      let data = {
+        items,
+        id
+      };
+      this.$store.dispatch("toggleLoading", true);
+      this.$api.AddCartItem(data).then(() => {
+        this.$store.dispatch("toggleLoading", false);
+        this.$store.dispatch("setCartData");
       });
     }
   }
@@ -84,6 +135,7 @@ export default {
         border: solid .1rem #f8f8f8
         margin-right: 1rem
         box-sizing: border-box
+        flex-shrink: 0
     .product-basic-block
         height: 100%
         flex-grow: 1

@@ -5,9 +5,21 @@
       <div class="product-attribute">
         <div
           class="img-block"
-          v-touch:swipe.left="changeCurrentImage(1)"
-          v-touch:swipe.right="changeCurrentImage(-1)"
+          v-touch:swipe.left="Swipe(1)"
+          v-touch:swipe.right="Swipe(-1)"
         >
+          <div
+            class="flex-center next-img-arrow-block left"
+            @click="changeCurrentImage(-1)"
+          >
+            <img src="/images/icons/back.svg" alt="箭頭" />
+          </div>
+          <div
+            class="flex-center next-img-arrow-block right"
+            @click="changeCurrentImage(1)"
+          >
+            <img src="/images/icons/back.svg" alt="箭頭" />
+          </div>
           <img
             v-show="imageIndex === currentShowsImgIndex"
             v-for="(image, imageIndex) in productData.images"
@@ -22,7 +34,7 @@
               :key="index"
               class="dots"
               :class="{ 'selected-img-dot': index === currentShowsImgIndex }"
-              @click="toggleCurrentShowsImg(index)"
+              @click="showCurrentImg(index)"
             ></div>
           </div>
         </div>
@@ -99,19 +111,24 @@ export default {
     toggleProductInfo(value) {
       this.showProductInfo = value;
     },
-    toggleCurrentShowsImg(index) {
+    showCurrentImg(index) {
       this.currentShowsImgIndex = index;
     },
     changeCurrentImage(value) {
+      // return () => {
+      this.currentShowsImgIndex = this.currentShowsImgIndex + value;
+      if (this.currentShowsImgIndex < 0) {
+        this.currentShowsImgIndex = this.productData.images.length - 1;
+        return;
+      }
+      if (this.currentShowsImgIndex >= this.productData.images.length) {
+        this.currentShowsImgIndex = 0;
+      }
+      // };
+    },
+    Swipe(value) {
       return () => {
-        this.currentShowsImgIndex = this.currentShowsImgIndex + value;
-        if (this.currentShowsImgIndex < 0) {
-          this.currentShowsImgIndex = this.productData.images.length - 1;
-          return;
-        }
-        if (this.currentShowsImgIndex >= this.productData.images.length) {
-          this.currentShowsImgIndex = 0;
-        }
+        this.changeCurrentImage(value);
       };
     },
     showProductAllSpecModal() {
@@ -135,6 +152,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import '@/sass/system_color'
+
 .product-detail-page
     .product-content-block
         padding: .5rem
@@ -144,6 +163,7 @@ export default {
         // padding: 1.5rem
         // border-radius: 5px
         // margin-top: .5rem
+        position: relative
         box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1)
     .img-block
         // width: 95%
@@ -234,21 +254,21 @@ export default {
         box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1)
         margin-top: .5rem
         background-color: #fff
-// .fade-leave
-//   opacity: 1
-
-// .fade-leave-active
-//   transition: opacity .5s
-
-// .fade-leave-to
-// //   opacity: 0
-
-// .fade-enter
-//   opacity: 0
-
-// .fade-enter-active
-//   transition: opacity .5s
-
-// .fade-enter-to
-//   opacity: 1
+    .next-img-arrow-block
+      width: 3rem
+      height: 3rem
+      border-radius: 50%
+      position: absolute
+      top: 50%
+      transform: translateY(-50%)
+      border: solid .1rem $color1
+      box-sizing: border-box
+      img
+        width: 1.5rem
+        height: 1.5rem
+    .next-img-arrow-block.left
+      left: 1rem
+    .next-img-arrow-block.right
+      right: 1rem
+      transform: translateY(-50%) rotate(180deg)
 </style>

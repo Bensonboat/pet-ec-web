@@ -6,8 +6,13 @@
       class="close-icon"
       @click="close"
     />
-    <div class="modal-icon-block">
-      <img src="/images/icons/fire.svg" alt="icon" class="icon" />
+    <div class="modal-icon-block" :class="[getGlobalModalContent.blockClass]">
+      <img
+        :src="getGlobalModalContent.src"
+        alt="icon"
+        class="icon"
+        :class="[getGlobalModalContent.iconClass]"
+      />
     </div>
     <div class="title">{{ getGlobalModalContent.title }}</div>
     <div class="content">
@@ -35,6 +40,14 @@
 </template>
 
 <script>
+// #### 傳入 state 的資料結構
+// default_data_structure = {
+//   title: "",
+//   detail: "",
+//   btn1: "",
+//   btn2: ""
+// };
+
 export default {
   name: "BaseModal",
   computed: {
@@ -78,8 +91,10 @@ export default {
     border-radius: 50%
     background-color: #fff
   .icon
-    width: 100%
-    height: 100%
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
   .close-icon
     width: 1.2rem
     height: 1.2rem
@@ -113,4 +128,14 @@ export default {
   .btn-2
     background-color: #333333
     color: #e5ceae
+  .success-block
+    background-color: rgb(150, 172, 73)
+  .success-icon
+    width: 2.6rem
+    height: 2.1rem
+  .fail-block
+    background-color: rgb(199, 78, 73)
+  .fail-icon
+    width: 2.6rem
+    // height: 2.6rem
 </style>

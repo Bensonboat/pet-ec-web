@@ -1,19 +1,23 @@
 <template>
   <div class="coupon-total-price">
     <div class="detail-block">
-      <div class="total-items-number">共2件商品</div>
+      <div class="total-items-number">
+        共 {{ this.$store.state.cartData.length }}件商品
+      </div>
       <div class="price-detail">
         <div class="product-price-block">
           <div class="item">商品金額</div>
-          <div class="item">2380</div>
+          <div class="item">{{ total }}</div>
         </div>
         <div class="discount-block">
           <div class="item">折扣優惠</div>
-          <div class="item">-100</div>
+          <div class="item">
+            - <span v-show="discountPirce !== 0">{{ discountPirce }}</span>
+          </div>
         </div>
         <div class="total-price-block">
           <div class="item">小計</div>
-          <div class="item total-price">NT$ 2380</div>
+          <div class="item total-price">NT$ {{ total - discountPirce }}</div>
         </div>
       </div>
     </div>
@@ -57,8 +61,24 @@ export default {
   components: { CouponList },
   data() {
     return {
-      showCouponListBlock: false
+      showCouponListBlock: false,
+      total: 0,
+      discountPirce: 100
     };
+  },
+  mounted() {
+    let cart_data = this.$store.state.cartData;
+    this.priceCalculate(cart_data);
+  },
+  computed: {
+    getCartData() {
+      return this.$store.state.cartData;
+    }
+  },
+  watch: {
+    getCartData(data) {
+      this.priceCalculate(data);
+    }
   },
   methods: {
     nextStep() {
@@ -69,6 +89,16 @@ export default {
     },
     keepShoping() {
       this.$router.push("/category_page/cat");
+    },
+    priceCalculate(data) {
+      if (data.length === 0) {
+        return;
+      }
+      this.total = data
+        .map(item => {
+          return item.price * item.qty;
+        })
+        .reduce((a, b) => a + b);
     }
   }
 };

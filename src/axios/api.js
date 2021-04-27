@@ -1,5 +1,5 @@
 import * as apiUrl from "./api-url";
-import axios from "axios";
+import axios from "./interceptors";
 
 export default {
   // signUpAccount(data){
@@ -59,6 +59,13 @@ export default {
       method: "GET",
       url: apiUrl.CATEGORIES,
       params
+    });
+  },
+  createOrders(data) {
+    return axios({
+      method: "POST",
+      url: apiUrl.ORDERS,
+      data
     });
   }
 };

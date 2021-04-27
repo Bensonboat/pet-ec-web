@@ -37,6 +37,7 @@ export default {
         display: flex
         align-items: center
         justify-content: center
+        z-index: 10
         .text
             font-size: 1.5rem
             font-weight: 500

@@ -2,7 +2,65 @@
   <div class="category-page">
     <div class="bg" :style="{ backgroundPosition: position }"></div>
     <div class="page-main-content">
-      <div class="type-icon-block" @click="toggle">
+      <div class="type-select-block">
+        <div
+          class="type-select-circle"
+          :class="{ selected: showCat }"
+          @click="toggle"
+        >
+          <img
+            v-show="showCat"
+            src="/images/icons/cat-black.png"
+            alt="cat"
+            class="type-icon"
+          />
+          <img
+            v-show="!showCat"
+            class="type-icon"
+            src="/images/icons/cat-gold.png"
+            alt="cat"
+          />
+          <div class="type-text" :class="{ 'selected-text': showCat }">
+            喵喵
+          </div>
+          <div class="type-tick-block" v-show="showCat">
+            <img
+              src="/images/icons/tick.svg"
+              alt="打勾圖案"
+              class="type-tick-icon"
+            />
+          </div>
+        </div>
+        <div
+          class="type-select-circle"
+          :class="{ selected: !showCat }"
+          @click="toggle"
+        >
+          <img
+            v-show="!showCat"
+            src="/images/icons/dog-black.png"
+            alt="dog"
+            class="type-icon dog"
+          />
+          <img
+            v-show="showCat"
+            class="type-icon dog"
+            src="/images/icons/dog-gold.png"
+            alt="dog"
+          />
+          <div class="type-text" :class="{ 'selected-text': !showCat }">
+            汪汪
+          </div>
+          <div class="type-tick-block" v-show="!showCat">
+            <img
+              src="/images/icons/tick.svg"
+              alt="打勾圖案"
+              class="type-tick-icon"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- <div class="type-icon-block" @click="toggle">
         <div
           class="breed-type-circle cat"
           :class="[!showCat ? 'animation-out' : 'animation-in']"
@@ -39,7 +97,7 @@
             />
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="category-options-block">
         <div
           class="category-option"
@@ -128,7 +186,7 @@ export default {
       });
     },
     routerSwitch(path) {
-      if (this.selectID === "") {
+      if (this.selectID === "" || this.selected === false) {
         return;
       }
 
@@ -174,6 +232,8 @@ export default {
     },
     toggle() {
       this.showCat = !this.showCat;
+      this.selected = false;
+      this.selectID = "";
 
       if (this.showCat) {
         this.$router.replace({
@@ -193,12 +253,14 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import '../../../sass/system_color'
+
 .category-page
     position: relative
     .bg
         background-image: url('/images/icons/tiles.svg')
         background-repeat: repeat
-        background-color: #E5CEAE
+        background-color: $color1
         background-size: 190px 190px
         width: 100%
         height: 100%
@@ -213,62 +275,62 @@ export default {
         transform: translateX(-50%)
         position: absolute
         display: flex
-    .animation-in
-      animation: selectIn .7s linear
-      transform: translateX(-50%) scale(1)
-    .animation-out
-      left: -10rem
-      animation: selectOut .7s linear
-      transform: translateX(-50%) scale(.4) rotateY(140deg)
-      z-index: -1
-      opacity: .5
-    .breed-type-circle
-        border-radius: 50%
-        border: solid .4rem
-        border-color: #333333
-        background-color: #f2c47e
+    // .animation-in
+    //   animation: selectIn .7s linear
+    //   transform: translateX(-50%) scale(1)
+    // .animation-out
+    //   left: -10rem
+    //   animation: selectOut .7s linear
+    //   transform: translateX(-50%) scale(.4) rotateY(140deg)
+    //   z-index: -1
+    //   opacity: .5
+    // .breed-type-circle
+    //     border-radius: 50%
+    //     border: solid .4rem $color2
+    //     background-color: $color3
+    //     position: absolute
+    //     box-sizing: border-box
+    //     width: 8rem
+    //     height: 8rem
+    //     position: absolute
+    //     .txt
+    //         position: absolute
+    //         font-size: 2rem
+    //         font-weight: bold
+    //         letter-spacing: 3px
+    //         left: 50%
+    //         top: 50%
+    //         transform: translate(-50%, -50%)
+    //         text-align: center
+    //         width: 100%
+    // .cat-icon
+    //     width: 6rem
+    //     height: 6rem
+    //     position: absolute
+    //     bottom: -.5rem
+    //     left: -2rem
+    // .dog-icon
+    //     bottom: -1rem
+    //     right: -3.5rem
+    //     position: absolute
+    //     width: 5rem
+    //     height: 5rem
+    .type-tick-icon
+        width: 1.4rem
+        height: 1.4rem
+    .type-tick-block
         position: absolute
-        box-sizing: border-box
-        width: 8rem
-        height: 8rem
-        position: absolute
-        .txt
-            position: absolute
-            font-size: 2rem
-            font-weight: bold
-            letter-spacing: 3px
-            left: 50%
-            top: 50%
-            transform: translate(-50%, -50%)
-            text-align: center
-            width: 100%
-    .cat-icon
-        width: 6rem
-        height: 6rem
-        position: absolute
-        bottom: -.5rem
-        left: -2rem
-    .dog-icon
-        bottom: -1rem
-        right: -3.5rem
-        position: absolute
-        width: 5rem
-        height: 5rem
-    .tick-icon
-        width: 1.2rem
-        height: 1.2rem
-    .tick-block
-        position: absolute
-        width: 2rem
-        height: 2rem
-        background-color: #333333
+        width: 2.3rem
+        height: 2.3rem
+        background-color: $color2
         right: 0
         display: flex
         align-items: center
         justify-content: center
         border-radius: 50%
+        right: 1rem
     .category-options-block
-        margin-top: 16rem
+        // margin-top: 16rem
         padding: 0 4rem
         display: grid
         grid-template-columns: 1fr 1fr 1fr
@@ -280,14 +342,14 @@ export default {
         border-radius: 50%
         box-shadow: 0 0 .6rem 0 rgba(0, 0, 0, 0.12)
         border: solid .2rem #ccaa76
-        background-color: #f2c47e
+        background-color: $color3
         font-size: 1.8rem
         font-weight: 500
         font-stretch: normal
         font-style: normal
         line-height: normal
         letter-spacing: normal
-        color: #333333
+        color: $color2
         display: flex
         align-items: center
         justify-content: center
@@ -297,7 +359,7 @@ export default {
         width: 2rem
         height: 2rem
         position: absolute
-        background-color: #333333
+        background-color: $color2
         display: flex
         align-items: center
         justify-content: center
@@ -308,14 +370,14 @@ export default {
         width: 1.2rem
         height: 1.2rem
     .option-seledted
-        border-color: #333333
+        border-color: $color2
     .confirm-btn
         width: 25rem
         height: 3.8rem
         border-radius: 5rem
         border: solid .2rem #c99246
-        background-color: #e3a652
-        margin: 5rem auto
+        background-color: $color4
+        margin: 3rem auto 5rem auto
         position: relative
         font-size: 1.8rem
         font-weight: bold
@@ -330,8 +392,45 @@ export default {
         position: absolute
         right: 1.6rem
     .selected
-        color: #333333
-        border-color: #333333
+        color: $color2
+        border-color: $color2
+    .type-select-block
+      position: relative
+      z-index: 1
+      display: flex
+      padding: 4rem 3rem
+      justify-content: space-between
+    .type-select-circle
+      width: 11rem
+      height: 11rem
+      background-color: $color5
+      border-radius: 50%
+      border: solid .2rem $color6
+      position: relative
+      box-sizing: border-box
+    .type-select-circle.selected
+      border-color: $color2
+    .type-icon
+      position: absolute
+      bottom: 4rem
+      width: 8rem
+      height: 8rem
+      left: 50%
+      transform: translateX(-50%)
+    .type-icon.dog
+      width: 9rem
+      height: 7rem
+    .type-text
+      position: absolute
+      bottom: 1rem
+      left: 50%
+      transform: translateX(-50%)
+      font-size: 2rem
+      font-weight: 500
+      letter-spacing: .2rem
+      color: $color6
+    .type-text.selected-text
+      color: $color2
     @keyframes selectOut
       0%
         transform: scale(1.2)

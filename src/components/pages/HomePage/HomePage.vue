@@ -47,7 +47,6 @@
         <img src="images/icons/tick.svg" alt="打勾圖案" class="tick-icon" />
       </div>
     </div>
-
     <div
       class="breed-type-circle mix-circle"
       :class="[circle.mix ? 'circle-selected' : '']"
@@ -144,12 +143,13 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import '../../../sass/system_color'
 .home-page
     position: relative
     .bg
         background-image: url('/images/icons/tiles.svg')
         background-repeat: repeat
-        background-color: #E5CEAE
+        background-color: $color1
         background-size: 190px 190px
         width: 100%
         height: 100%

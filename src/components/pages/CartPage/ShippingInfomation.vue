@@ -64,6 +64,25 @@ export default {
             this.shippingInfomationValidate = false;
           }
         });
+
+        if (this.shippingInfomationValidate) {
+          let data = {
+            customer_email: `${this.shippingData[3].value}`,
+            customer_firstname: `${this.shippingData[0].value} - 消費者姓名`,
+            customer_contact: `${this.shippingData[1].value} - 消費者聯絡方式`,
+            payment_method: "creditCard",
+            shipment_method: "delivery",
+            receiver_firstname: `${this.shippingData[0].value} - 收件人姓名`,
+            receiver_contact: `${this.shippingData[1].value} - 收件人聯絡方式`,
+            address: this.shippingData[2].value,
+            city: "City",
+            country: "country",
+            district: "district",
+            postcode: "800",
+            cart_id: localStorage.getItem("sessID")
+          };
+          this.$emit("shipping-info", data);
+        }
         this.$emit("shipping-info-validate", this.shippingInfomationValidate);
       },
       deep: true

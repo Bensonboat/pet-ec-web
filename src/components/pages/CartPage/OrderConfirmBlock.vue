@@ -37,7 +37,11 @@
     </div>
     <div class="next-step-block">
       <div class="previous-step-btn" @click="backToStepOne">上一步</div>
-      <div class="order-confirm" :class="{ 'order-validate': orderValidate }">
+      <div
+        class="order-confirm"
+        :class="{ 'order-validate': orderValidate }"
+        @click="checkoutConfirm"
+      >
         確認結帳
       </div>
     </div>
@@ -55,9 +59,7 @@ import PaymentSelect from "./PaymentSelect";
 
 export default {
   name: "Payment",
-  props: {
-    orderValidate: Boolean
-  },
+  props: ["orderValidate", "allOrderData"],
   components: {
     PaymentSelect
   },
@@ -76,6 +78,25 @@ export default {
     },
     togglePaymentSelectPage() {
       this.showPaymentSelectPage = !this.showPaymentSelectPage;
+    },
+    checkoutConfirm() {
+      if (!this.orderValidate) {
+        return;
+      }
+
+      let data = this.allOrderData.shipping_info;
+      data["order_note"] = this.allOrderData.order_note;
+
+      this.$api
+        .createOrders(data)
+        .then(res => {
+          alert(res.data.msg);
+          console.log(res, "create orders res");
+        })
+        .catch(err => {
+          alert(err.data.msg);
+        });
+      console.log(this.allOrderData, "#####");
     }
   }
 };

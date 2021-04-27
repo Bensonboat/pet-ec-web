@@ -93,7 +93,6 @@
         </div>
       </div>
     </div>
-    <!-- <loading-mask/> -->
     <div v-if="$store.state.globalModalContent !== ''">
       <div class="modal-mask"></div>
       <base-modal />
@@ -103,7 +102,6 @@
 
 <script>
 import BaseModal from "@/components/layouts/BaseModal";
-// import LoadingMask from '@/components/layouts/LoadingMask'
 import API from "@/axios/api";
 export default {
   name: "LoginPage",
@@ -159,7 +157,7 @@ export default {
       }
     },
     signUp(data) {
-      // ＡＰＩ有限制密碼 6-32 字數
+      // API 有限制密碼 6-32 字數
       API.signUp(data)
         .then(() => {
           this.setGlobalModalContent("sign-up-success");
@@ -218,8 +216,8 @@ export default {
     },
     setGlobalModalContent(type) {
       let default_data_structure = {
-        title: "購買成功",
-        detail: "詳細顯示內容在這",
+        title: "",
+        detail: "",
         btn1: "",
         btn2: ""
       };
@@ -228,8 +226,11 @@ export default {
           default_data_structure = {
             title: "註冊成功",
             detail: "請至註冊信箱收取驗證信",
-            btn1: "",
-            btn2: ""
+            btn1: "1",
+            btn2: "2",
+            src: "/images/icons/white-tick.svg",
+            blockClass: "success-block",
+            iconClass: "success-icon"
           };
           break;
         case "sign-up-fail":
@@ -237,7 +238,10 @@ export default {
             title: "註冊失敗",
             detail: "請重新再試一次或洽客服人員",
             btn1: "",
-            btn2: ""
+            btn2: "",
+            src: "/images/icons/white-alert.svg",
+            blockClass: "fail-block",
+            iconClass: "fail-icon"
           };
           break;
         case "not-registered":
@@ -245,7 +249,10 @@ export default {
             title: "登入失敗",
             detail: "此帳號尚未註冊",
             btn1: "",
-            btn2: ""
+            btn2: "",
+            src: "/images/icons/white-alert.svg",
+            blockClass: "fail-block",
+            iconClass: "fail-icon"
           };
           break;
         default:

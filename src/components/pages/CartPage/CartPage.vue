@@ -1,38 +1,47 @@
 <template>
   <div class="cart-page">
-    <checkout-process :step="checkoutStep" />
-    <div>
-      <div v-show="checkoutStep === 1">
-        <div class="order-list-block">
-          <div v-if="innerGetCartData.length === 0" class="order-infomation">
-            尚未加入商品
-          </div>
-          <div class="order-infomation" v-else>
-            <cart-item-attribute
-              v-for="(item, index) in innerGetCartData"
-              :key="index"
-              :cartData="item"
-              @number-update="numberUpdate"
-            />
-            <div class="order-note-block">
-              <input type="text" placeholder="請輸入訂單備註" class="note" />
+    <cart-empty v-if="innerGetCartData.length === 0" />
+    <div v-else>
+      <checkout-process :step="checkoutStep" />
+      <div>
+        <div v-show="checkoutStep === 1">
+          <div class="order-list-block">
+            <div v-if="innerGetCartData.length === 0" class="order-infomation">
+              尚未加入商品
+            </div>
+            <div class="order-infomation" v-else>
+              <cart-item-attribute
+                v-for="(item, index) in innerGetCartData"
+                :key="index"
+                :cartData="item"
+              />
+              <div class="order-note-block">
+                <input
+                  type="text"
+                  placeholder="請輸入訂單備註"
+                  class="note"
+                  v-model="orderNote"
+                />
+              </div>
             </div>
           </div>
+          <coupon-total-price @next-step="toCertainStep" />
         </div>
-        <coupon-total-price @next-step="toCertainStep" />
-      </div>
-      <div v-show="checkoutStep === 2">
-        <div class="all-order-confirm-block">
-          <div class="shipping-infomation-block">
-            <shipping-infomation
-              @shipping-info-validate="shippingInfoValidate"
-            />
+        <div v-show="checkoutStep === 2">
+          <div class="all-order-confirm-block">
+            <div class="shipping-infomation-block">
+              <shipping-infomation
+                @shipping-info-validate="shippingInfoValidate"
+                @shipping-info="getShippingInfo"
+              />
+            </div>
           </div>
+          <order-confirm-block
+            :orderValidate="orderValidate"
+            :allOrderData="allOrderData"
+            @to-certain-step="toCertainStep"
+          />
         </div>
-        <order-confirm-block
-          :orderValidate="orderValidate"
-          @to-certain-step="toCertainStep"
-        />
       </div>
     </div>
   </div>
@@ -44,6 +53,7 @@ import CouponTotalPrice from "./Coupon/CouponTotalPrice";
 import ShippingInfomation from "./ShippingInfomation";
 import OrderConfirmBlock from "./OrderConfirmBlock";
 import CartItemAttribute from "./CartItemAttribute";
+import CartEmpty from "./CartEmpty";
 
 export default {
   name: "CartPage",
@@ -52,18 +62,22 @@ export default {
     CartItemAttribute,
     CouponTotalPrice,
     ShippingInfomation,
-    OrderConfirmBlock
+    OrderConfirmBlock,
+    CartEmpty
   },
   data() {
     return {
       checkoutStep: 1,
-      orderValidate: false,
-      innerGetCartData: ""
+      orderValidate: false, // 是否填寫必要欄位
+      innerGetCartData: this.$store.state.staticFakeDefaultCartData,
+      orderNote: "",
+      allOrderData: ""
     };
   },
-  mounted() {
+  created() {
     this.$store.dispatch("setCartData");
   },
+  mounted() {},
   computed: {
     getCartData() {
       return this.$store.getters.getCartData;
@@ -78,32 +92,18 @@ export default {
     }
   },
   methods: {
-    // toHomePage() {
-    //   this.$router.push("/home_page");
-    // },
     shippingInfoValidate(value) {
       this.orderValidate = value;
     },
     toCertainStep(step) {
       this.checkoutStep = step;
     },
-    numberUpdate() {
-      let id = localStorage.getItem("sessID");
-      let items = this.$store.state.cartData;
-      items = items.filter(item => item.qty !== 0);
-
-      let data = {
-        items,
-        id
+    getShippingInfo(data) {
+      this.allOrderData = {
+        shipping_info: data,
+        order_note: this.orderNote,
+        items: this.$store.state.cartData
       };
-      this.$store.dispatch("toggleLoading", true);
-      this.$api.AddCartItem(data).then(res => {
-        this.$store.dispatch("toggleLoading", false);
-        this.$store.dispatch("setCartData");
-        if (res.data.data.id !== "") {
-          localStorage.setItem("sessID", res.data.data.id);
-        }
-      });
     }
   }
 };

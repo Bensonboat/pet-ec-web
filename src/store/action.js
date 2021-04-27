@@ -30,6 +30,7 @@ export const setCartData = context => {
     params['cartId'] = id
   }
 
+  // Always 同步資料庫購物車資料到 vuex
   allApi.getCartData(params).then(res => {
     let data = res.data.data.items;
     context.commit("SET_CART_DATA", data);

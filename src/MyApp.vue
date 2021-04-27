@@ -12,6 +12,11 @@
     <transition name="basic">
       <product-basic-spec v-if="getShowProductAllSpecModalStatus" />
     </transition>
+    <!-- <base-modal
+      v-if="getGlobalModalContent !== ''"
+      @btn1="btn1Function"
+      @btn2="btn2Function"
+    /> -->
   </div>
 </template>
 
@@ -21,9 +26,9 @@ import ProductBasicSpec from "@/components/layouts/ProductBasicSpec";
 
 export default {
   name: "MyApp",
-  components: { ProductBasicSpec },
-  mounted() {
-    // this.getCartData();
+  components: {
+    ProductBasicSpec
+    // BaseModal
   },
   computed: {
     getLoadingStatus() {
@@ -37,21 +42,12 @@ export default {
     }
   },
   methods: {
-    // addCartItem() {
-    //   let data = {
-    //     items: [
-    //       {
-    //         product_id: 1,
-    //         sku_id: 1,
-    //         qty: 1
-    //       }
-    //     ]
-    //   };
-    //   this.$api.AddCartItem(data).then(res => {
-    //     console.log(res, "??? CART");
-    //     this.$store.dispatch("getCartData");
-    //   });
-    // }
+    btn1Function() {
+      this.getGlobalModalContent.btn1_function();
+    },
+    btn2Function() {
+      this.getGlobalModalContent.btn2_function();
+    }
   }
 };
 </script>

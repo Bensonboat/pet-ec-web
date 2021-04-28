@@ -1,6 +1,6 @@
 <template>
   <div class="cart-empty">
-    <img src="/images/icons/bag.svg" alt="購物車" class="icon" />
+    <img src="/images/icons/box.svg" alt="購物車" class="icon" />
     <div class="message">您的購物袋中沒有商品</div>
     <div
       class="click-animation-small go-shop-btn flex-center"
@@ -36,7 +36,6 @@ export default {
   .icon
     width: 8rem
     height: 7rem
-    border: solid 1px
   .go-shop-btn
     width: 10rem
     height: 3.5rem

@@ -40,12 +40,16 @@
 </template>
 
 <script>
-// #### 傳入 state 的資料結構
+// #### 傳入 state 的資料結構，需要什麼傳什麼
 // default_data_structure = {
 //   title: "",
-//   detail: "",
-//   btn1: "",
-//   btn2: ""
+//   detail: "", => 內文
+//   btn1: "", => 上方按鈕文案
+//   btn2: "", => 下方按鈕文案
+//   src: "",  => icon 路徑
+//   blockClass: "fail-block", => icon 區塊class
+//   iconClass: "fail-icon" => icon class,
+//   closeTriggerFunction: '' => 關閉按鈕觸發的function
 // };
 
 export default {
@@ -57,6 +61,10 @@ export default {
   },
   methods: {
     close() {
+      if (this.getGlobalModalContent.closeTriggerFunction) {
+        this.$emit(this.getGlobalModalContent.closeTriggerFunction);
+      }
+
       // 清空自動關閉 modal
       this.$store.dispatch("setGlobalModalContent", "");
     },
@@ -84,7 +92,7 @@ export default {
     top: 0
     left: 50%
     transform: translate(-50%, -50%)
-    border: solid .5rem rgba(0,0,0,.8)
+    border: solid .4rem rgba(0,0,0,.8)
     width: 5rem
     height: 5rem
     border-top: none

@@ -6,10 +6,7 @@
       <div>
         <div v-show="checkoutStep === 1">
           <div class="order-list-block">
-            <div v-if="innerGetCartData.length === 0" class="order-infomation">
-              尚未加入商品
-            </div>
-            <div class="order-infomation" v-else>
+            <div class="order-infomation">
               <cart-item-attribute
                 v-for="(item, index) in innerGetCartData"
                 :key="index"
@@ -44,16 +41,23 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal -->
+    <div v-if="$store.state.globalModalContent !== ''">
+      <div class="modal-mask"></div>
+      <base-modal @btn1="btn1" @btn2="btn2" />
+    </div>
   </div>
 </template>
 
 <script>
-import CheckoutProcess from "./CheckoutProcess";
+import CheckoutProcess from "./CheckoutSteps";
 import CouponTotalPrice from "./Coupon/CouponTotalPrice";
-import ShippingInfomation from "./ShippingInfomation";
-import OrderConfirmBlock from "./OrderConfirmBlock";
-import CartItemAttribute from "./CartItemAttribute";
+import ShippingInfomation from "./Step2/ShippingInfomation";
+import OrderConfirmBlock from "./Step2/OrderConfirmBlock";
+import CartItemAttribute from "./Step1/CartItemAttribute";
 import CartEmpty from "./CartEmpty";
+import BaseModal from "@/components/layouts/BaseModal";
 
 export default {
   name: "CartPage",
@@ -63,7 +67,8 @@ export default {
     CouponTotalPrice,
     ShippingInfomation,
     OrderConfirmBlock,
-    CartEmpty
+    CartEmpty,
+    BaseModal
   },
   data() {
     return {
@@ -77,7 +82,9 @@ export default {
   created() {
     this.$store.dispatch("setCartData");
   },
-  mounted() {},
+  mounted() {
+    this.$store.dispatch("toggleLoading", true);
+  },
   computed: {
     getCartData() {
       return this.$store.getters.getCartData;
@@ -89,6 +96,7 @@ export default {
         item["index"] = index;
         return item;
       });
+      this.$store.dispatch("toggleLoading", false);
     }
   },
   methods: {
@@ -104,6 +112,33 @@ export default {
         order_note: this.orderNote,
         items: this.$store.state.cartData
       };
+    },
+    btn1() {
+      let items = this.$store.state.cartData;
+      items = items.filter(item => item.qty !== 0);
+      this.updateCart(items);
+      this.$store.dispatch("setGlobalModalContent", "");
+    },
+    btn2() {
+      let items = this.$store.state.cartData;
+      items = items.map(item => {
+        item.qty === 0 ? (item.qty = 1) : "";
+        return item;
+      });
+      this.updateCart(items);
+      this.$store.dispatch("setGlobalModalContent", "");
+    },
+    updateCart(items) {
+      let id = localStorage.getItem("sessID");
+      let data = {
+        items,
+        id
+      };
+      this.$store.dispatch("toggleLoading", true);
+      this.$api.AddCartItem(data).then(() => {
+        this.$store.dispatch("toggleLoading", false);
+        this.$store.dispatch("setCartData");
+      });
     }
   }
 };

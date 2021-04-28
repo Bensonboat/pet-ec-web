@@ -51,25 +51,12 @@ export default {
     updateNumber(number) {
       this.cartData.qty = this.cartData.qty + number; // 更新當前數量
 
-      // if (this.cartData.qty === 0) {
-      //   this.setModalContent();
-      // } else {
+      // 合併回原購物車
       let items = this.$store.state.cartData; // 取得舊購物車資料
       items[this.cartData.index].qty = this.cartData.qty; // 把當前數量更新到舊物車資料
 
       // 更新資料庫購物車
       this.updateCart(items);
-      // let id = localStorage.getItem("sessID");
-      // let data = {
-      //   items,
-      //   id
-      // };
-      // this.$store.dispatch("toggleLoading", true);
-      // this.$api.AddCartItem(data).then(() => {
-      //   this.$store.dispatch("toggleLoading", false);
-      //   this.$store.dispatch("setCartData");
-      // });
-      // }
 
       if (this.cartData.qty === 0) {
         this.setModalContent();
@@ -87,21 +74,10 @@ export default {
         detail: "是否將此商品移出購物車?",
         btn1: "Yes",
         btn2: "No",
-        btn1_function: () => {
-          let items = this.$store.state.cartData;
-          items = items.filter(item => item.qty !== 0);
-          this.updateCart(items);
-          this.$store.dispatch("setGlobalModalContent", "");
-        },
-        btn2_function: () => {
-          let items = this.$store.state.cartData;
-          items = items.map(item => {
-            item.qty === 0 ? (item.qty = 1) : "";
-            return item;
-          });
-          this.updateCart(items);
-          this.$store.dispatch("setGlobalModalContent", "");
-        }
+        src: "/images/icons/white-alert.svg",
+        blockClass: "fail-block",
+        iconClass: "fail-icon",
+        closeTriggerFunction: "btn2"
       };
 
       this.$store.dispatch("setGlobalModalContent", default_data_structure);
@@ -125,8 +101,6 @@ export default {
 <style lang="sass" scoped>
 .cart-item-attribute
     margin-bottom: 2rem
-    // background-color: #fff
-    // padding: 1rem
     display: flex
     align-items: flex-start
     .product-img

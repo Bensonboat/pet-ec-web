@@ -1,5 +1,5 @@
 <template>
-  <div class="checkout-process">
+  <div class="checkout-steps">
     <div class="process-title">訂單確認</div>
     <div class="process-line-block">
       <div class="circle full-circle"></div>
@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.checkout-process
+.checkout-steps
     height: 4.4rem
     background-color: #efe1ce
     // padding: 1.3rem 2rem

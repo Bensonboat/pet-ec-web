@@ -64,6 +64,14 @@
           </div>
         </div>
       </div>
+      <div class="favorite-icon-block" @click.stop="toggleFavoriteCollect">
+        <img
+          v-if="!collected"
+          src="/images/icons/pink-line-heart.svg"
+          alt="未收藏"
+        />
+        <img v-else src="/images/icons/pink-filled-heart.svg" alt="已收藏" />
+      </div>
     </div>
   </div>
 </template>
@@ -86,7 +94,8 @@ export default {
   },
   data() {
     return {
-      currentShowsImgIndex: 0
+      currentShowsImgIndex: 0,
+      collected: false
     };
   },
   methods: {
@@ -136,6 +145,9 @@ export default {
       this.getSingleProductData(id).then(() => {
         this.showProductAllSpecModal();
       });
+    },
+    toggleFavoriteCollect() {
+      this.collected = !this.collected;
     }
   }
 };
@@ -248,4 +260,13 @@ export default {
         opacity: 0.4
     .selected-img-dot
         opacity: 1
+    .favorite-icon-block
+      position: absolute
+      bottom: 1rem
+      right: 1rem
+      width: 1.6rem
+      height: 1.5rem
+      img
+        width: 100%
+        height: 100%
 </style>

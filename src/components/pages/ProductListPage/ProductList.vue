@@ -8,7 +8,7 @@
       :product_data="item"
       :showQuickAddIcon="true"
       :showMultiplePics="true"
-      class="product-basic-data click-animation-small"
+      class="product-basic-data"
       @show-quick-add-modal="toggleQuickAddModal"
     />
   </div>

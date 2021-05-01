@@ -49,6 +49,18 @@
               NT${{ productData.min_price }} ~ {{ productData.max_price }}
             </div>
           </div>
+          <div class="favorite-icon-block" @click.stop="toggleFavoriteCollect">
+            <img
+              v-if="!collected"
+              src="/images/icons/pink-line-heart.svg"
+              alt="未收藏"
+            />
+            <img
+              v-else
+              src="/images/icons/pink-filled-heart.svg"
+              alt="已收藏"
+            />
+          </div>
         </div>
       </div>
       <div class="detail-info-block">
@@ -62,7 +74,6 @@
     </div>
     <product-recommand-block />
     <add-to-cart-button @click.native="showProductAllSpecModal" />
-    <!-- <product-basic-spec/> -->
   </div>
 </template>
 
@@ -89,7 +100,8 @@ export default {
     return {
       productData: "",
       currentShowsImgIndex: 0,
-      showProductInfo: ""
+      showProductInfo: "",
+      collected: false
     };
   },
   mounted() {
@@ -146,6 +158,9 @@ export default {
         this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
         this.$store.dispatch("toggleLoading", false);
       });
+    },
+    toggleFavoriteCollect() {
+      this.collected = !this.collected;
     }
   }
 };
@@ -271,4 +286,13 @@ export default {
     .next-img-arrow-block.right
       right: 1rem
       transform: translateY(-50%) rotate(180deg)
+    .favorite-icon-block
+      position: absolute
+      bottom: 1rem
+      right: 1.2rem
+      width: 2.2rem
+      height: 2rem
+      img
+        width: 100%
+        height: 100%
 </style>

@@ -7,7 +7,7 @@
       <div class="toggle-mode-btn" @click="toggleLogInMode">
         {{ isLoginMode ? "註冊" : "登入" }}
       </div>
-      <div>LOGO</div>
+      <img src="/images/icons/Logo.svg" alt="Logo" class="logo-icon" />
     </div>
     <div class="content-block">
       <div class="bg" :style="{ backgroundPosition: position }"></div>
@@ -304,6 +304,8 @@ export default {
       right: 1.5rem
     .content-block
       position: relative
+      min-height: 100vh
+      padding-top: 3rem
       .bg
           background-image: url('/images/icons/tiles.svg')
           background-repeat: repeat
@@ -321,7 +323,7 @@ export default {
       color: #333333
       position: relative
       z-index: 1
-      margin: 3rem 0
+      margin-bottom: 3rem
     .form-block
       position: relative
       z-index: 1
@@ -423,4 +425,8 @@ export default {
       height: 1.6rem
       position: absolute
       left: 2.5rem
+    .logo-icon
+      display: flex
+      width: 5rem
+      height: 5rem
 </style>

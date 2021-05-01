@@ -8,12 +8,8 @@
         <img src="/images/icons/search.svg" alt="搜尋按鈕" class="icon" />
       </div>
     </div>
-    <div
-      @click="routerSwitcher('/category_page/cat')"
-      class="logo-block click-animation"
-    >
-      LOGO
-      <!-- <img src="/images/animal.png" alt="Logo" class="icon logo-icon"> -->
+    <div @click="routerSwitcher('/category_page/cat')" class="logo-block">
+      <img src="/images/icons/Logo.svg" alt="Logo" class="icon logo-icon" />
     </div>
     <div class="heading-operation-right-block">
       <div
@@ -74,26 +70,10 @@ export default {
         position: absolute
         left: 50%
         transform: translateX(-50%)
-        width: 90px
-        height: 30px
-        opacity: 0.1
-        border-radius: 5px
+    .logo-icon
         display: flex
-        align-items: center
-        justify-content: center
-        background-color: #f4f4f4
-        font-family: MicrosoftSansSerif
-        font-size: 14px
-        font-weight: normal
-        font-stretch: normal
-        font-style: normal
-        line-height: normal
-        letter-spacing: normal
-        color: #5c5c5c
-    // .logo-icon
-    //     display: flex
-    //     width: 3rem
-    //     height: 3rem
+        width: 5rem
+        height: 5rem
     .heading-operation-right-block
         display: flex
         align-items: center

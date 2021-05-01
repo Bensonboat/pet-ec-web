@@ -344,7 +344,7 @@ export default {
         border: solid .2rem #ccaa76
         background-color: $color3
         font-size: 1.8rem
-        font-weight: 500
+        font-weight: 900
         font-stretch: normal
         font-style: normal
         line-height: normal

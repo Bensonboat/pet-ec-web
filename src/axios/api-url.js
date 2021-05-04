@@ -12,6 +12,9 @@ export const SIGN_UP = "/auth/register";
 // 登入
 export const LOG_IN = "/auth/login";
 
+// 登出
+export const LOG_OUT = '/auth/logout'
+
 // 購物車
 export const CART = "/cart";
 
@@ -20,3 +23,9 @@ export const CATEGORIES = "/categories";
 
 // 訂單
 export const ORDERS = "/orders"
+
+// 已註冊使用者
+export const USERS = '/users'
+
+// 收藏
+export const COLLECTIONS = '/collections'

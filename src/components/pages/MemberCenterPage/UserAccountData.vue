@@ -6,7 +6,7 @@
         <div class="name">花柚子</div>
         <div class="points">120 點</div>
       </div>
-      <div class="account">belinda90285@gmail.com</div>
+      <div class="account">{{ userData.email }}</div>
     </div>
     <div class="log-out-btn click-animation-small" @click="logOut">登出</div>
   </div>
@@ -16,14 +16,30 @@
 import Avatar from "./Avatar";
 export default {
   name: "UserAccountData",
+  props: ["userData"],
   components: {
     Avatar
   },
   methods: {
     logOut() {
-      this.$router.push({
-        path: "/login"
-      });
+      this.$api
+        .logOut()
+        .then(res => {
+          if (res.data.code === 200) {
+            localStorage.removeItem("paw-front-token");
+            this.$router.push({
+              path: "/login"
+            });
+          }
+        })
+        .catch(err => {
+          if (err.data.code === 3002) {
+            alert("尚未登入");
+            this.$router.push({
+              path: "/login"
+            });
+          }
+        });
     }
   }
 };

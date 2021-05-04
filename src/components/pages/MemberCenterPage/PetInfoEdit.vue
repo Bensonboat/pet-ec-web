@@ -127,9 +127,10 @@ export default {
         margin-top: 1rem
         color: #333333
         position: relative
+        display: flex
+        align-items: center
+        justify-content: space-between
         .icon
-            width: 1.2rem
-            height: 1.2rem
-            position: absolute
-            right: 1rem
+          width: 1.2rem
+          height: 1.2rem
 </style>

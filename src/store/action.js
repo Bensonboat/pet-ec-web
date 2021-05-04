@@ -45,3 +45,14 @@ export const toggleLoading = (context, is_loading) => {
 export const setGlobalModalContent = (context, data) => {
   context.commit("SET_MODAL_CONTENT", data)
 }
+
+// Collections - 加入我的最愛，存 id 在 store
+export const getCollections = (context) => {
+  allApi.getCollections()
+    .then(res => {
+      let id = res.data.data.map(item => {
+        return item.id
+      })
+      context.commit("SET_COLLECTIONS_ID", id)
+    })
+}

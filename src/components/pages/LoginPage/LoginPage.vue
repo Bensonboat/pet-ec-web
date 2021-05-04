@@ -169,9 +169,13 @@ export default {
     logIn(data) {
       API.logIn(data)
         .then(res => {
-          console.log(res.data.code, "###");
           if (res.data.code === 3001) {
+            // 沒註冊
             this.setGlobalModalContent("not-registered");
+          } else {
+            let token = res.data.data.token;
+            localStorage.setItem("paw-front-token", token);
+            this.$router.push("/");
           }
         })
         .catch(() => {

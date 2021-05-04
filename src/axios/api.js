@@ -36,6 +36,12 @@ export default {
       data
     });
   },
+  logOut() {
+    return axios({
+      method: "POST",
+      url: apiUrl.LOG_OUT,
+    });
+  },
   getCartData(params) {
     return axios({
       method: "GET",
@@ -67,5 +73,40 @@ export default {
       url: apiUrl.ORDERS,
       data
     });
+  },
+  getUsers() {
+    return axios({
+      method: "GET",
+      url: apiUrl.USERS,
+    });
+  },
+  updateUserData(data) {
+    return axios({
+      method: "PUT",
+      url: apiUrl.USERS,
+      data
+    })
+  },
+  getCollections() {
+    return axios({
+      method: 'GET',
+      url: apiUrl.COLLECTIONS
+    })
+  },
+  addToCollections(data) {
+    return axios({
+      method: 'POST',
+      url: apiUrl.COLLECTIONS,
+      data
+    })
+  },
+  removeCollection(id) {
+    return axios({
+      method: 'DELETE',
+      url: apiUrl.COLLECTIONS + `/${id}`,
+      data: {
+        status: 0
+      }
+    })
   }
 };

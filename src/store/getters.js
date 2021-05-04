@@ -10,6 +10,9 @@ export default {
   },
   getDetailProductData: state => {
     return state.singleProductData
+  },
+  getCollectionsID: state => {
+    return state.collectionsID
   }
   //     getAccountData: state => { return state.accountData }
 };

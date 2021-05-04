@@ -15,3 +15,6 @@ export const SET_CART_DATA = "SET_CART_DATA";
 
 // 全域 Modal 內容
 export const SET_MODAL_CONTENT = "SET_MODAL_CONTENT"
+
+// Collections id - 我的最愛 id
+export const SET_COLLECTIONS_ID = "SET_COLLECTIONS_ID"

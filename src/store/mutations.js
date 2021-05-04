@@ -16,5 +16,8 @@ export default {
   },
   [types.SET_MODAL_CONTENT](state, data) {
     state.globalModalContent = data
+  },
+  [types.SET_COLLECTIONS_ID](state, data) {
+    state.collectionsID = data
   }
 };

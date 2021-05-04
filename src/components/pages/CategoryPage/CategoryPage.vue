@@ -155,7 +155,7 @@ export default {
     };
   },
   mounted() {
-    this.bgAnimation();
+    // this.bgAnimation();
 
     // 預設貓咪類別
     this.$router

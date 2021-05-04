@@ -64,13 +64,20 @@
           </div>
         </div>
       </div>
-      <div class="favorite-icon-block" @click.stop="toggleFavoriteCollect">
+      <div
+        class="favorite-icon-block"
+        @click.stop="toggleCollection(product_data.id)"
+      >
         <img
-          v-if="!collected"
+          v-show="!product_data.is_favorite"
           src="/images/icons/pink-line-heart.svg"
           alt="未收藏"
         />
-        <img v-else src="/images/icons/pink-filled-heart.svg" alt="已收藏" />
+        <img
+          v-show="product_data.is_favorite"
+          src="/images/icons/pink-filled-heart.svg"
+          alt="已收藏"
+        />
       </div>
     </div>
   </div>
@@ -94,17 +101,14 @@ export default {
   },
   data() {
     return {
-      currentShowsImgIndex: 0,
-      collected: false
+      currentShowsImgIndex: 0
     };
   },
   methods: {
     checkProductDetail(id) {
       let type = this.$route.query.type;
       let subType = this.$route.query.subType;
-      // this.$router.push({
-      //   path: "/product/" + type + "/" + subType + "/" + id
-      // });
+
       this.$router.push({
         path: "/product/",
         query: {
@@ -133,9 +137,6 @@ export default {
       this.$store.dispatch("toggleLoading", true);
       return this.$api.getSingleProduct(id).then(res => {
         let data = res.data.data;
-        // let query = this.$route.query;
-        // data["type"] = query.type;
-        // data["subType"] = query.subType;
 
         this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
         this.$store.dispatch("toggleLoading", false);
@@ -146,8 +147,32 @@ export default {
         this.showProductAllSpecModal();
       });
     },
-    toggleFavoriteCollect() {
-      this.collected = !this.collected;
+    toggleCollection(id) {
+      if (!this.product_data.is_favorite) {
+        this.addToCollections(id);
+      } else {
+        this.removeCollection(id);
+      }
+    },
+    addToCollections(id) {
+      let data = {
+        products: [id]
+      };
+      this.$api
+        .addToCollections(data)
+        .then(() => {
+          this.product_data.is_favorite = true;
+        })
+        .catch(err => {
+          if (err.data.code === 3002) {
+            alert("尚未登入");
+          }
+        });
+    },
+    removeCollection(id) {
+      this.$api.removeCollection(id).then(() => {
+        this.product_data.is_favorite = false;
+      });
     }
   }
 };

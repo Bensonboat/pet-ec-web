@@ -26,34 +26,7 @@ export default {
   },
   data() {
     return {
-      productListData: [
-        {
-          img: ["/images/p1.jpg", "/images/test2.png"],
-          // img: "/images/p1.jpg",
-          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
-          price: 2000,
-          special_price: 1200,
-          id: 1,
-          type: "零食 零食 零食 零食 零食"
-        },
-        {
-          // img: "/images/p1.jpg",
-          img: ["/images/test2.png", "/images/p2.jpg"],
-          name: "理想體態成貓F32 10KG EQUILÍBRIO",
-          price: 1000,
-          id: 2,
-          type: "飼料"
-        },
-        {
-          // img: "/images/p1.jpg",
-          img: ["/images/p1.jpg", "/images/test2.png"],
-          name:
-            "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
-          price: 1300,
-          id: 5,
-          type: "玩具"
-        }
-      ]
+      productListData: []
     };
   },
   watch: {
@@ -63,8 +36,14 @@ export default {
       }
     }
   },
+  computed: {
+    getCollectionsID() {
+      return this.$store.getters.getCollectionsID;
+    }
+  },
   mounted() {
     this.getProductsList();
+    this.$store.dispatch("getCollections");
   },
   methods: {
     toggleQuickAddModal() {
@@ -93,6 +72,12 @@ export default {
     },
     productDataParser(data) {
       let query = this.$route.query;
+      let arr = this.getCollectionsID;
+      // 看該項商品 id 是否存在我的最愛中
+      let is_favorite;
+      if (arr.length !== 0) {
+        is_favorite = arr.some(item => item === data.id);
+      }
       return {
         images: data.images,
         name: data.title,
@@ -103,7 +88,8 @@ export default {
         max_origin_price: data.max_origin_price,
         max_price: data.max_price,
         min_origin_price: data.min_origin_price,
-        min_price: data.min_price
+        min_price: data.min_price,
+        is_favorite
       };
     }
   }

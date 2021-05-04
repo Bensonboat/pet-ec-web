@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import LoginPage from "@/components/pages/LoginPage/LoginPage";
-import MemberCenterPage from "@/components/pages/MemberCenterPage/MemberCenterPage";
+import MemberCenterPage from "@/components/pages/MemberCenterPage";
 
 import IndexContent from "@/components/layouts/IndexContent";
 

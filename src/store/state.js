@@ -16,5 +16,6 @@ export default {
     //   sku_name: "讀取中",
     //   title: "讀取中"
     // }
-  ]
+  ],
+  collectionsID: ''
 };

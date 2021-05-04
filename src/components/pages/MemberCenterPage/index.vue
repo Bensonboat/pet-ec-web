@@ -1,14 +1,14 @@
 <template>
-  <div class="user-account-page">
+  <div class="member-center-index">
     <page-header :title="'會員中心'" @previous-page="previousPage">
       <template #pageHeaderButton>
         <div class="detail-btn" @click="checkOrdersDetail">訂單明細</div>
       </template>
     </page-header>
     <div class="content-block">
-      <user-account-data />
+      <user-account-data :userData="userData" />
       <div class="edit-block">
-        <user-info-edit />
+        <user-info-edit :userData="userData" />
         <pet-info-edit style="margin-top: .6rem; margin-botto: 1rem" />
       </div>
     </div>
@@ -22,12 +22,25 @@ import PetInfoEdit from "./PetInfoEdit";
 import PageHeader from "@/components/layouts/PageHeader";
 
 export default {
-  name: "MemberCenterPage",
+  name: "MemberCenterIndex",
   components: {
     UserAccountData,
     UserInfoEdit,
     PetInfoEdit,
     PageHeader
+  },
+  data() {
+    return {
+      userData: ""
+    };
+  },
+  mounted() {
+    let token = localStorage.getItem("paw-front-token");
+    if (!token) {
+      this.$router.push("/login");
+    } else {
+      this.getUserData();
+    }
   },
   methods: {
     previousPage() {
@@ -37,13 +50,18 @@ export default {
       this.$router.push({
         path: "/order_detail_page"
       });
+    },
+    getUserData() {
+      this.$api.getUsers().then(res => {
+        this.userData = res.data.data;
+      });
     }
   }
 };
 </script>
 
 <style lang="sass" scoped>
-.user-account-page
+.member-center-index
     background-color: #e5ceae
     height: 100%
     overflow: scroll

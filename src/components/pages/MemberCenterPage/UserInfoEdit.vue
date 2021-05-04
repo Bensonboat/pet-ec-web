@@ -1,6 +1,6 @@
 <template>
   <div class="user-info-edit">
-    <div v-for="(item, index) in userData" :key="index">
+    <div v-for="(item, index) in innerUserData" :key="index">
       <div v-if="isEditMode" class="form-title">{{ item.label }}</div>
       <div class="form-input-block">
         <input
@@ -14,16 +14,16 @@
     </div>
     <div class="flex-center operate-btn-block">
       <div
-        class="revise-password-btn flex-center click-animation-small"
-        @click="toggleResetPasswordPage"
-      >
-        修改密碼
-      </div>
-      <div
         class="edit-confirm-btn flex-center click-animation-small"
         @click="toggleEditMode"
       >
         {{ isEditMode ? "儲存" : "編輯" }}
+      </div>
+      <div
+        class="revise-password-btn flex-center click-animation-small"
+        @click="toggleResetPasswordPage"
+      >
+        {{ isEditMode ? "取消" : "修改密碼" }}
       </div>
     </div>
     <transition name="left-in">
@@ -39,6 +39,7 @@
 import ResetPassword from "./ResetPassword";
 export default {
   name: "UserInfoEdit",
+  props: ["userData"],
   components: {
     ResetPassword
   },
@@ -46,7 +47,7 @@ export default {
     return {
       isEditMode: false,
       showResetPasswordPage: false,
-      userData: [
+      innerUserData: [
         {
           label: "姓名",
           value: ""
@@ -58,11 +59,11 @@ export default {
         {
           label: "寄送地址",
           value: ""
-        },
-        {
-          label: "信箱",
-          value: ""
         }
+        // {
+        //   label: "信箱",
+        //   value: ""
+        // }
       ]
     };
   },
@@ -71,7 +72,20 @@ export default {
       this.isEditMode = !this.isEditMode;
     },
     toggleResetPasswordPage() {
+      if (this.isEditMode) {
+        this.toggleEditMode();
+        return;
+      }
       this.showResetPasswordPage = !this.showResetPasswordPage;
+    },
+    updateUserConfirm() {
+      let data = {
+        firstname: "",
+        mobile: ""
+      };
+      this.$api.updateUserData(data).then(res => {
+        console.log(res, "####");
+      });
     }
   }
 };

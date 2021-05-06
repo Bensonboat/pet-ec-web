@@ -28,6 +28,7 @@
           <div class="all-order-confirm-block">
             <div class="shipping-infomation-block">
               <shipping-infomation
+                :userData="userData"
                 @shipping-info-validate="shippingInfoValidate"
                 @shipping-info="getShippingInfo"
               />
@@ -52,7 +53,7 @@
 
 <script>
 import CheckoutProcess from "./CheckoutSteps";
-import CouponTotalPrice from "./Coupon/CouponTotalPrice";
+import CouponTotalPrice from "./Step1/OrderCalculate";
 import ShippingInfomation from "./Step2/ShippingInfomation";
 import OrderConfirmBlock from "./Step2/OrderConfirmBlock";
 import CartItemAttribute from "./Step1/CartItemAttribute";
@@ -76,7 +77,8 @@ export default {
       orderValidate: false, // 是否填寫必要欄位
       innerGetCartData: this.$store.state.staticFakeDefaultCartData,
       orderNote: "",
-      allOrderData: ""
+      allOrderData: "",
+      userData: ""
     };
   },
   created() {
@@ -84,6 +86,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("toggleLoading", true);
+    this.getUserData();
   },
   computed: {
     getCartData() {
@@ -139,6 +142,20 @@ export default {
         this.$store.dispatch("toggleLoading", false);
         this.$store.dispatch("setCartData");
       });
+    },
+    getUserData() {
+      this.$api
+        .getUsers()
+        .then(res => {
+          this.userData = res.data.data;
+          this.$store.dispatch("setUser", this.userData);
+        })
+        .catch(err => {
+          if (err.data.code === 3002) {
+            alert("請重新登入");
+            this.$router.push("/login");
+          }
+        });
     }
   }
 };

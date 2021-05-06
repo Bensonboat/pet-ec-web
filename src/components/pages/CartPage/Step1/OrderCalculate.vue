@@ -1,5 +1,5 @@
 <template>
-  <div class="coupon-total-price">
+  <div class="coupon-calculate">
     <div class="detail-block">
       <div class="total-items-number">
         共 {{ this.$store.state.cartData.length }}件商品
@@ -54,10 +54,10 @@
 </template>
 
 <script>
-import CouponList from "./CouponList.vue";
+import CouponList from "../Coupon/CouponList";
 
 export default {
-  name: "CouponPrice",
+  name: "OrderCalculate",
   components: { CouponList },
   data() {
     return {
@@ -105,7 +105,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.coupon-total-price
+.coupon-calculate
     padding: .9rem 1.5rem
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2)
     background-color: #fff

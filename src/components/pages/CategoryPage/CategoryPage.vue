@@ -264,8 +264,8 @@ export default {
         background-size: 190px 190px
         width: 100%
         height: 100%
-        // position: fixed
-        position: absolute // 改為 absolute for not 100vw
+        position: fixed
+        // position: absolute // 改為 absolute for not 100vw
         top: 0
         left: 0
         // z-index: -1

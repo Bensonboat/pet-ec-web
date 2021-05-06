@@ -15,7 +15,7 @@
     <div class="flex-center operate-btn-block">
       <div
         class="edit-confirm-btn flex-center click-animation-small"
-        @click="toggleEditMode"
+        @click="confirmBtn"
       >
         {{ isEditMode ? "儲存" : "編輯" }}
       </div>
@@ -67,6 +67,12 @@ export default {
       ]
     };
   },
+  watch: {
+    userData(data) {
+      this.innerUserData[0].value = data.firstname;
+      this.innerUserData[1].value = data.mobile;
+    }
+  },
   methods: {
     toggleEditMode() {
       this.isEditMode = !this.isEditMode;
@@ -80,12 +86,20 @@ export default {
     },
     updateUserConfirm() {
       let data = {
-        firstname: "",
-        mobile: ""
+        firstname: this.innerUserData[0].value,
+        mobile: this.innerUserData[1].value
       };
       this.$api.updateUserData(data).then(res => {
         console.log(res, "####");
+        this.toggleEditMode();
       });
+    },
+    confirmBtn() {
+      if (this.isEditMode) {
+        this.updateUserConfirm();
+      } else {
+        this.toggleEditMode();
+      }
     }
   }
 };

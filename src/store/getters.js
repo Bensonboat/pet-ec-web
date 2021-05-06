@@ -13,6 +13,6 @@ export default {
   },
   getCollectionsID: state => {
     return state.collectionsID
-  }
+  },
   //     getAccountData: state => { return state.accountData }
 };

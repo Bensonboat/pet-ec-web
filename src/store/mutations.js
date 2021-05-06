@@ -19,5 +19,8 @@ export default {
   },
   [types.SET_COLLECTIONS_ID](state, data) {
     state.collectionsID = data
+  },
+  [types.SET_LOG_IN_USER](state, data) {
+    state.logInUserData = data
   }
 };

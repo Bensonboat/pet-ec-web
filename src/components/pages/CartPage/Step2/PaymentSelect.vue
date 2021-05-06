@@ -17,12 +17,12 @@
           class="tick-icon"
         />
       </div>
-      <div
+      <!-- <div
         class="confirm-btn click-animation-small"
         :class="{ 'input-valid': isSelected }"
       >
         確認
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -46,7 +46,22 @@ export default {
         },
         {
           name: "信用卡",
-          value: "credit_card",
+          value: "creditCard",
+          selected: false
+        },
+        {
+          name: "ATM 轉帳",
+          value: "atm",
+          selected: false
+        },
+        {
+          name: "超商代碼",
+          value: "cvs",
+          selected: false
+        },
+        {
+          name: "超商條碼",
+          value: "barcode",
           selected: false
         }
       ]
@@ -58,14 +73,19 @@ export default {
         if (index === key) {
           item.selected = true;
           this.isSelected = true;
+          this.passPaymentMethod(item);
         } else {
           item.selected = false;
         }
         return item;
       });
+      this.close();
     },
     close() {
       this.$emit("close-page");
+    },
+    passPaymentMethod(item) {
+      this.$emit("payment-method", item);
     }
   }
 };

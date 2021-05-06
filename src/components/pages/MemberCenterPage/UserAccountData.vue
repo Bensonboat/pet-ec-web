@@ -3,7 +3,7 @@
     <avatar />
     <div class="name-account-points-block">
       <div class="name-points-row">
-        <div class="name">花柚子</div>
+        <div class="name">{{ userData.firstname }}</div>
         <div class="points">120 點</div>
       </div>
       <div class="account">{{ userData.email }}</div>

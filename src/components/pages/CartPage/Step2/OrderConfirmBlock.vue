@@ -6,7 +6,13 @@
     >
       <div class="operate-text-block">
         <img src="/images/icons/pay.svg" alt="付款圖案" class="operate-icon" />
-        <div>選擇付款方式</div>
+        <div>
+          {{
+            selectPaymentMethod === ""
+              ? "選擇付款方式"
+              : `${selectPaymentMethod.name} 付款`
+          }}
+        </div>
       </div>
       <img
         src="/images/icons/black-back.svg"
@@ -47,8 +53,9 @@
     </div>
     <transition name="left-in">
       <payment-select
-        v-if="showPaymentSelectPage"
+        v-show="showPaymentSelectPage"
         @close-page="togglePaymentSelectPage"
+        @payment-method="getPayementMethod"
       />
     </transition>
   </div>
@@ -66,7 +73,8 @@ export default {
   data() {
     return {
       memberSelected: true,
-      showPaymentSelectPage: false
+      showPaymentSelectPage: false,
+      selectPaymentMethod: ""
     };
   },
   methods: {
@@ -97,6 +105,9 @@ export default {
           alert(err.data.msg);
         });
       console.log(this.allOrderData, "#####");
+    },
+    getPayementMethod(payment) {
+      this.selectPaymentMethod = payment;
     }
   }
 };

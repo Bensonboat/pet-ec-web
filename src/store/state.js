@@ -17,5 +17,6 @@ export default {
     //   title: "讀取中"
     // }
   ],
-  collectionsID: ''
+  collectionsID: '',
+  logInUserData: ''
 };

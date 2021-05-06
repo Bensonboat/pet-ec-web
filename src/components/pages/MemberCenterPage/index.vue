@@ -9,7 +9,7 @@
       <user-account-data :userData="userData" />
       <div class="edit-block">
         <user-info-edit :userData="userData" />
-        <pet-info-edit style="margin-top: .6rem; margin-botto: 1rem" />
+        <pet-info-edit style="margin-top: .6rem; margin-bottom: 1rem" />
       </div>
     </div>
   </div>
@@ -52,9 +52,17 @@ export default {
       });
     },
     getUserData() {
-      this.$api.getUsers().then(res => {
-        this.userData = res.data.data;
-      });
+      this.$api
+        .getUsers()
+        .then(res => {
+          this.userData = res.data.data;
+        })
+        .catch(err => {
+          if (err.data.code === 3002) {
+            alert("請重新登入");
+            this.$router.push("/login");
+          }
+        });
     }
   }
 };

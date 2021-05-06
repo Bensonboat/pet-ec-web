@@ -27,6 +27,7 @@
 <script>
 export default {
   name: "ShippingInfomation",
+  props: ["userData"],
   data() {
     return {
       shippingData: [
@@ -55,6 +56,13 @@ export default {
     };
   },
   watch: {
+    userData: {
+      handler(data) {
+        this.shippingData[0].value = data.firstname;
+        this.shippingData[1].value = data.mobile;
+        this.shippingData[3].value = data.email;
+      }
+    },
     shippingData: {
       handler(data) {
         this.shippingInfomationValidate = true;

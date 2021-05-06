@@ -18,3 +18,6 @@ export const SET_MODAL_CONTENT = "SET_MODAL_CONTENT"
 
 // Collections id - 我的最愛 id
 export const SET_COLLECTIONS_ID = "SET_COLLECTIONS_ID"
+
+// 登入使用者
+export const SET_LOG_IN_USER = 'SET_LOG_IN_USER'

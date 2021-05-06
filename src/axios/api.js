@@ -108,5 +108,25 @@ export default {
         status: 0
       }
     })
+  },
+  getPetData() {
+    return axios({
+      method: 'GET',
+      url: apiUrl.PET
+    })
+  },
+  createPetData(data) {
+    return axios({
+      method: 'POST',
+      url: apiUrl.PET,
+      data
+    })
+  },
+  updatePetData(data) {
+    return axios({
+      method: 'PUT',
+      url: apiUrl.PET + `/${data.id}`,
+      data
+    })
   }
 };

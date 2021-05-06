@@ -40,6 +40,7 @@
             v-model="password"
             @focus="toggleInput('password')"
             @blur="toggleInput('password') + validatePassword()"
+            @keyup.enter="confirm"
           />
           <div @click="toggleShowPassword">
             <img
@@ -64,9 +65,9 @@
           />
           <span>{{ errorMessage }}</span>
         </div>
-        <div class="btn-shape login-btn" @click="confirm">
+        <button class="btn-shape login-btn" @click="confirm">
           {{ isLoginMode ? "登入" : "註冊" }}
-        </div>
+        </button>
         <div class="forget-password-block">
           <div class="text">忘記密碼?</div>
         </div>
@@ -175,6 +176,7 @@ export default {
           } else {
             let token = res.data.data.token;
             localStorage.setItem("paw-front-token", token);
+            this.getUserData();
             this.$router.push("/");
           }
         })
@@ -264,6 +266,19 @@ export default {
       }
 
       this.$store.dispatch("setGlobalModalContent", default_data_structure);
+    },
+    getUserData() {
+      this.$api
+        .getUsers()
+        .then(res => {
+          this.$store.dispatch("setUser", res.data.data);
+        })
+        .catch(err => {
+          if (err.data.code === 3002) {
+            alert("請重新登入");
+            this.$router.push("/login");
+          }
+        });
     },
     bgAnimation() {
       let x = 0;
@@ -386,6 +401,7 @@ export default {
       align-items: center
       justify-content: center
       font-size: 1.2rem
+      outline: none
     .others-login-block
       margin-top: 4rem
     .other-login-btn

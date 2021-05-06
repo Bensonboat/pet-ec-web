@@ -29,3 +29,6 @@ export const USERS = '/users'
 
 // 收藏
 export const COLLECTIONS = '/collections'
+
+// 寵物
+export const PET = '/pets'

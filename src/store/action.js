@@ -56,3 +56,8 @@ export const getCollections = (context) => {
       context.commit("SET_COLLECTIONS_ID", id)
     })
 }
+
+// 存入登入使用者資料
+export const setUser = (context, data) => {
+  context.commit('SET_LOG_IN_USER', data)
+}

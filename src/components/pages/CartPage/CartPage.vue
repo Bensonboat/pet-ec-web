@@ -178,7 +178,8 @@ export default {
     //     height: calc(100vh - 50rem)
     .order-note-block
         margin-top: 3rem
-        margin-bottom: 400px
+        margin-bottom: 12rem
+        // margin-bottom: 400px
         padding: .9rem 13rem .9rem 1.5rem
         border-radius: .5rem
         box-shadow: inset 1px 1px 2px 0 rgba(0, 0, 0, 0.1)

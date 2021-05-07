@@ -32,7 +32,7 @@
         />
         <div>將資料註冊會員並累積點數</div>
       </div>
-      <div class="tick-block">
+      <div class="tick-block flex-center">
         <img
           v-show="memberSelected"
           src="/images/icons/black-tick.svg"
@@ -146,8 +146,8 @@ export default {
         border: solid .1rem #333333
         background-color: #f2c47e
     .tick-icon
-        width: 1.4rem
-        height: 1.4rem
+        width: 1.2rem
+        height: 1.2rem
     .arrow-icon
         width: 1.4rem
         height: 1.4rem

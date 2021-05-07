@@ -1,33 +1,76 @@
 <template>
-  <div class="coupon-calculate">
+  <div
+    class="coupon-calculate"
+    :class="[showBottom ? 'show-bottom' : 'hide-bottom']"
+  >
+    <div
+      @click="toggleBottomBlock"
+      class="flex-center"
+      style="border-radius: 50%; width: 2.5rem; height: 2.5rem; background-color: #333333; position: absolute; left: 50%; top: 0; transform: translate(-50%, -50%)"
+    >
+      <img
+        v-show="!showBottom"
+        src="/images/icons/back.svg"
+        alt=""
+        style="width: 1.6rem; height: 1.6rem; transform: rotate(90deg)"
+      />
+      <img
+        v-show="showBottom"
+        src="/images/icons/back.svg"
+        alt=""
+        style="width: 1.6rem; height: 1.6rem; transform: rotate(-90deg)"
+      />
+    </div>
     <div class="detail-block">
       <div class="total-items-number">
         共 {{ this.$store.state.cartData.length }}件商品
       </div>
-      <div class="price-detail">
-        <div class="product-price-block">
+      <div class="order-detail-price-block">
+        <div
+          class="detail-item"
+          v-for="(item, index) in orderDetailItems"
+          :key="index"
+        >
+          <div class="item">{{ item.label }}</div>
+          <div class="item">{{ item.price }}</div>
+        </div>
+
+        <!-- <div class="detail-item">
           <div class="item">商品金額</div>
           <div class="item">{{ total }}</div>
         </div>
-        <div class="discount-block">
+        <div class="detail-item">
           <div class="item">折扣優惠</div>
           <div class="item">
             - <span v-show="discountPirce !== 0">{{ discountPirce }}</span>
           </div>
-        </div>
-        <div class="total-price-block">
+        </div> -->
+        <div class="detail-item">
           <div class="item">小計</div>
-          <div class="item total-price">NT$ {{ total - discountPirce }}</div>
+          <div class="item total-price">NT$ 999</div>
         </div>
       </div>
     </div>
-    <div class="coupon-button" @click="toggleCouponList">
-      <div class="coupon-text-block">
-        <img
-          src="/images/icons/coupon.svg"
-          alt="優惠卷圖案"
-          class="coupon-icon"
-        />
+    <div class="functional-btn" @click="toggleUsingPointsSelect">
+      <div class="functional-btn-text">
+        <img src="/images/icons/points.svg" alt="點數" class="icon" />
+        <div>點數 120點</div>
+      </div>
+      <div class="flex-center">
+        <div>此筆訂單可折抵 12 元</div>
+        <div class="tick-block flex-center">
+          <img
+            v-show="usingPointsSelect"
+            src="/images/icons/black-tick.svg"
+            alt="向下箭頭圖案"
+            class="tick-icon"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="functional-btn" @click="toggleCouponList">
+      <div class="functional-btn-text">
+        <img src="/images/icons/coupon.svg" alt="優惠卷圖案" class="icon" />
         <div>選擇優惠卷序號</div>
       </div>
       <img
@@ -63,12 +106,31 @@ export default {
     return {
       showCouponListBlock: false,
       total: 0,
-      discountPirce: 100
+      discountPirce: 100,
+      usingPointsSelect: false,
+      orderDetailItems: {
+        productsTotalPrice: {
+          label: "商品金額",
+          price: 0
+        },
+        delivery: {
+          label: "運費",
+          price: 50
+        },
+        coupon: {
+          label: "折扣優惠",
+          price: -200
+        }
+      },
+      showBottom: false
     };
   },
   mounted() {
+    // 初始進來 computed 可能不會作用，所以 mounted 做一次更新金額的動作
     let cart_data = this.$store.state.cartData;
-    this.priceCalculate(cart_data);
+    this.orderDetailItems.productsTotalPrice.price = this.allProductsCalculate(
+      cart_data
+    );
   },
   computed: {
     getCartData() {
@@ -77,7 +139,19 @@ export default {
   },
   watch: {
     getCartData(data) {
-      this.priceCalculate(data);
+      this.orderDetailItems.productsTotalPrice.price = this.allProductsCalculate(
+        data
+      );
+    },
+    usingPointsSelect(value) {
+      if (value) {
+        this.orderDetailItems["pointsDiscount"] = {
+          label: "點數折扣",
+          price: -12
+        };
+      } else {
+        delete this.orderDetailItems["pointsDiscount"];
+      }
     }
   },
   methods: {
@@ -90,29 +164,51 @@ export default {
     keepShoping() {
       this.$router.push("/category_page/cat");
     },
-    priceCalculate(data) {
+    allProductsCalculate(data) {
       if (data.length === 0) {
         return;
       }
-      this.total = data
+
+      let total = data
         .map(item => {
           return item.price * item.qty;
         })
         .reduce((a, b) => a + b);
+      return total;
+    },
+    toggleUsingPointsSelect() {
+      this.usingPointsSelect = !this.usingPointsSelect;
+    },
+    toggleBottomBlock() {
+      this.showBottom = !this.showBottom;
     }
+    // calculateOrder() {
+    //   let total = 0;
+    //   for (let item in this.orderDetailItems) {
+    //     total += this.orderDetailItems[item].price;
+    //   }
+    //   // this.orderDetailItems.map(item => {
+    //   //   console.log(item);
+    //   // });
+    //   return total;
+    // }
   }
 };
 </script>
 
 <style lang="sass" scoped>
+.show-bottom
+  bottom: 0
+.hide-bottom
+  top: 90%
 .coupon-calculate
     padding: .9rem 1.5rem
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2)
     background-color: #fff
     width: 100%
-    // height: 18rem
     position: absolute
-    bottom: 0
+    // bottom: 0
+    // top: 90%
     box-sizing: border-box
     .detail-block
         display: flex
@@ -122,9 +218,9 @@ export default {
         font-size: 1.2rem
         font-weight: 500
         color: #9b9b9b
-    .price-detail
+    .order-detail-price-block
         flex: 1
-    .product-price-block, .discount-block, .total-price-block
+    .detail-item
         font-size: 1.2rem
         font-weight: 500
         color: #333333
@@ -135,7 +231,7 @@ export default {
         .item
             flex: 1
             text-align: right
-    .coupon-button
+    .functional-btn
         padding: .9rem 1.5rem
         border-radius: 5px
         border: solid 1px #333333
@@ -145,10 +241,10 @@ export default {
         justify-content: space-between
         color: #333333
         margin-top: 1rem
-    .coupon-text-block
+    .functional-btn-text
         display: flex
         justify-content: flex-start
-    .coupon-icon
+    .icon
         width: 1.6rem
         height: 1.6rem
         margin-right: .6rem
@@ -177,6 +273,17 @@ export default {
         font-weight: 500
     .total-price
         color: #f94956
+    .tick-block
+        width: 1.4rem
+        height: 1.4rem
+        border-radius: .2rem
+        border: solid .1rem #333333
+        background-color: #f2c47e
+        margin-left: 1rem
+    .tick-icon
+        width: 1.2rem
+        height: 1.2rem
+
 
     // 動畫 左側移入
     .left-in-leave

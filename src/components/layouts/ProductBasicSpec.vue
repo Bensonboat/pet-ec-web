@@ -132,17 +132,16 @@ export default {
       let current_select = this.addToCartDataParser(); // 轉換要加入購物車的資料格式
       let items = this.mergeSameProduct(current_select);
       let id = localStorage.getItem("sessID"); // 取得購物車id
-      // items.push(current_select); // 合併原本購物車的東西和現在要加入的東西
+
       let data = {
         items,
         id
       };
       this.$store.dispatch("toggleLoading", true);
       this.$api.AddCartItem(data).then(res => {
-        alert(res.data.msg);
-
-        this.$store.dispatch("toggleLoading", false);
+        // alert(res.data.msg);
         this.$store.dispatch("setCartData");
+        // this.$store.dispatch("toggleLoading", false);
 
         if (res.data.data.id !== "") {
           localStorage.setItem("sessID", res.data.data.id);

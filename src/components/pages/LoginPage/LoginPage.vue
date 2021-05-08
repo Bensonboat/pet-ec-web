@@ -103,7 +103,6 @@
 
 <script>
 import BaseModal from "@/components/layouts/BaseModal";
-import API from "@/axios/api";
 export default {
   name: "LoginPage",
   components: {
@@ -158,18 +157,26 @@ export default {
       }
     },
     signUp(data) {
+      this.$store.dispatch("toggleLoading", true);
+
       // API 有限制密碼 6-32 字數
-      API.signUp(data)
+      this.$api
+        .signUp(data)
         .then(() => {
           this.setGlobalModalContent("sign-up-success");
+          this.$store.dispatch("toggleLoading", false);
         })
         .catch(() => {
           this.setGlobalModalContent("sign-up-fail");
         });
     },
     logIn(data) {
-      API.logIn(data)
+      this.$store.dispatch("toggleLoading", true);
+      this.$api
+        .logIn(data)
         .then(res => {
+          this.$store.dispatch("toggleLoading", false);
+
           if (res.data.code === 3001) {
             // 沒註冊
             this.setGlobalModalContent("not-registered");

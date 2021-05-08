@@ -89,9 +89,12 @@ export default {
         firstname: this.innerUserData[0].value,
         mobile: this.innerUserData[1].value
       };
-      this.$api.updateUserData(data).then(res => {
-        console.log(res, "####");
+
+      this.$store.dispatch("toggleLoading", true);
+      this.$api.updateUserData(data).then(() => {
         this.toggleEditMode();
+        this.$emit("getUser");
+        this.$store.dispatch("toggleLoading", false);
       });
     },
     confirmBtn() {

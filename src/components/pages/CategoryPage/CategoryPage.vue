@@ -117,7 +117,7 @@
         </div>
       </div>
       <div
-        class="confirm-btn click-animation"
+        class="confirm-btn"
         :class="[selected ? 'selected' : '']"
         @click="routerSwitch('/product_list_page')"
       >

@@ -8,7 +8,7 @@
     <div class="content-block">
       <user-account-data :userData="userData" />
       <div class="edit-block">
-        <user-info-edit :userData="userData" />
+        <user-info-edit :userData="userData" @getUser="getUserData" />
         <pet-info-edit style="margin-top: .6rem; margin-bottom: 1rem" />
       </div>
     </div>

@@ -161,6 +161,7 @@ export default {
       this.$api
         .addToCollections(data)
         .then(() => {
+          // 前端改變狀態
           this.product_data.is_favorite = true;
         })
         .catch(err => {
@@ -171,6 +172,7 @@ export default {
     },
     removeCollection(id) {
       this.$api.removeCollection(id).then(() => {
+        // 前端改變狀態
         this.product_data.is_favorite = false;
       });
     }

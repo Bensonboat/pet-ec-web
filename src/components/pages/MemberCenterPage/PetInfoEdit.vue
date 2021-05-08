@@ -116,14 +116,20 @@ export default {
       }
     },
     confirm(index) {
-      this.getPetData().then(() => {
-        this.petData[index].editing = true;
-        this.$forceUpdate();
-      });
+      if (this.petData[index].editing) {
+        this.updatePetData(index);
+      } else {
+        this.getPetData().then(() => {
+          this.petData[index].editing = true;
+          this.$forceUpdate();
+        });
+      }
     },
     getPetData() {
+      this.$store.dispatch("toggleLoading", true);
       return this.$api.getPetData().then(res => {
         this.petData = res.data.data;
+        this.$store.dispatch("toggleLoading", false);
       });
     },
     updatePetData(index) {
@@ -135,6 +141,7 @@ export default {
         age: parseInt(pet.age),
         id: pet.id
       };
+      this.$store.dispatch("toggleLoading", true);
       this.$api.updatePetData(data).then(() => {
         this.getPetData();
       });
@@ -147,6 +154,7 @@ export default {
         image: "",
         age: parseInt(pet.age)
       };
+      this.$store.dispatch("toggleLoading", true);
       this.$api.createPetData(data).then(() => {
         this.getPetData();
       });

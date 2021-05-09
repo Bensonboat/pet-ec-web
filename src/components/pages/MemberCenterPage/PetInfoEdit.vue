@@ -182,7 +182,8 @@ export default {
         border-radius: .3rem
         border: solid .1rem #ccaa76
         background-color: #f2c47e
-        color: #a67a3d
+        // color: #a67a3d
+        color: #654e2d
     .info-edit-block
         justify-content: space-between
         align-items: flex-start

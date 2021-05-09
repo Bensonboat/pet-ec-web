@@ -18,7 +18,8 @@ import SearchPage from "@/components/pages/SearchPage/SearchPage";
 import OrderDetailPage from "@/components/pages/OrderDetailPage/OrderDetailPage";
 Vue.use(VueRouter);
 
-const routes = [{
+const routes = [
+  {
     path: "/login",
     name: "LoginPage",
     component: LoginPage
@@ -45,7 +46,8 @@ const routes = [{
     redirect: {
       name: "CategoryPage"
     },
-    children: [{
+    children: [
+      {
         path: "/home_page",
         name: "HomePage",
         component: HomePage
@@ -89,9 +91,9 @@ const routes = [{
   }
 ];
 
-const routerPush = VueRouter.prototype.push
+const routerPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location) {
-  return routerPush.call(this, location).catch(error => error)
+  return routerPush.call(this, location).catch(error => error);
 };
 
 const router = new VueRouter({

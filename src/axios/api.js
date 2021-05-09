@@ -39,7 +39,7 @@ export default {
   logOut() {
     return axios({
       method: "POST",
-      url: apiUrl.LOG_OUT,
+      url: apiUrl.LOG_OUT
     });
   },
   getCartData(params) {
@@ -60,7 +60,7 @@ export default {
     // 不限制每頁數量
     let params = {
       limit: 200
-    }
+    };
     return axios({
       method: "GET",
       url: apiUrl.CATEGORIES,
@@ -77,7 +77,7 @@ export default {
   getUsers() {
     return axios({
       method: "GET",
-      url: apiUrl.USERS,
+      url: apiUrl.USERS
     });
   },
   updateUserData(data) {
@@ -85,48 +85,54 @@ export default {
       method: "PUT",
       url: apiUrl.USERS,
       data
-    })
+    });
   },
   getCollections() {
     return axios({
-      method: 'GET',
+      method: "GET",
       url: apiUrl.COLLECTIONS
-    })
+    });
   },
   addToCollections(data) {
     return axios({
-      method: 'POST',
+      method: "POST",
       url: apiUrl.COLLECTIONS,
       data
-    })
+    });
   },
   removeCollection(id) {
     return axios({
-      method: 'DELETE',
+      method: "DELETE",
       url: apiUrl.COLLECTIONS + `/${id}`,
       data: {
         status: 0
       }
-    })
+    });
   },
   getPetData() {
     return axios({
-      method: 'GET',
+      method: "GET",
       url: apiUrl.PET
-    })
+    });
   },
   createPetData(data) {
     return axios({
-      method: 'POST',
+      method: "POST",
       url: apiUrl.PET,
       data
-    })
+    });
   },
   updatePetData(data) {
     return axios({
-      method: 'PUT',
+      method: "PUT",
       url: apiUrl.PET + `/${data.id}`,
       data
+    });
+  },
+  getTags() {
+    return axios({
+      method: 'GET',
+      url: apiUrl.TAGS
     })
   }
 };

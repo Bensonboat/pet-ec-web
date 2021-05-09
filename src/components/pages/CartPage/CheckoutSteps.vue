@@ -206,8 +206,8 @@ export default {
       width: 1rem
       height: 1rem
       border-radius: 50%
-      border: solid 1px #333333
-      opacity: .5
+      border: solid .1rem #333333
+      // opacity: .5
     .full-circle
       opacity: 1
       background-color: #333333

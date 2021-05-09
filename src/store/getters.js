@@ -3,16 +3,16 @@ export default {
     return state.isLoading;
   },
   getGlobalModalContent: state => {
-    return state.globalModalContent
+    return state.globalModalContent;
   },
   getCartData: state => {
-    return state.cartData
+    return state.cartData;
   },
   getDetailProductData: state => {
-    return state.singleProductData
+    return state.singleProductData;
   },
   getCollectionsID: state => {
-    return state.collectionsID
-  },
+    return state.collectionsID;
+  }
   //     getAccountData: state => { return state.accountData }
 };

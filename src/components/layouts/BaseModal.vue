@@ -92,10 +92,10 @@ export default {
     top: 0
     left: 50%
     transform: translate(-50%, -50%)
-    border: solid .4rem rgba(0,0,0,.8)
+    border: solid .3rem #333333
     width: 5rem
     height: 5rem
-    border-top: none
+    // border-top: none
     border-radius: 50%
     background-color: #fff
   .icon

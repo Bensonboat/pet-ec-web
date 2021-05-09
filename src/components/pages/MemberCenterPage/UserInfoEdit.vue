@@ -130,7 +130,7 @@ export default {
         outline: none
         border: none
         background-color: transparent
-        font-family: NotoSansTC
+        font-family: roboto
         font-size: 1.2rem
         font-weight: 500
     .form-disabled

@@ -58,6 +58,9 @@ export default {
       isInputFocus: false
     };
   },
+  mounted() {
+    this.getTags();
+  },
   methods: {
     getKeyWord(key_word) {
       this.currentClickKeyWord = key_word;
@@ -65,6 +68,13 @@ export default {
     },
     focusStatus(status) {
       this.isInputFocus = status;
+    },
+    getTags() {
+      this.$api.getTags().then(res => {
+        this.popularSearchData.keyWords = res.data.data.rows.map(item => {
+          return item.name;
+        });
+      });
     }
   }
 };

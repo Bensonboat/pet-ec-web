@@ -38,17 +38,32 @@
         </div>
       </div>
     </div>
+    <!-- Modal -->
+    <div v-if="$store.state.globalModalContent !== ''">
+      <div class="modal-mask"></div>
+      <base-modal @btn1="btn1" @btn2="btn2" />
+    </div>
   </div>
 </template>
 
 <script>
+import BaseModal from "@/components/layouts/BaseModal";
+
 export default {
   name: "CartItemAttribute",
   props: {
     cartData: Object
   },
+  components: {
+    BaseModal
+  },
   methods: {
     updateNumber(number) {
+      if (this.cartData.qty === 1 && number === -1) {
+        this.setModalContent();
+        return;
+      }
+
       this.cartData.qty = this.cartData.qty + number; // 更新當前數量
 
       // 合併回原購物車
@@ -58,9 +73,9 @@ export default {
       // 更新資料庫購物車
       this.updateCart(items);
 
-      if (this.cartData.qty === 0) {
-        this.setModalContent();
-      }
+      // if (this.cartData.qty === 0) {
+      //   this.setModalContent();
+      // }
     },
     checkDetail() {
       let data = this.cartData;
@@ -72,8 +87,8 @@ export default {
       let default_data_structure = {
         title: "確認刪除",
         detail: "是否將此商品移出購物車?",
-        btn1: "Yes",
-        btn2: "No",
+        btn1: "確認",
+        btn2: "取消",
         src: "/images/icons/white-alert.svg",
         blockClass: "fail-block",
         iconClass: "fail-icon",
@@ -93,6 +108,26 @@ export default {
         this.$store.dispatch("toggleLoading", false);
         this.$store.dispatch("setCartData");
       });
+    },
+    btn1() {
+      let items = this.$store.state.cartData;
+      items = items.filter(
+        item =>
+          item.product_id === this.cartData.product_id &&
+          item.sku_id === this.cartData.sku_id
+      );
+      // items = items.filter(item => item.qty !== 0);
+      this.updateCart(items);
+      this.$store.dispatch("setGlobalModalContent", "");
+    },
+    btn2() {
+      // let items = this.$store.state.cartData;
+      // items = items.map(item => {
+      //   item.qty === 0 ? (item.qty = 1) : "";
+      //   return item;
+      // });
+      // this.updateCart(items);
+      this.$store.dispatch("setGlobalModalContent", "");
     }
   }
 };

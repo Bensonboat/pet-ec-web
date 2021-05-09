@@ -235,6 +235,7 @@ export default {
         color: #f94956
     .original-price-remove
         text-decoration: line-through
+        color: #333333
     .product-price-block
         margin-top: .6rem
         position: absolute
@@ -242,8 +243,8 @@ export default {
         font-family: 'roboto'
         font-size: 1.2rem
     .quick-add-icon-block
-        width: 3rem
-        height: 3rem
+        width: 3.3rem
+        height: 3.3rem
         background-color: #333333
         border-radius: 50%
         position: absolute
@@ -256,8 +257,8 @@ export default {
         justify-content: center
         overflow: hidden
         img
-            width: 1.4rem
-            height: 1.4rem
+            width: 1.6rem
+            height: 1.6rem
             position: absolute
             top: 50%
             left: 50%

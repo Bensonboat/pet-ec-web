@@ -27,7 +27,7 @@ export const setCartData = context => {
   let id = localStorage.getItem("sessID");
   let params = {};
   if (id !== null && id !== undefined) {
-    params['cartId'] = id
+    params["cartId"] = id;
   }
 
   context.dispatch("toggleLoading", true);
@@ -45,21 +45,20 @@ export const toggleLoading = (context, is_loading) => {
 
 // ========== Global Modal Content ==========
 export const setGlobalModalContent = (context, data) => {
-  context.commit("SET_MODAL_CONTENT", data)
-}
+  context.commit("SET_MODAL_CONTENT", data);
+};
 
 // Collections - 加入我的最愛，存 id 在 store
-export const getCollections = (context) => {
-  allApi.getCollections()
-    .then(res => {
-      let id = res.data.data.map(item => {
-        return item.id
-      })
-      context.commit("SET_COLLECTIONS_ID", id)
-    })
-}
+export const getCollections = context => {
+  allApi.getCollections().then(res => {
+    let id = res.data.data.map(item => {
+      return item.id;
+    });
+    context.commit("SET_COLLECTIONS_ID", id);
+  });
+};
 
 // 存入登入使用者資料
 export const setUser = (context, data) => {
-  context.commit('SET_LOG_IN_USER', data)
-}
+  context.commit("SET_LOG_IN_USER", data);
+};

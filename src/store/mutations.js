@@ -15,12 +15,12 @@ export default {
     state.isLoading = data;
   },
   [types.SET_MODAL_CONTENT](state, data) {
-    state.globalModalContent = data
+    state.globalModalContent = data;
   },
   [types.SET_COLLECTIONS_ID](state, data) {
-    state.collectionsID = data
+    state.collectionsID = data;
   },
   [types.SET_LOG_IN_USER](state, data) {
-    state.logInUserData = data
+    state.logInUserData = data;
   }
 };

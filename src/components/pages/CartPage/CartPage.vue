@@ -44,10 +44,10 @@
     </div>
 
     <!-- Modal -->
-    <div v-if="$store.state.globalModalContent !== ''">
+    <!-- <div v-if="$store.state.globalModalContent !== ''">
       <div class="modal-mask"></div>
       <base-modal @btn1="btn1" @btn2="btn2" />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -58,7 +58,7 @@ import ShippingInfomation from "./Step2/ShippingInfomation";
 import OrderConfirmBlock from "./Step2/OrderConfirmBlock";
 import CartItemAttribute from "./Step1/CartItemAttribute";
 import CartEmpty from "./CartEmpty";
-import BaseModal from "@/components/layouts/BaseModal";
+// import BaseModal from "@/components/layouts/BaseModal";
 
 export default {
   name: "CartPage",
@@ -68,8 +68,8 @@ export default {
     CouponTotalPrice,
     ShippingInfomation,
     OrderConfirmBlock,
-    CartEmpty,
-    BaseModal
+    CartEmpty
+    // BaseModal
   },
   data() {
     return {
@@ -116,33 +116,33 @@ export default {
         items: this.$store.state.cartData
       };
     },
-    btn1() {
-      let items = this.$store.state.cartData;
-      items = items.filter(item => item.qty !== 0);
-      this.updateCart(items);
-      this.$store.dispatch("setGlobalModalContent", "");
-    },
-    btn2() {
-      let items = this.$store.state.cartData;
-      items = items.map(item => {
-        item.qty === 0 ? (item.qty = 1) : "";
-        return item;
-      });
-      this.updateCart(items);
-      this.$store.dispatch("setGlobalModalContent", "");
-    },
-    updateCart(items) {
-      let id = localStorage.getItem("sessID");
-      let data = {
-        items,
-        id
-      };
-      this.$store.dispatch("toggleLoading", true);
-      this.$api.AddCartItem(data).then(() => {
-        this.$store.dispatch("toggleLoading", false);
-        this.$store.dispatch("setCartData");
-      });
-    },
+    // btn1() {
+    //   let items = this.$store.state.cartData;
+    //   items = items.filter(item => item.qty !== 0);
+    //   this.updateCart(items);
+    //   this.$store.dispatch("setGlobalModalContent", "");
+    // },
+    // btn2() {
+    //   let items = this.$store.state.cartData;
+    //   items = items.map(item => {
+    //     item.qty === 0 ? (item.qty = 1) : "";
+    //     return item;
+    //   });
+    //   this.updateCart(items);
+    //   this.$store.dispatch("setGlobalModalContent", "");
+    // },
+    // updateCart(items) {
+    //   let id = localStorage.getItem("sessID");
+    //   let data = {
+    //     items,
+    //     id
+    //   };
+    //   this.$store.dispatch("toggleLoading", true);
+    //   this.$api.AddCartItem(data).then(() => {
+    //     this.$store.dispatch("toggleLoading", false);
+    //     this.$store.dispatch("setCartData");
+    //   });
+    // },
     getUserData() {
       this.$api
         .getUsers()

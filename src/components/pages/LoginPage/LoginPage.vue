@@ -72,7 +72,25 @@
           <div class="text">忘記密碼?</div>
         </div>
         <div class="gap-line">
+          <svg width="11rem" height="1px">
+            <line
+              x1="0"
+              y1="0"
+              x2="300"
+              y2="0"
+              style="stroke: #333333;stroke-width: .3rem"
+            />
+          </svg>
           <div class="text flex-center">或</div>
+          <svg width="11rem" height="1px">
+            <line
+              x1="0"
+              y1="0"
+              x2="300"
+              y2="0"
+              style="stroke: #333333;stroke-width: .3rem"
+            />
+          </svg>
         </div>
         <div class="others-login-block">
           <div class="btn-shape other-login-btn flex-center">
@@ -422,22 +440,24 @@ export default {
       position: absolute
       left: 1.5rem
     .gap-line
-      height: .1rem
       width: 25rem
-      background: #333333
-      margin: auto
-      position: relative
-      margin-top: 7.5rem
+      // background: #333333
+      // margin: auto
+      margin: 7.5rem auto 0 auto
+      display: flex
+      justify-content: center
+      align-items: center
       .text
-        width: 3rem
-        position: absolute
-        background-color: #e5ceae
+        // width: 3rem
+        // position: absolute
+        // background-color: #e5ceae
         font-size: 1.2rem
         font-weight: 500
         color: #333333
-        top: 0
-        left: 50%
-        transform: translate(-50%, -50%)
+        margin: 0 1rem
+        // top: 0
+        // left: 50%
+        // transform: translate(-50%, -50%)
     .alert-msg
       font-size: 1.2rem
       color: #ea1a29

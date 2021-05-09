@@ -5,56 +5,68 @@
         <avatar />
         <div class="pet-attribute-edit-block">
           <div class="flex-center row">
-            <div class="attr-item-block big">
-              <div v-if="!item.editing" class="pet-attribute">
-                {{ item.name === "" ? "寵物名稱" : item.name }}
-              </div>
-              <input
-                v-else
-                type="text"
-                class="input"
-                placeholder="寵物名稱"
-                v-model="item.name"
-              />
+            <!-- <div class="attr-item-block big"> -->
+            <div v-if="!item.editing" class="input big pet-attribute">
+              {{ item.name === "" ? "寵物名稱" : item.name }}
             </div>
-            <div class="attr-item-block small">
-              <div v-if="!item.editing" class="pet-attribute">
-                {{ item.gender === "" ? "性別" : item.gender }}
-              </div>
-              <input
-                v-else
-                type="text"
-                class="input"
-                placeholder="性別"
-                v-model="item.gender"
-              />
+            <input
+              v-else
+              type="text"
+              class="input big"
+              placeholder="寵物名稱"
+              v-model="item.name"
+            />
+            <!-- </div> -->
+            <!-- <div class="attr-item-block small"> -->
+
+            <div v-if="!item.editing" class="input small pet-attribute">
+              {{ item.gender === "" ? "性別" : item.gender }}
             </div>
+            <!-- <input
+              v-else
+              type="text"
+              class="input small"
+              placeholder="性別"
+              v-model="item.gender"
+            /> -->
+            <!-- <select>
+              <option></option>
+              <option>Dog</option>
+              <option>Cat</option>
+            </select> -->
+            <base-select
+              v-else
+              class="small"
+              :selectData="selectData"
+              style="height: 3rem"
+            />
+            <!-- </div> -->
           </div>
           <div class="flex-center row">
-            <div class="attr-item-block big">
-              <div v-if="!item.editing" class="pet-attribute">
-                {{ item.breed === "" ? "品種" : item.breed }}
-              </div>
-              <input
-                v-else
-                type="text"
-                class="input"
-                placeholder="品種"
-                v-model="item.breed"
-              />
+            <!-- <div class="attr-item-block big"> -->
+            <div v-if="!item.editing" class="input big pet-attribute">
+              {{ item.breed === "" ? "品種" : item.breed }}
             </div>
-            <div class="attr-item-block small">
-              <div v-if="!item.editing" class="pet-attribute">
-                {{ item.age === "" ? "年齡" : item.age }}
-              </div>
-              <input
-                v-else
-                type="text"
-                class="input"
-                placeholder="年齡"
-                v-model="item.age"
-              />
+            <input
+              v-else
+              type="text"
+              class="input big"
+              placeholder="品種"
+              v-model="item.breed"
+            />
+            <!-- </div> -->
+            <!-- <div class="attr-item-block small"> -->
+            <div v-if="!item.editing" class="input small pet-attribute">
+              {{ item.age === "" ? "年齡" : item.age }}
             </div>
+            <input
+              v-else
+              type="text"
+              class="input small"
+              placeholder="年齡"
+              v-model="item.age"
+            />
+            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -83,19 +95,36 @@
 </template>
 
 <script>
+import BaseSelect from "@/components/layouts/BaseSelect.vue";
 import Avatar from "./Avatar";
 export default {
   name: "PetInfoEdit",
   components: {
-    Avatar
+    Avatar,
+    BaseSelect
   },
   data() {
     return {
-      petData: []
+      petData: [],
+      selectData: {
+        currentSelectText: "",
+        options: [
+          {
+            name: "男生",
+            value: "male"
+          },
+          {
+            name: "女生",
+            value: "female"
+          }
+        ]
+      }
     };
   },
   mounted() {
     this.getPetData();
+    this.selectData.currentSelectText = "男生";
+    this.select = "male";
   },
   methods: {
     addEmptyCard() {
@@ -177,7 +206,8 @@ export default {
         display: flex
         justify-content: flex-end
     .save-btn
-        width: 20rem
+        width: calc(100% - 7.2rem) // 左側 pet avatar 7 rem , 按鈕 border 左右兩邊共 .2 rem
+        // width: 20rem
         height: 3rem
         border-radius: .3rem
         border: solid .1rem #ccaa76
@@ -189,23 +219,35 @@ export default {
         align-items: flex-start
     .pet-attribute-edit-block
         flex-grow: 1
-    .attr-item-block
-        height: 3rem
-        border-radius: .3rem
-        border: solid .1rem #efe1ce
-        background-color: #f7f0e6
-        box-sizing: border-box
-        padding-left: 1rem
-        overflow: hidden
-        display: flex
-        align-items: center
+    // .attr-item-block
+    //     height: 3rem
+    //     border-radius: .3rem
+    //     border: solid .1rem #efe1ce
+    //     background-color: #f7f0e6
+    //     box-sizing: border-box
+    //     padding-left: 1rem
+    //     overflow: hidden
+    //     display: flex
+    //     align-items: center
     .input
-        width: 100%
-        height: 100%
-        outline: none
-        background-color: transparent
-        border: none
-        font-size: 1.2rem
+      height: 3rem
+      border-radius: .3rem
+      border: solid .1rem #efe1ce
+      background-color: #f7f0e6
+      box-sizing: border-box
+      padding-left: 1rem
+      overflow: hidden
+      display: flex
+      align-items: center
+      width: 100%
+      // height: 100%
+      outline: none
+      // background-color: transparent
+      // border: none
+      font-size: 1.2rem
+      &:focus
+        border: solid .1rem #e8bb7d
+
     .row
         justify-content: space-between
         margin-bottom: .8rem

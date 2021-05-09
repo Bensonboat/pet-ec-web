@@ -144,7 +144,8 @@ export default {
         height: 1.4rem
         border-radius: .2rem
         border: solid .1rem #333333
-        background-color: #f2c47e
+        // background-color: #f2c47e
+        background-color: #fff
     .tick-icon
         width: 1.2rem
         height: 1.2rem

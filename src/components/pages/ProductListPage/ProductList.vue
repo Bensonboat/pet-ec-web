@@ -56,19 +56,24 @@ export default {
         sort: this.filterSelectValue
       };
       this.$store.dispatch("toggleLoading", true);
-      this.$api.getProductsList(params).then(res => {
-        this.$store.dispatch("toggleLoading", false);
-        let product_data = res.data.data.rows;
-        if (product_data.length === 0) {
-          this.productListData = [];
-          return;
-        }
 
-        this.productListData = product_data.map(item => {
-          item = this.productDataParser(item);
-          return item;
+      if (params.subType === "-1") {
+        this.getCollections();
+      } else {
+        this.$api.getProductsList(params).then(res => {
+          this.$store.dispatch("toggleLoading", false);
+          let product_data = res.data.data.rows;
+          if (product_data.length === 0) {
+            this.productListData = [];
+            return;
+          }
+
+          this.productListData = product_data.map(item => {
+            item = this.productDataParser(item);
+            return item;
+          });
         });
-      });
+      }
     },
     productDataParser(data) {
       let query = this.$route.query;
@@ -81,8 +86,6 @@ export default {
       return {
         images: data.images,
         name: data.title,
-        // price: 1300,
-        // origin_price: 4200,
         type: query.type,
         id: data.id,
         max_origin_price: data.max_origin_price,
@@ -91,6 +94,16 @@ export default {
         min_price: data.min_price,
         is_favorite
       };
+    },
+    getCollections() {
+      this.$api.getCollections().then(res => {
+        let product_data = res.data.data;
+        this.productListData = product_data.map(item => {
+          item = this.productDataParser(item);
+          return item;
+        });
+        this.$store.dispatch("toggleLoading", false);
+      });
     }
   }
 };

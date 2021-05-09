@@ -2,28 +2,28 @@
   <div class="user-info-edit">
     <div v-for="(item, index) in innerUserData" :key="index">
       <div v-if="isEditMode" class="form-title">{{ item.label }}</div>
-      <div class="form-input-block">
-        <input
-          type="text"
-          class="input"
-          v-model="item.value"
-          :placeholder="item.label"
-          :class="{ 'form-disabled': !isEditMode }"
-        />
-      </div>
+      <!-- <div class="form-input-block"> -->
+      <input
+        type="text"
+        class="input"
+        v-model="item.value"
+        :placeholder="item.label"
+        :class="{ 'form-disabled': !isEditMode }"
+      />
+      <!-- </div> -->
     </div>
     <div class="flex-center operate-btn-block">
-      <div
-        class="edit-confirm-btn flex-center click-animation-small"
-        @click="confirmBtn"
-      >
-        {{ isEditMode ? "儲存" : "編輯" }}
-      </div>
       <div
         class="revise-password-btn flex-center click-animation-small"
         @click="toggleResetPasswordPage"
       >
         {{ isEditMode ? "取消" : "修改密碼" }}
+      </div>
+      <div
+        class="edit-confirm-btn flex-center click-animation-small"
+        @click="confirmBtn"
+      >
+        {{ isEditMode ? "儲存" : "編輯" }}
       </div>
     </div>
     <transition name="left-in">
@@ -117,22 +117,33 @@ export default {
         font-weight: 500
         color: #333333
     .form-input-block
-        border-radius: 5px
-        border: solid .1rem #ede8e1
-        background-color: #f7f0e6
-        height: 3.6rem
-        margin: .6rem 0 1.2rem 0
-        overflow: hidden
-        padding-left: 1.5rem
+        // border-radius: 5px
+        // border: solid .1rem #ede8e1
+        // background-color: #f7f0e6
+        // height: 3.6rem
+        // margin: .6rem 0 1.2rem 0
+        // overflow: hidden
+        // padding-left: 1.5rem
     .input
-        width: 100%
-        height: 100%
-        outline: none
-        border: none
-        background-color: transparent
-        font-family: roboto
-        font-size: 1.2rem
-        font-weight: 500
+      border-radius: 5px
+      border: solid .1rem #ede8e1
+      background-color: #f7f0e6
+      height: 3.6rem
+      margin: .6rem 0 1.2rem 0
+      overflow: hidden
+      padding-left: 1.5rem
+      width: 100%
+      // height: 100%
+      outline: none
+      border: none
+      // background-color: transparent
+      font-family: roboto
+      font-size: 1.2rem
+      font-weight: 500
+      box-sizing: border-box
+      &:focus
+        border: solid .1rem #e8bb7d
+
     .form-disabled
         pointer-events: none
     .operate-btn-block

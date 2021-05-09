@@ -4,7 +4,7 @@
     :class="[showBottom ? 'show-bottom' : 'hide-bottom']"
   >
     <div
-      @click="toggleBottomBlock"
+      @click="toggleBottomBlock(!showBottom)"
       class="flex-center"
       style="border-radius: 50%; width: 2.5rem; height: 2.5rem; background-color: #333333; position: absolute; left: 50%; top: 0; transform: translate(-50%, -50%)"
     >
@@ -179,8 +179,8 @@ export default {
     toggleUsingPointsSelect() {
       this.usingPointsSelect = !this.usingPointsSelect;
     },
-    toggleBottomBlock() {
-      this.showBottom = !this.showBottom;
+    toggleBottomBlock(value) {
+      this.showBottom = value;
     }
     // calculateOrder() {
     //   let total = 0;
@@ -278,7 +278,8 @@ export default {
         height: 1.4rem
         border-radius: .2rem
         border: solid .1rem #333333
-        background-color: #f2c47e
+        // background-color: #f2c47e
+        background-color: #fff
         margin-left: 1rem
     .tick-icon
         width: 1.2rem

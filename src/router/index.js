@@ -6,7 +6,7 @@ import MemberCenterPage from "@/components/pages/MemberCenterPage";
 
 import IndexContent from "@/components/layouts/IndexContent";
 
-import HomePage from "@/components/pages/HomePage/HomePage";
+// import HomePage from "@/components/pages/HomePage/HomePage";
 import CategoryPage from "@/components/pages/CategoryPage/CategoryPage";
 
 import ProductListPage from "@/components/pages/ProductListPage/ProductListPage";
@@ -18,8 +18,7 @@ import SearchPage from "@/components/pages/SearchPage/SearchPage";
 import OrderDetailPage from "@/components/pages/OrderDetailPage/OrderDetailPage";
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/login",
     name: "LoginPage",
     component: LoginPage
@@ -47,13 +46,13 @@ const routes = [
       name: "CategoryPage"
     },
     children: [
+      // {
+      //   path: "/home_page",
+      //   name: "HomePage",
+      //   component: HomePage
+      // },
       {
-        path: "/home_page",
-        name: "HomePage",
-        component: HomePage
-      },
-      {
-        path: "/category_page/",
+        path: "/category_page",
         name: "CategoryPage",
         component: CategoryPage
       },

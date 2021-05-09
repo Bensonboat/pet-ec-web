@@ -5,8 +5,8 @@
       <checkout-process :step="checkoutStep" />
       <div>
         <div v-show="checkoutStep === 1">
-          <div class="order-list-block">
-            <div class="order-infomation">
+          <div class="order-list-block" @click="toggleOrderCalculateBlock">
+            <div class="order-infomation" @scroll="toggleOrderCalculateBlock">
               <cart-item-attribute
                 v-for="(item, index) in innerGetCartData"
                 :key="index"
@@ -22,7 +22,7 @@
               </div>
             </div>
           </div>
-          <coupon-total-price @next-step="toCertainStep" />
+          <order-calculate @next-step="toCertainStep" ref="order_calculate" />
         </div>
         <div v-show="checkoutStep === 2">
           <div class="all-order-confirm-block">
@@ -53,7 +53,7 @@
 
 <script>
 import CheckoutProcess from "./CheckoutSteps";
-import CouponTotalPrice from "./Step1/OrderCalculate";
+import OrderCalculate from "./Step1/OrderCalculate";
 import ShippingInfomation from "./Step2/ShippingInfomation";
 import OrderConfirmBlock from "./Step2/OrderConfirmBlock";
 import CartItemAttribute from "./Step1/CartItemAttribute";
@@ -65,7 +65,7 @@ export default {
   components: {
     CheckoutProcess,
     CartItemAttribute,
-    CouponTotalPrice,
+    OrderCalculate,
     ShippingInfomation,
     OrderConfirmBlock,
     CartEmpty
@@ -156,6 +156,9 @@ export default {
             this.$router.push("/login");
           }
         });
+    },
+    toggleOrderCalculateBlock() {
+      this.$refs.order_calculate.toggleBottomBlock();
     }
   }
 };

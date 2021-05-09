@@ -1,7 +1,13 @@
 <template>
   <div class="product-list-filter-row default-product-list-filter-row">
     <div class="list-subject">
-      {{ this.$route.query.type | transTxt }} / {{ this.$route.query.category }}
+      <span v-if="this.$route.query.subType === '-1'">
+        我的收藏
+      </span>
+      <span v-else>
+        {{ this.$route.query.type | transTxt }} /
+        {{ this.$route.query.category }}
+      </span>
     </div>
     <div class="basic-order-filter">
       <base-select
@@ -25,6 +31,7 @@ export default {
     transTxt(txt) {
       let result;
       txt === "cat" ? (result = "喵喵") : (result = "狗狗");
+
       return result;
     }
   },
@@ -60,6 +67,7 @@ export default {
     }
   },
   mounted() {
+    // 預設搜尋最新上架商品
     this.selectData.currentSelectText = "最新上架商品";
     this.select = "new";
   }

@@ -1,6 +1,8 @@
 <template>
   <div class="checkout-steps">
-    <div class="process-title">訂單確認</div>
+    <div class="process-title">
+      {{ step === 1 ? "訂單詳情" : "收件資料" }}
+    </div>
     <div class="process-line-block">
       <div class="circle full-circle"></div>
       <!-- <img src="/images/icons/tiles-1.svg" alt="" class="icon tile-1" />

@@ -6,7 +6,7 @@
         <div
           class="type-select-circle"
           :class="{ selected: showCat }"
-          @click="toggle"
+          @click="toggle('cat')"
         >
           <img
             v-show="showCat"
@@ -34,7 +34,7 @@
         <div
           class="type-select-circle"
           :class="{ selected: !showCat }"
-          @click="toggle"
+          @click="toggle('dog')"
         >
           <img
             v-show="!showCat"
@@ -98,12 +98,15 @@
           </div>
         </div>
       </div> -->
-      <div class="category-options-block">
+      <div class="category-options-block" v-show="showTypeCategories">
         <div
           class="category-option"
           v-for="(item, index) in typeCategories"
           :key="index"
-          :class="{ 'option-seledted': item.selected }"
+          :class="{
+            'option-seledted': item.selected,
+            'is-collecing': item.collecting_status
+          }"
           @click="toggleSelectOption(index)"
         >
           {{ item.name }}
@@ -119,7 +122,7 @@
       <div
         class="confirm-btn"
         :class="[selected ? 'selected' : '']"
-        @click="routerSwitch('/product_list_page')"
+        @click="routerSwitch"
       >
         <div>OK</div>
         <img
@@ -146,16 +149,17 @@ export default {
     return {
       position: "",
       showCat: true,
-      allCategories: [],
-      typeCategories: [],
+      allCategories: [], // 全部類別（包含貓狗）
+      typeCategories: [], // filter 出當前選擇的
+      showTypeCategories: false,
       selected: false,
       selectID: "",
-      selectCategory: "",
-      selectType: ""
+      selectCategory: ""
+      // selectType: ""
     };
   },
   mounted() {
-    // this.bgAnimation();
+    this.bgAnimation();
 
     // 預設貓咪類別
     this.$router
@@ -185,17 +189,17 @@ export default {
         return item;
       });
     },
-    routerSwitch(path) {
+    routerSwitch() {
       if (this.selectID === "" || this.selected === false) {
         return;
       }
 
       this.$router.push({
-        path,
+        path: "/product_list_page",
         query: {
           type: this.$route.query.type,
-          subType: this.selectID,
-          category: this.selectCategory
+          subType: this.selectID, // 類別 id
+          category: this.selectCategory // For 列表頁麵包屑中文顯示
         }
       });
     },
@@ -218,6 +222,21 @@ export default {
           id: item.id
         };
       });
+
+      this.showTypeCategories = false;
+      this.getCollections().then(value => {
+        let collect_obj = {
+          name: "收藏",
+          selected: false,
+          id: -1
+        };
+        if (value) {
+          collect_obj["collecting_status"] = true;
+        }
+
+        this.typeCategories.push(collect_obj);
+        this.showTypeCategories = true;
+      });
     },
     bgAnimation() {
       let x = 0;
@@ -230,8 +249,16 @@ export default {
         }
       }, 20);
     },
-    toggle() {
-      this.showCat = !this.showCat;
+    toggle(type) {
+      if (
+        (type === "cat" && this.showCat) ||
+        (type !== "cat" && !this.showCat)
+      ) {
+        return;
+      }
+
+      type === "cat" ? (this.showCat = true) : (this.showCat = false);
+
       this.selected = false;
       this.selectID = "";
 
@@ -247,6 +274,13 @@ export default {
         });
       }
       this.getCurrentTypeCategory();
+    },
+    getCollections() {
+      let has_collections = false;
+      return this.$api.getCollections().then(res => {
+        res.data.data.length !== 0 ? (has_collections = true) : "";
+        return has_collections;
+      });
     }
   }
 };
@@ -431,6 +465,8 @@ export default {
       color: $color6
     .type-text.selected-text
       color: $color2
+    .is-collecing
+      border-color: red
     @keyframes selectOut
       0%
         transform: scale(1.2)

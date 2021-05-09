@@ -6,20 +6,19 @@
       class="each-info-block"
     >
       <div class="title">{{ item.title }}</div>
-      <div
+      <!-- <div
         class="input-block"
         :class="{
-          'input-valid': item.value !== '',
           'bottom-space': index === 3
         }"
-      >
-        <input
-          type="text"
-          :placeholder="item.placeholder"
-          class="input"
-          v-model="item.value"
-        />
-      </div>
+      > -->
+      <input
+        type="text"
+        :placeholder="item.placeholder"
+        class="input"
+        v-model="item.value"
+      />
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -103,7 +102,7 @@ export default {
 .shipping-infomation
     background-color: #fff
     color: #333333
-    padding: 1.5rem
+    // padding: 1.5rem
     font-size: 1.2rem
     font-weight: 500
     .title
@@ -112,19 +111,25 @@ export default {
             content: '*'
             color: #f66e78
             margin-right: .2rem
-    .input-block
-        padding: .9rem 1.5rem
-        border-radius: .5rem
-        background-color: #f7f0e6
-        .input
-            font-size: 1.2rem
-            height: 100%
-            border: none
-            outline: none
-            background-color: transparent
-            width: 100%
-    .input-valid
+    // .input-block
+    //     padding: .9rem 1.5rem
+    //     border-radius: .5rem
+    //     background-color: #f7f0e6
+    .input
+      font-size: 1.2rem
+      height: 100%
+      border: none
+      outline: none
+      background-color: transparent
+      width: 100%
+      padding: .9rem 1.5rem
+      border-radius: .5rem
+      background-color: #f7f0e6
+      box-sizing: border-box
+      &:focus
         border: solid .1rem #e8bb7d
+    // .input-valid
+    //     border: solid .1rem #e8bb7d
     .each-info-block
         margin-bottom: 1.2rem
     .bottom-space

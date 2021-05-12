@@ -51,7 +51,7 @@
           </div>
           <div class="favorite-icon-block" @click.stop="toggleFavoriteCollect">
             <img
-              v-if="!collected"
+              v-if="!productData.is_favorite"
               src="/images/icons/pink-line-heart.svg"
               alt="未收藏"
             />
@@ -106,17 +106,25 @@ export default {
   },
   mounted() {
     this.showProductInfo = "description";
-
     this.getSingleProductData();
   },
   computed: {
     getDetailProductData() {
       return this.$store.getters.getDetailProductData;
+    },
+    getCollectionsID() {
+      return this.$store.getters.getCollectionsID;
     }
   },
   watch: {
     getDetailProductData(data) {
       this.productData = data;
+
+      let arr = this.getCollectionsID;
+      if (arr.length !== 0) {
+        let is_favorite = arr.some(item => item === data.id);
+        this.productData["is_favorite"] = is_favorite;
+      }
     }
   },
   methods: {

@@ -5,8 +5,7 @@
   >
     <div
       @click="toggleBottomBlock(!showBottom)"
-      class="flex-center"
-      style="border-radius: 50%; width: 2.5rem; height: 2.5rem; background-color: #333333; position: absolute; left: 50%; top: 0; transform: translate(-50%, -50%)"
+      class="flex-center toggle-bottom-btn"
     >
       <img
         v-show="!showBottom"
@@ -284,7 +283,15 @@ export default {
     .tick-icon
         width: 1.2rem
         height: 1.2rem
-
+    .toggle-bottom-btn
+      border-radius: .5rem .5rem 0 0
+      width: 5rem
+      height: 2.2rem
+      background-color: #333333
+      position: absolute
+      left: 50%
+      top: 0
+      transform: translate(-50%, -100%)
 
     // 動畫 左側移入
     .left-in-leave

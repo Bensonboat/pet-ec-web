@@ -163,6 +163,7 @@ export default {
         .then(() => {
           // 前端改變狀態
           this.product_data.is_favorite = true;
+          this.$store.dispatch("getCollections"); // 更新 vuex 內的 collections id
         })
         .catch(err => {
           if (err.data.code === 3002) {
@@ -174,6 +175,7 @@ export default {
       this.$api.removeCollection(id).then(() => {
         // 前端改變狀態
         this.product_data.is_favorite = false;
+        this.$store.dispatch("getCollections"); // 更新 vuex 內的 collections id
       });
     }
   }

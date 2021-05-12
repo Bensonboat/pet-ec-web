@@ -57,6 +57,7 @@ export default {
       };
       this.$store.dispatch("toggleLoading", true);
 
+      // 收藏 subType === -1
       if (params.subType === "-1") {
         this.getCollections();
       } else {

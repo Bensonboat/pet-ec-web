@@ -134,5 +134,11 @@ export default {
       method: 'GET',
       url: apiUrl.TAGS
     })
+  },
+  getCoupon() {
+    return axios({
+      method: 'GET',
+      url: apiUrl.COUPON
+    })
   }
 };

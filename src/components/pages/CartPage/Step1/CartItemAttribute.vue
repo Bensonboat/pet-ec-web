@@ -155,8 +155,8 @@ export default {
     .product-spec
         word-break: break-all
         margin-bottom: 1.2rem
-        border: solid .1rem rgba(227, 166, 82, 0.5)
-        color: rgba(227, 166, 82, 0.5)
+        border: solid .1rem #c8a87b
+        color: #c8a87b
         padding: .1rem 1rem
         border-radius: .5rem
         width: fit-content

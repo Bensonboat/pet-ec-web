@@ -178,7 +178,9 @@ export default {
         sku_id: spec_obj.id,
         sku_name: spec_obj.name,
         image: product_data.images[0].src,
-        price: spec_obj.price
+        price: spec_obj.price,
+        type: "",
+        subType: ""
       };
 
       return to_cart_data;

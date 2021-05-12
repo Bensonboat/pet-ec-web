@@ -16,6 +16,7 @@ import CartPage from "@/components/pages/CartPage/CartPage";
 import SearchPage from "@/components/pages/SearchPage/SearchPage";
 
 import OrderDetailPage from "@/components/pages/OrderDetailPage/OrderDetailPage";
+import OrderCompletePage from '@/components/pages/OrderCompletePage'
 Vue.use(VueRouter);
 
 const routes = [{
@@ -37,6 +38,11 @@ const routes = [{
     path: "/order_detail_page",
     name: "OrderDetailPage",
     component: OrderDetailPage
+  },
+  {
+    path: '/order_complete',
+    name: 'OrderCompletePage',
+    component: OrderCompletePage
   },
   {
     path: "/",
@@ -70,7 +76,7 @@ const routes = [{
         path: "/cart_page",
         name: "CartPage",
         component: CartPage
-      }
+      },
       // {
       //     path: "/about",
       //     name: "About",

@@ -35,3 +35,6 @@ export const PET = "/pets";
 
 // 標籤
 export const TAGS = '/tags'
+
+// 折價卷
+export const COUPON = '/couponCodes'

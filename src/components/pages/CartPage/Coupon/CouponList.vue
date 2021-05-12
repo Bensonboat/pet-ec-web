@@ -12,6 +12,7 @@
     </page-header>
     <div class="coupon-list-title">優惠卷選取</div>
     <div class="coupon-list-block">
+      <div v-if="couponData.length === 0">尚無可使用的優惠卷</div>
       <div
         class="coupon"
         v-for="(item, index) in couponData"
@@ -105,6 +106,9 @@ export default {
       showCreateCouponPage: false
     };
   },
+  mounted() {
+    this.getCoupon();
+  },
   methods: {
     selectCoupon(index) {
       this.couponData.map((item, key) => {
@@ -123,6 +127,11 @@ export default {
     },
     toggleCreatePage() {
       this.showCreateCouponPage = !this.showCreateCouponPage;
+    },
+    getCoupon() {
+      this.$api.getCoupon().then(res => {
+        this.couponData = res.data.data;
+      });
     }
     // closeCouponList() {
     //     this.$emit("close-coupon-list");

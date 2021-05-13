@@ -72,8 +72,8 @@ export default {
         transform: translateX(-50%)
     .logo-icon
         display: flex
-        width: 5rem
-        height: 5rem
+        width: 12rem
+        height: 4rem
     .heading-operation-right-block
         display: flex
         align-items: center

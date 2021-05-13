@@ -11,7 +11,10 @@
       <div class="text">訂單總金額</div>
       <div class="price">NT$2,380</div>
     </div>
-    <div class="home-btn flex-center">回首頁</div>
+    <router-link to="/home">
+      <button class="home-btn flex-center">回首頁</button>
+    </router-link>
+    <!-- <div class="home-btn flex-center">回首頁</div> -->
   </div>
 </template>
 
@@ -48,8 +51,8 @@ PageHeader<style lang="sass" scoped>
     left: 0
   .logo-icon
     display: flex
-    width: 5rem
-    height: 5rem
+    width: 12rem
+    height: 4rem
   .detail
     margin-top: 1.5rem
   .title

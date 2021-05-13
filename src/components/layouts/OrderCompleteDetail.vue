@@ -75,7 +75,7 @@ export default {
     justify-content: flex-start
   .value
     color: #333333
-    flex: 2
+    flex: 1
     display: flex
     justify-content: flex-end
     text-align: left

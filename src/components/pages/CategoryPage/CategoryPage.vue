@@ -231,10 +231,10 @@ export default {
           id: -1
         };
         if (value) {
+          this.typeCategories.push(collect_obj);
           collect_obj["collecting_status"] = true;
         }
 
-        this.typeCategories.push(collect_obj);
         this.showTypeCategories = true;
       });
     },
@@ -277,10 +277,15 @@ export default {
     },
     getCollections() {
       let has_collections = false;
-      return this.$api.getCollections().then(res => {
-        res.data.data.length !== 0 ? (has_collections = true) : "";
-        return has_collections;
-      });
+      return this.$api
+        .getCollections()
+        .then(res => {
+          res.data.data.length !== 0 ? (has_collections = true) : "";
+          return has_collections;
+        })
+        .catch(() => {
+          return false;
+        });
     }
   }
 };

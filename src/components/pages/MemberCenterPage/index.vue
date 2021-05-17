@@ -12,6 +12,10 @@
         <pet-info-edit style="margin-top: .6rem; margin-bottom: 1rem" />
       </div>
     </div>
+    <div v-if="$store.state.globalModalContent !== ''">
+      <div class="modal-mask"></div>
+      <base-modal />
+    </div>
   </div>
 </template>
 
@@ -20,6 +24,7 @@ import UserAccountData from "./UserAccountData";
 import UserInfoEdit from "./UserInfoEdit";
 import PetInfoEdit from "./PetInfoEdit";
 import PageHeader from "@/components/layouts/PageHeader";
+import BaseModal from "@/components/layouts/BaseModal";
 
 export default {
   name: "MemberCenterIndex",
@@ -27,7 +32,8 @@ export default {
     UserAccountData,
     UserInfoEdit,
     PetInfoEdit,
-    PageHeader
+    PageHeader,
+    BaseModal
   },
   data() {
     return {
@@ -35,6 +41,7 @@ export default {
     };
   },
   mounted() {
+    this.setGlobalModalContent();
     let token = localStorage.getItem("paw-front-token");
     if (!token) {
       this.$router.push("/login");
@@ -61,8 +68,22 @@ export default {
           if (err.data.code === 3002) {
             alert("請重新登入");
             this.$router.push("/login");
+            this.$store.dispatch("toggleLoading", true);
           }
         });
+    },
+    setGlobalModalContent() {
+      let default_data_structure = {
+        title: "註冊成功",
+        detail: "請至註冊信箱收取驗證信",
+        btn1: "1",
+        btn2: "2",
+        src: "/images/icons/white-tick.svg",
+        blockClass: "success-block",
+        iconClass: "success-icon"
+      };
+
+      this.$store.dispatch("setGlobalModalContent", default_data_structure);
     }
   }
 };

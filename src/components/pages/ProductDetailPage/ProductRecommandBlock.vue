@@ -34,86 +34,36 @@ import ProductBasicData from "../../layouts/ProductBasicData";
 
 export default {
   name: "ProductRecommandBlock",
+  props: ["recommand"],
   components: {
     ProductBasicData
   },
   data() {
     return {
-      productData: [
-        // {
-        //     img: '/images/test.png',
-        //     name: 'Test',
-        //     price: 1000,
-        //     id: 4,
-        //     type: '零食'
-        // },
-        {
-          // img: '/images/p1.jpg',
-          img: ["/images/p1.jpg", "/images/test2.png"],
-          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
-          price: 2000,
-          special_price: 1500,
-          id: 3,
-          type: "玩具"
-        },
-        {
-          // img: '/images/p1.jpg',
-          img: ["/images/p1.jpg", "/images/test2.png"],
-          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
-          price: 1000,
-          id: 4,
-          type: "玩具"
-        },
-        {
-          // img: '/images/p1.jpg',
-          img: ["/images/p1.jpg", "/images/test2.png"],
-          name: "尊爵 機能天然糧-化毛貓15kg",
-          price: 1000,
-          id: 4,
-          type: "零食"
-        },
-        {
-          // img: '/images/p1.jpg',
-          img: ["/images/p1.jpg", "/images/test2.png"],
-          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
-          price: 2000,
-          id: 3,
-          type: "玩具"
-        },
-        {
-          // img: '/images/p1.jpg',
-          img: ["/images/p1.jpg", "/images/test2.png"],
-          name: "嘎啦嘎啦 台灣大黑熊 台灣大黑熊 白色大眼睛",
-          price: 1000,
-          id: 4,
-          type: "玩具"
-        },
-        {
-          // img: '/images/p1.jpg',
-          img: ["/images/p1.jpg", "/images/test2.png"],
-          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
-          price: 1000,
-          id: 4,
-          type: "零食"
-        },
-        {
-          // img: '/images/p1.jpg',
-          img: ["/images/p1.jpg", "/images/test2.png"],
-          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
-          price: 2000,
-          id: 3,
-          type: "玩具"
-        },
-        {
-          // img: '/images/p1.jpg',
-          img: ["/images/p1.jpg", "/images/test2.png"],
-          name: "EQUILÍBRIO 尊爵 機能天然糧-化毛貓15kg",
-          price: 1000,
-          id: 4,
-          type: "玩具"
-        }
-      ]
+      productData: []
     };
+  },
+  watch: {
+    recommand: {
+      handler(data) {
+        this.productData = data.map(item => {
+          return {
+            // images: item.images,
+            name: item.title,
+            images: ["/images/p1.jpg", "/images/test2.png"],
+
+            // type: query.type,
+            id: item.id,
+            max_origin_price: item.max_origin_price,
+            max_price: item.max_price,
+            min_origin_price: item.min_origin_price,
+            min_price: item.min_price
+            // is_favorite
+          };
+        });
+        this.$forceUpdate();
+      }
+    }
   }
 };
 </script>

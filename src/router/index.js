@@ -68,7 +68,7 @@ const routes = [{
         component: ProductListPage
       },
       {
-        path: "/product",
+        path: "/products",
         name: "ProductDetailPage",
         component: ProductDetailPage
       },

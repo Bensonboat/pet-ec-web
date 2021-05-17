@@ -77,7 +77,7 @@ export default {
       }
     },
     productDataParser(data) {
-      let query = this.$route.query;
+      // let query = this.$route.query;
       let arr = this.getCollectionsID;
       // 看該項商品 id 是否存在我的最愛中
       let is_favorite;
@@ -87,7 +87,7 @@ export default {
       return {
         images: data.images,
         name: data.title,
-        type: query.type,
+        // type: query.type,
         id: data.id,
         max_origin_price: data.max_origin_price,
         max_price: data.max_price,

@@ -35,7 +35,7 @@
         </div>
         <div v-else class="product-image-block">
           <img
-            :src="product_data.img[0]"
+            :src="product_data.images[0]"
             alt="product image"
             class="product-image"
           />
@@ -106,16 +106,20 @@ export default {
   },
   methods: {
     checkProductDetail(id) {
-      let type = this.$route.query.type;
-      let subType = this.$route.query.subType;
+      // let type = this.$route.query.type;
+      // let subType = this.$route.query.subType;
 
       this.$router.push({
-        path: "/product/",
+        path: "/products/",
         query: {
-          type,
-          subType,
+          // type,
+          // subType,
           id
         }
+        // params: {
+        //   type,
+        //   subType
+        // }
       });
     },
     changeCurrentImage(value) {

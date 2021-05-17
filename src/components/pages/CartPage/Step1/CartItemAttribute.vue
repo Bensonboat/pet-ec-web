@@ -80,7 +80,8 @@ export default {
     checkDetail() {
       let data = this.cartData;
       this.$router.push({
-        path: "/product/" + data.type + "/" + data.id
+        path: `/products/?id=${data.product_id}`
+        // path: "/product/" + data.type + "/" + data.id
       });
     },
     setModalContent() {

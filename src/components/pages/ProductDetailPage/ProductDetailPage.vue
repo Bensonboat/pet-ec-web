@@ -72,7 +72,7 @@
         </div>
       </div>
     </div>
-    <product-recommand-block />
+    <product-recommand-block :recommand="productData.suggestions" />
     <add-to-cart-button @click.native="showProductAllSpecModal" />
   </div>
 </template>
@@ -160,8 +160,8 @@ export default {
       let id = query.id;
       return this.$api.getSingleProduct(id).then(res => {
         let data = res.data.data;
-        data["type"] = query.type;
-        data["subType"] = query.subType;
+        // data["type"] = query.type;
+        // data["subType"] = query.subType;
 
         this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
         this.$store.dispatch("toggleLoading", false);

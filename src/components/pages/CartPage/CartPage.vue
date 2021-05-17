@@ -150,11 +150,11 @@ export default {
           this.userData = res.data.data;
           this.$store.dispatch("setUser", this.userData);
         })
-        .catch(err => {
-          if (err.data.code === 3002) {
-            alert("請重新登入");
-            this.$router.push("/login");
-          }
+        .catch(() => {
+          // if (err.data.code === 3002) {
+          //   alert("請重新登入");
+          //   this.$router.push("/login");
+          // }
         });
     },
     toggleOrderCalculateBlock() {

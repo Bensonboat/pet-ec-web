@@ -250,7 +250,10 @@ export default {
         title: "",
         detail: "",
         btn1: "",
-        btn2: ""
+        btn2: "",
+        src: "",
+        blockClass: "",
+        iconClass: ""
       };
       switch (type) {
         case "sign-up-success":

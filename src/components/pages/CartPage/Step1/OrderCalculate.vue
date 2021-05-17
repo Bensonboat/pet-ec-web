@@ -8,16 +8,16 @@
       class="flex-center toggle-bottom-btn"
     >
       <img
-        v-show="!showBottom"
-        src="/images/icons/back.svg"
-        alt=""
-        style="width: 1.6rem; height: 1.6rem; transform: rotate(90deg)"
+        v-show="showBottom"
+        src="/images/icons/hidden.svg"
+        alt="隱藏"
+        class="hidden-icon"
       />
       <img
-        v-show="showBottom"
-        src="/images/icons/back.svg"
-        alt=""
-        style="width: 1.6rem; height: 1.6rem; transform: rotate(-90deg)"
+        v-show="!showBottom"
+        src="/images/icons/hidden.svg"
+        alt="展開"
+        class="hidden-icon to-show"
       />
     </div>
     <div class="detail-block">
@@ -292,7 +292,11 @@ export default {
       left: 50%
       top: 0
       transform: translate(-50%, -100%)
-
+    .hidden-icon
+      width: 1.2rem
+      height: 1rem
+    .to-show
+      transform: rotate(180deg)
     // 動畫 左側移入
     .left-in-leave
         left: 0

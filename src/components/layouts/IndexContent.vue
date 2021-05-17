@@ -6,21 +6,16 @@
       ref="index_content_router"
       @scroll.native="handleScroll"
     />
-    <!-- <transition name="basic">
-      <product-basic-spec v-if="getShowProductAllSpecModalStatus" />
-    </transition> -->
   </div>
 </template>
 
 <script>
 import TheHeading from "./TheHeading.vue";
-// import ProductBasicSpec from "@/components/layouts/ProductBasicSpec";
 
 export default {
   name: "IndexContent",
   components: {
     TheHeading
-    // ProductBasicSpec
   },
   data() {
     return {
@@ -31,11 +26,12 @@ export default {
   mounted() {
     this.getCartData();
   },
-  // computed: {
-  //   getShowProductAllSpecModalStatus() {
-  //     return this.$store.state.showProductAllSpecModal;
-  //   }
-  // },
+  watch: {
+    $route() {
+      // 如果在前一畫面往下滾 header 消失的階段回到上一頁又沒有滾動的話，header會消失
+      this.showHeading = true;
+    }
+  },
   methods: {
     handleScroll() {
       // 是否顯示 Heading

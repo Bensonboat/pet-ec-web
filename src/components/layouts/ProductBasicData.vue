@@ -104,6 +104,11 @@ export default {
       currentShowsImgIndex: 0
     };
   },
+  computed: {
+    getLoginStatus() {
+      return this.$store.getters.getLoginStatus;
+    }
+  },
   methods: {
     checkProductDetail(id) {
       // let type = this.$route.query.type;
@@ -152,6 +157,12 @@ export default {
       });
     },
     toggleCollection(id) {
+      // 非登入狀態
+      if (!this.getLoginStatus) {
+        alert("登入才能使用");
+        return;
+      }
+
       if (!this.product_data.is_favorite) {
         this.addToCollections(id);
       } else {

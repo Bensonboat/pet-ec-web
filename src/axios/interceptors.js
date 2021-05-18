@@ -31,8 +31,14 @@ service.interceptors.response.use(
     return response;
   },
   error => {
-    console.log(error, "interceptors error catch");
-    return Promise.reject(error.response);
+    if (error.response.code === 3002) {
+      this.$store.dispatch('setLoginStatus', false)
+    } else {
+      return Promise.reject(error.response);
+    }
+
+    // console.log(error.response, "interceptors error catch");
+    // return Promise.reject(error.response);
   }
 );
 

@@ -13,6 +13,9 @@ export default {
   },
   getCollectionsID: state => {
     return state.collectionsID;
+  },
+  getLoginStatus: state => {
+    return state.isLogin;
   }
   //     getAccountData: state => { return state.accountData }
 };

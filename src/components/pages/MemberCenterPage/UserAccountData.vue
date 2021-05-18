@@ -4,7 +4,7 @@
     <div class="name-account-points-block">
       <div class="name-points-row">
         <div class="name">{{ userData.firstname }}</div>
-        <div class="points">120 點</div>
+        <div class="points">{{ getLoginStatus ? "120 點" : "點數折扣" }}</div>
       </div>
       <div class="account">{{ userData.email }}</div>
     </div>
@@ -20,26 +20,29 @@ export default {
   components: {
     Avatar
   },
+  computed: {
+    getLoginStatus() {
+      return this.$store.getters.getLoginStatus;
+    }
+  },
   methods: {
     logOut() {
-      this.$api
-        .logOut()
-        .then(res => {
-          if (res.data.code === 200) {
-            localStorage.removeItem("paw-front-token");
-            this.$router.push({
-              path: "/login"
-            });
-          }
-        })
-        .catch(err => {
-          if (err.data.code === 3002) {
-            alert("尚未登入");
-            this.$router.push({
-              path: "/login"
-            });
-          }
-        });
+      this.$api.logOut().then(res => {
+        if (res.data.code === 200) {
+          localStorage.removeItem("paw-front-token");
+          this.$router.push({
+            path: "/login"
+          });
+        }
+      });
+      // .catch(err => {
+      //   if (err.data.code === 3002) {
+      //     alert("尚未登入");
+      //     this.$router.push({
+      //       path: "/login"
+      //     });
+      //   }
+      // });
     }
   }
 };
@@ -64,7 +67,8 @@ export default {
         align-items: center
         margin-bottom: .5rem
     .points
-        width: 5rem
+        padding: 0 1rem
+        // width: 5rem
         height: 2rem
         border-radius: 1rem
         border: solid .1rem #ccaa76

@@ -225,6 +225,7 @@ export default {
 
       this.showTypeCategories = false;
       this.getCollections().then(value => {
+        // 成功 response 代表有登入！有登入就顯示收藏類別
         let collect_obj = {
           name: "收藏",
           selected: false,

@@ -14,7 +14,7 @@
     </div>
     <div v-if="$store.state.globalModalContent !== ''">
       <div class="modal-mask"></div>
-      <base-modal />
+      <base-modal @btn1="toLoginPage" @btn2="previousPage" />
     </div>
   </div>
 </template>
@@ -40,14 +40,22 @@ export default {
       userData: ""
     };
   },
+  computed: {
+    getLoginStatus() {
+      return this.$store.getters.getLoginStatus;
+    }
+  },
   mounted() {
-    this.setGlobalModalContent();
-    let token = localStorage.getItem("paw-front-token");
-    if (!token) {
-      this.$router.push("/login");
+    if (!this.getLoginStatus) {
+      this.setGlobalModalContent();
     } else {
+      // let token = localStorage.getItem("paw-front-token");
       this.getUserData();
     }
+    // if (!token) {
+    //   // this.$router.push("/login");
+    // } else {
+    // }
   },
   methods: {
     previousPage() {
@@ -74,16 +82,21 @@ export default {
     },
     setGlobalModalContent() {
       let default_data_structure = {
-        title: "註冊成功",
-        detail: "請至註冊信箱收取驗證信",
-        btn1: "1",
-        btn2: "2",
+        title: "使用者資料",
+        detail: "尚未登入",
+        btn1: "馬上註冊/登入",
+        btn2: "先逛逛",
         src: "/images/icons/white-tick.svg",
         blockClass: "success-block",
-        iconClass: "success-icon"
+        iconClass: "success-icon",
+        closeTriggerFunction: "btn2"
       };
 
       this.$store.dispatch("setGlobalModalContent", default_data_structure);
+    },
+    toLoginPage() {
+      this.$router.push("/login");
+      this.$store.dispatch("setGlobalModalContent", "");
     }
   }
 };

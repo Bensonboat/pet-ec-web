@@ -22,5 +22,8 @@ export default {
   },
   [types.SET_LOG_IN_USER](state, data) {
     state.logInUserData = data;
+  },
+  [types.SET_LOGIN_STATUS](state, data) {
+    state.isLogin = data
   }
 };

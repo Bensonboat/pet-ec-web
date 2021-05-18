@@ -142,7 +142,7 @@ export default {
       this.$api.AddCartItem(data).then(res => {
         // alert(res.data.msg);
         this.$store.dispatch("setCartData");
-        // this.$store.dispatch("toggleLoading", false);
+        this.$store.dispatch("toggleLoading", false);
 
         if (res.data.data.id !== "") {
           localStorage.setItem("sessID", res.data.data.id);

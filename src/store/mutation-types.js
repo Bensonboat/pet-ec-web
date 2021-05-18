@@ -21,3 +21,6 @@ export const SET_COLLECTIONS_ID = "SET_COLLECTIONS_ID";
 
 // 登入使用者
 export const SET_LOG_IN_USER = "SET_LOG_IN_USER";
+
+// 登入狀態
+export const SET_LOGIN_STATUS = "SET_LOGIN_STATUS"

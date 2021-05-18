@@ -1,6 +1,9 @@
 <!-- 商品詳情頁 -->
 <template>
-  <div class="default-product-detail-page product-detail-page">
+  <div
+    class="default-product-detail-page product-detail-page"
+    v-if="productData.id"
+  >
     <div class="product-content-block">
       <div class="product-attribute">
         <div
@@ -49,7 +52,10 @@
               NT${{ productData.min_price }} ~ {{ productData.max_price }}
             </div>
           </div>
-          <div class="favorite-icon-block" @click.stop="toggleFavoriteCollect">
+          <div
+            class="favorite-icon-block"
+            @click.stop="toggleFavoriteCollect(productData.id)"
+          >
             <img
               v-if="!productData.is_favorite"
               src="/images/icons/pink-line-heart.svg"
@@ -178,13 +184,42 @@ export default {
         // data["subType"] = query.subType;
 
         // this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
-        this.$nextTick();
+        // this.$nextTick();
         this.$forceUpdate();
         this.$store.dispatch("toggleLoading", false);
       });
     },
-    toggleFavoriteCollect() {
-      this.collected = !this.collected;
+    toggleFavoriteCollect(id) {
+      // this.collected = !this.collected;
+      if (!this.productData.is_favorite) {
+        this.addToCollections(id);
+      } else {
+        this.removeCollection(id);
+      }
+    },
+    addToCollections(id) {
+      let data = {
+        products: [id]
+      };
+      this.$api.addToCollections(data).then(() => {
+        // 前端改變狀態
+        this.productData.is_favorite = true;
+        this.$forceUpdate();
+        this.$store.dispatch("getCollections"); // 更新 vuex 內的 collections id
+      });
+      // .catch(err => {
+      //   if (err.data.code === 3002) {
+      //     alert("尚未登入");
+      //   }
+      // });
+    },
+    removeCollection(id) {
+      this.$api.removeCollection(id).then(() => {
+        // 前端改變狀態
+        this.productData.is_favorite = false;
+        this.$forceUpdate();
+        this.$store.dispatch("getCollections"); // 更新 vuex 內的 collections id
+      });
     }
   }
 };

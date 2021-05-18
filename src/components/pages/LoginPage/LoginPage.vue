@@ -202,6 +202,7 @@ export default {
             let token = res.data.data.token;
             localStorage.setItem("paw-front-token", token);
             this.getUserData();
+            this.$store.dispatch("setLoginStatus", true);
             this.$router.push("/");
           }
         })

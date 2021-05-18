@@ -40,6 +40,20 @@ export default {
     getShowProductAllSpecModalStatus() {
       return this.$store.state.showProductAllSpecModal;
     }
+  },
+  mounted() {
+    this.$api.getUsers().then(res => {
+      this.$store.dispatch("setUser", res.data.data);
+      this.$store.dispatch("setLoginStatus", true);
+    });
+    // this.$store
+    //   .dispatch("getCollections")
+    //   .then(() => {
+    //     this.$store.dispatch("setLoginStatus", true);
+    //   })
+    //   .catch(() => {
+    //     // console.log("error handled");
+    //   });
   }
   // methods: {
   //   btn1Function() {

@@ -187,7 +187,7 @@ export default {
       }
     },
     getPetData() {
-      this.$store.dispatch("toggleLoading", true);
+      // this.$store.dispatch("toggleLoading", true);
       return this.$api.getPetData().then(res => {
         this.petData = res.data.data.map(item => {
           item["show_gender_select"] = false;

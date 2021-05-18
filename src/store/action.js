@@ -30,12 +30,12 @@ export const setCartData = context => {
     params["cartId"] = id;
   }
 
-  context.dispatch("toggleLoading", true);
+  // context.dispatch("toggleLoading", true);
   // Always 同步資料庫購物車資料到 vuex
   allApi.getCartData(params).then(res => {
     let data = res.data.data.items;
     context.commit("SET_CART_DATA", data);
-    context.dispatch("toggleLoading", false);
+    // context.dispatch("toggleLoading", false);
   });
 };
 
@@ -62,3 +62,8 @@ export const getCollections = context => {
 export const setUser = (context, data) => {
   context.commit("SET_LOG_IN_USER", data);
 };
+
+// 紀錄使用者登入狀態
+export const setLoginStatus = (context, data) => {
+  context.commit('SET_LOGIN_STATUS', data)
+}

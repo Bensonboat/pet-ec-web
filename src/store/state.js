@@ -1,4 +1,5 @@
 export default {
+  isLogin: false,
   showProductAllSpecModal: false, // 加入購物車 modal
   // singleProductID: '',
   quickAddProductData: null, // 快速加入商品資料

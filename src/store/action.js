@@ -50,7 +50,7 @@ export const setGlobalModalContent = (context, data) => {
 
 // Collections - 加入我的最愛，存 id 在 store
 export const getCollections = context => {
-  allApi.getCollections().then(res => {
+  return allApi.getCollections().then(res => {
     let id = res.data.data.map(item => {
       return item.id;
     });

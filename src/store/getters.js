@@ -9,7 +9,7 @@ export default {
     return state.cartData;
   },
   getDetailProductData: state => {
-    return state.singleProductData;
+    return state.quickAddProductData;
   },
   getCollectionsID: state => {
     return state.collectionsID;

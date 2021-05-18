@@ -50,7 +50,7 @@ export default {
           return {
             // images: item.images,
             name: item.title,
-            images: ["/images/p1.jpg", "/images/test2.png"],
+            images: item.images,
 
             // type: query.type,
             id: item.id,

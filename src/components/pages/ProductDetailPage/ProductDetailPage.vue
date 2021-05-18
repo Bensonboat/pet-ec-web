@@ -66,7 +66,10 @@
       <div class="detail-info-block">
         <detail-nav-row @toggle-product-info="toggleProductInfo" />
         <div class="default-more-content-block more-content-block">
-          <product-description v-show="showProductInfo === 'description'" />
+          <product-description
+            v-show="showProductInfo === 'description'"
+            :product="this.productData"
+          />
           <product-fulfillment v-show="showProductInfo === 'fulfillment'" />
           <product-review v-show="showProductInfo === 'review'" />
         </div>
@@ -98,7 +101,7 @@ export default {
   },
   data() {
     return {
-      productData: "",
+      productData: {},
       currentShowsImgIndex: 0,
       showProductInfo: "",
       collected: false
@@ -106,27 +109,29 @@ export default {
   },
   mounted() {
     this.showProductInfo = "description";
-    this.getSingleProductData();
+    this.$store.dispatch("getCollections").then(() => {
+      this.getSingleProductData();
+    });
   },
   computed: {
-    getDetailProductData() {
-      return this.$store.getters.getDetailProductData;
-    },
+    // getDetailProductData() {
+    //   return this.$store.getters.getDetailProductData;
+    // },
     getCollectionsID() {
       return this.$store.getters.getCollectionsID;
     }
   },
-  watch: {
-    getDetailProductData(data) {
-      this.productData = data;
+  // watch: {
+  //   getDetailProductData(data) {
+  //     this.productData = data;
 
-      let arr = this.getCollectionsID;
-      if (arr.length !== 0) {
-        let is_favorite = arr.some(item => item === data.id);
-        this.productData["is_favorite"] = is_favorite;
-      }
-    }
-  },
+  //     let arr = this.getCollectionsID;
+  //     if (arr.length !== 0) {
+  //       let is_favorite = arr.some(item => item === data.id);
+  //       this.productData["is_favorite"] = is_favorite;
+  //     }
+  //   }
+  // },
   methods: {
     toggleProductInfo(value) {
       this.showProductInfo = value;
@@ -160,10 +165,21 @@ export default {
       let id = query.id;
       return this.$api.getSingleProduct(id).then(res => {
         let data = res.data.data;
+        this.productData = data;
+        let is_favorite = this.getCollectionsID.find(id => id === data.id);
+        this.productData["is_favorite"] = is_favorite;
+
+        // this.productData = data.map(item => {
+        //   let is_favorite = item.find(id => item.id === id);
+        //   item["is_favorite"] = is_favorite;
+        //   return item;
+        // });
         // data["type"] = query.type;
         // data["subType"] = query.subType;
 
-        this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
+        // this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
+        this.$nextTick();
+        this.$forceUpdate();
         this.$store.dispatch("toggleLoading", false);
       });
     },

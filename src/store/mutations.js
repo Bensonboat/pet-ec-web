@@ -4,8 +4,8 @@ export default {
   [types.SHOW_PRODUCT_ALL_SPEC_MODAL](state, data) {
     state.showProductAllSpecModal = data;
   },
-  [types.SET_SINGLE_PRODUCT_DATA](state, data) {
-    state.singleProductData = data;
+  [types.SET_QUICK_ADD_PRODUCT_DATA](state, data) {
+    state.quickAddProductData = data;
   },
   [types.SET_CART_DATA](state, data) {
     // console.log(state, data)

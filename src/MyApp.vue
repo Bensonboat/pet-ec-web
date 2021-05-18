@@ -40,15 +40,15 @@ export default {
     getShowProductAllSpecModalStatus() {
       return this.$store.state.showProductAllSpecModal;
     }
-  },
-  methods: {
-    btn1Function() {
-      this.getGlobalModalContent.btn1_function();
-    },
-    btn2Function() {
-      this.getGlobalModalContent.btn2_function();
-    }
   }
+  // methods: {
+  //   btn1Function() {
+  //     this.getGlobalModalContent.btn1_function();
+  //   },
+  //   btn2Function() {
+  //     this.getGlobalModalContent.btn2_function();
+  //   }
+  // }
 };
 </script>
 <style lang="sass">

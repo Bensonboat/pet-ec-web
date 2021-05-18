@@ -1,7 +1,7 @@
 export default {
   showProductAllSpecModal: false, // 加入購物車 modal
   // singleProductID: '',
-  singleProductData: null,
+  quickAddProductData: null, // 快速加入商品資料
   cartData: [], // 購物車資料
   isLoading: false, // 讀取狀態
   globalModalContent: "",

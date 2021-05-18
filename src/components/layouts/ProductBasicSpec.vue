@@ -151,7 +151,7 @@ export default {
       this.closeAllSpecModal();
     },
     getSingleProductData() {
-      let data = this.$store.state.singleProductData;
+      let data = this.$store.state.quickAddProductData;
       this.productData = data;
 
       let skus = data.skus;

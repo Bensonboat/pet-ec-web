@@ -1,15 +1,12 @@
 <!-- 商品介紹 -->
 <template>
-  <div
-    class="default-product-description product-description"
-    v-if="intros !== null"
-  >
-    <div v-if="intros.intros.length === 0">
+  <div class="default-product-description product-description">
+    <div v-if="product.intros && product.intros.length === 0">
       No Introduction yet
     </div>
     <div
       v-else
-      v-for="(item, index) in intros.intros"
+      v-for="(item, index) in product.intros"
       :key="index"
       class="description-set"
     >
@@ -22,9 +19,10 @@
 <script>
 export default {
   name: "ProductDescription",
+  props: ["product"],
   data() {
     return {
-      intros: null
+      // intros: null
       // descriptionData: [
       //   {
       //     img: "/images/p2.jpg",
@@ -55,17 +53,17 @@ export default {
       //   }
       // ]
     };
-  },
-  computed: {
-    productData() {
-      return this.$store.getters.getDetailProductData;
-    }
-  },
-  watch: {
-    productData(data) {
-      this.intros = data;
-    }
   }
+  // computed: {
+  //   productData() {
+  //     return this.$store.getters.getDetailProductData;
+  //   }
+  // },
+  // watch: {
+  //   productData(data) {
+  //     this.intros = data;
+  //   }
+  // }
 };
 </script>
 

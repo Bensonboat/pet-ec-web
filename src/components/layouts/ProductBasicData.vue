@@ -35,8 +35,8 @@
         </div>
         <div v-else class="product-image-block">
           <img
-            :src="product_data.images[0]"
-            alt="product image"
+            :src="product_data.images[0].src"
+            alt="商品圖"
             class="product-image"
           />
         </div>
@@ -142,7 +142,7 @@ export default {
       return this.$api.getSingleProduct(id).then(res => {
         let data = res.data.data;
 
-        this.$store.commit(types.SET_SINGLE_PRODUCT_DATA, data);
+        this.$store.commit(types.SET_QUICK_ADD_PRODUCT_DATA, data);
         this.$store.dispatch("toggleLoading", false);
       });
     },

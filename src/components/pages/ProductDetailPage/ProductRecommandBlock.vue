@@ -43,26 +43,30 @@ export default {
       productData: []
     };
   },
+  computed: {
+    getCollectionsID() {
+      return this.$store.getters.getCollectionsID;
+    }
+  },
   watch: {
     recommand: {
       handler(data) {
         this.productData = data.map(item => {
+          let is_favorite = this.getCollectionsID.find(id => id === item.id);
+
           return {
-            // images: item.images,
             name: item.title,
             images: item.images,
-
-            // type: query.type,
             id: item.id,
             max_origin_price: item.max_origin_price,
             max_price: item.max_price,
             min_origin_price: item.min_origin_price,
-            min_price: item.min_price
-            // is_favorite
+            min_price: item.min_price,
+            is_favorite
           };
         });
-        this.$forceUpdate();
-      }
+      },
+      immediate: true
     }
   }
 };

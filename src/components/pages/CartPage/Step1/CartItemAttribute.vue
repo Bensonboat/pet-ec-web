@@ -1,6 +1,50 @@
 <template>
   <div class="cart-item-attribute">
-    <img
+    <div
+      v-for="(item, index) in cartData"
+      :key="index"
+      class="cart-item-attribute-list"
+    >
+      <img
+        :src="item.image"
+        alt="商品圖片"
+        class="product-img"
+        @click.stop="checkDetail(item.product_id)"
+      />
+      <div class="product-basic-block">
+        <div class="product-name">{{ item.title }}</div>
+        <div class="product-spec">{{ item.sku_name }}</div>
+        <div class="price-number-row">
+          <div class="price">NT${{ item.price }}</div>
+          <div class="number-block">
+            <div class="select-number-block">
+              <div
+                class="btn number-operate-block minus click-animation"
+                @click="updateNumber(index, -1)"
+              >
+                <img
+                  src="/images/icons/less.svg"
+                  alt="-1"
+                  class="select-number-icon"
+                />
+              </div>
+              <div class="btn number">{{ item.qty }}</div>
+              <div
+                class="btn number-operate-block add click-animation"
+                @click="updateNumber(index, 1)"
+              >
+                <img
+                  src="/images/icons/plus.svg"
+                  alt="+1"
+                  class="select-number-icon"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <img
       :src="cartData.image"
       alt="商品圖片"
       class="product-img"
@@ -37,7 +81,8 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+
     <!-- Modal -->
     <div v-if="$store.state.globalModalContent !== ''">
       <div class="modal-mask"></div>
@@ -52,36 +97,37 @@ import BaseModal from "@/components/layouts/BaseModal";
 export default {
   name: "CartItemAttribute",
   props: {
-    cartData: Object
+    cartData: Array
   },
   components: {
     BaseModal
   },
+  data() {
+    return {
+      currentOperateSkuID: ""
+    };
+  },
   methods: {
-    updateNumber(number) {
-      if (this.cartData.qty === 1 && number === -1) {
+    updateNumber(index, number) {
+      this.currentOperateSkuID = this.cartData[index].sku_id;
+
+      if (this.cartData[index].qty === 1 && number === -1) {
         this.setModalContent();
         return;
       }
 
-      this.cartData.qty = this.cartData.qty + number; // 更新當前數量
+      this.cartData[index].qty = this.cartData[index].qty + number; // 更新當前數量
 
       // 合併回原購物車
       let items = this.$store.state.cartData; // 取得舊購物車資料
-      items[this.cartData.index].qty = this.cartData.qty; // 把當前數量更新到舊物車資料
+      items[index].qty = this.cartData[index].qty; // 把當前數量更新到舊物車資料
 
       // 更新資料庫購物車
       this.updateCart(items);
-
-      // if (this.cartData.qty === 0) {
-      //   this.setModalContent();
-      // }
     },
-    checkDetail() {
-      let data = this.cartData;
+    checkDetail(id) {
       this.$router.push({
-        path: `/products/?id=${data.product_id}`
-        // path: "/product/" + data.type + "/" + data.id
+        path: `/products/?id=${id}`
       });
     },
     setModalContent() {
@@ -112,22 +158,13 @@ export default {
     },
     btn1() {
       let items = this.$store.state.cartData;
-      items = items.filter(
-        item =>
-          item.product_id === this.cartData.product_id &&
-          item.sku_id === this.cartData.sku_id
-      );
-      // items = items.filter(item => item.qty !== 0);
+      console.log(this.cartData, "+++++");
+      items = items.filter(item => item.sku_id !== this.currentOperateSkuID);
+
       this.updateCart(items);
       this.$store.dispatch("setGlobalModalContent", "");
     },
     btn2() {
-      // let items = this.$store.state.cartData;
-      // items = items.map(item => {
-      //   item.qty === 0 ? (item.qty = 1) : "";
-      //   return item;
-      // });
-      // this.updateCart(items);
       this.$store.dispatch("setGlobalModalContent", "");
     }
   }
@@ -136,76 +173,77 @@ export default {
 
 <style lang="sass" scoped>
 .cart-item-attribute
+  .cart-item-attribute-list
     margin-bottom: 2rem
     display: flex
     align-items: flex-start
-    .product-img
-        width: 8rem
-        height: 8rem
-        border: solid .1rem #f8f8f8
-        margin-right: 1rem
-        box-sizing: border-box
-        flex-shrink: 0
-    .product-basic-block
-        height: 100%
-        flex-grow: 1
-    .product-name
-        font-size: 1.2rem
-        color: #333333
-        margin-bottom: .5rem
-    .product-spec
-        word-break: break-all
-        margin-bottom: 1.2rem
-        border: solid .1rem #c8a87b
-        color: #c8a87b
-        padding: .1rem 1rem
-        border-radius: .5rem
-        width: fit-content
-    .price-number-row
-        display: flex
-        align-items: flex-end
-        justify-content: space-between
-    .select-number-block
-        width: 10rem
-        height: 2.4rem
-        background-color: #f7f0e6
-        display: flex
-        align-items: center
-    .number-block
-        display: flex
-        justify-content: space-between
-        align-items: center
-        // margin-top: 1.2rem
-        font-size: 1.2rem
-        font-weight: 500
-    .number-operate-block
-        width: 3.2rem
-    .select-number-block
-        width: 12rem
-        height: 2.4rem
-        border-radius: .4rem
-        background-color: #f7f0e6
-        display: flex
-        align-items: center
-        justify-content: space-around
-        text-align: center
-        .btn
-            height: 100%
-            display: flex
-            align-items: center
-            justify-content: center
-            width: 100%
-    .minus
-        border-right: solid .1rem #ffffff
-    .add
-        border-left: solid .1rem #ffffff
-    .select-number-icon
-        width: 1.2rem
-        height: 1.2rem
-    .price
-        font-size: 1.4rem
-        color: #f94956
-    .number
-        color: #333333
-        font-size: 1.2rem
+  .product-img
+      width: 8rem
+      height: 8rem
+      border: solid .1rem #f8f8f8
+      margin-right: 1rem
+      box-sizing: border-box
+      flex-shrink: 0
+  .product-basic-block
+      height: 100%
+      flex-grow: 1
+  .product-name
+      font-size: 1.2rem
+      color: #333333
+      margin-bottom: .5rem
+  .product-spec
+      word-break: break-all
+      margin-bottom: 1.2rem
+      border: solid .1rem #c8a87b
+      color: #c8a87b
+      padding: .1rem 1rem
+      border-radius: .5rem
+      width: fit-content
+  .price-number-row
+      display: flex
+      align-items: flex-end
+      justify-content: space-between
+  .select-number-block
+      width: 10rem
+      height: 2.4rem
+      background-color: #f7f0e6
+      display: flex
+      align-items: center
+  .number-block
+      display: flex
+      justify-content: space-between
+      align-items: center
+      // margin-top: 1.2rem
+      font-size: 1.2rem
+      font-weight: 500
+  .number-operate-block
+      width: 3.2rem
+  .select-number-block
+      width: 12rem
+      height: 2.4rem
+      border-radius: .4rem
+      background-color: #f7f0e6
+      display: flex
+      align-items: center
+      justify-content: space-around
+      text-align: center
+      .btn
+          height: 100%
+          display: flex
+          align-items: center
+          justify-content: center
+          width: 100%
+  .minus
+      border-right: solid .1rem #ffffff
+  .add
+      border-left: solid .1rem #ffffff
+  .select-number-icon
+      width: 1.2rem
+      height: 1.2rem
+  .price
+      font-size: 1.4rem
+      color: #f94956
+  .number
+      color: #333333
+      font-size: 1.2rem
 </style>

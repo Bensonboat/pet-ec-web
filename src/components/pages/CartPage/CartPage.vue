@@ -7,11 +7,12 @@
         <div v-show="checkoutStep === 1">
           <div class="order-list-block" @click="toggleOrderCalculateBlock">
             <div class="order-infomation" @scroll="toggleOrderCalculateBlock">
-              <cart-item-attribute
+              <cart-item-attribute :cartData="innerGetCartData" />
+              <!-- <cart-item-attribute
                 v-for="(item, index) in innerGetCartData"
                 :key="index"
                 :cartData="item"
-              />
+              /> -->
               <div class="order-note-block">
                 <input
                   type="text"

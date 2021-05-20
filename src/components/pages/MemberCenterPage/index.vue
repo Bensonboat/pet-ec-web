@@ -82,8 +82,8 @@ export default {
     },
     setGlobalModalContent() {
       let default_data_structure = {
-        title: "使用者資料",
-        detail: "尚未登入",
+        title: "尚未登入",
+        detail: "登入/註冊，享受更多功能及優惠",
         btn1: "馬上註冊/登入",
         btn2: "先逛逛",
         src: "/images/icons/white-tick.svg",

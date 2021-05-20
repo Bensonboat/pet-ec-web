@@ -115,29 +115,23 @@ export default {
   },
   mounted() {
     this.showProductInfo = "description";
-    this.$store.dispatch("getCollections").then(() => {
+
+    if (this.getLoginStatus) {
+      this.$store.dispatch("getCollections").then(() => {
+        this.getSingleProductData();
+      });
+    } else {
       this.getSingleProductData();
-    });
+    }
   },
   computed: {
-    // getDetailProductData() {
-    //   return this.$store.getters.getDetailProductData;
-    // },
+    getLoginStatus() {
+      return this.$store.getters.getLoginStatus;
+    },
     getCollectionsID() {
       return this.$store.getters.getCollectionsID;
     }
   },
-  // watch: {
-  //   getDetailProductData(data) {
-  //     this.productData = data;
-
-  //     let arr = this.getCollectionsID;
-  //     if (arr.length !== 0) {
-  //       let is_favorite = arr.some(item => item === data.id);
-  //       this.productData["is_favorite"] = is_favorite;
-  //     }
-  //   }
-  // },
   methods: {
     toggleProductInfo(value) {
       this.showProductInfo = value;
@@ -190,6 +184,11 @@ export default {
       });
     },
     toggleFavoriteCollect(id) {
+      if (!this.getLoginStatus) {
+        alert("登入才能使用");
+        return;
+      }
+
       // this.collected = !this.collected;
       if (!this.productData.is_favorite) {
         this.addToCollections(id);

@@ -11,17 +11,19 @@
           v-touch:swipe.left="Swipe(1)"
           v-touch:swipe.right="Swipe(-1)"
         >
-          <div
-            class="flex-center next-img-arrow-block left"
-            @click="changeCurrentImage(-1)"
-          >
-            <img src="/images/icons/back.svg" alt="箭頭" />
-          </div>
-          <div
-            class="flex-center next-img-arrow-block right"
-            @click="changeCurrentImage(1)"
-          >
-            <img src="/images/icons/back.svg" alt="箭頭" />
+          <div v-show="productData.images.length > 1">
+            <div
+              class="flex-center next-img-arrow-block left"
+              @click="changeCurrentImage(-1)"
+            >
+              <img src="/images/icons/back.svg" alt="箭頭" />
+            </div>
+            <div
+              class="flex-center next-img-arrow-block right"
+              @click="changeCurrentImage(1)"
+            >
+              <img src="/images/icons/back.svg" alt="箭頭" />
+            </div>
           </div>
           <img
             v-show="imageIndex === currentShowsImgIndex"
@@ -157,7 +159,9 @@ export default {
       };
     },
     showProductAllSpecModal() {
-      this.$store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true);
+      this.getSingleProductData().then(() => {
+        this.$store.commit(types.SHOW_PRODUCT_ALL_SPEC_MODAL, true);
+      });
     },
     getSingleProductData() {
       this.$store.dispatch("toggleLoading", true);
@@ -166,6 +170,8 @@ export default {
       return this.$api.getSingleProduct(id).then(res => {
         let data = res.data.data;
         this.productData = data;
+        this.$store.commit(types.SET_QUICK_ADD_PRODUCT_DATA, data);
+
         let is_favorite = this.getCollectionsID.find(id => id === data.id);
         this.productData["is_favorite"] = is_favorite;
 

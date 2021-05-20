@@ -60,44 +60,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="type-icon-block" @click="toggle">
-        <div
-          class="breed-type-circle cat"
-          :class="[!showCat ? 'animation-out' : 'animation-in']"
-        >
-          <div class="default-black-color cat-type txt">喵喵</div>
-          <img
-            src="/images/icons/cat-black.png"
-            alt="貓咪圖案"
-            class="cat-icon"
-          />
-          <div class="tick-block" v-show="showCat">
-            <img
-              src="/images/icons/tick.svg"
-              alt="打勾圖案"
-              class="tick-icon"
-            />
-          </div>
-        </div>
-        <div
-          class="breed-type-circle dog"
-          :class="[showCat ? 'animation-out' : 'animation-in']"
-        >
-          <div class="default-black-color dog-type txt">汪汪</div>
-          <img
-            src="/images/icons/dog-black.png"
-            alt="狗狗圖案"
-            class="dog-icon"
-          />
-          <div class="tick-block" v-show="!showCat">
-            <img
-              src="/images/icons/tick.svg"
-              alt="打勾圖案"
-              class="tick-icon"
-            />
-          </div>
-        </div>
-      </div> -->
       <div class="category-options-block" v-show="showTypeCategories">
         <div
           class="category-option"
@@ -315,46 +277,6 @@ export default {
         transform: translateX(-50%)
         position: absolute
         display: flex
-    // .animation-in
-    //   animation: selectIn .7s linear
-    //   transform: translateX(-50%) scale(1)
-    // .animation-out
-    //   left: -10rem
-    //   animation: selectOut .7s linear
-    //   transform: translateX(-50%) scale(.4) rotateY(140deg)
-    //   z-index: -1
-    //   opacity: .5
-    // .breed-type-circle
-    //     border-radius: 50%
-    //     border: solid .4rem $color2
-    //     background-color: $color3
-    //     position: absolute
-    //     box-sizing: border-box
-    //     width: 8rem
-    //     height: 8rem
-    //     position: absolute
-    //     .txt
-    //         position: absolute
-    //         font-size: 2rem
-    //         font-weight: bold
-    //         letter-spacing: 3px
-    //         left: 50%
-    //         top: 50%
-    //         transform: translate(-50%, -50%)
-    //         text-align: center
-    //         width: 100%
-    // .cat-icon
-    //     width: 6rem
-    //     height: 6rem
-    //     position: absolute
-    //     bottom: -.5rem
-    //     left: -2rem
-    // .dog-icon
-    //     bottom: -1rem
-    //     right: -3.5rem
-    //     position: absolute
-    //     width: 5rem
-    //     height: 5rem
     .type-tick-icon
         width: 1.4rem
         height: 1.4rem
@@ -473,32 +395,4 @@ export default {
       color: $color2
     .is-collecing
       border-color: red
-    @keyframes selectOut
-      0%
-        transform: scale(1.2)
-        opacity: 1
-      50%
-        transform: scale(1.3) rotateY(100deg)
-      100%
-        left: -14rem
-        transform: scale(.4) rotateY(140deg)
-
-    @keyframes selectIn
-      0%
-        left: -8rem
-        transform: scale(.8) rotateY(100deg)
-      20%
-        left: -8rem
-      40%
-        left: 50%
-        transform: translate(-50%, -50%) scale(.2)
-      60%
-
-        transform: translate(0%, -30%) scale(.4)
-      80%
-        left: 100%
-        transform: scale(.6)
-      100%
-        left: 50%
-        transform: translateX(-50%) scale(1)
 </style>

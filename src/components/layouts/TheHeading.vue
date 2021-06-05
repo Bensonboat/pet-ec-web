@@ -73,7 +73,7 @@ export default {
     .logo-icon
         display: flex
         width: 12rem
-        height: 4rem
+        height: 5rem
     .heading-operation-right-block
         display: flex
         align-items: center

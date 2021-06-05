@@ -258,6 +258,7 @@ export default {
 
 .category-page
     position: relative
+    -webkit-overflow-scrolling: touch
     .bg
         background-image: url('/images/icons/tiles.svg')
         background-repeat: repeat
@@ -291,25 +292,25 @@ export default {
         border-radius: 50%
         right: 1rem
     .category-options-block
-        // margin-top: 16rem
-        padding: 0 4rem
-        display: grid
-        grid-template-columns: 1fr 1fr 1fr
-        gap: 3rem
+      // margin-top: 16rem
+      padding: 0 4rem
+      display: grid
+      grid-template-columns: 1fr 1fr 1fr
+      gap: 3rem
     .category-option
         width: 6rem
         height: 6rem
-        margin: 0 auto
+        // margin: 0 auto
         border-radius: 50%
         box-shadow: 0 0 .6rem 0 rgba(0, 0, 0, 0.12)
         border: solid .2rem #ccaa76
         background-color: $color3
         font-size: 1.8rem
         font-weight: 900
-        font-stretch: normal
-        font-style: normal
-        line-height: normal
-        letter-spacing: normal
+        // font-stretch: normal
+        // font-style: normal
+        // line-height: normal
+        // letter-spacing: normal
         color: $color2
         display: flex
         align-items: center

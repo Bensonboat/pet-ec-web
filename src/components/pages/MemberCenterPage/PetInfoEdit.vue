@@ -279,6 +279,7 @@ export default {
     //     align-items: center
     .input
       height: 3rem
+      border: none
       border-radius: .3rem
       border: solid .1rem #e8d8c1
       background-color: #f7f0e6
@@ -288,6 +289,7 @@ export default {
       display: flex
       align-items: center
       width: 100%
+      -webkit-appearance: none
       // height: 100%
       outline: none
       // background-color: transparent

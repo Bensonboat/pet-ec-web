@@ -145,7 +145,7 @@ export default {
       this.$store.dispatch("setGlobalModalContent", default_data_structure);
     },
     updateCart(items) {
-      let id = localStorage.getItem("sessID");
+      let id = sessionStorage.getItem("sessID");
       let data = {
         items,
         id

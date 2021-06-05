@@ -168,6 +168,10 @@ export default {
         return;
       }
 
+      if (data.length < 3) {
+        this.showBottom = true;
+      }
+
       let total = data
         .map(item => {
           return item.price * item.qty;

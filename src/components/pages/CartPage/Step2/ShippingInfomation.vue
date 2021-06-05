@@ -86,7 +86,7 @@ export default {
             country: "country",
             district: "district",
             postcode: "800",
-            cart_id: localStorage.getItem("sessID")
+            cart_id: sessionStorage.getItem("sessID")
           };
           this.$emit("shipping-info", data);
         }

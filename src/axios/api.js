@@ -67,6 +67,12 @@ export default {
       params
     });
   },
+  getOrders() {
+    return axios({
+      method: "GET",
+      url: apiUrl.ORDERS,
+    });
+  },
   createOrders(data) {
     return axios({
       method: "POST",

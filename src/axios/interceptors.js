@@ -10,7 +10,7 @@ const service = axios.create({
 // request
 service.interceptors.request.use(
   config => {
-    let token = localStorage.getItem("paw-front-token");
+    let token = sessionStorage.getItem("paw-front-token");
     // config.withCredentials = true;
     //如果有token則在headers統一寫入
     if (token) {

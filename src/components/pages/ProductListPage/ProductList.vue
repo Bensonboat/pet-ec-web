@@ -39,11 +39,14 @@ export default {
   computed: {
     getCollectionsID() {
       return this.$store.getters.getCollectionsID;
+    },
+    getLoginStatus() {
+      return this.$store.getters.getLoginStatus;
     }
   },
   mounted() {
-    this.getProductsList();
     this.$store.dispatch("getCollections");
+    this.getProductsList();
   },
   methods: {
     toggleQuickAddModal() {
@@ -73,12 +76,13 @@ export default {
             item = this.productDataParser(item);
             return item;
           });
+          console.log(this.productListData, "xx");
         });
       }
     },
     productDataParser(data) {
-      // let query = this.$route.query;
       let arr = this.getCollectionsID;
+
       // 看該項商品 id 是否存在我的最愛中
       let is_favorite;
       if (arr.length !== 0) {
@@ -87,7 +91,6 @@ export default {
       return {
         images: data.images,
         name: data.title,
-        // type: query.type,
         id: data.id,
         max_origin_price: data.max_origin_price,
         max_price: data.max_price,
@@ -97,6 +100,10 @@ export default {
       };
     },
     getCollections() {
+      if (!this.getLoginStatus) {
+        return;
+      }
+
       this.$api.getCollections().then(res => {
         let product_data = res.data.data;
         this.productListData = product_data.map(item => {

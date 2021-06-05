@@ -42,12 +42,20 @@ export default {
       checkingFinishedOrder: true // false for Processing ; true for Finished
     };
   },
+  mounted() {
+    this.getOrders();
+  },
   methods: {
     previousPage() {
       this.$router.go(-1);
     },
     toggleCheckingTab() {
       this.checkingFinishedOrder = !this.checkingFinishedOrder;
+    },
+    getOrders() {
+      this.$api.getOrders().then(res => {
+        console.log(res);
+      });
     }
   }
 };

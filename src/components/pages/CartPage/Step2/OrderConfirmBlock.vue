@@ -88,24 +88,24 @@ export default {
       this.showPaymentSelectPage = !this.showPaymentSelectPage;
     },
     checkoutConfirm() {
-      this.$router.push("order_complete");
-      // if (!this.orderValidate) {
-      //   return;
-      // }
+      // this.$router.push("order_complete");
+      if (!this.orderValidate) {
+        return;
+      }
 
-      // let data = this.allOrderData.shipping_info;
-      // data["order_note"] = this.allOrderData.order_note;
+      let data = this.allOrderData.shipping_info;
+      data["order_note"] = this.allOrderData.order_note;
 
-      // this.$api
-      //   .createOrders(data)
-      //   .then(res => {
-      //     alert(res.data.msg);
-      //     console.log(res, "create orders res");
-      //   })
-      //   .catch(err => {
-      //     alert(err.data.msg);
-      //   });
-      // console.log(this.allOrderData, "#####");
+      this.$api
+        .createOrders(data)
+        .then(res => {
+          alert(res.data.msg);
+          console.log(res, "create orders res");
+        })
+        .catch(err => {
+          alert(err.data.msg);
+        });
+      console.log(this.allOrderData, "#####");
     },
     getPayementMethod(payment) {
       this.selectPaymentMethod = payment;

@@ -132,7 +132,7 @@ export default {
     confirm() {
       let current_select = this.addToCartDataParser(); // 轉換要加入購物車的資料格式
       let items = this.mergeSameProduct(current_select);
-      let id = localStorage.getItem("sessID"); // 取得購物車id
+      let id = sessionStorage.getItem("sessID"); // 取得購物車id
 
       let data = {
         items,
@@ -145,7 +145,7 @@ export default {
         this.$store.dispatch("toggleLoading", false);
 
         if (res.data.data.id !== "") {
-          localStorage.setItem("sessID", res.data.data.id);
+          sessionStorage.setItem("sessID", res.data.data.id);
         }
       });
       this.closeAllSpecModal();

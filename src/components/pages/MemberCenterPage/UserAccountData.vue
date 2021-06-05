@@ -4,7 +4,9 @@
     <div class="name-account-points-block">
       <div class="name-points-row">
         <div class="name">{{ userData.firstname }}</div>
-        <div class="points">{{ getLoginStatus ? "120 點" : "點數折扣" }}</div>
+        <div class="points">
+          點數: {{ getLoginStatus ? userData.points : "折扣" }}
+        </div>
       </div>
       <div class="account">{{ userData.email }}</div>
     </div>
@@ -29,7 +31,7 @@ export default {
     logOut() {
       this.$api.logOut().then(res => {
         if (res.data.code === 200) {
-          localStorage.removeItem("paw-front-token");
+          sessionStorage.removeItem("paw-front-token");
           this.$router.push({
             path: "/login"
           });

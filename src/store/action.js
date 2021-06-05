@@ -24,7 +24,7 @@ import allApi from "@/axios/api";
 
 // ========== 購物車(取得購物車資料並寫入 vuex) ==========
 export const setCartData = context => {
-  let id = localStorage.getItem("sessID");
+  let id = sessionStorage.getItem("sessID");
   let params = {};
   if (id !== null && id !== undefined) {
     params["cartId"] = id;
@@ -51,7 +51,9 @@ export const setGlobalModalContent = (context, data) => {
 // Collections - 加入我的最愛，存 id 在 store
 export const getCollections = context => {
   return allApi.getCollections().then(res => {
+    console.log(res, '??')
     let id = res.data.data.map(item => {
+      console.log(item.id, '//')
       return item.id;
     });
     context.commit("SET_COLLECTIONS_ID", id);

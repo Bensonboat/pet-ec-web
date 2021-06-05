@@ -7,7 +7,7 @@
     </page-header>
     <div class="content-block">
       <user-account-data :userData="userData" />
-      <div class="edit-block">
+      <div class="edit-block" v-if="getLoginStatus">
         <user-info-edit :userData="userData" @getUser="getUserData" />
         <pet-info-edit style="margin-top: .6rem; margin-bottom: 1rem" />
       </div>
@@ -46,16 +46,23 @@ export default {
     }
   },
   mounted() {
-    if (!this.getLoginStatus) {
-      this.setGlobalModalContent();
-    } else {
-      // let token = localStorage.getItem("paw-front-token");
-      this.getUserData();
-    }
+    // if (!this.getLoginStatus) {
+    //   this.setGlobalModalContent();
+    // } else {
+    //   // let token = localStorage.getItem("paw-front-token");
+    this.getUserData();
+    // }
     // if (!token) {
     //   // this.$router.push("/login");
     // } else {
     // }
+  },
+  watch: {
+    getLoginStatus(value) {
+      if (!value) {
+        this.$store.dispatch("setGlobalModalContent", "");
+      }
+    }
   },
   methods: {
     previousPage() {
@@ -67,6 +74,8 @@ export default {
       });
     },
     getUserData() {
+      this.$store.dispatch("toggleLoading", true);
+
       this.$api
         .getUsers()
         .then(res => {
@@ -76,14 +85,14 @@ export default {
           if (err.data.code === 3002) {
             alert("請重新登入");
             this.$router.push("/login");
-            this.$store.dispatch("toggleLoading", true);
+            this.$store.dispatch("toggleLoading", false);
           }
         });
     },
     setGlobalModalContent() {
       let default_data_structure = {
         title: "尚未登入",
-        detail: "登入/註冊，享受更多功能及優惠",
+        detail: "想使用更多功能及優惠?",
         btn1: "馬上註冊/登入",
         btn2: "先逛逛",
         src: "/images/icons/white-tick.svg",

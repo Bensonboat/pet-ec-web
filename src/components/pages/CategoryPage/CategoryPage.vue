@@ -117,7 +117,6 @@ export default {
       selected: false,
       selectID: "",
       selectCategory: ""
-      // selectType: ""
     };
   },
   mounted() {

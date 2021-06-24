@@ -1,9 +1,9 @@
 <template>
   <div class="order-detail-card">
     <div class="order-number-row flex-center">
-      <div>2021-03-20</div>
+      <div>{{ orderData.created_at | dateFormat }}</div>
       <div class="right-side">
-        <div>#1426370786968</div>
+        <div>#{{ orderData.code }}</div>
         <div class="toggle-products" @click="toggleProducts">
           <img
             v-show="showProducts"
@@ -19,11 +19,11 @@
       </div>
     </div>
     <div class="order-status-block">
-      <div class="payment-method">貨到付款</div>
-      <div class="order-status flex-center">準備中</div>
+      <div class="payment-method">{{ orderData.status }}</div>
+      <div class="order-status flex-center">{{ orderData.status }}</div>
     </div>
     <div class="order-total-price-block">
-      訂單總金額 <span class="total-price">NT$3290</span>
+      訂單總金額 <span class="total-price">NT$ {{ orderData.price }}</span>
     </div>
     <div v-if="showProducts">
       <div class="product-detail-block flex-center">
@@ -59,14 +59,30 @@
 <script>
 export default {
   name: "OrderDetailCard",
+  props: ["orderData"],
+  filters: {
+    dateFormat(date) {
+      return date.split(" ")[0];
+    }
+  },
   data() {
     return {
-      showProducts: false
+      showProducts: false,
+      singleOrderData: ""
     };
   },
   methods: {
     toggleProducts() {
       this.showProducts = !this.showProducts;
+      if (this.showProducts && this.singleOrderData === "") {
+        let id = this.orderData.id;
+        this.getSingleOrder(id);
+      }
+    },
+    getSingleOrder(id) {
+      this.$api.getSingleOrder(id).then(res => {
+        console.log(res, "single order");
+      });
     }
   }
 };
@@ -107,7 +123,8 @@ export default {
       color: #333333
       font-size: 1.2rem
     .order-status
-      width: 5.2rem
+      padding: 0 .5rem
+      // width: 5.2rem
       height: 2rem
       border-radius: .2rem
       border: solid .1rem #333333

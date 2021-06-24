@@ -131,6 +131,11 @@ export default {
       this.getCurrentTypeCategory();
     });
   },
+  computed: {
+    getLoginStatus() {
+      return this.$store.getters.getLoginStatus;
+    }
+  },
   methods: {
     toggleSelectOption(index) {
       this.typeCategories = this.typeCategories.map((item, key) => {
@@ -185,20 +190,22 @@ export default {
       });
 
       this.showTypeCategories = false;
-      this.getCollections().then(value => {
+      if (this.getLoginStatus) {
+        // this.getCollections().then(value => {
         // 成功 response 代表有登入！有登入就顯示收藏類別
         let collect_obj = {
           name: "收藏",
           selected: false,
           id: -1
         };
-        if (value) {
-          this.typeCategories.push(collect_obj);
-          collect_obj["collecting_status"] = true;
-        }
+        // if (value) {
+        this.typeCategories.push(collect_obj);
+        collect_obj["collecting_status"] = true;
+        // }
+      }
 
-        this.showTypeCategories = true;
-      });
+      this.showTypeCategories = true;
+      // });
     },
     bgAnimation() {
       let x = 0;
@@ -236,19 +243,20 @@ export default {
         });
       }
       this.getCurrentTypeCategory();
-    },
-    getCollections() {
-      let has_collections = false;
-      return this.$api
-        .getCollections()
-        .then(res => {
-          res.data.data.length !== 0 ? (has_collections = true) : "";
-          return has_collections;
-        })
-        .catch(() => {
-          return false;
-        });
     }
+    // getCollections() {
+    //   let has_collections = false;
+    //   return this.$api
+    //     .getCollections()
+    //     .then(() => {
+    //       // res.data.data.length !== 0 ? (has_collections = true) : "";
+    //       has_collections = true;
+    //       return has_collections;
+    //     })
+    //     .catch(() => {
+    //       return false;
+    //     });
+    // }
   }
 };
 </script>
@@ -300,7 +308,7 @@ export default {
     .category-option
         width: 6rem
         height: 6rem
-        // margin: 0 auto
+        margin: 0 auto
         border-radius: 50%
         box-shadow: 0 0 .6rem 0 rgba(0, 0, 0, 0.12)
         border: solid .2rem #ccaa76

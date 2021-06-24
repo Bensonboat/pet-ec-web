@@ -201,9 +201,10 @@ export default {
           } else {
             let token = res.data.data.token;
             sessionStorage.setItem("paw-front-token", token);
-            this.getUserData();
-            this.$store.dispatch("setLoginStatus", true);
-            this.$router.push("/");
+            // this.getUserData();
+            this.$store.dispatch("setLoginStatus", true).then(() => {
+              this.$router.push("/");
+            });
           }
         })
         .catch(() => {
@@ -296,19 +297,19 @@ export default {
 
       this.$store.dispatch("setGlobalModalContent", default_data_structure);
     },
-    getUserData() {
-      this.$api
-        .getUsers()
-        .then(res => {
-          this.$store.dispatch("setUser", res.data.data);
-        })
-        .catch(err => {
-          if (err.data.code === 3002) {
-            alert("請重新登入");
-            this.$router.push("/login");
-          }
-        });
-    },
+    // getUserData() {
+    //   this.$api
+    //     .getUsers()
+    //     .then(res => {
+    //       this.$store.dispatch("setUser", res.data.data);
+    //     })
+    //     .catch(err => {
+    //       if (err.data.code === 3002) {
+    //         alert("請重新登入");
+    //         this.$router.push("/login");
+    //       }
+    //     });
+    // },
     bgAnimation() {
       let x = 0;
       setInterval(() => {

@@ -45,7 +45,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("getCollections");
+    // this.$store.dispatch("getCollections");
     this.getProductsList();
   },
   methods: {

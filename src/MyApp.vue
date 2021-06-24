@@ -42,15 +42,18 @@ export default {
     }
   },
   mounted() {
-    this.$api
-      .getUsers()
-      .then(res => {
-        this.$store.dispatch("setUser", res.data.data);
-        this.$store.dispatch("setLoginStatus", true);
-      })
-      .catch(() => {
-        this.$store.dispatch("setLoginStatus", false);
-      });
+    if (sessionStorage.getItem("paw-front-token") !== null) {
+      this.$api
+        .getUsers()
+        .then(res => {
+          this.$store.dispatch("setUser", res.data.data);
+          this.$store.dispatch("setLoginStatus", true);
+          this.$store.dispatch("getCollections");
+        })
+        .catch(() => {
+          this.$store.dispatch("setLoginStatus", false);
+        });
+    }
     // this.$store
     //   .dispatch("getCollections")
     //   .then(() => {

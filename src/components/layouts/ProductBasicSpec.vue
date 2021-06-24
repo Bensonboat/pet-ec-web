@@ -130,6 +130,10 @@ export default {
       }
     },
     confirm() {
+      if (this.number === 0) {
+        return;
+      }
+
       let current_select = this.addToCartDataParser(); // 轉換要加入購物車的資料格式
       let items = this.mergeSameProduct(current_select);
       let id = sessionStorage.getItem("sessID"); // 取得購物車id
@@ -140,13 +144,12 @@ export default {
       };
       this.$store.dispatch("toggleLoading", true);
       this.$api.AddCartItem(data).then(res => {
-        // alert(res.data.msg);
-        this.$store.dispatch("setCartData");
-        this.$store.dispatch("toggleLoading", false);
-
         if (res.data.data.id !== "") {
           sessionStorage.setItem("sessID", res.data.data.id);
         }
+
+        this.$store.dispatch("setCartData");
+        this.$store.dispatch("toggleLoading", false);
       });
       this.closeAllSpecModal();
     },

@@ -73,6 +73,12 @@ export default {
       url: apiUrl.ORDERS,
     });
   },
+  getSingleOrder(id) {
+    return axios({
+      method: "GET",
+      url: apiUrl.ORDERS + `/${id}`,
+    });
+  },
   createOrders(data) {
     return axios({
       method: "POST",

@@ -18,11 +18,15 @@
       </div>
     </div>
     <div class="order-content-block">
+      <order-detail-card
+        v-for="(item, index) in orderData"
+        :key="index"
+        :orderData="item"
+      />
+      <!-- <order-detail-card />
       <order-detail-card />
       <order-detail-card />
-      <order-detail-card />
-      <order-detail-card />
-      <order-detail-card />
+      <order-detail-card /> -->
     </div>
   </div>
 </template>
@@ -39,7 +43,8 @@ export default {
   },
   data() {
     return {
-      checkingFinishedOrder: true // false for Processing ; true for Finished
+      checkingFinishedOrder: true, // false for 處理中 ; true for 已完成
+      orderData: []
     };
   },
   mounted() {
@@ -55,6 +60,7 @@ export default {
     getOrders() {
       this.$api.getOrders().then(res => {
         console.log(res);
+        this.orderData = res.data.data.rows;
       });
     }
   }

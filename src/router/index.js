@@ -96,6 +96,7 @@ const routes = [{
   }
 ];
 
+// handle router 錯誤
 const routerPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location) {
   return routerPush.call(this, location).catch(error => error);
@@ -106,5 +107,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+router.afterEach((to) => {
+  window.dataLayer.push({
+    page_name: to.name + '來自網站'
+  })
+})
 
 export default router;

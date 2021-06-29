@@ -114,11 +114,11 @@ router.afterEach((to) => {
     page_name: to.name + '來自網站'
   });
 
-  window.dataLayer2.push({
-    layer_name: 'data layer 2 !!',
-    event: 'From layer 2',
-    page_name: 'Hello world'
-  })
+  // window.dataLayer2.push({
+  //   layer_name: 'data layer 2 !!',
+  //   event: 'From layer 2',
+  //   page_name: 'Hello world'
+  // })
 })
 
 export default router;

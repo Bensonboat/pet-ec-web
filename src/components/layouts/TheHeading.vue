@@ -43,6 +43,11 @@ export default {
     },
     routerSwitcher(path) {
       this.$router.push(path);
+
+      window.dataLayer.push({
+        event: "main-click",
+        main_only: "Hi, this is a data from main clik, we're heading" + path
+      });
     }
   }
 };

@@ -111,9 +111,10 @@ const router = new VueRouter({
 router.afterEach((to) => {
   window.dataLayer.push({
     event: 'x',
-    page_name: to.name + '來自網站'
+    page_name: to.name + '來自網站',
+    hello_world: 'Sending hello world',
+    no_showing_hello_world: 'Not showing'
   });
-
   // window.dataLayer2.push({
   //   layer_name: 'data layer 2 !!',
   //   event: 'From layer 2',
